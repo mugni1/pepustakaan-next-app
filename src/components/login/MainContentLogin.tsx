@@ -4,19 +4,23 @@ import Title from "@/components/Title";
 import { BtnPrimary } from "../Button";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { NotifyError } from "../Notify";
 
 export default function MainContentLogin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLogoutAll, setIsLogoutAll] = useState(false);
   const [isNotify, setIsNotify] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
+  const [message, setMessage] = useState("");
+  const [statusCode, setStatusCode] = useState(0);
+  const [loadingBtn, setLoadingBtn] = useState(false);
 
   const urlLogin: string = "http://localhost:8000/api/login";
   const urlLoginLogout: string = "http://localhost:8000/api/login-logout";
 
   const handleSubmit = () => {
     event?.preventDefault();
+    setLoadingBtn(true);
     axios({
       method: "post",
       url: isLogoutAll ? urlLoginLogout : urlLogin,
@@ -26,11 +30,17 @@ export default function MainContentLogin() {
       },
     })
       .then((res) => {
-        console.log(res);
+        setMessage(res.data.message);
+        setIsNotify(true);
+        setStatusCode(res.status);
       })
       .catch((err) => {
-        setErrorMessage(err.response.data.message);
+        setMessage(err.response.data.message);
         setIsNotify(true);
+        setStatusCode(err.response.status);
+      })
+      .finally(() => {
+        setLoadingBtn(false);
       });
   };
 
@@ -38,7 +48,7 @@ export default function MainContentLogin() {
     setIsNotify(true);
     setTimeout(() => {
       setIsNotify(false);
-    }, 3000);
+    }, 1000);
   }, [isNotify]);
 
   useEffect(() => {
@@ -47,14 +57,11 @@ export default function MainContentLogin() {
 
   return (
     <section className="w-full min-h-screen flex flex-wrap overflow-hidden relative">
-      <div
-        className={`py-2 px-5 rounded-lg border absolute top-10 right-10 w-60 text-red-400 transition-all duration-500 ease-in-out ${
-          isNotify ? "visible translate-x-0" : "invisible translate-x-80"
-        }`}
-      >
-        <h4 className="font-semibold"> Warning</h4>
-        <p className="text-xs">{errorMessage}</p>
-      </div>
+      <NotifyError
+        isNotify={isNotify}
+        message={message}
+        statusCode={statusCode}
+      />
       {/* column 1  */}
       <Column1 />
       {/* end column 1  */}
@@ -94,7 +101,9 @@ export default function MainContentLogin() {
                 Logout dari semua perangkat
               </label>
             </div>
-            <BtnPrimary click={() => {}}>Sign in</BtnPrimary>
+            <BtnPrimary click={() => {}}>
+              {loadingBtn ? "Loading..." : "Sign In"}
+            </BtnPrimary>
           </form>
         </div>
       </div>
