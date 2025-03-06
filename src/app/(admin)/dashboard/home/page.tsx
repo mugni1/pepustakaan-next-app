@@ -1,3 +1,7 @@
 export default function Home() {
-  return <h1>Ini halaman home admin</h1>;
+  return (
+    <main>
+      <h1>Ini judul</h1>
+    </main>
+  );
 }

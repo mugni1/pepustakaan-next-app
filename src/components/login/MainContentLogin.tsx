@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { NotifyError } from "../Notify";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function MainContentLogin() {
   const [email, setEmail] = useState("");
@@ -17,6 +18,7 @@ export default function MainContentLogin() {
   const [loadingBtn, setLoadingBtn] = useState(false);
   const [isPassword, setIsPassword] = useState(true);
 
+  const router = useRouter();
   const urlLogin: string = "http://localhost:8000/api/login";
   const urlLoginLogout: string = "http://localhost:8000/api/login-logout";
 
@@ -35,6 +37,9 @@ export default function MainContentLogin() {
         setMessage(res.data.message);
         setIsNotify(true);
         setStatusCode(res.status);
+        if (res.data.data.roles.id === 1) {
+          router.push("/dashboard/home");
+        }
       })
       .catch(() => {
         setMessage("Email atau password yang anda masukan salah");
