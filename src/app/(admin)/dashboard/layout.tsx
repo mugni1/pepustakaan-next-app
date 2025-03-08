@@ -15,7 +15,7 @@ export default function Layout({ children }: { children: ReactNode }) {
       >
         <nav className="w-full h-16 bg-white flex items-center px-5">
           <button
-            className={`${sidebar ? "text-purple-600" : ""}`}
+            className={`cursor-pointer ${sidebar ? "text-purple-600" : ""}`}
             onClick={() => setSidebar(!sidebar)}
           >
             <SidebarSimple size={28} />
