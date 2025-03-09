@@ -1,8 +1,8 @@
 "use client";
 import { useEffect, useState } from "react";
-import ContainerFormAdmin from "../ContainerFormAdmin";
 import TableHead from "./TableHead";
 import Link from "next/link";
+import { DotsThreeOutline } from "@phosphor-icons/react";
 interface Books {
   category: { id: number; name: string };
   created_at: string;
@@ -71,13 +71,15 @@ export default function BooksList({ data }: { data: Books[] }) {
                     {book.publication_date}
                   </span>
                 </td>
-                <td className="text-center">
+                <td className="text-center w-1/12">
                   <span className="py-1 px-2 bg-sky-600 text-white font-semibold rounded-md">
                     {book.stock}
                   </span>
                 </td>
-                <td className="text-center relative group">
-                  <span className="cursor-pointer">...</span>
+                <td className="text-center relative w-1/12 group">
+                  <span className="cursor-pointer text-slate-600 w-full flex justify-center ">
+                    <DotsThreeOutline size={24} />
+                  </span>
                   <div className="absolute flex flex-col bottom-5 -right-8 -left-8 py-5 border border-slate-400 bg-white rounded-md invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-all ease-in-out duration-200 gap-1">
                     <Link href={`books/detail/${book.id}`}>Lihat</Link>
                     <Link href={`books/update/${book.id}`}>Lihat</Link>
