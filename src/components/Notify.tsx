@@ -5,7 +5,7 @@ export function NotifyError(props: {
 }) {
   return (
     <div
-      className={`py-2 px-5 rounded-lg border absolute top-5 right-5 w-60  transition-all duration-500 ease-in-out  ${
+      className={`py-2 px-5 bg-white rounded-lg border absolute top-5 right-5 w-60  transition-all duration-500 ease-in-out  ${
         props.statusCode == 200 ? "text-emerald-500" : "text-red-500"
       } ${
         props.isNotify ? "visible translate-x-0" : "invisible translate-x-80"

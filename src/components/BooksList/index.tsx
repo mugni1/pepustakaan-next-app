@@ -20,7 +20,6 @@ interface Books {
 export default function BooksList({ data }: { data: Books[] }) {
   const [books, setBooks] = useState<Books[]>(data);
   const [keyword, setKeyword] = useState("");
-  const [addForm, setAddForm] = useState(false);
 
   useEffect(() => {
     keyword.length > 0
@@ -33,76 +32,14 @@ export default function BooksList({ data }: { data: Books[] }) {
   }, [keyword]);
   return (
     <>
-      {/* form add buku dan cari buku */}
-      <ContainerFormAdmin isActive={addForm} title="Tambah Buku baru">
-        <form className="grid gap-5 grid-cols-1 md:grid-cols-2 w-full">
-          <input
-            type="text"
-            required
-            placeholder="Judul Buku"
-            className="border border-slate-400 outline-purple-600 columns-1 py-1 px-2 rounded-md"
-          />
-          <input
-            type="text"
-            required
-            placeholder="Penulis"
-            className="border border-slate-400 outline-purple-600 columns-1 py-1 px-2 rounded-md"
-          />
-          <input
-            type="text"
-            required
-            placeholder="Penerbit"
-            className="border border-slate-400 outline-purple-600 columns-1 py-1 px-2 rounded-md"
-          />
-          <input
-            type="date"
-            required
-            placeholder="Tahun Terbit"
-            className="border border-slate-400 outline-purple-600 columns-1 py-1 px-2 rounded-md"
-          />
-          <input
-            type="number"
-            required
-            placeholder="Tahun Terbit"
-            className="border border-slate-400 outline-purple-600 columns-1 py-1 px-2 rounded-md"
-          />
-          <input
-            type="file"
-            required
-            className="border border-slate-400 outline-purple-600 columns-1 py-1 px-2 rounded-md"
-          />
-          <textarea
-            name="description"
-            required
-            className="col-span-2 border border-slate-400 outline-purple-600 py-1 px-2 rounded-md"
-            rows={6}
-          ></textarea>
-        </form>
-        <section className="w-full flex gap-5">
-          <button
-            onClick={() => setAddForm(false)}
-            className=" bg-emerald-500 text-white py-2 px-5 rounded font-bold shadow-md"
-          >
-            Save
-          </button>
-          <button
-            onClick={() => setAddForm(false)}
-            className=" bg-red-500 text-white py-2 px-5 rounded font-bold shadow-md"
-          >
-            Close
-          </button>
-        </section>
-      </ContainerFormAdmin>
-      {/* end form add buku */}
-
       {/* main content  */}
       <section className="w-full flex items-center justify-between mb-5">
-        <button
-          onClick={() => setAddForm(true)}
+        <Link
+          href={"books/add"}
           className="bg-gradient-to-r from-fuchsia-500 to-purple-700 text-white py-2 px-5 rounded font-bold shadow-md"
         >
           Tambah Buku
-        </button>
+        </Link>
         <input
           type="text"
           className="p-2 border border-slate-400 rounded-md bg-white outline-purple-500"

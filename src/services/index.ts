@@ -11,9 +11,6 @@ export async function getCount(params: string) {
 }
 
 export async function getBooks() {
-  const res = await fetch(`${baseUrl}/books`, {
-    cache: "force-cache",
-    next: { revalidate: 60 * 60 },
-  });
+  const res = await fetch(`${baseUrl}/books`);
   return res.json();
 }

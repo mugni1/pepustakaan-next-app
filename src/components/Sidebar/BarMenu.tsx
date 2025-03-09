@@ -14,7 +14,9 @@ export default function BarMenu({ children, href, title }: Props) {
   return (
     <li
       className={`w-full px-5 py-2 transition-all ease-in-out duration-150 hover:text-purple-600 ${
-        pathName == href ? "bg-purple-100 text-purple-600" : ""
+        pathName === href || pathName.startsWith(`${href}/`)
+          ? "bg-purple-100 text-purple-600"
+          : ""
       }`}
     >
       <Link className="w-full  flex justify-between items-center" href={href}>
