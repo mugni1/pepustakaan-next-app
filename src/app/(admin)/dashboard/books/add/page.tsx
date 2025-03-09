@@ -1,18 +1,19 @@
 "use client";
-import { NotifyError } from "@/components/Notify";
 import axios from "axios";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useRef, useState } from "react";
+import swal from "sweetalert";
 
 export default function Page() {
-  const [title, setTitle] = useState("");
-  const [writer, setWriter] = useState("");
-  const [publisher, setPublisher] = useState("");
-  const [publicationDate, setPublicationDate] = useState("");
-  const [stock, setStock] = useState("");
-  const [description, setDescription] = useState("");
-  const [image, setImage] = useState<File | null>(null);
-  const [categoeyID, setCategoryID] = useState("0");
+  const title = useRef<HTMLInputElement>(null);
+  const writer = useRef<HTMLInputElement>(null);
+  const publisher = useRef<HTMLInputElement>(null);
+  const publicationDate = useRef<HTMLInputElement>(null);
+  const stock = useRef<HTMLInputElement>(null);
+  const description = useRef<HTMLTextAreaElement>(null);
+  const image = useRef<HTMLInputElement>(null);
+  const categoeyID = useRef<HTMLSelectElement>(null);
+
   const [btnLoading, setBtnLoading] = useState(false);
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -26,18 +27,30 @@ export default function Page() {
         Authorization: "Bearer " + process.env.NEXT_PUBLIC_API_TOKEN,
       },
       data: {
-        title,
-        writer,
-        publisher,
-        publication_date: publicationDate,
-        stock,
-        category_id: categoeyID,
-        description,
-        image,
+        title: title.current?.value,
+        writer: writer.current?.value,
+        publisher: publisher.current?.value,
+        publication_date: publicationDate.current?.value,
+        stock: stock.current?.value,
+        category_id: categoeyID.current?.value,
+        description: description.current?.value,
+        image: image.current?.files?.[0],
       },
     })
-      .then((res) => {})
-      .catch((err) => {})
+      .then((res) => {
+        swal({
+          title: "Success!",
+          text: "Buku berhasil di tambahkan",
+          icon: "success",
+        });
+      })
+      .catch((err) => {
+        swal({
+          title: "Error",
+          text: err.response.data.message,
+          icon: "error",
+        });
+      })
       .finally(() => {
         setBtnLoading(false);
       });
@@ -57,48 +70,42 @@ export default function Page() {
             type="text"
             className="py-1 px-2 outline-purple-600 border border-slate-400 rounded-md "
             placeholder="Judul Buku"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
+            ref={title}
             required
           />
           <input
             type="text"
             className="py-1 px-2 outline-purple-600 border border-slate-400 rounded-md "
             placeholder="Penulis Buku"
-            value={writer}
-            onChange={(e) => setWriter(e.target.value)}
+            ref={writer}
             required
           />
           <input
             type="text"
             className="py-1 px-2 outline-purple-600 border border-slate-400 rounded-md "
             placeholder="Penerbit Buku"
-            value={publisher}
-            onChange={(e) => setPublisher(e.target.value)}
+            ref={publisher}
             required
           />
           <input
             type="number"
             className="py-1 px-2 outline-purple-600 border border-slate-400 rounded-md "
             placeholder="Stock"
-            value={stock}
-            onChange={(e) => setStock(e.target.value)}
+            ref={stock}
             required
           />
           <input
             type="date"
             className="py-1 px-2 outline-purple-600 border border-slate-400 rounded-md "
             placeholder="Tahun Terbit"
-            value={publicationDate}
-            onChange={(e) => setPublicationDate(e.target.value)}
+            ref={publicationDate}
             required
           />
           <select
             name="category"
             id="category"
             className="py-1 px-2 outline-purple-600 border border-slate-400 rounded-md "
-            value={categoeyID}
-            onChange={(e) => setCategoryID(e.target.value)}
+            ref={categoeyID}
             required
           >
             <option value="0" className="text-slate-400" disabled>
@@ -111,17 +118,14 @@ export default function Page() {
             type="file"
             accept=".jpeg,.jpg,.png,.jfif,.avif,.webp"
             className="py-1 px-2 outline-purple-600 border border-slate-400 rounded-md col-span-2"
-            onChange={(e) => {
-              const file = e.target?.files?.[0];
-              if (file) setImage(file);
-            }}
+            ref={image}
             required
           />
           <textarea
             className="col-span-2 py-1 px-2 outline-purple-600 border border-slate-400 rounded-md"
             rows={8}
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
+            placeholder="Deskripsi Buku"
+            ref={description}
             required
           ></textarea>
           <div className=" flex gap-5 items-center">
