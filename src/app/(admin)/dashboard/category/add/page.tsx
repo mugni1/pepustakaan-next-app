@@ -9,11 +9,11 @@ export default function Page() {
     <main className="w-full p-5">
       <section className=" w-4/6 mx-auto bg-white rounded-xl p-5 gap-5 flex flex-col">
         <h1 className=" w-full text-center font-bold text-2xl">
-          Tambah Buku Baru
+          Tambah Kategori Baru
         </h1>
         <form
           //   onSubmit={(e) => handleSubmit(e)}
-          className="w-full grid grid-cols-2 gap-5"
+          className="w-full flex flex-col gap-5"
         >
           <input
             type="text"
@@ -22,7 +22,7 @@ export default function Page() {
             ref={name}
             required
           />
-          <div className=" flex gap-5 items-center">
+          <div className=" flex gap-5 items-center ">
             <button className=" bg-gradient-to-br from-fuchsia-500 to-purple-600 py-1 px-5 rounded-md shadow-md font-bold text-white text-lg">
               Submit
             </button>

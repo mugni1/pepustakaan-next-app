@@ -52,9 +52,16 @@ export default function CategoryList({ datas }: { datas: Props[] }) {
                 </td>
                 <td className="text-center font-semibold">{category.name}</td>
                 <td className="text-center p-2 w-1/12">
-                  <BtnHref href={`category/${category.id}/update`}>
-                    Edit
-                  </BtnHref>
+                  <Link
+                    href={`category/${category.id}/edit`}
+                    className="cursor-pointer"
+                  >
+                    <button
+                      className={`py-1 px-5 rounded-md shadow-md font-bold text-white text-lg bg-amber-500`}
+                    >
+                      Edit
+                    </button>
+                  </Link>
                 </td>
                 <td className="text-center p-2 w-1/12">
                   <button

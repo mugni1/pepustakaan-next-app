@@ -13,7 +13,7 @@ export default function BtnHref({
   return (
     <Link
       href={href}
-      className={`py-2 px-5 rounded-md shadow-md font-bold text-white text-lg ${className}`}
+      className={`py-1 px-5 rounded-md shadow-md font-bold text-white text-lg ${className}`}
     >
       {children}
     </Link>
