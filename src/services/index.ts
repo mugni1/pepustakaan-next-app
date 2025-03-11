@@ -14,3 +14,8 @@ export async function getBooks() {
   const res = await fetch(`${baseUrl}/books`);
   return res.json();
 }
+
+export async function getCategorys() {
+  const res = await fetch(`${baseUrl}/categories`);
+  return res.json();
+}

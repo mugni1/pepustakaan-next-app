@@ -17,7 +17,7 @@ interface Books {
 }
 
 export const metadata: Metadata = {
-  title: "Books",
+  title: "Dashboard - Books",
   description: "Books page",
 };
 

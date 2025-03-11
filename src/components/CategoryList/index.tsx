@@ -1,21 +1,27 @@
 "use client";
 import Link from "next/link";
 import TableHead from "./TableHead";
-export default function CategoryList() {
-  //  const [books, setBooks] = useState(data);
-  //   const [keyword, setKeyword] = useState("");
+import { useState, useEffect } from "react";
 
-  //   useEffect(() => {
-  //     keyword.length > 0
-  //       ? setBooks(
-  //           data.filter((book) =>
-  //             book.title.toLowerCase().includes(keyword.toLowerCase())
-  //           )
-  //         )
-  //       : setBooks(data);
-  //   }, [keyword]);
+interface Props {
+  id: number;
+  name: string;
+}
+export default function CategoryList({ datas }: { datas: Props[] }) {
+  const [categories, setCategories] = useState(datas);
+  const [keyword, setKeyword] = useState("");
+
+  useEffect(() => {
+    keyword.length > 0
+      ? setCategories(
+          datas.filter((category) =>
+            category.name.toLowerCase().includes(keyword.toLowerCase())
+          )
+        )
+      : setCategories(datas);
+  }, [keyword]);
   return (
-    <>
+    <div className="w-8/12 mx-auto">
       <section className="w-full flex items-center justify-between mb-5">
         <Link
           href={"category/add"}
@@ -23,54 +29,39 @@ export default function CategoryList() {
         >
           Tambah Buku
         </Link>
-        {/* <input
+        <input
           type="text"
           className="p-2 border border-slate-400 rounded-md bg-white outline-purple-500"
-          placeholder="Cari buku"
+          placeholder="Cari Category"
           value={keyword}
           onChange={(e) => setKeyword(e.target.value)}
-        /> */}
+        />
       </section>
       <section className=" w-full p-5 rounded-xl shadow-lg bg-white">
         <table className="w-full">
           <TableHead />
-          {/* <tbody className="w-full">
-            {books.map((book: Books, index: number) => (
+          <tbody className="w-full">
+            {categories.map((category: Props, index: number) => (
               <tr key={index} className="w-full border-b border-slate-400">
-                <td className="w-2/12 p-4">
-                  <img
-                    src={`${process.env.NEXT_PUBLIC_BASE_IMAGE_URL}/${book.image}`}
-                    alt=""
-                    className="h-40 w-8/12 mx-auto object-cover object-center border border-slate-400 shadow-md rounded-lg"
-                  />
+                <td className="text-center w-2/12 font-semibold">
+                  {index + 1}
                 </td>
-                <td className="text-center w-3/12 font-semibold">
-                  {book.title}
+                <td className="text-center font-semibold">{category.name}</td>
+                <td className="text-center p-2 w-1/12">
+                  <button className="py-1 px-5 rounded bg-amber-500 text-white font-semibold">
+                    <Link href={"categorys/update"}>Edit</Link>
+                  </button>
                 </td>
-                <td className="text-center">{book.writer}</td>
-                <td className="text-center">{book.publisher}</td>
-                <td className="text-center">
-                  <span className="py-1 px-5 bg-purple-600 text-white font-semibold rounded-md">
-                    {book.publication_date}
-                  </span>
-                </td>
-                <td className="text-center">
-                  <span className="py-1 px-2 bg-sky-600 text-white font-semibold rounded-md">
-                    {book.stock}
-                  </span>
-                </td>
-                <td className="text-center relative group">
-                  <span className="cursor-pointer">...</span>
-                  <div className="absolute flex flex-col bottom-5 -right-8 -left-8 py-5 border border-slate-400 bg-white rounded-md invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-all ease-in-out duration-200 gap-1">
-                    <Link href={`books/detail/${book.id}`}>Lihat</Link>
-                    <Link href={`books/update/${book.id}`}>Lihat</Link>
-                  </div>
+                <td className="text-center w-1/12">
+                  <button className="py-1 px-5 rounded bg-red-500 text-white font-semibold">
+                    Hapus
+                  </button>
                 </td>
               </tr>
             ))}
-          </tbody> */}
+          </tbody>
         </table>
       </section>
-    </>
+    </div>
   );
 }
