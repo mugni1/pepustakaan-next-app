@@ -22,14 +22,14 @@ export default function CategoryList({ datas }: { datas: Props[] }) {
       : setCategories(datas);
   }, [keyword]);
   return (
-    <div className="w-8/12 mx-auto">
+    <section className="w-8/12 mx-auto">
       {/* btn href  */}
       <section className="w-full flex items-center justify-between mb-5">
         <BtnHref
           href="category/add"
           className="bg-gradient-to-r from-fuchsia-500 to-purple-700"
         >
-          Add Category
+          Tambah Kategori
         </BtnHref>
         <input
           type="text"
@@ -52,12 +52,14 @@ export default function CategoryList({ datas }: { datas: Props[] }) {
                 </td>
                 <td className="text-center font-semibold">{category.name}</td>
                 <td className="text-center p-2 w-1/12">
-                  <button className="py-1 px-5 rounded bg-amber-500 text-white font-semibold">
-                    <Link href={"categorys/update"}>Edit</Link>
-                  </button>
+                  <BtnHref href={`category/${category.id}/update`}>
+                    Edit
+                  </BtnHref>
                 </td>
-                <td className="text-center w-1/12">
-                  <button className="py-1 px-5 rounded bg-red-500 text-white font-semibold">
+                <td className="text-center p-2 w-1/12">
+                  <button
+                    className={`py-1 px-5 rounded-md shadow-md font-bold text-white text-lg bg-red-500`}
+                  >
                     Hapus
                   </button>
                 </td>
@@ -67,6 +69,6 @@ export default function CategoryList({ datas }: { datas: Props[] }) {
         </table>
       </section>
       {/* end table  */}
-    </div>
+    </section>
   );
 }
