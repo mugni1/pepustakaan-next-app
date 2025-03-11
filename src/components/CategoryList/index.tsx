@@ -2,6 +2,7 @@
 import Link from "next/link";
 import TableHead from "./TableHead";
 import { useState, useEffect } from "react";
+import BtnHref from "../BtnHref";
 
 interface Props {
   id: number;
@@ -22,13 +23,14 @@ export default function CategoryList({ datas }: { datas: Props[] }) {
   }, [keyword]);
   return (
     <div className="w-8/12 mx-auto">
+      {/* btn href  */}
       <section className="w-full flex items-center justify-between mb-5">
-        <Link
-          href={"category/add"}
-          className="bg-gradient-to-r from-fuchsia-500 to-purple-700 text-white py-2 px-5 rounded font-bold shadow-md"
+        <BtnHref
+          href="category/add"
+          className="bg-gradient-to-r from-fuchsia-500 to-purple-700"
         >
-          Tambah Buku
-        </Link>
+          Add Category
+        </BtnHref>
         <input
           type="text"
           className="p-2 border border-slate-400 rounded-md bg-white outline-purple-500"
@@ -37,6 +39,8 @@ export default function CategoryList({ datas }: { datas: Props[] }) {
           onChange={(e) => setKeyword(e.target.value)}
         />
       </section>
+      {/* end btn href  */}
+      {/* table  */}
       <section className=" w-full p-5 rounded-xl shadow-lg bg-white">
         <table className="w-full">
           <TableHead />
@@ -62,6 +66,7 @@ export default function CategoryList({ datas }: { datas: Props[] }) {
           </tbody>
         </table>
       </section>
+      {/* end table  */}
     </div>
   );
 }
