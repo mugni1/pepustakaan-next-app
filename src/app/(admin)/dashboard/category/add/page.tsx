@@ -1,13 +1,13 @@
 "use client";
 import BtnHref from "@/components/BtnHref";
 import swal from "sweetalert";
-import ButtonSolid from "@/components/BtnHref";
 import axios from "axios";
-import Link from "next/link";
 import { useRef, useState } from "react";
+import { PaperPlaneRight, SpinnerGap, Trash } from "@phosphor-icons/react";
 export default function Page() {
   const name = useRef<HTMLInputElement>(null);
   const [loadingBtn, setLoadingBtn] = useState(false);
+
   function handleSubmit() {
     event?.preventDefault();
     setLoadingBtn(true);
@@ -42,7 +42,7 @@ export default function Page() {
   }
   return (
     <main className="w-full p-5">
-      <section className=" w-4/6 mx-auto bg-white rounded-xl p-5 gap-5 flex flex-col">
+      <section className=" w-3/6 mx-auto bg-white rounded-xl p-5 gap-5 flex flex-col">
         <h1 className=" w-full text-center font-bold text-2xl">
           Tambah Kategori Baru
         </h1>
@@ -60,11 +60,15 @@ export default function Page() {
           <div className=" flex gap-5 items-center ">
             <button
               type="submit"
-              className=" bg-gradient-to-br from-fuchsia-500 to-purple-600 py-1 px-5 rounded-md shadow-md font-bold text-white text-lg"
+              className=" bg-gradient-to-br from-fuchsia-500 to-purple-600 py-1 px-5 rounded-md shadow-md font-bold text-white text-lg cursor-pointer"
             >
-              {loadingBtn ? "Loading .." : "Submit"}
+              {loadingBtn ? (
+                <SpinnerGap className="animate-spin" size={28} />
+              ) : (
+                <span>Kirim</span>
+              )}
             </button>
-            <BtnHref href="/dashboard/category">Back</BtnHref>
+            <BtnHref href="/dashboard/category">Kembali</BtnHref>
           </div>
         </form>
       </section>
