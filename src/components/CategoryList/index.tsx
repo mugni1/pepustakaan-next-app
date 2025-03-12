@@ -102,7 +102,7 @@ export default function CategoryList({ datas }: { datas: Props[] }) {
                 <td className="text-center font-semibold">{category.name}</td>
                 <td className="text-center p-2 w-1/12">
                   <button
-                    onClick={() => router.push(`category/${category.id}/edit`)}
+                    onClick={() => router.push(`category/edit/${category.id}`)}
                     className={`py-1 px-5 rounded-md shadow-md font-bold text-white text-lg bg-amber-500 cursor-pointer`}
                   >
                     <Pencil size={24} />
