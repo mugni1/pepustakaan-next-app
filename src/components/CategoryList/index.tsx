@@ -1,8 +1,11 @@
 "use client";
-import Link from "next/link";
 import TableHead from "./TableHead";
 import { useState, useEffect } from "react";
 import BtnHref from "../BtnHref";
+import axios from "axios";
+import swal from "sweetalert";
+import { Pencil, SpinnerGap, Trash } from "@phosphor-icons/react";
+import { useRouter } from "next/navigation";
 
 interface Props {
   id: number;
@@ -11,6 +14,9 @@ interface Props {
 export default function CategoryList({ datas }: { datas: Props[] }) {
   const [categories, setCategories] = useState(datas);
   const [keyword, setKeyword] = useState("");
+  const [loadingBtnDelete, setLoadingBtnDelete] = useState(false);
+
+  const router = useRouter();
 
   useEffect(() => {
     keyword.length > 0
@@ -21,6 +27,46 @@ export default function CategoryList({ datas }: { datas: Props[] }) {
         )
       : setCategories(datas);
   }, [keyword]);
+
+  function handleDelete(id: number) {
+    setLoadingBtnDelete(true);
+    swal({
+      icon: "warning",
+      dangerMode: true,
+      title: "Warning",
+      buttons: ["Cancel", "OK"],
+    }).then((isTrue) => {
+      if (isTrue) {
+        axios({
+          method: "delete",
+          url: `${process.env.NEXT_PUBLIC_BASE_API_URL}/categories/${id}`,
+          headers: {
+            Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
+          },
+        })
+          .then((res) => {
+            setCategories(categories.filter((category) => category.id != id));
+            swal({
+              icon: "success",
+              title: "success",
+              text: res.data.message,
+            });
+          })
+          .catch((err) => {
+            swal({
+              icon: "error",
+              title: "error",
+              text: err.response?.data?.message || "Terjadi kesalahan",
+            });
+          })
+          .finally(() => {
+            setLoadingBtnDelete(false);
+          });
+      } else {
+        setLoadingBtnDelete(false);
+      }
+    });
+  }
   return (
     <section className="w-8/12 mx-auto">
       {/* btn href  */}
@@ -43,7 +89,10 @@ export default function CategoryList({ datas }: { datas: Props[] }) {
       {/* table  */}
       <section className=" w-full p-5 rounded-xl shadow-lg bg-white">
         <table className="w-full">
+          {/* thead  */}
           <TableHead />
+          {/* end thead  */}
+          {/* tbody  */}
           <tbody className="w-full">
             {categories.map((category: Props, index: number) => (
               <tr key={index} className="w-full border-b border-slate-400">
@@ -52,27 +101,29 @@ export default function CategoryList({ datas }: { datas: Props[] }) {
                 </td>
                 <td className="text-center font-semibold">{category.name}</td>
                 <td className="text-center p-2 w-1/12">
-                  <Link
-                    href={`category/${category.id}/edit`}
-                    className="cursor-pointer"
+                  <button
+                    onClick={() => router.push(`category/${category.id}/edit`)}
+                    className={`py-1 px-5 rounded-md shadow-md font-bold text-white text-lg bg-amber-500 cursor-pointer`}
                   >
-                    <button
-                      className={`py-1 px-5 rounded-md shadow-md font-bold text-white text-lg bg-amber-500`}
-                    >
-                      Edit
-                    </button>
-                  </Link>
+                    <Pencil size={24} />
+                  </button>
                 </td>
                 <td className="text-center p-2 w-1/12">
                   <button
-                    className={`py-1 px-5 rounded-md shadow-md font-bold text-white text-lg bg-red-500`}
+                    onClick={() => handleDelete(category.id)}
+                    className={`py-1 px-5 rounded-md shadow-md font-bold text-white text-lg bg-red-500 cursor-pointer`}
                   >
-                    Hapus
+                    {loadingBtnDelete ? (
+                      <SpinnerGap className="animate-spin" size={24} />
+                    ) : (
+                      <Trash size={24} />
+                    )}
                   </button>
                 </td>
               </tr>
             ))}
           </tbody>
+          {/* end tbody  */}
         </table>
       </section>
       {/* end table  */}
