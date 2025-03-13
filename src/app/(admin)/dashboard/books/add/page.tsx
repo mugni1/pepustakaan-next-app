@@ -1,8 +1,15 @@
 "use client";
+import FormTitle from "@/components/FormTitle";
+import { FileImage } from "@phosphor-icons/react";
 import axios from "axios";
 import Link from "next/link";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import swal from "sweetalert";
+
+interface Category{
+  id: number;
+  name: string;
+}
 
 export default function Page() {
   const title = useRef<HTMLInputElement>(null);
@@ -15,6 +22,7 @@ export default function Page() {
   const categoeyID = useRef<HTMLSelectElement>(null);
 
   const [btnLoading, setBtnLoading] = useState(false);
+  const [categories, setCategories] = useState([]);
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -56,12 +64,20 @@ export default function Page() {
       });
   }
 
+  // unMount
+  useEffect(() => {
+    axios({
+      method: "get",
+      url: `${process.env.NEXT_PUBLIC_BASE_API_URL}/categories`,
+    }).then((res)=>{
+      console.log(res)
+      setCategories(res.data.data)
+    })}, []);
+
   return (
     <main className="p-5 w-full overflow-x-hidden">
       <section className=" w-4/6 mx-auto bg-white rounded-xl p-5 gap-5 flex flex-col">
-        <h1 className=" w-full text-center font-bold text-2xl">
-          Tambah Buku Baru
-        </h1>
+        <FormTitle>Tambah Buku Baru</FormTitle>
         <form
           onSubmit={(e) => handleSubmit(e)}
           className="w-full grid grid-cols-2 gap-5"
@@ -107,20 +123,29 @@ export default function Page() {
             className="py-1 px-2 outline-purple-600 border border-slate-400 rounded-md "
             ref={categoeyID}
             required
+            defaultValue={"no-select"}
           >
-            <option value="0" className="text-slate-400" disabled>
+            <option value="no-select" className="text-slate-400" disabled>
               - Pilih Kategori -
             </option>
-            <option value="1">Satu</option>
-            <option value="2">Dua</option>
+            {categories?.map((category: Category,index: number)=>(
+              <option key={index + category.id} value={category.id}>{category.name}</option>
+            ))}
           </select>
-          <input
+         
+         <div className="flex flex-col col-span-2 gap-1">
+          <span className=" flex gap-1 items-center font-semibold">
+          <FileImage size={24} /><label htmlFor="cover">Gambar Buku</label>
+          </span>
+         <input
+         id="cover"
             type="file"
             accept=".jpeg,.jpg,.png,.jfif,.avif,.webp"
-            className="py-1 px-2 outline-purple-600 border border-slate-400 rounded-md col-span-2"
+            className="py-1 px-2 outline-purple-600 border border-slate-400 rounded-md w-full"
             ref={image}
             required
           />
+         </div>
           <textarea
             className="col-span-2 py-1 px-2 outline-purple-600 border border-slate-400 rounded-md"
             rows={8}
