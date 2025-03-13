@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import BtnHref from "../BtnHref";
 import axios from "axios";
 import swal from "sweetalert";
-import { Pencil, SpinnerGap, Trash } from "@phosphor-icons/react";
+import { MagnifyingGlass, Pencil, SpinnerGap, Trash } from "@phosphor-icons/react";
 import { useRouter } from "next/navigation";
 
 interface Props {
@@ -69,7 +69,7 @@ export default function CategoryList({ datas }: { datas: Props[] }) {
   }
   return (
     <section className="w-8/12 mx-auto">
-      {/* btn href  */}
+      {/* btn href adn search */}
       <section className="w-full flex items-center justify-between mb-5">
         <BtnHref
           href="category/add"
@@ -77,15 +77,18 @@ export default function CategoryList({ datas }: { datas: Props[] }) {
         >
           Tambah Kategori
         </BtnHref>
+       <div className="relative h-fit w-auto group text-slate-600">
+       <span className="absolute h-full flex items-center px-2"><MagnifyingGlass size={24} /></span>
         <input
           type="text"
-          className="p-2 border border-slate-400 rounded-md bg-white outline-purple-500"
-          placeholder="Cari Category"
+          className="p-2 border border-slate-400 rounded-md bg-white outline-purple-500 ps-10"
+          placeholder="Cari Kategori"
           value={keyword}
           onChange={(e) => setKeyword(e.target.value)}
         />
+       </div>
       </section>
-      {/* end btn href  */}
+      {/* end btn href and search*/}
       {/* table  */}
       <section className=" w-full p-5 rounded-xl shadow-lg bg-white">
         <table className="w-full">

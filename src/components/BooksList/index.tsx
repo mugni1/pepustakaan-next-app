@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import TableHead from "./TableHead";
 import Link from "next/link";
-import { DotsThreeOutline } from "@phosphor-icons/react";
+import { DotsThreeOutline, MagnifyingGlass } from "@phosphor-icons/react";
 interface Books {
   category: { id: number; name: string };
   created_at: string;
@@ -40,13 +40,16 @@ export default function BooksList({ data }: { data: Books[] }) {
         >
           Tambah Buku
         </Link>
+        <div className="relative h-fit w-auto group text-slate-600">
+       <span className="absolute h-full flex items-center px-2"><MagnifyingGlass size={24} /></span>
         <input
           type="text"
-          className="p-2 border border-slate-400 rounded-md bg-white outline-purple-500"
-          placeholder="Cari buku"
+          className="p-2 border border-slate-400 rounded-md bg-white outline-purple-500 ps-10"
+          placeholder="Cari Buku"
           value={keyword}
           onChange={(e) => setKeyword(e.target.value)}
         />
+       </div>
       </section>
       <section className=" w-full p-5 rounded-xl shadow-lg bg-white">
         <table className="w-full">
