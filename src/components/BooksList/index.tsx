@@ -2,15 +2,10 @@
 import { useEffect, useState } from "react";
 import TableHead from "./TableHead";
 import Link from "next/link";
-import {
-  DotsThreeOutline,
-  Eye,
-  MagnifyingGlass,
-  Pencil,
-  Trash,
-} from "@phosphor-icons/react";
-import BtnHref from "../BtnHref";
-import { BtnPrimary } from "../Button";
+import { Eye, MagnifyingGlass, Pencil, Trash } from "@phosphor-icons/react";
+import swal from "sweetalert";
+import { useRouter } from "next/navigation";
+import axios from "axios";
 interface Books {
   category: { id: number; name: string };
   created_at: string;
@@ -28,6 +23,32 @@ interface Books {
 export default function BooksList({ data }: { data: Books[] }) {
   const [books, setBooks] = useState<Books[]>(data);
   const [keyword, setKeyword] = useState("");
+  const router = useRouter();
+
+  const handleDelete = (id: number) => {
+    axios({
+      method: "delete",
+      url: process.env.NEXT_PUBLIC_BASE_API_URL + "/books/" + id,
+      headers: {
+        Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
+      },
+    })
+      .then((res) => {
+        swal({
+          icon: "success",
+          title: "Success!",
+          text: res.data?.message,
+        });
+        setBooks(books.filter((book: Books) => book.id != id));
+      })
+      .catch((err) => {
+        swal({
+          icon: "error",
+          title: "ERROR",
+          text: "Please try again later",
+        });
+      });
+  };
 
   useEffect(() => {
     keyword.length > 0
@@ -67,37 +88,47 @@ export default function BooksList({ data }: { data: Books[] }) {
           <tbody className="w-full">
             {books.map((book: Books, index: number) => (
               <tr key={index} className="w-full border-b border-slate-400">
+                {/* cover book  */}
                 <td className="w-2/12 p-4">
                   <img
                     src={`${process.env.NEXT_PUBLIC_BASE_IMAGE_URL}/${book.image}`}
                     alt=""
-                    className="h-40 w-10/12 mx-auto object-cover object-center border border-slate-400 shadow-md rounded-lg"
+                    className="h-32 w-7/12 mx-auto object-cover object-center border border-slate-400 shadow-md rounded-lg"
                   />
                 </td>
-                <td className="text-start w-3/12 font-semibold">
+                {/* end cover book  */}
+                <td className="text-start w-2/12 font-semibold">
                   {book.title}
                 </td>
-                <td className="text-center">{book.writer}</td>
-                <td className="text-center w-2/12">
-                  <span className="py-1 px-2 font-semibold rounded-md">
-                    {book.stock}
-                  </span>
-                </td>
+                <td className="text-center w-2/12">{book.writer}</td>
+                <td className="text-center w-2/12">{book.publisher}</td>
+                <td className="text-center w-2/12">{book.stock}</td>
+                {/* delete update show  */}
                 <td className="text-center px-1">
-                  <button className=" p-2 rounded-full bg-red-500 text-white">
+                  <button
+                    onClick={() => handleDelete(book.id)}
+                    className=" p-2 rounded-full bg-red-500 text-white cursor-pointer"
+                  >
                     <Trash size={24} />
                   </button>
                 </td>
                 <td className="text-center px-1">
-                  <button className=" p-2 rounded-full bg-amber-500 text-white">
+                  <button
+                    onClick={() => router.push(`books/edit/${book.id}`)}
+                    className=" p-2 rounded-full bg-amber-500 text-white"
+                  >
                     <Pencil size={24} />
                   </button>
                 </td>
                 <td className="text-center px-1">
-                  <button className=" p-2 rounded-full bg-sky-500 text-white">
+                  <button
+                    onClick={() => router.push(`books/${book.id}`)}
+                    className=" p-2 rounded-full bg-sky-500 text-white cursor-pointer"
+                  >
                     <Eye size={24} />
                   </button>
                 </td>
+                {/* end delete update show  */}
               </tr>
             ))}
           </tbody>
