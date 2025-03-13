@@ -2,7 +2,15 @@
 import { useEffect, useState } from "react";
 import TableHead from "./TableHead";
 import Link from "next/link";
-import { DotsThreeOutline, MagnifyingGlass } from "@phosphor-icons/react";
+import {
+  DotsThreeOutline,
+  Eye,
+  MagnifyingGlass,
+  Pencil,
+  Trash,
+} from "@phosphor-icons/react";
+import BtnHref from "../BtnHref";
+import { BtnPrimary } from "../Button";
 interface Books {
   category: { id: number; name: string };
   created_at: string;
@@ -41,15 +49,17 @@ export default function BooksList({ data }: { data: Books[] }) {
           Tambah Buku
         </Link>
         <div className="relative h-fit w-auto group text-slate-600">
-       <span className="absolute h-full flex items-center px-2"><MagnifyingGlass size={24} /></span>
-        <input
-          type="text"
-          className="p-2 border border-slate-400 rounded-md bg-white outline-purple-500 ps-10"
-          placeholder="Cari Buku"
-          value={keyword}
-          onChange={(e) => setKeyword(e.target.value)}
-        />
-       </div>
+          <span className="absolute h-full flex items-center px-2">
+            <MagnifyingGlass size={24} />
+          </span>
+          <input
+            type="text"
+            className="p-2 border border-slate-400 rounded-md bg-white outline-purple-500 ps-10"
+            placeholder="Cari Buku"
+            value={keyword}
+            onChange={(e) => setKeyword(e.target.value)}
+          />
+        </div>
       </section>
       <section className=" w-full p-5 rounded-xl shadow-lg bg-white">
         <table className="w-full">
@@ -61,32 +71,32 @@ export default function BooksList({ data }: { data: Books[] }) {
                   <img
                     src={`${process.env.NEXT_PUBLIC_BASE_IMAGE_URL}/${book.image}`}
                     alt=""
-                    className="h-40 w-8/12 mx-auto object-cover object-center border border-slate-400 shadow-md rounded-lg"
+                    className="h-40 w-10/12 mx-auto object-cover object-center border border-slate-400 shadow-md rounded-lg"
                   />
                 </td>
-                <td className="text-center w-3/12 font-semibold">
+                <td className="text-start w-3/12 font-semibold">
                   {book.title}
                 </td>
                 <td className="text-center">{book.writer}</td>
-                <td className="text-center">{book.publisher}</td>
-                <td className="text-center">
-                  <span className="py-1 px-5 bg-purple-600 text-white font-semibold rounded-md">
-                    {book.publication_date}
-                  </span>
-                </td>
-                <td className="text-center w-1/12">
-                  <span className="py-1 px-2 bg-sky-600 text-white font-semibold rounded-md">
+                <td className="text-center w-2/12">
+                  <span className="py-1 px-2 font-semibold rounded-md">
                     {book.stock}
                   </span>
                 </td>
-                <td className="text-center relative w-1/12 group">
-                  <span className="cursor-pointer text-slate-600 w-full flex justify-center ">
-                    <DotsThreeOutline size={24} />
-                  </span>
-                  <div className="absolute flex flex-col bottom-5 -right-8 -left-8 py-5 border border-slate-400 bg-white rounded-md invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-all ease-in-out duration-200 gap-1">
-                    <Link href={`books/detail/${book.id}`}>Lihat</Link>
-                    <Link href={`books/update/${book.id}`}>Lihat</Link>
-                  </div>
+                <td className="text-center px-1">
+                  <button className=" p-2 rounded-full bg-red-500 text-white">
+                    <Trash size={24} />
+                  </button>
+                </td>
+                <td className="text-center px-1">
+                  <button className=" p-2 rounded-full bg-amber-500 text-white">
+                    <Pencil size={24} />
+                  </button>
+                </td>
+                <td className="text-center px-1">
+                  <button className=" p-2 rounded-full bg-sky-500 text-white">
+                    <Eye size={24} />
+                  </button>
                 </td>
               </tr>
             ))}
