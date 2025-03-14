@@ -26,28 +26,38 @@ export default function BooksList({ data }: { data: Books[] }) {
   const router = useRouter();
 
   const handleDelete = (id: number) => {
-    axios({
-      method: "delete",
-      url: process.env.NEXT_PUBLIC_BASE_API_URL + "/books/" + id,
-      headers: {
-        Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
-      },
-    })
-      .then((res) => {
-        swal({
-          icon: "success",
-          title: "Success!",
-          text: res.data?.message,
-        });
-        setBooks(books.filter((book: Books) => book.id != id));
-      })
-      .catch((err) => {
-        swal({
-          icon: "error",
-          title: "ERROR",
-          text: "Please try again later",
-        });
-      });
+    swal({
+      icon: "warning",
+      dangerMode: true,
+      title: "Warning",
+      text: "Apakah kamu yakin ingin menghapus?",
+      buttons: ["Batal", "Ya"],
+    }).then((isTrue) => {
+      if (isTrue) {
+        axios({
+          method: "delete",
+          url: process.env.NEXT_PUBLIC_BASE_API_URL + "/books/" + id,
+          headers: {
+            Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
+          },
+        })
+          .then((res) => {
+            swal({
+              icon: "success",
+              title: "Success!",
+              text: res.data?.message,
+            });
+            setBooks(books.filter((book: Books) => book.id != id));
+          })
+          .catch((err) => {
+            swal({
+              icon: "error",
+              title: "ERROR",
+              text: "Please try again later",
+            });
+          });
+      }
+    });
   };
 
   useEffect(() => {
@@ -115,7 +125,7 @@ export default function BooksList({ data }: { data: Books[] }) {
                 <td className="text-center px-1">
                   <button
                     onClick={() => router.push(`books/edit/${book.id}`)}
-                    className=" p-2 rounded-full bg-amber-500 text-white"
+                    className=" p-2 rounded-full bg-amber-500 text-white cursor-pointer"
                   >
                     <Pencil size={24} />
                   </button>
