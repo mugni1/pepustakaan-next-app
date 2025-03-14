@@ -15,6 +15,17 @@ interface Member {
 
 export default function MemberList({ members }: { members: Member[] }) {
   const [memberList, setMemberList] = useState(members);
+  const [keyword, setKeyword] = useState("");
+
+  useEffect(() => {
+    keyword.length > 0
+      ? setMemberList(
+          members.filter((member: Member) =>
+            member.full_name.toLowerCase().includes(keyword.toLowerCase())
+          )
+        )
+      : setMemberList(members);
+  }, [keyword]);
 
   return (
     <MainContainer>
@@ -29,8 +40,8 @@ export default function MemberList({ members }: { members: Member[] }) {
             type="text"
             className="p-2 border border-slate-400 rounded-md bg-white outline-purple-500 ps-10"
             placeholder="Cari Member"
-            // value={keyword}
-            // onChange={(e) => setKeyword(e.target.value)}
+            value={keyword}
+            onChange={(e) => setKeyword(e.target.value)}
           />
         </div>
       </section>
