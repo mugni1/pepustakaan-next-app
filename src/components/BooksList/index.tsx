@@ -1,12 +1,12 @@
 "use client";
 import { useEffect, useState } from "react";
 import TableHead from "./TableHead";
-import Link from "next/link";
 import { Eye, MagnifyingGlass, Pencil, Trash } from "@phosphor-icons/react";
 import swal from "sweetalert";
 import { useRouter } from "next/navigation";
 import axios from "axios";
-import BtnHref from "../BtnHref";
+import BtnHref from "../Admin/Button/BtnHref";
+import Container from "../Admin/Container";
 
 interface Books {
   category: { id: number; name: string };
@@ -74,14 +74,9 @@ export default function BooksList({ data }: { data: Books[] }) {
 
   return (
     <>
-      {/* search  */}
+      {/* search and add button  */}
       <section className="w-full flex items-center justify-between mb-5">
-        <BtnHref
-          href="books/add"
-          className="bg-gradient-to-r from-fuchsia-500 to-purple-700"
-        >
-          Tambah Buku
-        </BtnHref>
+        <BtnHref href="books/add">Tambah Member</BtnHref>
         <div className="relative h-fit w-auto group text-slate-600">
           <span className="absolute h-full flex items-center px-2">
             <MagnifyingGlass size={24} />
@@ -89,15 +84,16 @@ export default function BooksList({ data }: { data: Books[] }) {
           <input
             type="text"
             className="p-2 border border-slate-400 rounded-md bg-white outline-purple-500 ps-10"
-            placeholder="Cari Buku"
+            placeholder="Cari Member"
             value={keyword}
             onChange={(e) => setKeyword(e.target.value)}
           />
         </div>
       </section>
-      {/* end search  */}
-      {/* main content  */}
-      <section className=" w-full p-5 rounded-xl shadow-lg bg-white">
+      {/* end search  and add button */}
+
+      {/* table */}
+      <Container>
         <table className="w-full">
           <TableHead />
           <tbody className="w-full">
@@ -148,8 +144,8 @@ export default function BooksList({ data }: { data: Books[] }) {
             ))}
           </tbody>
         </table>
-      </section>
-      {/* end man content  */}
+      </Container>
+      {/* end table */}
     </>
   );
 }

@@ -40,7 +40,7 @@ export default async function Page({ params }: { params: { id: string } }) {
         {/* info lain lain  */}
         <section className="w-full flex">
           {/* image  */}
-          <div className="w-3/12 pe-5">
+          <div className="w-3/12 rounded-lg overflow-hidden shadow-lg">
             <img
               src={`${process.env.NEXT_PUBLIC_BASE_IMAGE_URL}${data.image}`}
               alt=""
