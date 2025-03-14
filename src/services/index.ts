@@ -1,3 +1,5 @@
+import { headers } from "next/headers";
+
 const baseUrl = process.env.NEXT_PUBLIC_BASE_API_URL;
 
 export async function getCount(params: string) {
@@ -24,6 +26,16 @@ export async function getCategorys() {
   const res = await fetch(`${baseUrl}/categories`, {
     cache: "force-cache",
     next: { revalidate: 60 * 60 },
+  });
+  return res.json();
+}
+
+export async function getMember() {
+  const res = await fetch(`${baseUrl}/users-user`, {
+    headers: {
+      Accept: "application/json",
+      Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
+    },
   });
   return res.json();
 }

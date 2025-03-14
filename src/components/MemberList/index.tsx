@@ -1,0 +1,88 @@
+"use client";
+import { MagnifyingGlass, Pencil, Trash } from "@phosphor-icons/react";
+import BtnHref from "../Admin/Button/BtnHref";
+import Container from "../Admin/Container";
+import MainContainer from "../Admin/MainContainer";
+import { useEffect, useState } from "react";
+
+interface Member {
+  id: number;
+  full_name: string;
+  username: string;
+  email: string;
+  roles: { id: number; name: string };
+}
+
+export default function MemberList({ members }: { members: Member[] }) {
+  const [memberList, setMemberList] = useState(members);
+
+  return (
+    <MainContainer>
+      {/* search  */}
+      <section className="w-full flex items-center justify-between mb-5">
+        <BtnHref href="member/add">Tambah Member</BtnHref>
+        <div className="relative h-fit w-auto group text-slate-600">
+          <span className="absolute h-full flex items-center px-2">
+            <MagnifyingGlass size={24} />
+          </span>
+          <input
+            type="text"
+            className="p-2 border border-slate-400 rounded-md bg-white outline-purple-500 ps-10"
+            placeholder="Cari Member"
+            // value={keyword}
+            // onChange={(e) => setKeyword(e.target.value)}
+          />
+        </div>
+      </section>
+      {/* end search  */}
+
+      {/* table  */}
+      <Container>
+        <table className="w-full">
+          <thead>
+            <tr className="border-b poppins-bold">
+              <th className="w-1/12 py-2">ID</th>
+              <th className="w-2/12 py-2">Nama Lengkap</th>
+              <th className="w-2/12">Username</th>
+              <th className="w-2/12">Email</th>
+              <th className="w-2/12">Role</th>
+              <th colSpan={2} className="w-1/12">
+                Action
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {memberList.map((member: Member, index) => (
+              <tr key={index} className="border-b">
+                <td className="text-center py-5">{member.id}</td>
+                <td className="text-center py-5">{member.full_name}</td>
+                <td className="text-center">{member.username}</td>
+                <td className="text-center">{member.email}</td>
+                <td className="text-center">{member.roles.name}</td>
+                {/* delete update show  */}
+                <td className="text-center px-1">
+                  <button
+                    // onClick={() => handleDelete(book.id)}
+                    className=" p-2 rounded-full bg-red-500 text-white cursor-pointer"
+                  >
+                    <Trash size={24} />
+                  </button>
+                </td>
+                <td className="text-center px-1">
+                  <button
+                    // onClick={() => router.push(`books/edit/${book.id}`)}
+                    className=" p-2 rounded-full bg-amber-500 text-white cursor-pointer"
+                  >
+                    <Pencil size={24} />
+                  </button>
+                </td>
+                {/* end delete update show  */}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </Container>
+      {/* end table  */}
+    </MainContainer>
+  );
+}
