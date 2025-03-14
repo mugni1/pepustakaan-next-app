@@ -7,6 +7,7 @@ import swal from "sweetalert";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import BtnHref from "../BtnHref";
+
 interface Books {
   category: { id: number; name: string };
   created_at: string;
@@ -70,9 +71,10 @@ export default function BooksList({ data }: { data: Books[] }) {
         )
       : setBooks(data);
   }, [keyword]);
+
   return (
     <>
-      {/* main content  */}
+      {/* search  */}
       <section className="w-full flex items-center justify-between mb-5">
         <BtnHref
           href="books/add"
@@ -93,6 +95,8 @@ export default function BooksList({ data }: { data: Books[] }) {
           />
         </div>
       </section>
+      {/* end search  */}
+      {/* main content  */}
       <section className=" w-full p-5 rounded-xl shadow-lg bg-white">
         <table className="w-full">
           <TableHead />
@@ -133,7 +137,7 @@ export default function BooksList({ data }: { data: Books[] }) {
                 </td>
                 <td className="text-center px-1">
                   <button
-                    onClick={() => router.push(`books/${book.id}`)}
+                    onClick={() => router.push(`books/detail/${book.id}`)}
                     className=" p-2 rounded-full bg-sky-500 text-white cursor-pointer"
                   >
                     <Eye size={24} />
