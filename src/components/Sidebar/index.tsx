@@ -22,7 +22,7 @@ export default function Sidebar({ className }: { className: string }) {
     >
       {/* brand  */}
       <div className="h-16 flex items-center justify-center w-full text-xl">
-        <span className=" font-semibold">PUSTAKA</span>
+        <span className="poppins-bold">PUSTAKA</span>
       </div>
       {/* end brand  */}
       {/* list navigasi  */}

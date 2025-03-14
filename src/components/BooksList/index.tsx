@@ -6,6 +6,7 @@ import { Eye, MagnifyingGlass, Pencil, Trash } from "@phosphor-icons/react";
 import swal from "sweetalert";
 import { useRouter } from "next/navigation";
 import axios from "axios";
+import BtnHref from "../BtnHref";
 interface Books {
   category: { id: number; name: string };
   created_at: string;
@@ -73,12 +74,12 @@ export default function BooksList({ data }: { data: Books[] }) {
     <>
       {/* main content  */}
       <section className="w-full flex items-center justify-between mb-5">
-        <Link
-          href={"books/add"}
-          className="bg-gradient-to-r from-fuchsia-500 to-purple-700 text-white py-2 px-5 rounded font-bold shadow-md"
+        <BtnHref
+          href="books/add"
+          className="bg-gradient-to-r from-fuchsia-500 to-purple-700"
         >
           Tambah Buku
-        </Link>
+        </BtnHref>
         <div className="relative h-fit w-auto group text-slate-600">
           <span className="absolute h-full flex items-center px-2">
             <MagnifyingGlass size={24} />

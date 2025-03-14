@@ -28,6 +28,11 @@ body {
 .bglogin {
   background-image: url("/bgperpus2.jpg");
 }
+
+.poppins {
+  font-family: "poppins";
+}
+
 .poppins-semibold {
   font-family: "poppins-semibold";
 }
