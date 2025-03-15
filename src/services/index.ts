@@ -30,6 +30,7 @@ export async function getCategorys() {
   return res.json();
 }
 
+//  MEMBERS
 export async function getMember() {
   const res = await fetch(`${baseUrl}/users-user`, {
     headers: {
@@ -37,5 +38,19 @@ export async function getMember() {
       Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
     },
   });
+  return res.json();
+}
+
+// BORROWINGS
+export async function getBorrow() {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_API_URL}/borrowings`,
+    {
+      headers: {
+        Accept: "application/json",
+        Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
+      },
+    }
+  );
   return res.json();
 }

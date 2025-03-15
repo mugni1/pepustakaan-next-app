@@ -3,8 +3,28 @@ import { MagnifyingGlass, Pencil, Trash } from "@phosphor-icons/react";
 import MainContainer from "../Admin/MainContainer";
 import Container from "../Admin/Container";
 import BtnHref from "../Admin/Button/BtnHref";
+import { useState } from "react";
+interface User {
+  id: number;
+  full_name: string;
+  username: string;
+}
+interface Book {
+  id: number;
+  title: string;
+}
+interface Props {
+  id: number;
+  user: User | null;
+  book: Book | null;
+  borrow_date: string;
+  return_date: string;
+  status: string;
+  daily_fine: number;
+}
 
-export default function BorrowList() {
+export default function BorrowList({ data }: { data: Props[] }) {
+  const [borrows, setBorrows] = useState(data);
   return (
     <MainContainer>
       {/* search  */}
@@ -40,36 +60,40 @@ export default function BorrowList() {
             </tr>
           </thead>
           <tbody>
-            <tr className="border-b border-slate-500">
-              <td className="text-center">Asep Abdul Mugni</td>
-              <td className="text-center">Menjadi Sukse dalam setahun</td>
-              <td className="text-center">2025-02-23</td>
-              <td className="text-center">2025-04-25</td>
-              <td className="text-center px-2">Rp 1.000</td>
-              <td className="text-center">
-                <span className="py-1 px-3 text-green-600 bg-green-200 rounded-lg">
-                  dipinjam
-                </span>
-              </td>
-              {/* delete update show  */}
-              <td className="text-center px-1 py-3">
-                <button
-                  //   onClick={() => handleDelete(member.id)}
-                  className="p-2 rounded-full bg-red-500 text-white cursor-pointer"
-                >
-                  <Trash size={24} />
-                </button>
-              </td>
-              <td className="text-center px-1">
-                <button
-                  // onClick={() => router.push(`books/edit/${book.id}`)}
-                  className=" p-2 rounded-full bg-amber-500 text-white cursor-pointer"
-                >
-                  <Pencil size={24} />
-                </button>
-              </td>
-              {/* end delete update show  */}
-            </tr>
+            {borrows.map((borrow: Props, index) => (
+              <tr key={index} className="border-b border-slate-500">
+                <td className="text-center">{borrow.user?.full_name}</td>
+                <td className="text-center">{borrow.book?.title}</td>
+                <td className="text-center">{borrow.borrow_date}</td>
+                <td className="text-center">{borrow.return_date}</td>
+                <td className="text-center px-2">
+                  Rp {borrow.daily_fine.toLocaleString("id-ID")}
+                </td>
+                <td className="text-center">
+                  <span className="py-1 px-3 text-green-600 bg-green-200 rounded-lg">
+                    {borrow.status}
+                  </span>
+                </td>
+                {/* delete update show  */}
+                <td className="text-center px-1 py-3">
+                  <button
+                    //   onClick={() => handleDelete(member.id)}
+                    className="p-2 rounded-full bg-red-500 text-white cursor-pointer"
+                  >
+                    <Trash size={24} />
+                  </button>
+                </td>
+                <td className="text-center px-1">
+                  <button
+                    // onClick={() => router.push(`books/edit/${book.id}`)}
+                    className=" p-2 rounded-full bg-amber-500 text-white cursor-pointer"
+                  >
+                    <Pencil size={24} />
+                  </button>
+                </td>
+                {/* end delete update show  */}
+              </tr>
+            ))}
           </tbody>
         </table>
       </Container>
