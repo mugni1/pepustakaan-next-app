@@ -81,12 +81,12 @@ export default function BooksList({ data }: { data: Books[] }) {
         <BtnHref href="books/add">Tambah Buku</BtnHref>
         <div className="relative h-fit w-auto group text-slate-600">
           <span className="absolute h-full flex items-center px-2">
-            <MagnifyingGlass size={24} />
+            <MagnifyingGlass size={20} />
           </span>
           <input
             type="text"
-            className="p-2 border border-slate-400 rounded-md bg-white outline-purple-500 ps-10"
-            placeholder="Cari Member"
+            className="px-2 py-1 border border-slate-400 rounded-md bg-white outline-purple-500 ps-10"
+            placeholder="Cari Buku"
             value={keyword}
             onChange={(e) => setKeyword(e.target.value)}
           />
