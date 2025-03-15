@@ -1,10 +1,12 @@
 "use client";
-import BtnHref from "@/components/BtnHref";
 import swal from "sweetalert";
 import axios from "axios";
 import { useRef, useState } from "react";
-import { PaperPlaneRight, SpinnerGap, Trash } from "@phosphor-icons/react";
-import FormTitle from "@/components/FormTitle";
+import { SpinnerGap } from "@phosphor-icons/react";
+import MainContainer from "@/components/Admin/MainContainer";
+import TitleForm from "@/components/Admin/Title/TitleForm";
+import BtnClick from "@/components/Admin/Button/BtnClick";
+import BtnHref from "@/components/Admin/Button/BtnHref";
 export default function Page() {
   const name = useRef<HTMLInputElement>(null);
   const [loadingBtn, setLoadingBtn] = useState(false);
@@ -42,9 +44,9 @@ export default function Page() {
       });
   }
   return (
-    <main className="w-full p-5">
+    <MainContainer>
       <section className=" w-3/6 mx-auto bg-white rounded-xl p-5 gap-5 flex flex-col">
-        <FormTitle>Tambah Kategori</FormTitle>
+        <TitleForm>Tambah Kategori</TitleForm>
         <form
           onSubmit={() => handleSubmit()}
           className="w-full flex flex-col gap-5"
@@ -52,7 +54,7 @@ export default function Page() {
           {/* input name  */}
           <input
             type="text"
-            className="py-1 px-2 outline-purple-600 border border-slate-400 rounded-md "
+            className="py-1 px-2 outline-purple-600 border border-slate-400 rounded-lg"
             placeholder="Judul Kategori"
             ref={name}
             required
@@ -60,21 +62,23 @@ export default function Page() {
           {/* end input title  */}
           {/* btn back and submit  */}
           <div className=" flex gap-5 items-center ">
-            <button
-              type="submit"
-              className=" bg-gradient-to-br from-fuchsia-500 to-purple-600 py-1 px-5 rounded-md shadow-md font-bold text-white text-lg cursor-pointer"
-            >
+            <BtnClick className=" bg-gradient-to-br from-fuchsia-500 to-purple-600 ">
               {loadingBtn ? (
-                <SpinnerGap className="animate-spin" size={28} />
+                <SpinnerGap className="animate-spin" size={24} />
               ) : (
                 <span>Kirim</span>
               )}
-            </button>
-            <BtnHref href="/dashboard/category">Kembali</BtnHref>
+            </BtnClick>
+            <BtnHref
+              href="/dashboard/category"
+              className="bg-sky-500 text-white"
+            >
+              Kembali
+            </BtnHref>
           </div>
           {/* end btn back and submit  */}
         </form>
       </section>
-    </main>
+    </MainContainer>
   );
 }

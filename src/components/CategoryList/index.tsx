@@ -41,6 +41,7 @@ export default function CategoryList({ datas }: { datas: Props[] }) {
       icon: "warning",
       dangerMode: true,
       title: "Warning",
+      text: "Apakah kamu yakin ingin menghapus?",
       buttons: ["Cancel", "OK"],
     }).then((isTrue) => {
       if (isTrue) {
@@ -108,24 +109,20 @@ export default function CategoryList({ datas }: { datas: Props[] }) {
                   {index + 1}
                 </td>
                 <td className="text-center font-semibold">{category.name}</td>
-                <td className="text-center p-2 w-1/12">
+                <td className="text-center p-2">
                   <button
                     onClick={() => router.push(`category/edit/${category.id}`)}
-                    className={`py-1 px-5 rounded-md shadow-md font-bold text-white text-lg bg-amber-500 cursor-pointer`}
+                    className=" p-2 rounded-full bg-amber-500 text-white cursor-pointer"
                   >
                     <Pencil size={24} />
                   </button>
                 </td>
-                <td className="text-center p-2 w-1/12">
+                <td className="text-center p-2">
                   <button
                     onClick={() => handleDelete(category.id)}
-                    className={`py-1 px-5 rounded-md shadow-md font-bold text-white text-lg bg-red-500 cursor-pointer`}
+                    className=" p-2 rounded-full bg-red-500 text-white cursor-pointer"
                   >
-                    {loadingBtnDelete ? (
-                      <SpinnerGap className="animate-spin" size={24} />
-                    ) : (
-                      <Trash size={24} />
-                    )}
+                    <Trash size={24} />
                   </button>
                 </td>
               </tr>

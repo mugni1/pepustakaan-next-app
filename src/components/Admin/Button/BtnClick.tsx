@@ -16,7 +16,7 @@ export default function BtnClick({
   return (
     <button
       type={typeBtn}
-      className={`py-1 px-5 text-white poppins-semibold cursor-pointer rounded-lg active:scale-90 active:bg-slate-500 transition-all ${className}`}
+      className={`py-1 px-5 text-white poppins-semibold cursor-pointer rounded-md active:scale-90 active:bg-slate-500 transition-all shadow-md ${className}`}
       onClick={click}
     >
       {children}
