@@ -21,9 +21,9 @@ export default function InfoCard({
         <span className={`p-3 text-white rounded-full ${className}`}>
           {children}
         </span>
-        <b className="text-2xl">
+        <span className="text-2xl poppins-bold">
           {count} {title}
-        </b>
+        </span>
       </div>
       {/* edn logo dan title */}
       <hr />
