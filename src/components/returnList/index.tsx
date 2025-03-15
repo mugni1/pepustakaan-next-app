@@ -1,12 +1,9 @@
 "use client";
-import { ArrowArcLeft, Eye, MagnifyingGlass } from "@phosphor-icons/react";
+import { Eye, MagnifyingGlass, Pencil, Trash } from "@phosphor-icons/react";
 import MainContainer from "../Admin/MainContainer";
 import Container from "../Admin/Container";
 import BtnHref from "../Admin/Button/BtnHref";
 import { useEffect, useState } from "react";
-import axios from "axios";
-import swal from "sweetalert";
-
 interface User {
   id: number;
   full_name: string;
@@ -26,7 +23,7 @@ interface Props {
   daily_fine: number;
 }
 
-export default function BorrowList({ data }: { data: Props[] }) {
+export default function ReturnList({ data }: { data: Props[] }) {
   const [borrows, setBorrows] = useState(data);
   const [keyword, setKeyword] = useState("");
   // unMount Categories
@@ -39,39 +36,10 @@ export default function BorrowList({ data }: { data: Props[] }) {
         )
       : setBorrows(data);
   }, [keyword]);
-
-  function handleReturn(id: number) {
-    swal({
-      icon: "warning",
-      dangerMode: true,
-      title: "Warning!",
-      text: "Apakah kamu ingin mengembalikan buku ini?",
-      buttons: ["Batal", "Ya"],
-    }).then((isTrue) => {
-      if (isTrue) {
-        axios({
-          method: "PATCH",
-          url: `${process.env.NEXT_PUBLIC_BASE_API_URL}/borrowings/${id}`,
-          headers: {
-            Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
-          },
-        })
-          .then((res) => {
-            console.log(res);
-            swal({ icon: "success", title: "Success!" });
-          })
-          .catch((err) => {
-            console.log(err);
-            swal({ icon: "error", title: "Error!" });
-          });
-      }
-    });
-  }
   return (
     <MainContainer>
       {/* search  */}
-      <section className="w-full flex items-center justify-between mb-5">
-        <BtnHref href="borrow/add">Tambah Peminjaman</BtnHref>
+      <section className="w-full flex items-center justify-end mb-5">
         <div className="relative h-fit w-auto group text-slate-600">
           <span className="absolute h-full flex items-center px-2">
             <MagnifyingGlass size={24} />
@@ -104,7 +72,7 @@ export default function BorrowList({ data }: { data: Props[] }) {
           <tbody>
             {borrows.map((borrow: Props, index) => (
               <tr key={index} className="border-b border-slate-500">
-                <td className="text-center">{borrow.user?.username}</td>
+                <td className="text-center">{borrow.user?.full_name}</td>
                 <td className="text-center">{borrow.book?.title}</td>
                 <td className="text-center">{borrow.borrow_date}</td>
                 <td className="text-center">{borrow.return_date}</td>
@@ -112,25 +80,33 @@ export default function BorrowList({ data }: { data: Props[] }) {
                   Rp{borrow.daily_fine.toLocaleString("id-ID")}
                 </td>
                 <td className="text-center">
-                  <span className="py-1 px-3 text-green-600 bg-green-200 rounded-lg">
+                  <span className="py-1 px-3 text-amber-600 bg-amber-200 rounded-lg">
                     {borrow.status}
                   </span>
                 </td>
                 {/* delete update show  */}
-                <td className="text-center px-1  py-2">
+                <td className="text-center px-1 py-3">
+                  <button
+                    //   onClick={() => handleDelete(member.id)}
+                    className="p-2 rounded-full bg-red-500 text-white cursor-pointer"
+                  >
+                    <Trash size={24} />
+                  </button>
+                </td>
+                <td className="text-center px-1">
+                  <button
+                    // onClick={() => router.push(`books/edit/${book.id}`)}
+                    className=" p-2 rounded-full bg-amber-500 text-white cursor-pointer"
+                  >
+                    <Pencil size={24} />
+                  </button>
+                </td>
+                <td className="text-center px-1">
                   <button
                     // onClick={() => router.push(`books/detail/${book.id}`)}
                     className=" p-2 rounded-full bg-sky-500 text-white cursor-pointer"
                   >
                     <Eye size={24} />
-                  </button>
-                </td>
-                <td className="text-center px-1  py-2">
-                  <button
-                    onClick={() => handleReturn(borrow.id)}
-                    className=" p-2 rounded-full bg-emerald-500 text-white cursor-pointer"
-                  >
-                    <ArrowArcLeft size={28} />
                   </button>
                 </td>
                 {/* end delete update show  */}

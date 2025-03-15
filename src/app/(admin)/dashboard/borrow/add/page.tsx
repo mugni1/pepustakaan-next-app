@@ -16,6 +16,7 @@ interface Member {
 interface Book {
   id: number;
   title: string;
+  stock: number;
 }
 
 export default function Page() {
@@ -43,7 +44,6 @@ export default function Page() {
       },
     })
       .then((res) => {
-        console.log(res);
         swal({
           icon: "success",
           title: "Success!",
@@ -54,7 +54,7 @@ export default function Page() {
         swal({
           icon: "error",
           title: "Error!",
-          text: "Harap coba lagi nanti!",
+          text: err.response.data.message,
         });
       });
   };
@@ -75,7 +75,6 @@ export default function Page() {
       method: "get",
       url: `${process.env.NEXT_PUBLIC_BASE_API_URL}/books`,
     }).then((res) => {
-      console.log(res);
       setBooks(res.data.data);
     });
   }, []);
@@ -114,7 +113,7 @@ export default function Page() {
               <option value="">- Pilih Buku -</option>
               {books.map((book: Book, index) => (
                 <option key={index} value={book.id}>
-                  {book.title}
+                  {book.title} ({book.stock})
                 </option>
               ))}
             </select>
