@@ -85,7 +85,7 @@ export default function BooksList({ data }: { data: Books[] }) {
           </span>
           <input
             type="text"
-            className="px-2 py-1 border border-slate-400 rounded-md bg-white outline-purple-500 ps-10"
+            className="px-2 py-1 border border-slate-400 rounded-md bg-white outline-purple-500 ps-9 shadow-md"
             placeholder="Cari Buku"
             value={keyword}
             onChange={(e) => setKeyword(e.target.value)}

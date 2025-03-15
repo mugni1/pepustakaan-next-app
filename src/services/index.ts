@@ -23,10 +23,7 @@ export async function getBooksDetail(id: string) {
 }
 
 export async function getCategorys() {
-  const res = await fetch(`${baseUrl}/categories`, {
-    cache: "force-cache",
-    next: { revalidate: 60 * 60 },
-  });
+  const res = await fetch(`${baseUrl}/categories`);
   return res.json();
 }
 

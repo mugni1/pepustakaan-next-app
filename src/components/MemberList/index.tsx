@@ -74,7 +74,7 @@ export default function MemberList({ members }: { members: Member[] }) {
           </span>
           <input
             type="text"
-            className="py-1 px-2 border border-slate-400 rounded-md bg-white outline-purple-500 ps-9"
+            className="py-1 px-2 border border-slate-400 rounded-md bg-white outline-purple-500 ps-9 shadow-md"
             placeholder="Cari Anggota"
             value={keyword}
             onChange={(e) => setKeyword(e.target.value)}

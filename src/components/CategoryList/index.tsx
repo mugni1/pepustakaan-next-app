@@ -1,7 +1,6 @@
 "use client";
 import TableHead from "./TableHead";
 import { useState, useEffect } from "react";
-import BtnHref from "../BtnHref";
 import axios from "axios";
 import swal from "sweetalert";
 import {
@@ -11,6 +10,9 @@ import {
   Trash,
 } from "@phosphor-icons/react";
 import { useRouter } from "next/navigation";
+import MainContainer from "../Admin/MainContainer";
+import Container from "../Admin/Container";
+import BtnHref from "../Admin/Button/BtnHref";
 
 interface Props {
   id: number;
@@ -74,22 +76,17 @@ export default function CategoryList({ datas }: { datas: Props[] }) {
   }
 
   return (
-    <section className="w-8/12 mx-auto">
+    <MainContainer>
       {/* btn href adn search */}
       <section className="w-full flex items-center justify-between mb-5">
-        <BtnHref
-          href="category/add"
-          className="bg-gradient-to-r from-fuchsia-500 to-purple-700"
-        >
-          Tambah Kategori
-        </BtnHref>
+        <BtnHref href="category/add">Tambah Kategori</BtnHref>
         <div className="relative h-fit w-auto group text-slate-600">
           <span className="absolute h-full flex items-center px-2">
-            <MagnifyingGlass size={24} />
+            <MagnifyingGlass size={20} />
           </span>
           <input
             type="text"
-            className="p-2 border border-slate-400 rounded-md bg-white outline-purple-500 ps-10"
+            className="px-2 py-1 border border-slate-400 rounded-md bg-white outline-purple-500 ps-9 shadow-md"
             placeholder="Cari Kategori"
             value={keyword}
             onChange={(e) => setKeyword(e.target.value)}
@@ -98,7 +95,7 @@ export default function CategoryList({ datas }: { datas: Props[] }) {
       </section>
       {/* end btn href and search*/}
       {/* table  */}
-      <section className=" w-full p-5 rounded-xl shadow-lg bg-white">
+      <Container>
         <table className="w-full">
           {/* thead  */}
           <TableHead />
@@ -136,8 +133,8 @@ export default function CategoryList({ datas }: { datas: Props[] }) {
           </tbody>
           {/* end tbody  */}
         </table>
-      </section>
+      </Container>
       {/* end table  */}
-    </section>
+    </MainContainer>
   );
 }
