@@ -29,7 +29,7 @@ export default function BorrowList({ data }: { data: Props[] }) {
     <MainContainer>
       {/* search  */}
       <section className="w-full flex items-center justify-between mb-5">
-        <BtnHref href="borrow/add">Tambah Anggota</BtnHref>
+        <BtnHref href="borrow/add">Tambah Peminjaman</BtnHref>
         <div className="relative h-fit w-auto group text-slate-600">
           <span className="absolute h-full flex items-center px-2">
             <MagnifyingGlass size={24} />
