@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import axios from "axios";
 import BtnHref from "../Admin/Button/BtnHref";
 import Container from "../Admin/Container";
+import MainContainer from "../Admin/MainContainer";
 
 interface Books {
   category: { id: number; name: string };
@@ -74,7 +75,7 @@ export default function BooksList({ data }: { data: Books[] }) {
   }, [keyword]);
 
   return (
-    <>
+    <MainContainer>
       {/* search and add button  */}
       <section className="w-full flex items-center justify-between mb-5">
         <BtnHref href="books/add">Tambah Buku</BtnHref>
@@ -105,7 +106,7 @@ export default function BooksList({ data }: { data: Books[] }) {
                   <img
                     src={`${process.env.NEXT_PUBLIC_BASE_IMAGE_URL}/${book.image}`}
                     alt=""
-                    className="h-32 w-7/12 mx-auto object-cover object-center border border-slate-400 shadow-md rounded-lg"
+                    className="h-32 w-24 mx-auto object-cover object-center border border-slate-400 shadow-md rounded-lg"
                   />
                 </td>
                 {/* end cover book  */}
@@ -147,6 +148,6 @@ export default function BooksList({ data }: { data: Books[] }) {
         </table>
       </Container>
       {/* end table */}
-    </>
+    </MainContainer>
   );
 }

@@ -23,9 +23,5 @@ export const metadata: Metadata = {
 
 export default async function Page() {
   const books = await getBooks();
-  return (
-    <main className="p-5">
-      <BooksList data={books.data} />
-    </main>
-  );
+  return <BooksList data={books.data} />;
 }
