@@ -3,9 +3,12 @@ import { useParams } from "next/navigation";
 import { useState, useEffect } from "react";
 import swal from "sweetalert";
 import axios from "axios";
-import FormTitle from "@/components/FormTitle";
-import { ArrowLeft, FileImage, SpinnerGap } from "@phosphor-icons/react";
-import Link from "next/link";
+import { FileImage, SpinnerGap } from "@phosphor-icons/react";
+import MainContainer from "@/components/Admin/MainContainer";
+import Container from "@/components/Admin/Container";
+import TitleForm from "@/components/Admin/Title/TitleForm";
+import BtnClick from "@/components/Admin/Button/BtnClick";
+import BtnHref from "@/components/Admin/Button/BtnHref";
 
 interface Category {
   id: number;
@@ -104,18 +107,12 @@ export default function Page() {
   }, []);
 
   return (
-    <main className="p-5 w-full overflow-x-hidden">
-      <section className=" w-4/6 mx-auto bg-white rounded-xl p-5 gap-5 flex flex-col ">
+    <MainContainer>
+      <Container className=" w-4/6 mx-auto bg-white rounded-xl p-5 gap-5 flex flex-col ">
         <div className="flex flex-col">
-          <Link
-            href={"/dashboard/books"}
-            className=" text-lg  top-2 left-2 text-blue-500 flex items-center gap-2"
-          >
-            <ArrowLeft size={24} />
-          </Link>
-          <FormTitle>
+          <TitleForm>
             <span>Edit Buku</span>
-          </FormTitle>
+          </TitleForm>
         </div>
         <form
           onSubmit={(e) => handleSubmit(e)}
@@ -200,17 +197,20 @@ export default function Page() {
             onChange={(e) => setDescription(e.target.value)}
             required
           ></textarea>
-          <div className=" flex gap-5 items-center">
-            <button className=" bg-gradient-to-br from-fuchsia-500 to-purple-600 py-1 px-5 rounded-md shadow-md font-bold text-white text-lg">
+          <section className=" flex gap-5 items-stretch">
+            <BtnClick className="bg-green-500">
               {loadingBtn ? (
-                <SpinnerGap className="animate-spin" size={28} />
+                <SpinnerGap className="animate-spin" size={24} />
               ) : (
                 <span>Kirim</span>
               )}
-            </button>
-          </div>
+            </BtnClick>
+            <BtnHref href="/dashboard/books" className="bg-sky-500 text-white">
+              Back
+            </BtnHref>
+          </section>
         </form>
-      </section>
-    </main>
+      </Container>
+    </MainContainer>
   );
 }
