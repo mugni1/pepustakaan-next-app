@@ -1,5 +1,5 @@
 "use client";
-import { MagnifyingGlass, Pencil, Trash } from "@phosphor-icons/react";
+import { Eye, MagnifyingGlass, Pencil, Trash } from "@phosphor-icons/react";
 import MainContainer from "../Admin/MainContainer";
 import Container from "../Admin/Container";
 import BtnHref from "../Admin/Button/BtnHref";
@@ -54,7 +54,7 @@ export default function BorrowList({ data }: { data: Props[] }) {
               <th className="w-1/12 px-2">Tgl dikembalikan</th>
               <th className="w-1/12 px-2">Denda telat/hari</th>
               <th className="w-2/12">Status</th>
-              <th className="w-1/12" colSpan={2}>
+              <th className="w-1/12" colSpan={3}>
                 Action
               </th>
             </tr>
@@ -67,7 +67,7 @@ export default function BorrowList({ data }: { data: Props[] }) {
                 <td className="text-center">{borrow.borrow_date}</td>
                 <td className="text-center">{borrow.return_date}</td>
                 <td className="text-center px-2">
-                  Rp {borrow.daily_fine.toLocaleString("id-ID")}
+                  Rp{borrow.daily_fine.toLocaleString("id-ID")}
                 </td>
                 <td className="text-center">
                   <span className="py-1 px-3 text-green-600 bg-green-200 rounded-lg">
@@ -89,6 +89,14 @@ export default function BorrowList({ data }: { data: Props[] }) {
                     className=" p-2 rounded-full bg-amber-500 text-white cursor-pointer"
                   >
                     <Pencil size={24} />
+                  </button>
+                </td>
+                <td className="text-center px-1">
+                  <button
+                    // onClick={() => router.push(`books/detail/${book.id}`)}
+                    className=" p-2 rounded-full bg-sky-500 text-white cursor-pointer"
+                  >
+                    <Eye size={24} />
                   </button>
                 </td>
                 {/* end delete update show  */}

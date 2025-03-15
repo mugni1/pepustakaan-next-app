@@ -73,7 +73,6 @@ export default function Page() {
       method: "get",
       url: `${process.env.NEXT_PUBLIC_BASE_API_URL}/categories`,
     }).then((res) => {
-      console.log(res);
       setCategories(res.data.data);
     });
   }, []);
