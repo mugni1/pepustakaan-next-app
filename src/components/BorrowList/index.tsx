@@ -112,7 +112,7 @@ export default function BorrowList({ data }: { data: Props[] }) {
                   Rp{borrow.daily_fine.toLocaleString("id-ID")}
                 </td>
                 <td className="text-center">
-                  <span className="py-1 px-3 text-green-600 bg-green-200 rounded-lg">
+                  <span className="py-1 px-3 text-amber-600 bg-amber-200 rounded-lg">
                     {borrow.status}
                   </span>
                 </td>
