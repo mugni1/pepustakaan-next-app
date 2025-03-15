@@ -70,12 +70,12 @@ export default function MemberList({ members }: { members: Member[] }) {
         <BtnHref href="member/add">Tambah Anggota</BtnHref>
         <div className="relative h-fit w-auto group text-slate-600">
           <span className="absolute h-full flex items-center px-2">
-            <MagnifyingGlass size={24} />
+            <MagnifyingGlass size={20} />
           </span>
           <input
             type="text"
-            className="p-2 border border-slate-400 rounded-md bg-white outline-purple-500 ps-10"
-            placeholder="Cari Member"
+            className="py-1 px-2 border border-slate-400 rounded-md bg-white outline-purple-500 ps-9"
+            placeholder="Cari Anggota"
             value={keyword}
             onChange={(e) => setKeyword(e.target.value)}
           />

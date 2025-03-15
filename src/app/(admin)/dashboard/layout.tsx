@@ -13,7 +13,7 @@ export default function Layout({ children }: { children: ReactNode }) {
           sidebar ? "w-10/12" : "w-full"
         } ms-auto min-h-screen bg-slate-200 transition-all ease-in-out duration-100 overflow-x-hidden`}
       >
-        <nav className="w-full h-16 bg-white flex items-center px-5">
+        <nav className="w-full h-16 bg-white flex items-center px-5 fixed z-50">
           <button
             className={`cursor-pointer ${sidebar ? "text-purple-600" : ""}`}
             onClick={() => setSidebar(!sidebar)}

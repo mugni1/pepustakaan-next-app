@@ -1,3 +1,4 @@
+import MainContainer from "@/components/Admin/MainContainer";
 import InfoCard from "@/components/InfoCard";
 import { getCount } from "@/services";
 
@@ -9,7 +10,7 @@ export default async function Home() {
   const returnCount = await getCount("borrowings-return-count");
   const transactionCount = await getCount("transactions-count");
   return (
-    <main className="p-5">
+    <MainContainer>
       <section className="w-full grid grid-cols-3 gap-5">
         <InfoCard
           count={booksCount.count}
@@ -108,6 +109,6 @@ export default async function Home() {
           </svg>
         </InfoCard>
       </section>
-    </main>
+    </MainContainer>
   );
 }
