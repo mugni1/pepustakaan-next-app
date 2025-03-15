@@ -115,7 +115,17 @@ export default function BooksList({ data }: { data: Books[] }) {
                 </td>
                 <td className="text-center w-2/12">{book.writer}</td>
                 <td className="text-center w-2/12">{book.publisher}</td>
-                <td className="text-center w-2/12">{book.stock}</td>
+                <td className="text-center w-2/12">
+                  <span
+                    className={`poppins-bold  px-4 py-1 rounded-md ${
+                      book.stock > 0
+                        ? "text-green-600 bg-green-200"
+                        : "text-red-600 bg-red-200"
+                    }`}
+                  >
+                    {book.stock}
+                  </span>
+                </td>
                 {/* delete update show  */}
                 <td className="text-center px-1">
                   <button

@@ -51,12 +51,12 @@ export default function Sidebar({ className }: { className: string }) {
         {/* Transaction  */}
         <li
           className={`w-full px-5 py-2 transition-all ease-in-out duration-150 flex flex-col cursor-pointer group hover:bg-purple-100 ${
-            pathName == "/dashboard/borrow" ||
-            pathName == "/dashboard/return" ||
-            pathName == "/dashboard/late" ||
-            pathName.startsWith(`/dashboard/borrow/`) ||
-            pathName.startsWith(`/dashboard/return/`) ||
-            pathName.startsWith(`/dashboard/late/`)
+            pathName == "/dashboard/transaction-borrow" ||
+            pathName == "/dashboard/transaction-return" ||
+            pathName == "/dashboard/transaction-late" ||
+            pathName.startsWith(`/dashboard/transaction-borrow/`) ||
+            pathName.startsWith(`/dashboard/transaction-return/`) ||
+            pathName.startsWith(`/dashboard/transaction-late/`)
               ? "bg-purple-100"
               : ""
           } `}
@@ -67,12 +67,12 @@ export default function Sidebar({ className }: { className: string }) {
           </div>
           <ul
             className={`w-full group-hover:h-28 overflow-hidden group-hover:visible transition-all ease-in-out duration-200 ${
-              pathName == "/dashboard/borrow" ||
-              pathName == "/dashboard/return" ||
-              pathName == "/dashboard/late" ||
-              pathName.startsWith(`/dashboard/borrow/`) ||
-              pathName.startsWith(`/dashboard/return/`) ||
-              pathName.startsWith(`/dashboard/late/`)
+              pathName == "/dashboard/transaction-borrow" ||
+              pathName == "/dashboard/transaction-return" ||
+              pathName == "/dashboard/transaction-late" ||
+              pathName.startsWith(`/dashboard/transaction-borrow/`) ||
+              pathName.startsWith(`/dashboard/transaction-return/`) ||
+              pathName.startsWith(`/dashboard/transaction-late/`)
                 ? "h-28 visible"
                 : "h-0"
             }`}

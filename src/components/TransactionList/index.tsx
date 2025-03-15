@@ -86,14 +86,14 @@ export default function TransactionList({ data }: { data: Props[] }) {
         {pathName == "/dashboard/transaction-borrow" && (
           <BtnHref href="transaction-borrow/add">Tambah Peminjaman</BtnHref>
         )}
-        <div className="relative h-fit w-auto group text-slate-600">
+        <div className="relative h-fit w-auto group text-slate-600 shadow-md">
           <span className="absolute h-full flex items-center px-2">
             <MagnifyingGlass size={20} />
           </span>
           <input
             type="text"
             className=" py-1 px-2 border border-slate-400 rounded-md bg-white outline-purple-500 ps-10"
-            placeholder="Cari Member"
+            placeholder="Cari Peminjam"
             value={keyword}
             onChange={(e) => setKeyword(e.target.value)}
           />
@@ -103,7 +103,7 @@ export default function TransactionList({ data }: { data: Props[] }) {
       <Container>
         <table className="w-full">
           <thead>
-            <tr className="border-b border-slate-500">
+            <tr className="border-b border-slate-500 poppins-bold">
               <th className="w-3/12 py-5">Peminjam</th>
               <th className="w-3/12">Judul Buku</th>
               <th className="w-1/12 px-2">Tgl peminjaman</th>
