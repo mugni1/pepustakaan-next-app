@@ -6,6 +6,7 @@ import BtnHref from "../Admin/Button/BtnHref";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import swal from "sweetalert";
+import { usePathname } from "next/navigation";
 
 interface User {
   id: number;
@@ -26,20 +27,22 @@ interface Props {
   daily_fine: number;
 }
 
-export default function BorrowList({ data }: { data: Props[] }) {
-  const [borrows, setBorrows] = useState(data);
+export default function TransactionList({ data }: { data: Props[] }) {
+  const [datas, setDatas] = useState(data);
   const [keyword, setKeyword] = useState("");
-  // unMount Categories
+
+  // FILTER DATAS
   useEffect(() => {
     keyword.length > 0
-      ? setBorrows(
+      ? setDatas(
           data.filter((borrow) =>
             borrow.user?.username.toLowerCase().includes(keyword.toLowerCase())
           )
         )
-      : setBorrows(data);
+      : setDatas(data);
   }, [keyword]);
 
+  // HANDLE RETURN
   function handleReturn(id: number) {
     swal({
       icon: "warning",
@@ -67,18 +70,23 @@ export default function BorrowList({ data }: { data: Props[] }) {
       }
     });
   }
+
+  // PATHNAME
+  const pathName = usePathname();
   return (
     <MainContainer>
       {/* search  */}
       <section className="w-full flex items-center justify-between mb-5">
-        <BtnHref href="borrow/add">Tambah Peminjaman</BtnHref>
+        {pathName == "/dashboard/borrow" && (
+          <BtnHref href="borrow/add">Tambah Peminjaman</BtnHref>
+        )}
         <div className="relative h-fit w-auto group text-slate-600">
           <span className="absolute h-full flex items-center px-2">
-            <MagnifyingGlass size={24} />
+            <MagnifyingGlass size={20} />
           </span>
           <input
             type="text"
-            className="p-2 border border-slate-400 rounded-md bg-white outline-purple-500 ps-10"
+            className=" py-1 px-2 border border-slate-400 rounded-md bg-white outline-purple-500 ps-10"
             placeholder="Cari Member"
             value={keyword}
             onChange={(e) => setKeyword(e.target.value)}
@@ -102,18 +110,27 @@ export default function BorrowList({ data }: { data: Props[] }) {
             </tr>
           </thead>
           <tbody>
-            {borrows.map((borrow: Props, index) => (
+            {datas.map((data: Props, index) => (
               <tr key={index} className="border-b border-slate-500">
-                <td className="text-center">{borrow.user?.username}</td>
-                <td className="text-center">{borrow.book?.title}</td>
-                <td className="text-center">{borrow.borrow_date}</td>
-                <td className="text-center">{borrow.return_date}</td>
+                <td className="text-center">{data.user?.username}</td>
+                <td className="text-center">{data.book?.title}</td>
+                <td className="text-center">{data.borrow_date}</td>
+                <td className="text-center">{data.return_date}</td>
                 <td className="text-center px-2">
-                  Rp{borrow.daily_fine.toLocaleString("id-ID")}
+                  Rp{data.daily_fine.toLocaleString("id-ID")}
                 </td>
                 <td className="text-center">
-                  <span className="py-1 px-3 text-amber-600 bg-amber-200 rounded-lg">
-                    {borrow.status}
+                  <span
+                    className={`py-1 px-3 rounded-lg ${
+                      data.status == "dipinjam" && "text-amber-600 bg-amber-200"
+                    }  ${
+                      data.status == "dikembalikan" &&
+                      "text-green-600 bg-green-200"
+                    } ${
+                      data.status == "terlambat" && "text-red-600 bg-red-200"
+                    }`}
+                  >
+                    {data.status}
                   </span>
                 </td>
                 {/* delete update show  */}
@@ -125,14 +142,16 @@ export default function BorrowList({ data }: { data: Props[] }) {
                     <Eye size={24} />
                   </button>
                 </td>
-                <td className="text-center px-1  py-2">
-                  <button
-                    onClick={() => handleReturn(borrow.id)}
-                    className=" p-2 rounded-full bg-emerald-500 text-white cursor-pointer"
-                  >
-                    <ArrowArcLeft size={28} />
-                  </button>
-                </td>
+                {data.status == "dipinjam" && (
+                  <td className="text-center px-1  py-2">
+                    <button
+                      onClick={() => handleReturn(data.id)}
+                      className=" p-2 rounded-full bg-emerald-500 text-white cursor-pointer"
+                    >
+                      <ArrowArcLeft size={28} />
+                    </button>
+                  </td>
+                )}
                 {/* end delete update show  */}
               </tr>
             ))}

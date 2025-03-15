@@ -1,4 +1,4 @@
-import LateList from "@/components/lateList";
+import TransactionList from "@/components/TransactionList";
 import { getLate } from "@/services";
 import { Metadata } from "next";
 
@@ -8,5 +8,5 @@ export const metadata: Metadata = {
 
 export default async function Page() {
   const { data } = await getLate();
-  return <LateList data={data} />;
+  return <TransactionList data={data} />;
 }

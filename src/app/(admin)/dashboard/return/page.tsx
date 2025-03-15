@@ -1,4 +1,4 @@
-import ReturnList from "@/components/returnList";
+import TransactionList from "@/components/TransactionList";
 import { getReturn } from "@/services";
 import { Metadata } from "next";
 
@@ -8,5 +8,5 @@ export const metadata: Metadata = {
 
 export default async function Page() {
   const { data } = await getReturn();
-  return <ReturnList data={data} />;
+  return <TransactionList data={data} />;
 }
