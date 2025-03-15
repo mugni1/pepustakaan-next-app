@@ -4,6 +4,8 @@ import BtnHref from "../Admin/Button/BtnHref";
 import Container from "../Admin/Container";
 import MainContainer from "../Admin/MainContainer";
 import { useEffect, useState } from "react";
+import swal from "sweetalert";
+import axios from "axios";
 
 interface Member {
   id: number;
@@ -27,11 +29,45 @@ export default function MemberList({ members }: { members: Member[] }) {
       : setMemberList(members);
   }, [keyword]);
 
+  function handleDelete(id: number) {
+    swal({
+      icon: "warning",
+      title: "Warning!",
+      text: "Apakah kamu yakin ingin menghapus?",
+      buttons: ["Batal", "Iya"],
+      dangerMode: true,
+    }).then((isTrue) => {
+      if (isTrue) {
+        axios({
+          method: "delete",
+          url: `${process.env.NEXT_PUBLIC_BASE_API_URL}/users/${id}`,
+          headers: {
+            Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
+          },
+        })
+          .then((res) => {
+            swal({
+              icon: "success",
+              title: "Success!",
+              text: res.data.message,
+            });
+            setMemberList(memberList.filter((member) => member.id != id));
+          })
+          .catch((err) => {
+            swal({
+              icon: "error",
+              title: "Error!",
+              text: "Harap coba lagi nanti!",
+            });
+          });
+      }
+    });
+  }
   return (
     <MainContainer>
       {/* search  */}
       <section className="w-full flex items-center justify-between mb-5">
-        <BtnHref href="member/add">Tambah Member</BtnHref>
+        <BtnHref href="member/add">Tambah Anggota</BtnHref>
         <div className="relative h-fit w-auto group text-slate-600">
           <span className="absolute h-full flex items-center px-2">
             <MagnifyingGlass size={24} />
@@ -73,18 +109,10 @@ export default function MemberList({ members }: { members: Member[] }) {
                 {/* delete update show  */}
                 <td className="text-center px-1">
                   <button
-                    // onClick={() => handleDelete(book.id)}
+                    onClick={() => handleDelete(member.id)}
                     className=" p-2 rounded-full bg-red-500 text-white cursor-pointer"
                   >
                     <Trash size={24} />
-                  </button>
-                </td>
-                <td className="text-center px-1">
-                  <button
-                    // onClick={() => router.push(`books/edit/${book.id}`)}
-                    className=" p-2 rounded-full bg-amber-500 text-white cursor-pointer"
-                  >
-                    <Pencil size={24} />
                   </button>
                 </td>
                 {/* end delete update show  */}

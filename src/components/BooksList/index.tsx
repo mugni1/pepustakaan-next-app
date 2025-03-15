@@ -77,7 +77,7 @@ export default function BooksList({ data }: { data: Books[] }) {
     <>
       {/* search and add button  */}
       <section className="w-full flex items-center justify-between mb-5">
-        <BtnHref href="books/add">Tambah Member</BtnHref>
+        <BtnHref href="books/add">Tambah Buku</BtnHref>
         <div className="relative h-fit w-auto group text-slate-600">
           <span className="absolute h-full flex items-center px-2">
             <MagnifyingGlass size={24} />
