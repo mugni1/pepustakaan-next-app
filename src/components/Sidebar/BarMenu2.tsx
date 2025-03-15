@@ -18,9 +18,9 @@ export default function BarMenu2({ children, href, title }: Props) {
           : ""
       }`}
     >
-      <Link className="w-full  flex justify-between items-center" href={href}>
-        <span>{title}</span>
+      <Link className="w-full  flex items-center gap-2" href={href}>
         <span>{children}</span>
+        <span>{title}</span>
       </Link>
     </li>
   );

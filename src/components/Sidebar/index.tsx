@@ -6,6 +6,7 @@ import {
   ArrowUUpLeft,
   ArrowUUpRight,
   BookOpenText,
+  CaretCircleRight,
   CashRegister,
   ClockCounterClockwise,
   HourglassSimpleMedium,
@@ -76,14 +77,14 @@ export default function Sidebar({ className }: { className: string }) {
                 : "h-0"
             }`}
           >
-            <BarMenu2 title="Peminjaman" href="/dashboard/borrow">
-              <ArrowUUpLeft size={24} />
+            <BarMenu2 title="List Peminjaman" href="/dashboard/borrow">
+              <CaretCircleRight size={20} />
             </BarMenu2>
-            <BarMenu2 title="Pengembalian" href="/dashboard/return">
-              <ArrowUUpRight size={24} />
+            <BarMenu2 title="List Pengembalian" href="/dashboard/return">
+              <CaretCircleRight size={20} />
             </BarMenu2>
-            <BarMenu2 title="Terlambat" href="/dashboard/late">
-              <HourglassSimpleMedium size={24} />
+            <BarMenu2 title="List Terlambat" href="/dashboard/late">
+              <CaretCircleRight size={20} />
             </BarMenu2>
           </ul>
         </li>
