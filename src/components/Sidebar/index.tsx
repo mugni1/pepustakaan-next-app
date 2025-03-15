@@ -77,13 +77,19 @@ export default function Sidebar({ className }: { className: string }) {
                 : "h-0"
             }`}
           >
-            <BarMenu2 title="List Peminjaman" href="/dashboard/borrow">
+            <BarMenu2
+              title="List Peminjaman"
+              href="/dashboard/transaction-borrow"
+            >
               <CaretCircleRight size={20} />
             </BarMenu2>
-            <BarMenu2 title="List Pengembalian" href="/dashboard/return">
+            <BarMenu2
+              title="List Pengembalian"
+              href="/dashboard/transaction-return"
+            >
               <CaretCircleRight size={20} />
             </BarMenu2>
-            <BarMenu2 title="List Terlambat" href="/dashboard/late">
+            <BarMenu2 title="List Terlambat" href="/dashboard/transaction-late">
               <CaretCircleRight size={20} />
             </BarMenu2>
           </ul>

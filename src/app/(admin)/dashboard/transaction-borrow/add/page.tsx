@@ -146,7 +146,10 @@ export default function Page() {
             <BtnClick typeBtn="submit" className="bg-green-500">
               Submit
             </BtnClick>
-            <BtnHref href="/dashboard/borrow" className="bg-sky-500 text-white">
+            <BtnHref
+              href="/dashboard/transaction-borrow"
+              className="bg-sky-500 text-white"
+            >
               Back
             </BtnHref>
           </section>

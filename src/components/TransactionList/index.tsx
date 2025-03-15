@@ -76,9 +76,15 @@ export default function TransactionList({ data }: { data: Props[] }) {
   return (
     <MainContainer>
       {/* search  */}
-      <section className="w-full flex items-center justify-between mb-5">
-        {pathName == "/dashboard/borrow" && (
-          <BtnHref href="borrow/add">Tambah Peminjaman</BtnHref>
+      <section
+        className={`w-full flex items-center mb-5 ${
+          pathName == "/dashboard/transaction-borrow"
+            ? "justify-between"
+            : "justify-end"
+        }`}
+      >
+        {pathName == "/dashboard/transaction-borrow" && (
+          <BtnHref href="transaction-borrow/add">Tambah Peminjaman</BtnHref>
         )}
         <div className="relative h-fit w-auto group text-slate-600">
           <span className="absolute h-full flex items-center px-2">
