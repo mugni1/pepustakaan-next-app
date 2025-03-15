@@ -1,6 +1,11 @@
 import MainContainer from "@/components/Admin/MainContainer";
 import InfoCard from "@/components/InfoCard";
 import { getCount } from "@/services";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Dashboard - Home",
+};
 
 export default async function Home() {
   const booksCount = await getCount("books-count");

@@ -1,14 +1,8 @@
 "use client";
-import TableHead from "./TableHead";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import swal from "sweetalert";
-import {
-  MagnifyingGlass,
-  Pencil,
-  SpinnerGap,
-  Trash,
-} from "@phosphor-icons/react";
+import { MagnifyingGlass, Pencil, Trash } from "@phosphor-icons/react";
 import { useRouter } from "next/navigation";
 import MainContainer from "../Admin/MainContainer";
 import Container from "../Admin/Container";
@@ -21,8 +15,6 @@ interface Props {
 export default function CategoryList({ datas }: { datas: Props[] }) {
   const [categories, setCategories] = useState(datas);
   const [keyword, setKeyword] = useState("");
-  const [loadingBtnDelete, setLoadingBtnDelete] = useState(false);
-
   const router = useRouter();
 
   useEffect(() => {
@@ -36,7 +28,6 @@ export default function CategoryList({ datas }: { datas: Props[] }) {
   }, [keyword]);
 
   function handleDelete(id: number) {
-    setLoadingBtnDelete(true);
     swal({
       icon: "warning",
       dangerMode: true,
@@ -66,12 +57,7 @@ export default function CategoryList({ datas }: { datas: Props[] }) {
               title: "error",
               text: err.response?.data?.message || "Terjadi kesalahan",
             });
-          })
-          .finally(() => {
-            setLoadingBtnDelete(false);
           });
-      } else {
-        setLoadingBtnDelete(false);
       }
     });
   }
@@ -99,7 +85,15 @@ export default function CategoryList({ datas }: { datas: Props[] }) {
       <Container>
         <table className="w-full">
           {/* thead  */}
-          <TableHead />
+          <thead>
+            <tr className="border-b border-slate-400 poppins-bold">
+              <th className="py-2 mb-2 w-1/12">No</th>
+              <th>Nama</th>
+              <th className="w-1/12" colSpan={2}>
+                Aciton
+              </th>
+            </tr>
+          </thead>
           {/* end thead  */}
           {/* tbody  */}
           <tbody className="w-full">
