@@ -1,13 +1,13 @@
-import { headers } from "next/headers";
+import Cookies from "js-cookie";
 
 const baseUrl = process.env.NEXT_PUBLIC_BASE_API_URL;
-const token = process.env.NEXT_PUBLIC_API_TOKEN;
+const token = Cookies.get("auth_token");
 
 export async function getCount(params: string) {
   const res = await fetch(`${baseUrl}/${params}`, {
     headers: {
       Accept: "application/json",
-      Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
+      Authorization: `Bearer ${token}`,
     },
   });
   return res.json();

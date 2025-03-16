@@ -1,27 +1,29 @@
 "use client";
 import Column1 from "@/components/login/Column1";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import TitleForm from "../Admin/Title/TitleForm";
 import BtnClick from "../Admin/Button/BtnClick";
 import { Eye, EyeSlash } from "@phosphor-icons/react";
+import swal from "sweetalert";
+import Cookies from "js-cookie";
+
+const urlLogin: string = "http://localhost:8000/api/login";
+const urlLoginLogout: string = "http://localhost:8000/api/login-logout";
 
 export default function MainContentLogin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [isLogoutAll, setIsLogoutAll] = useState(false);
-  const [isNotify, setIsNotify] = useState(false);
-  const [message, setMessage] = useState("");
-  const [statusCode, setStatusCode] = useState(0);
   const [loadingBtn, setLoadingBtn] = useState(false);
   const [isPassword, setIsPassword] = useState(true);
+  const [isLogoutAll, setIsLogoutAll] = useState(false);
+  // const [isRemember, setIsRemember] = useState(false);
 
   const router = useRouter();
-  const urlLogin: string = "http://localhost:8000/api/login";
-  const urlLoginLogout: string = "http://localhost:8000/api/login-logout";
 
+  // HANDLE SUBMIT
   const handleSubmit = () => {
     event?.preventDefault();
     setLoadingBtn(true);
@@ -34,33 +36,29 @@ export default function MainContentLogin() {
       },
     })
       .then((res) => {
-        setMessage(res.data.message);
-        setIsNotify(true);
-        setStatusCode(res.status);
-        if (res.data.data.roles.id === 1) {
-          router.push("/dashboard/home");
-        }
+        swal({
+          icon: "success",
+          title: "Success!",
+          text: "Login Success",
+        });
+        const { token } = res.data;
+        Cookies.set("auth_token", token, {
+          expires: 1, // 1 hari
+          secure: true,
+          sameSite: "Strict",
+        });
       })
-      .catch(() => {
-        setMessage("Email atau password yang anda masukan salah");
-        setIsNotify(true);
-        setStatusCode(500);
+      .catch((err) => {
+        swal({
+          icon: "error",
+          title: "Error!",
+          text: err.response.data.message,
+        });
       })
       .finally(() => {
         setLoadingBtn(false);
       });
   };
-
-  useEffect(() => {
-    setIsNotify(true);
-    setTimeout(() => {
-      setIsNotify(false);
-    }, 1000);
-  }, [isNotify]);
-
-  useEffect(() => {
-    setIsNotify(false);
-  }, []);
 
   return (
     <section className="flex w-full min-h-screen  flex-wrap overflow-hidden relative px-5 md:px-0  bg-gradient-to-br from-fuchsia-500 to-purple-500 ">
@@ -111,6 +109,17 @@ export default function MainContentLogin() {
                 Logout dari semua perangkat
               </label>
             </div>
+            {/* <div className="w-full flex items-center gap-1">
+              <input
+                type="checkbox"
+                id="remember"
+                checked={isRemember}
+                onChange={() => setIsRemember(!isRemember)}
+              />
+              <label htmlFor="remember" className="text-sm">
+                Selalu ingat saya
+              </label>
+            </div> */}
             <BtnClick className="bg-gradient-to-r from-fuchsia-500 to-purple-500">
               {loadingBtn ? "Loading..." : "Sign In"}
             </BtnClick>
