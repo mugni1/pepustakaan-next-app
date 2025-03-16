@@ -95,11 +95,15 @@ export default function Sidebar({ className }: { className: string }) {
           </ul>
         </li>
         {/* End Transaction  */}
-        <BarMenu title="Riwayat Transaksi" href="/dashboard/transaction">
+        {/* TRANSACTION HISTORY  */}
+        <BarMenu
+          title="Riwayat Transaksi"
+          href="/dashboard/transaction-history"
+        >
           <ClockCounterClockwise size={24} />
         </BarMenu>
       </ul>
-      {/* end list navigasi  */}
+      {/* END TRANSACTION HISTORY */}
     </nav>
   );
 }

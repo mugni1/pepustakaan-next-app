@@ -1,6 +1,7 @@
 import { headers } from "next/headers";
 
 const baseUrl = process.env.NEXT_PUBLIC_BASE_API_URL;
+const token = process.env.NEXT_PUBLIC_API_TOKEN;
 
 export async function getCount(params: string) {
   const res = await fetch(`${baseUrl}/${params}`, {
@@ -75,5 +76,16 @@ export async function getLate() {
       },
     }
   );
+  return res.json();
+}
+
+// HISTORY TRANSACTION
+export async function getHistoryTransactions() {
+  const res = await fetch(baseUrl + "/transactions", {
+    headers: {
+      Accept: "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  });
   return res.json();
 }
