@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default async function Home() {
   const cookieStore = await cookies();
-  const authToken = cookieStore.get("auth_token");
+  const authToken = cookieStore.get("auth_token")?.value;
 
   const booksCount = await getCount("books-count", authToken);
   const categoryCount = await getCount("categories-count", authToken);
@@ -18,7 +18,6 @@ export default async function Home() {
   const borrowCount = await getCount("borrowings-borrow-count", authToken);
   const returnCount = await getCount("borrowings-return-count", authToken);
   const transactionCount = await getCount("transactions-count", authToken);
-
   return (
     <MainContainer>
       <section className="w-full grid grid-cols-3 gap-5">

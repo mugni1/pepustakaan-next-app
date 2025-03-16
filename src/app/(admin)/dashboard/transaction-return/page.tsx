@@ -1,12 +1,15 @@
 import TransactionList from "@/components/TransactionList";
 import { getReturn } from "@/services";
 import { Metadata } from "next";
+import { cookies } from "next/headers";
 
 export const metadata: Metadata = {
   title: "Dashboard - Borrowings",
 };
 
 export default async function Page() {
-  const { data } = await getReturn();
+  const cookieStore = await cookies();
+  const authToken = cookieStore.get("auth_token")?.value;
+  const { data } = await getReturn(authToken);
   return <TransactionList data={data} />;
 }
