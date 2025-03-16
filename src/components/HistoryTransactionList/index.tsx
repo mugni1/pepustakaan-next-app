@@ -3,6 +3,7 @@ import { Eye, MagnifyingGlass } from "@phosphor-icons/react";
 import Container from "../Admin/Container";
 import MainContainer from "../Admin/MainContainer";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 interface Book {
   title: string;
@@ -116,12 +117,11 @@ export default function HistoryTransactionsList({
                 <td className="text-center">
                   <span>2025-06-15</span>
                 </td>
-                <td className="text-center px-1  py-2">
-                  <button
-                    // onClick={() => router.push(`books/detail/${book.id}`)}
-                    className=" p-2 rounded-full bg-sky-500 text-white cursor-pointer"
-                  >
-                    <Eye size={24} />
+                <td className="text-center px-1 py-2">
+                  <button className=" p-2 rounded-full bg-sky-500 text-white cursor-pointer">
+                    <Link href={"history-transaction-detail/" + HT.id}>
+                      <Eye size={24} />
+                    </Link>
                   </button>
                 </td>
               </tr>
