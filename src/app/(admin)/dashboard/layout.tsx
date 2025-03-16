@@ -1,5 +1,6 @@
 "use client";
 import Sidebar from "@/components/Admin/Sidebar";
+import TimeNow from "@/components/Admin/Time";
 import { SidebarSimple } from "@phosphor-icons/react";
 import { ReactNode, useState } from "react";
 
@@ -7,22 +8,42 @@ export default function Layout({ children }: { children: ReactNode }) {
   const [sidebar, setSidebar] = useState(false);
   return (
     <main className="w-full flex">
+      {/* SIDE BAR  */}
       <Sidebar className={sidebar ? "visible w-2/12 " : "invisible  w-0 "} />
+      {/* END SIDE BAR  */}
+
+      {/* CONTAINER MAIN CONTENT AND NAVBAR  */}
       <section
         className={`${
           sidebar ? "w-10/12" : "w-full"
         } ms-auto min-h-screen bg-slate-100 transition-all ease-in-out duration-100 overflow-x-hidden`}
       >
-        <nav className="w-full h-16 bg-white border-b border-slate-200 flex items-center px-5 fixed z-50">
+        {/* NAVBAR  */}
+        <nav
+          className={`h-16 bg-white border-b border-slate-200 transition-all ease-in-out duration-100 flex items-center justify-between px-5 fixed z-50 ${
+            sidebar ? "w-10/12" : "w-full"
+          }`}
+        >
+          {/* btn sidebar  */}
           <button
             className={`cursor-pointer ${sidebar ? "text-purple-600" : ""}`}
             onClick={() => setSidebar(!sidebar)}
           >
             <SidebarSimple size={28} />
           </button>
+          {/* end btn side bar */}
+
+          {/* clock real time  */}
+          <TimeNow />
+          {/* end clock real time  */}
         </nav>
+        {/* END NAVBAR  */}
+
+        {/* MAIN CONTENT  */}
         {children}
+        {/* END MAIN CONTENT */}
       </section>
+      {/* END CONTAINER MAIN CONTENT AND NAVBAR  */}
     </main>
   );
 }

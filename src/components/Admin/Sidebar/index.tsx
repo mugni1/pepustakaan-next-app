@@ -18,15 +18,38 @@ import {
 export default function Sidebar({ className }: { className: string }) {
   const pathName = usePathname();
   return (
-    <nav
+    <aside
       className={`items-center min-h-screen bg-white border-e border-slate-200 fixed transition-all ease-in-out duration-100 overflow-hidden ${className}`}
     >
-      {/* brand  */}
-      <div className="h-16 flex items-center justify-center w-full text-xl">
+      {/* TITLE DASHBOARD */}
+      <div className="h-16 flex items-center justify-center w-full text-xl bg-gradient-to-r from-fuchsia-500 to-purple-500 text-white">
         <span className="poppins-bold">PUSTAKA</span>
       </div>
-      {/* end brand  */}
-      {/* list navigasi  */}
+      {/* END TITLE DASHBOARD  */}
+
+      {/* PROFILE */}
+      <section className="flex w-full items-center px-5 py-5 gap-2">
+        {/* avatar  */}
+        <div className="w-4/12">
+          <div className="h-14 w-14 rounded-full bg-slate-500 text-center flex items-center justify-center text-2xl text-white">
+            <span>A</span>
+          </div>
+        </div>
+        {/* end awatar */}
+        {/* name and status  */}
+        <div className="w-8/12 flex flex-col gap-1">
+          <span className="poppins-semibold line-clamp-1">
+            Asep Abdul Mugni
+          </span>
+          <span className="py-1 text-xs text-center w-full rounded-md bg-amber-200 text-amber-600 poppins-semibold">
+            Super User
+          </span>
+        </div>
+        {/* edn name and status */}
+      </section>
+      {/* END PROFILE */}
+
+      {/* LIST NAVIGASI */}
       <ul className="w-full">
         {/* Home  */}
         <BarMenu title="Beranda" href="/dashboard/home">
@@ -156,6 +179,7 @@ export default function Sidebar({ className }: { className: string }) {
         </li>
         {/* END TRANSACTION HISTORY */}
       </ul>
-    </nav>
+      {/* END LIST NAVIGASI  */}
+    </aside>
   );
 }
