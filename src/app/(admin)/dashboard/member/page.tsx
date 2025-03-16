@@ -1,14 +1,16 @@
 import MemberList from "@/components/MemberList";
 import { getMember } from "@/services";
 import { Metadata } from "next";
-import Cookies from "js-cookie";
+import { cookies } from "next/headers";
 
 export const metadata: Metadata = {
   title: "Dashboard - Member",
 };
 
 export default async function Page() {
-  const { data } = await getMember(Cookies.get("auth_token"));
+  const cookieStore = await cookies();
+  const authToken = cookieStore.get("auth_token")?.value;
+  const { data } = await getMember(authToken);
 
   return <MemberList members={data} />;
 }

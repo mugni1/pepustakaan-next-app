@@ -2,18 +2,23 @@ import MainContainer from "@/components/Admin/MainContainer";
 import InfoCard from "@/components/Admin/InfoCard";
 import { getCount } from "@/services";
 import { Metadata } from "next";
+import { cookies } from "next/headers";
 
 export const metadata: Metadata = {
   title: "Dashboard - Home",
 };
 
 export default async function Home() {
-  const booksCount = await getCount("books-count");
-  const categoryCount = await getCount("categories-count");
-  const usersCount = await getCount("user-count");
-  const borrowCount = await getCount("borrowings-borrow-count");
-  const returnCount = await getCount("borrowings-return-count");
-  const transactionCount = await getCount("transactions-count");
+  const cookieStore = await cookies();
+  const authToken = cookieStore.get("auth_token");
+
+  const booksCount = await getCount("books-count", authToken);
+  const categoryCount = await getCount("categories-count", authToken);
+  const usersCount = await getCount("user-count", authToken);
+  const borrowCount = await getCount("borrowings-borrow-count", authToken);
+  const returnCount = await getCount("borrowings-return-count", authToken);
+  const transactionCount = await getCount("transactions-count", authToken);
+
   return (
     <MainContainer>
       <section className="w-full grid grid-cols-3 gap-5">

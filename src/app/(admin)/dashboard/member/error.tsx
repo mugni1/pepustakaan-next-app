@@ -26,7 +26,6 @@ export default function ErrorPage({
         <h1 className="poppins-bold text-red-500 text-2xl">
           Error Please Try again later
         </h1>
-        <p className="text-red-600 ">{error.message}</p>
         <BtnClick
           click={() => setRetry(true)}
           className="bg-gradient-to-r from-fuchsia-500 to-purple-600"
