@@ -11,9 +11,23 @@ import {
   Tag,
   UsersThree,
 } from "@phosphor-icons/react";
+import Cookies from "js-cookie";
+import { useEffect, useState } from "react";
 
 export default function Sidebar({ className }: { className: string }) {
   const pathName = usePathname();
+  const [fullName, setFullName] = useState<string | undefined>("");
+  const [roleName, setRoleName] = useState<string | undefined>("");
+  const [initialName, setInitialName] = useState<string | undefined>("");
+
+  // set Role and Name
+  useEffect(() => {
+    setFullName(Cookies.get("fullName"));
+    setRoleName(Cookies.get("roleName"));
+    setInitialName(
+      Cookies.get("fullName")?.substring(0, 1)?.toUpperCase() || "?"
+    );
+  }, []);
   return (
     <aside
       className={`items-center min-h-screen bg-white border-e border-slate-200 fixed transition-all ease-in-out duration-100 overflow-hidden ${className}`}
@@ -27,19 +41,19 @@ export default function Sidebar({ className }: { className: string }) {
       {/* PROFILE */}
       <section className="flex w-full items-center px-5 py-5 gap-2">
         {/* avatar  */}
-        <div className="w-4/12">
-          <div className="h-14 w-14 rounded-full bg-slate-500 text-center flex items-center justify-center text-2xl text-white">
-            <span>A</span>
+        <div className="w-4/12 flex items-center">
+          <div className="h-12 w-12 rounded-full bg-emerald-500 text-center flex items-center justify-center text-2xl text-white">
+            <span>{initialName}</span>
           </div>
         </div>
         {/* end awatar */}
         {/* name and status  */}
         <div className="w-8/12 flex flex-col gap-1">
           <span className="poppins-semibold line-clamp-1">
-            Asep Abdul Mugni
+            {fullName ? fullName : "Anonim"}
           </span>
           <span className="py-1 text-xs text-center w-full rounded-md bg-amber-200 text-amber-600 poppins-semibold">
-            Super User
+            {roleName ? roleName : "no role"}
           </span>
         </div>
         {/* edn name and status */}

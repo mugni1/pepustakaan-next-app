@@ -43,13 +43,38 @@ export default function MainContentLogin() {
           timer: 1000,
           buttons: [false],
         });
-        // set token ke cookie
+        // set info ke cookie
         const { token } = res.data;
+        const email = res.data.data.email;
+        const fullName = res.data.data.full_name;
+        const roles = res.data.data.roles.name;
+        const username = res.data.data.username;
         Cookies.set("auth_token", token, {
-          expires: 1, // 1 hari
+          expires: 30, // 17hari
           secure: true,
           sameSite: "Strict",
         });
+        Cookies.set("email", email, {
+          expires: 30, // 17hari
+          secure: true,
+          sameSite: "Strict",
+        });
+        Cookies.set("username", username, {
+          expires: 30, // 17hari
+          secure: true,
+          sameSite: "Strict",
+        });
+        Cookies.set("fullName", fullName, {
+          expires: 30, // 17hari
+          secure: true,
+          sameSite: "Strict",
+        });
+        Cookies.set("roleName", roles, {
+          expires: 30, // 17hari
+          secure: true,
+          sameSite: "Strict",
+        });
+        console.log(res.data);
         //redirect ke dashboard
         setTimeout(() => {
           router.push("/dashboard/home");
