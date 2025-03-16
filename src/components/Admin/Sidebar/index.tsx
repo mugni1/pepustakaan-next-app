@@ -19,7 +19,7 @@ export default function Sidebar({ className }: { className: string }) {
   const pathName = usePathname();
   return (
     <nav
-      className={`items-center min-h-screen bg-white border-e border-slate-300 fixed transition-all ease-in-out duration-100 overflow-hidden ${className}`}
+      className={`items-center min-h-screen bg-white border-e border-slate-200 fixed transition-all ease-in-out duration-100 overflow-hidden ${className}`}
     >
       {/* brand  */}
       <div className="h-16 flex items-center justify-center w-full text-xl">
