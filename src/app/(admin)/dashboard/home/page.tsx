@@ -1,5 +1,5 @@
 import MainContainer from "@/components/Admin/MainContainer";
-import InfoCard from "@/components/InfoCard";
+import InfoCard from "@/components/Admin/InfoCard";
 import { getCount } from "@/services";
 import { Metadata } from "next";
 

@@ -1,12 +1,12 @@
 "use client";
 import Column1 from "@/components/login/Column1";
-import Title from "@/components/Title";
-import { BtnPrimary } from "../Button";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { NotifyError } from "../Notify";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import TitleForm from "../Admin/Title/TitleForm";
+import BtnClick from "../Admin/Button/BtnClick";
+import { Eye, EyeSlash } from "@phosphor-icons/react";
 
 export default function MainContentLogin() {
   const [email, setEmail] = useState("");
@@ -63,19 +63,14 @@ export default function MainContentLogin() {
   }, []);
 
   return (
-    <section className="flex w-full min-h-screen  flex-wrap overflow-hidden relative px-5 md:px-0">
-      <NotifyError
-        isNotify={isNotify}
-        message={message}
-        statusCode={statusCode}
-      />
+    <section className="flex w-full min-h-screen  flex-wrap overflow-hidden relative px-5 md:px-0  bg-gradient-to-br from-fuchsia-500 to-purple-500 ">
       {/* column 1  */}
       <Column1 />
       {/* end column 1  */}
       {/* column 2  */}
-      <div className="w-full md:w-4/12 min-h-screen flex items-center justify-center ">
-        <div className="w-full md:w-10/12 xl:w-8/12 2xl:w-1/2 mx-auto rounded-xl shadow-lg p-5 flex flex-col gap-5 border border-purple-500">
-          <Title>SIGN IN</Title>
+      <div className="w-full md:w-4/12 min-h-screen flex items-center justify-center">
+        <div className="w-full md:w-10/12 xl:w-8/12 2xl:w-1/2 mx-auto rounded-xl shadow-lg p-5 flex flex-col gap-5 bg-white">
+          <TitleForm>SIGN IN</TitleForm>
           <form
             onSubmit={handleSubmit}
             action=""
@@ -84,7 +79,7 @@ export default function MainContentLogin() {
             <input
               type="email"
               placeholder="Email"
-              className="py-1 px-3 rounded-xl border w-full border-slate-600"
+              className="py-1 px-3 rounded-lg border w-full border-slate-600 outline-purple-500"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
@@ -93,7 +88,7 @@ export default function MainContentLogin() {
               <input
                 type={isPassword ? "password" : "text"}
                 placeholder="Password"
-                className="py-1 px-3 rounded-xl border w-full border-slate-600 pe-8"
+                className="py-1 px-3 rounded-lg border w-full border-slate-600 outline-purple-500 pe-8"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
@@ -102,19 +97,7 @@ export default function MainContentLogin() {
                 onClick={() => setIsPassword(!isPassword)}
                 className="absolute right-2 h-full flex items-center cursor-pointer"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  className="size-5"
-                >
-                  <path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
-                  <path
-                    fillRule="evenodd"
-                    d="M1.323 11.447C2.811 6.976 7.028 3.75 12.001 3.75c4.97 0 9.185 3.223 10.675 7.69.12.362.12.752 0 1.113-1.487 4.471-5.705 7.697-10.677 7.697-4.97 0-9.186-3.223-10.675-7.69a1.762 1.762 0 0 1 0-1.113ZM17.25 12a5.25 5.25 0 1 1-10.5 0 5.25 5.25 0 0 1 10.5 0Z"
-                    clipRule="evenodd"
-                  />
-                </svg>
+                {isPassword ? <EyeSlash size={24} /> : <Eye size={24} />}
               </span>
             </div>
             <div className="w-full flex items-center gap-1">
@@ -128,9 +111,9 @@ export default function MainContentLogin() {
                 Logout dari semua perangkat
               </label>
             </div>
-            <BtnPrimary click={() => {}}>
+            <BtnClick className="bg-gradient-to-r from-fuchsia-500 to-purple-500">
               {loadingBtn ? "Loading..." : "Sign In"}
-            </BtnPrimary>
+            </BtnClick>
           </form>
           <Link className="w-full text-center text-sm text-purple-600" href="/">
             Back to home

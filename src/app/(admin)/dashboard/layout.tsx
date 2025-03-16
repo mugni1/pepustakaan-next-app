@@ -1,5 +1,5 @@
 "use client";
-import Sidebar from "@/components/Sidebar";
+import Sidebar from "@/components/Admin/Sidebar";
 import { SidebarSimple } from "@phosphor-icons/react";
 import { ReactNode, useState } from "react";
 
