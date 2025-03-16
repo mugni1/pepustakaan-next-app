@@ -28,7 +28,7 @@ interface Props {
 }
 
 export default function TransactionList({ data }: { data: Props[] }) {
-  const [datas, setDatas] = useState(data);
+  const [datas, setDatas] = useState(data || []);
   const [keyword, setKeyword] = useState("");
 
   // FILTER DATAS
@@ -116,7 +116,7 @@ export default function TransactionList({ data }: { data: Props[] }) {
             </tr>
           </thead>
           <tbody>
-            {datas.map((data: Props, index) => (
+            {datas?.map((data: Props, index) => (
               <tr key={index} className="border-b border-slate-500">
                 <td className="text-center">{data.user?.username}</td>
                 <td className="text-center">{data.book?.title}</td>
@@ -161,6 +161,17 @@ export default function TransactionList({ data }: { data: Props[] }) {
                 {/* end delete update show  */}
               </tr>
             ))}
+
+            {datas?.length == 0 && (
+              <tr className="border-b">
+                <td
+                  colSpan={7}
+                  className="text-center text-red-500 poppins-bold py-5"
+                >
+                  Tidak ada data
+                </td>
+              </tr>
+            )}
           </tbody>
         </table>
       </Container>

@@ -1,17 +1,23 @@
 import { RequestCookie } from "next/dist/compiled/@edge-runtime/cookies";
+import { redirect } from "next/navigation";
 const baseUrl = process.env.NEXT_PUBLIC_BASE_API_URL;
 
 type Token = string | undefined | null | RequestCookie;
 
 // COUNT
 export async function getCount(params: string, token: Token) {
-  const res = await fetch(`${baseUrl}/${params}`, {
-    headers: {
-      Accept: "application/json",
-      Authorization: `Bearer ${token}`,
-    },
-  });
-  return res.json();
+  try {
+    const res = await fetch(`${baseUrl}/${params}`, {
+      headers: {
+        Accept: "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return res.json();
+  } catch (err) {
+    console.log(err);
+    redirect("/login");
+  }
 }
 
 // BUKU

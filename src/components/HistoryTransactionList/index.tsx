@@ -34,8 +34,7 @@ export default function HistoryTransactionsList({
 }: {
   datas: DetailTransaction[];
 }) {
-  const [historyTrans, setHistoryTrans] = useState(datas);
-
+  const [historyTrans, setHistoryTrans] = useState(datas || []);
   const [keyword, setKeyword] = useState("");
 
   // FILTER DATAS
@@ -82,7 +81,7 @@ export default function HistoryTransactionsList({
             </tr>
           </thead>
           <tbody>
-            {historyTrans.map((HT, index) => (
+            {historyTrans?.map((HT, index) => (
               <tr key={index} className="border-b border-slate-600">
                 <td className="poppins-semibold text-center ">
                   <span className="bg-gradient-to-r from-fuchsia-500 to-purple-500 text-white py-1 px-4 rounded-md">
@@ -126,6 +125,16 @@ export default function HistoryTransactionsList({
                 </td>
               </tr>
             ))}
+            {historyTrans?.length == 0 && (
+              <tr className="border-b">
+                <td
+                  colSpan={7}
+                  className="text-center text-red-500 poppins-bold py-5"
+                >
+                  Tidak ada data
+                </td>
+              </tr>
+            )}
           </tbody>
         </table>
       </Container>

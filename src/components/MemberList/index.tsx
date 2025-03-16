@@ -16,7 +16,7 @@ interface Member {
 }
 
 export default function MemberList({ members }: { members: Member[] }) {
-  const [memberList, setMemberList] = useState(members);
+  const [memberList, setMemberList] = useState(members || []);
   const [keyword, setKeyword] = useState("");
 
   useEffect(() => {
@@ -99,7 +99,7 @@ export default function MemberList({ members }: { members: Member[] }) {
             </tr>
           </thead>
           <tbody>
-            {memberList.map((member: Member, index) => (
+            {memberList?.map((member: Member, index) => (
               <tr key={index} className="border-b">
                 <td className="text-center py-5">{member.id}</td>
                 <td className="text-center py-5">{member.full_name}</td>
@@ -118,6 +118,16 @@ export default function MemberList({ members }: { members: Member[] }) {
                 {/* end delete update show  */}
               </tr>
             ))}
+            {memberList.length == 0 && (
+              <tr className="border-b">
+                <td
+                  colSpan={6}
+                  className="text-center text-red-500 poppins-bold py-5"
+                >
+                  Tidak ada data
+                </td>
+              </tr>
+            )}
           </tbody>
         </table>
       </Container>

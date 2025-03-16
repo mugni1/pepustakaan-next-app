@@ -2,10 +2,42 @@
 import Sidebar from "@/components/Admin/Sidebar";
 import TimeNow from "@/components/Admin/Time";
 import { SidebarSimple } from "@phosphor-icons/react";
-import { ReactNode, useState } from "react";
+import axios from "axios";
+import { ReactNode, useEffect, useState } from "react";
+import Cookies from "js-cookie";
+import { useRouter } from "next/navigation";
 
 export default function Layout({ children }: { children: ReactNode }) {
   const [sidebar, setSidebar] = useState(false);
+
+  const token = Cookies.get("auth_token");
+  const router = useRouter();
+
+  // cek token
+  useEffect(() => {
+    if (token == null) {
+      router.push("/login");
+    }
+    axios({
+      method: "get",
+      url: process.env.NEXT_PUBLIC_BASE_API_URL + "/profile",
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    })
+      .then((res) => {})
+      .catch((err) => {
+        if (err.response.status == 401) {
+          router.push("/login");
+          Cookies.remove("auth_token");
+          Cookies.remove("email");
+          Cookies.remove("fullName");
+          Cookies.remove("roleName");
+          Cookies.remove("username");
+        }
+      });
+  }, []);
+
   return (
     <main className="w-full flex">
       {/* SIDE BAR  */}
