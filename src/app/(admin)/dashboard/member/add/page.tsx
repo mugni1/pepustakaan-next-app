@@ -8,8 +8,10 @@ import axios from "axios";
 import swal from "sweetalert";
 import { useRef } from "react";
 import { useRouter } from "next/navigation";
+import Cookies from "js-cookie";
 
 export default function Page() {
+  const token = Cookies.get("auth_token");
   const fullName = useRef<HTMLInputElement>(null);
   const username = useRef<HTMLInputElement>(null);
   const email = useRef<HTMLInputElement>(null);
@@ -25,7 +27,7 @@ export default function Page() {
       method: "post",
       url: `${process.env.NEXT_PUBLIC_BASE_API_URL}/users`,
       headers: {
-        Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
+        Authorization: `Bearer ${token}`,
       },
       data: {
         full_name: fullName.current?.value,

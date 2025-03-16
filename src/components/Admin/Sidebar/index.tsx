@@ -3,13 +3,10 @@ import { usePathname } from "next/navigation";
 import BarMenu from "./BarMenu";
 import BarMenu2 from "./BarMenu2";
 import {
-  ArrowUUpLeft,
-  ArrowUUpRight,
   BookOpenText,
   CaretCircleRight,
   CashRegister,
   ClockCounterClockwise,
-  HourglassSimpleMedium,
   HouseLine,
   Tag,
   UsersThree,
