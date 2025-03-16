@@ -79,9 +79,42 @@ export async function getLate() {
   return res.json();
 }
 
-// HISTORY TRANSACTION
+// HISTORY TRANSACTION ALL
 export async function getHistoryTransactions() {
   const res = await fetch(baseUrl + "/transactions", {
+    headers: {
+      Accept: "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return res.json();
+}
+
+// HISTORY TRANSACTION BORROW
+export async function getHistoryTransactionsBorrow() {
+  const res = await fetch(baseUrl + "/transactions-borrow", {
+    headers: {
+      Accept: "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return res.json();
+}
+
+// HISTORY TRANSACTION RETURN
+export async function getHistoryTransactionsReturn() {
+  const res = await fetch(baseUrl + "/transactions-return", {
+    headers: {
+      Accept: "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return res.json();
+}
+
+// HISTORY TRANSACTION FINE
+export async function getHistoryTransactionsFine() {
+  const res = await fetch(baseUrl + "/transactions-fine", {
     headers: {
       Accept: "application/json",
       Authorization: `Bearer ${token}`,

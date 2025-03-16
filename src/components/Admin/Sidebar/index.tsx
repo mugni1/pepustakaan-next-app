@@ -95,15 +95,67 @@ export default function Sidebar({ className }: { className: string }) {
           </ul>
         </li>
         {/* End Transaction  */}
-        {/* TRANSACTION HISTORY  */}
-        <BarMenu
-          title="Riwayat Transaksi"
-          href="/dashboard/transaction-history"
+        {/* TRANSACTION HISTORY */}
+        <li
+          className={`w-full px-5 py-2 transition-all ease-in-out duration-150 flex flex-col cursor-pointer group hover:bg-purple-100 ${
+            pathName == "/dashboard/history-transaction-all" ||
+            pathName == "/dashboard/history-transaction-borrow" ||
+            pathName == "/dashboard/history-transaction-return" ||
+            pathName == "/dashboard/history-transaction-fine" ||
+            pathName.startsWith(`/dashboard/history-transaction-all/`) ||
+            pathName.startsWith(`/dashboard/history-transaction-borrow/`) ||
+            pathName.startsWith(`/dashboard/history-transaction-return/`) ||
+            pathName.startsWith(`/dashboard/history-transaction-fine/`)
+              ? "bg-purple-100"
+              : ""
+          } `}
         >
-          <ClockCounterClockwise size={24} />
-        </BarMenu>
+          <div className="w-full flex justify-between items-center mb-2">
+            <span>Riwayat Transaksi</span>
+            <ClockCounterClockwise size={24} />
+          </div>
+          <ul
+            className={`w-full group-hover:h-40 overflow-hidden group-hover:visible transition-all ease-in-out duration-200 ${
+              pathName == "/dashboard/history-transaction-all" ||
+              pathName == "/dashboard/history-transaction-borrow" ||
+              pathName == "/dashboard/history-transaction-return" ||
+              pathName == "/dashboard/history-transaction-fine" ||
+              pathName.startsWith(`/dashboard/history-transaction-all/`) ||
+              pathName.startsWith(`/dashboard/history-transaction-borrow/`) ||
+              pathName.startsWith(`/dashboard/history-transaction-return/`) ||
+              pathName.startsWith(`/dashboard/history-transaction-fine/`)
+                ? "h-40 visible"
+                : "h-0"
+            }`}
+          >
+            <BarMenu2
+              title="Semua Riwayat"
+              href="/dashboard/history-transaction-all"
+            >
+              <CaretCircleRight size={20} />
+            </BarMenu2>
+            <BarMenu2
+              title="List Peminjaman"
+              href="/dashboard/history-transaction-borrow"
+            >
+              <CaretCircleRight size={20} />
+            </BarMenu2>
+            <BarMenu2
+              title="List Pengembalian"
+              href="/dashboard/history-transaction-return"
+            >
+              <CaretCircleRight size={20} />
+            </BarMenu2>
+            <BarMenu2
+              title="List Denda"
+              href="/dashboard/history-transaction-fine"
+            >
+              <CaretCircleRight size={20} />
+            </BarMenu2>
+          </ul>
+        </li>
+        {/* END TRANSACTION HISTORY */}
       </ul>
-      {/* END TRANSACTION HISTORY */}
     </nav>
   );
 }
