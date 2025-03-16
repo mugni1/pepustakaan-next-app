@@ -40,13 +40,20 @@ export default function MainContentLogin() {
           icon: "success",
           title: "Success!",
           text: "Login Success",
+          timer: 1000,
+          buttons: [false],
         });
+        // set token ke cookie
         const { token } = res.data;
         Cookies.set("auth_token", token, {
           expires: 1, // 1 hari
           secure: true,
           sameSite: "Strict",
         });
+        //redirect ke dashboard
+        setTimeout(() => {
+          router.push("/dashboard/home");
+        }, 1000);
       })
       .catch((err) => {
         swal({

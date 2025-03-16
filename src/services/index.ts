@@ -29,11 +29,11 @@ export async function getCategorys() {
 }
 
 //  MEMBERS
-export async function getMember() {
+export async function getMember(tkn: string | undefined) {
   const res = await fetch(`${baseUrl}/users-user`, {
     headers: {
       Accept: "application/json",
-      Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
+      Authorization: `Bearer ${tkn}`,
     },
   });
   return res.json();
@@ -46,7 +46,7 @@ export async function getBorrow() {
     {
       headers: {
         Accept: "application/json",
-        Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
+        Authorization: `Bearer ${token}`,
       },
     }
   );
@@ -59,7 +59,7 @@ export async function getReturn() {
     {
       headers: {
         Accept: "application/json",
-        Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
+        Authorization: `Bearer ${token}`,
       },
     }
   );
@@ -72,7 +72,7 @@ export async function getLate() {
     {
       headers: {
         Accept: "application/json",
-        Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
+        Authorization: `Bearer ${token}`,
       },
     }
   );
