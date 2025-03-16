@@ -7,12 +7,15 @@ import { useRouter } from "next/navigation";
 import MainContainer from "../Admin/MainContainer";
 import Container from "../Admin/Container";
 import BtnHref from "../Admin/Button/BtnHref";
+import Cookies from "js-cookie";
 
 interface Props {
   id: number;
   name: string;
 }
 export default function CategoryList({ datas }: { datas: Props[] }) {
+  //token
+  const token = Cookies.get("auth_token");
   const [categories, setCategories] = useState(datas);
   const [keyword, setKeyword] = useState("");
   const router = useRouter();
@@ -40,7 +43,7 @@ export default function CategoryList({ datas }: { datas: Props[] }) {
           method: "delete",
           url: `${process.env.NEXT_PUBLIC_BASE_API_URL}/categories/${id}`,
           headers: {
-            Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
+            Authorization: `Bearer ${token}`,
           },
         })
           .then((res) => {

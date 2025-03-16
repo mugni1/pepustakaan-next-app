@@ -7,6 +7,7 @@ import TitleForm from "@/components/Admin/Title/TitleForm";
 import axios from "axios";
 import swal from "sweetalert";
 import { useEffect, useRef, useState } from "react";
+import Cookies from "js-cookie";
 
 interface Member {
   id: number;
@@ -20,6 +21,8 @@ interface Book {
 }
 
 export default function Page() {
+  //token
+  const token = Cookies.get("auth_token");
   const [members, setMembers] = useState([]);
   const [usernameID, setUsernameID] = useState("");
   const [books, setBooks] = useState([]);
@@ -34,7 +37,7 @@ export default function Page() {
       method: "post",
       url: `${process.env.NEXT_PUBLIC_BASE_API_URL}/borrowings`,
       headers: {
-        Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
+        Authorization: `Bearer ${token}`,
       },
       data: {
         user_id: usernameID,
@@ -61,16 +64,18 @@ export default function Page() {
 
   // unMount BOOK AND MEMBER
   useEffect(() => {
+    // member
     axios({
       method: "get",
       url: `${process.env.NEXT_PUBLIC_BASE_API_URL}/users-user`,
       headers: {
-        Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
+        Authorization: `Bearer ${token}`,
       },
     }).then((res) => {
       setMembers(res.data.data);
     });
 
+    // books
     axios({
       method: "get",
       url: `${process.env.NEXT_PUBLIC_BASE_API_URL}/books`,

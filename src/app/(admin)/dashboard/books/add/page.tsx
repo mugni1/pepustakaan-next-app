@@ -4,10 +4,11 @@ import BtnHref from "@/components/Admin/Button/BtnHref";
 import Container from "@/components/Admin/Container";
 import MainContainer from "@/components/Admin/MainContainer";
 import TitleForm from "@/components/Admin/Title/TitleForm";
-import { FileImage } from "@phosphor-icons/react";
+import { FileImage, SpinnerGap } from "@phosphor-icons/react";
 import axios from "axios";
 import { useEffect, useRef, useState } from "react";
 import swal from "sweetalert";
+import Cookies from "js-cookie";
 
 interface Category {
   id: number;
@@ -15,6 +16,9 @@ interface Category {
 }
 
 export default function Page() {
+  //token
+  const token = Cookies.get("auth_token");
+
   const title = useRef<HTMLInputElement>(null);
   const writer = useRef<HTMLInputElement>(null);
   const publisher = useRef<HTMLInputElement>(null);
@@ -35,7 +39,7 @@ export default function Page() {
       url: process.env.NEXT_PUBLIC_BASE_API_URL + "/books",
       headers: {
         "Content-Type": "multipart/form-data",
-        Authorization: "Bearer " + process.env.NEXT_PUBLIC_API_TOKEN,
+        Authorization: "Bearer " + token,
       },
       data: {
         title: title.current?.value,
@@ -163,7 +167,11 @@ export default function Page() {
           {/* btn  */}
           <section className="w-full flex gap-5 items-stretch">
             <BtnClick typeBtn="submit" className="bg-green-500">
-              Submit
+              {btnLoading ? (
+                <SpinnerGap className="animate-spin" size={24} />
+              ) : (
+                <span>Kirim</span>
+              )}
             </BtnClick>
             <BtnHref href="/dashboard/books" className="bg-sky-500 text-white">
               Back

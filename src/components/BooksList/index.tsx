@@ -8,6 +8,7 @@ import axios from "axios";
 import BtnHref from "../Admin/Button/BtnHref";
 import Container from "../Admin/Container";
 import MainContainer from "../Admin/MainContainer";
+import Cookies from "js-cookie";
 
 interface Books {
   category: { id: number; name: string };
@@ -24,6 +25,8 @@ interface Books {
 }
 
 export default function BooksList({ data }: { data: Books[] }) {
+  //token
+  const token = Cookies.get("auth_token");
   const [books, setBooks] = useState<Books[]>(data);
   const [keyword, setKeyword] = useState("");
   const router = useRouter();
@@ -41,7 +44,7 @@ export default function BooksList({ data }: { data: Books[] }) {
           method: "delete",
           url: process.env.NEXT_PUBLIC_BASE_API_URL + "/books/" + id,
           headers: {
-            Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
+            Authorization: `Bearer ${token}`,
           },
         })
           .then((res) => {

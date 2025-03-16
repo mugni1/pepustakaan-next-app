@@ -9,6 +9,7 @@ import Container from "@/components/Admin/Container";
 import TitleForm from "@/components/Admin/Title/TitleForm";
 import BtnClick from "@/components/Admin/Button/BtnClick";
 import BtnHref from "@/components/Admin/Button/BtnHref";
+import Cookies from "js-cookie";
 
 interface Category {
   id: number;
@@ -16,6 +17,9 @@ interface Category {
 }
 
 export default function Page() {
+  //token
+  const token = Cookies.get("auth_token");
+
   const [title, setTitle] = useState("");
   const [writer, setWriter] = useState("");
   const [publisher, setPublisher] = useState("");
@@ -39,7 +43,7 @@ export default function Page() {
       method: "post",
       url: `${process.env.NEXT_PUBLIC_BASE_API_URL}/books/${id}`,
       headers: {
-        Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
+        Authorization: `Bearer ${token}`,
         "Content-Type": "multipart/form-data",
       },
       data: {

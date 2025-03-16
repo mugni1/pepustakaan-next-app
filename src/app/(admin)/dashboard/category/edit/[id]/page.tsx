@@ -2,14 +2,17 @@
 import BtnClick from "@/components/Admin/Button/BtnClick";
 import BtnHref from "@/components/Admin/Button/BtnHref";
 import MainContainer from "@/components/Admin/MainContainer";
-import FormTitle from "@/components/FormTitle";
+import TitleForm from "@/components/Admin/Title/TitleForm";
 import { SpinnerGap } from "@phosphor-icons/react";
 import axios from "axios";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import swal from "sweetalert";
+import Cookies from "js-cookie";
 
 export default function Page() {
+  //token
+  const token = Cookies.get("auth_token");
   const { id } = useParams();
   const [name, setName] = useState("");
   const [loadingBtn, setLoadingBtn] = useState(false);
@@ -23,7 +26,7 @@ export default function Page() {
       method: "post",
       url: `${process.env.NEXT_PUBLIC_BASE_API_URL}/categories/${id}`,
       headers: {
-        Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
+        Authorization: `Bearer ${token}`,
       },
       data: {
         name,
@@ -66,7 +69,7 @@ export default function Page() {
   return (
     <MainContainer>
       <section className=" w-3/6 mx-auto bg-white rounded-xl p-5 gap-5 flex flex-col">
-        <FormTitle>Edit Kategori</FormTitle>
+        <TitleForm>Edit Kategori</TitleForm>
         <form onSubmit={handleSubmit} className="w-full flex flex-col gap-5">
           {/* input name  */}
           <input

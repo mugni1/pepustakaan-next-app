@@ -7,7 +7,11 @@ import MainContainer from "@/components/Admin/MainContainer";
 import TitleForm from "@/components/Admin/Title/TitleForm";
 import BtnClick from "@/components/Admin/Button/BtnClick";
 import BtnHref from "@/components/Admin/Button/BtnHref";
+import Cookies from "js-cookie";
+
 export default function Page() {
+  //token
+  const token = Cookies.get("auth_token");
   const name = useRef<HTMLInputElement>(null);
   const [loadingBtn, setLoadingBtn] = useState(false);
 
@@ -18,7 +22,7 @@ export default function Page() {
       method: "post",
       url: `${process.env.NEXT_PUBLIC_BASE_API_URL}/categories`,
       headers: {
-        Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
+        Authorization: `Bearer ${token}`,
       },
       data: {
         name: name.current?.value,
