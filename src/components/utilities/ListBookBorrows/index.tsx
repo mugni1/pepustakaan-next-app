@@ -27,6 +27,10 @@ export default function ListBookBorrows({ data }: { data: Borrow[] }) {
     setIsClient(true); //  Setelah komponen dimuat di klien, set isClient = true
   }, []);
 
+  if (borrows.length < 1) {
+    return <h1>No data results</h1>;
+  }
+
   return (
     <section className="w-full grid grid-cols-1 xl:grid-cols-3 gap-5">
       {borrows.map((borrow: Borrow) => (
@@ -50,7 +54,7 @@ export default function ListBookBorrows({ data }: { data: Borrow[] }) {
             </h2>
             <span className="text-slate-600">{borrow.book.writer}</span>
             <span className="py-1 px-2 rounded-md bg-sky-100 text-sky-600 text-xs w-fit my-2">
-              ID : {borrow.id}
+              Pinjaman ID : {borrow.id}
             </span>
             {/* Countdown */}
             <div className="py-1 flex flex-col text-sm">

@@ -13,7 +13,9 @@ export default function RootLayout({
     <html lang="en">
       <body>
         {children}
-        {!pathName.startsWith("/dashboard/") && <NavigationBar />}
+        {!pathName.startsWith("/dashboard/") && pathName != "/login" && (
+          <NavigationBar />
+        )}
       </body>
     </html>
   );

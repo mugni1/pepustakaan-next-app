@@ -19,7 +19,6 @@ export default function MainContentLogin() {
   const [loadingBtn, setLoadingBtn] = useState(false);
   const [isPassword, setIsPassword] = useState(true);
   const [isLogoutAll, setIsLogoutAll] = useState(false);
-  // const [isRemember, setIsRemember] = useState(false);
 
   const router = useRouter();
 
@@ -74,10 +73,14 @@ export default function MainContentLogin() {
           secure: true,
           sameSite: "Strict",
         });
-        console.log(res.data);
+
         //redirect ke dashboard
         setTimeout(() => {
-          router.push("/dashboard/home");
+          if (roles == "superUser") {
+            router.push("/dashboard/home");
+          } else {
+            router.push("/");
+          }
         }, 1000);
       })
       .catch((err) => {
@@ -141,17 +144,6 @@ export default function MainContentLogin() {
                 Logout dari semua perangkat
               </label>
             </div>
-            {/* <div className="w-full flex items-center gap-1">
-              <input
-                type="checkbox"
-                id="remember"
-                checked={isRemember}
-                onChange={() => setIsRemember(!isRemember)}
-              />
-              <label htmlFor="remember" className="text-sm">
-                Selalu ingat saya
-              </label>
-            </div> */}
             <BtnClick className="bg-gradient-to-r from-fuchsia-500 to-purple-500">
               {loadingBtn ? "Loading..." : "Sign In"}
             </BtnClick>

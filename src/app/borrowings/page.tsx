@@ -13,7 +13,7 @@ export default async function Page() {
         <h1 className="poppins-bold text-lg xl:text-2xl text-transparent bg-clip-text bg-gradient-to-br from-fuchsia-500 to-purple-500">
           Buku Yang Di Pinjam
         </h1>
-        <h3 className="poppins-semibold mb-3">Total {data.length}</h3>
+        <h3 className="poppins-semibold mb-3">Total {data?.length ?? 0}</h3>
         <ListBookBorrows data={data} />
       </section>
     </UserContainer>

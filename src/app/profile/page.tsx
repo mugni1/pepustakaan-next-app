@@ -1,12 +1,26 @@
+import BtnHref from "@/components/Admin/Button/BtnHref";
 import UserContainer from "@/components/utilities/Container/UserContainer";
 import { cookies } from "next/headers";
 
 export default async function Page() {
   const cookieStore = await cookies();
-  const fullName = cookieStore.get("fullName")?.value;
-  const username = cookieStore.get("username")?.value;
-  const roleName = cookieStore.get("roleName")?.value;
-  const email = cookieStore.get("email")?.value;
+  const token = cookieStore.get("auth_token")?.value;
+  const fullName = cookieStore.get("fullName")?.value || "Anonim";
+  const username = cookieStore.get("username")?.value || "Anonim";
+  const roleName = cookieStore.get("roleName")?.value || "No have role";
+  const email = cookieStore.get("email")?.value || "anonim";
+
+  if (!token) {
+    return (
+      <section className="min-h-screen flex justify-center items-center flex-col gap-5">
+        <span className="poppins-semibold text-xl">
+          Harap Login Terlebih Dahulu
+        </span>
+        <BtnHref href="/login">Login</BtnHref>
+      </section>
+    );
+  }
+
   return (
     <UserContainer>
       <section className="w-full md:w-4/12 mx-auto flex flex-col gap-3 rounded-xl shadow-md mt-20 p-5 border border-slate-200">
