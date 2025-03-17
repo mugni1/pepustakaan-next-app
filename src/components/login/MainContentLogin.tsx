@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import TitleForm from "../Admin/Title/TitleForm";
 import BtnClick from "../Admin/Button/BtnClick";
-import { Eye, EyeSlash } from "@phosphor-icons/react";
+import { Eye, EyeSlash, SpinnerGap } from "@phosphor-icons/react";
 import swal from "sweetalert";
 import Cookies from "js-cookie";
 
@@ -145,7 +145,11 @@ export default function MainContentLogin() {
               </label>
             </div>
             <BtnClick className="bg-gradient-to-r from-fuchsia-500 to-purple-500">
-              {loadingBtn ? "Loading..." : "Sign In"}
+              {loadingBtn ? (
+                <SpinnerGap className="animate-spin" size={24} />
+              ) : (
+                "Sign In"
+              )}
             </BtnClick>
           </form>
           <Link className="w-full text-center text-sm text-purple-600" href="/">

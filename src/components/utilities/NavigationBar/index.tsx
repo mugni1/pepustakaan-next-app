@@ -9,9 +9,11 @@ import {
   User,
 } from "@phosphor-icons/react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
+import axios from "axios";
+import swal from "sweetalert";
 
 export default function NavigationBar() {
   const pathname = usePathname();
@@ -20,6 +22,95 @@ export default function NavigationBar() {
   useEffect(() => {
     setToken(Cookies.get("auth_token"));
   }, []);
+
+  const router = useRouter();
+  const handleLogoutAll = () => {
+    axios({
+      method: "get",
+      url: process.env.NEXT_PUBLIC_BASE_API_URL + "/logout-all",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((res) => {
+        swal({
+          icon: "success",
+          title: "Success!",
+          text: res.data.message,
+          timer: 2000,
+        });
+        Cookies.remove("auth_token");
+        Cookies.remove("fullName");
+        Cookies.remove("roleName");
+        window.location.href = "/";
+      })
+      .catch((err) => {
+        swal({
+          icon: "error",
+          title: "Error!",
+          text: err.response?.data?.message || "Terjadi kesalahan",
+        });
+      });
+  };
+
+  const handleLogout = () => {
+    axios({
+      method: "get",
+      url: process.env.NEXT_PUBLIC_BASE_API_URL + "/logout",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((res) => {
+        swal({
+          icon: "success",
+          title: "Success!",
+          text: res.data.message,
+          timer: 2000,
+        });
+        Cookies.remove("auth_token");
+        Cookies.remove("fullName");
+        Cookies.remove("roleName");
+        window.location.href = "/";
+      })
+      .catch((err) => {
+        swal({
+          icon: "error",
+          title: "Error!",
+          text: err.response?.data?.message || "Terjadi kesalahan",
+        });
+      });
+  };
+
+  const selectLogout = () => {
+    swal({
+      icon: "warning",
+      title: "Peringatan!",
+      text: "Apakah kamu ingin logout dari semua perangkat?",
+      buttons: ["Tidak", "Ya"],
+      dangerMode: true,
+    }).then((isTrue) => {
+      if (isTrue) {
+        handleLogoutAll();
+      } else {
+        handleLogout();
+      }
+    });
+  };
+
+  const validateLogout = () => {
+    swal({
+      icon: "warning",
+      title: "Peringatan!",
+      text: "Apakah kamu ingin logout?",
+      buttons: ["Tidak", "Ya"],
+      dangerMode: true,
+    }).then((isTrue) => {
+      if (isTrue) {
+        selectLogout();
+      }
+    });
+  };
 
   return (
     <div className="w-full fixed bottom-5 px-5">
@@ -53,7 +144,7 @@ export default function NavigationBar() {
           <MagnifyingGlass size={24} />
         </button>
         {token && (
-          <button>
+          <button onClick={validateLogout}>
             <SignOut size={24} />
           </button>
         )}
