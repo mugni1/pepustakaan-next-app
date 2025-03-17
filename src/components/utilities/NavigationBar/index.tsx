@@ -14,7 +14,7 @@ export default function NavigationBar() {
   const pathname = usePathname();
   return (
     <div className="w-full fixed bottom-5 px-5">
-      <div className=" w-full md:w-4/12 mx-auto  py-3 px-5 rounded-lg shadow-lg flex items-center justify-between gap-5 backdrop-blur-md bg-white/50 border border-purple-500">
+      <div className=" w-full md:w-6/12 xl:w-4/12 mx-auto  py-3 px-5 rounded-lg shadow-lg flex items-center justify-between gap-5 backdrop-blur-md bg-white/50 border border-purple-500">
         <Link
           href={"/"}
           className={`${
