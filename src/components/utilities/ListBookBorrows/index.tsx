@@ -1,4 +1,5 @@
 "use client";
+import { ClockCounterClockwise } from "@phosphor-icons/react";
 import { useState, useEffect } from "react";
 import Countdown from "react-countdown";
 
@@ -20,10 +21,10 @@ interface Borrow {
 
 export default function ListBookBorrows({ data }: { data: Borrow[] }) {
   const [borrows, setBorrows] = useState<Borrow[]>(data || []);
-  const [isClient, setIsClient] = useState(false); // ✅ Tambahkan state isClient
+  const [isClient, setIsClient] = useState(false); //  Tambahkan state isClient
 
   useEffect(() => {
-    setIsClient(true); // ✅ Setelah komponen dimuat di klien, set isClient = true
+    setIsClient(true); //  Setelah komponen dimuat di klien, set isClient = true
   }, []);
 
   return (
@@ -49,40 +50,36 @@ export default function ListBookBorrows({ data }: { data: Borrow[] }) {
             </h2>
             <span className="text-slate-600">{borrow.book.writer}</span>
             <span className="py-1 px-2 rounded-md bg-sky-100 text-sky-600 text-xs w-fit my-2">
-              Dipinjam : {borrow.borrow_date}
+              ID : {borrow.id}
             </span>
             {/* Countdown */}
             <div className="py-1 flex flex-col text-sm">
-              <strong>Hitung Mundur Peminjaman</strong>
-
+              <span className="flex items-center gap-1 poppins-semibold">
+                <ClockCounterClockwise size={20} /> Pengembalian
+              </span>
               {isClient && ( // tampilkan saat isClients == true
                 <Countdown
                   date={new Date(borrow.return_date).getTime()}
                   daysInHours={true}
                   renderer={({ days, hours, minutes, seconds, completed }) => {
                     if (completed) {
-                      // Hitung keterlambatan
                       const returnDate = new Date(borrow.return_date).getTime();
                       const currentDate = new Date().getTime();
                       const lateTime = currentDate - returnDate;
-
                       const lateDays = Math.ceil(
                         lateTime / (1000 * 60 * 60 * 24)
                       );
-
                       return (
                         <>
                           <div className="text-red-500">
-                            <span>Sudah lewat </span>
-                            <span>{lateDays > 0 && `${lateDays} hari`}</span>
+                            Sudah lewat {lateDays > 0 && `${lateDays} hari`},
+                            denda
                           </div>
-                          <div className="text-red-500">
-                            <span>Denda Rp</span>
-                            <span>
-                              {(lateDays * borrow.daily_fine).toLocaleString(
-                                "id-ID"
-                              )}
-                            </span>
+                          <div className="text-red-500 poppins-semibold">
+                            Rp{" "}
+                            {(lateDays * borrow.daily_fine).toLocaleString(
+                              "id-ID"
+                            )}
                           </div>
                         </>
                       );

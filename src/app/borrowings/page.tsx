@@ -9,10 +9,11 @@ export default async function Page() {
   const { data } = await getBorrowBookUser(token);
   return (
     <UserContainer>
-      <section className="px-5">
-        <h1 className="poppins-bold text-xl xl:text-2xl py-5 text-transparent bg-clip-text bg-gradient-to-br from-fuchsia-500 to-purple-500">
+      <section className="p-5">
+        <h1 className="poppins-bold text-lg xl:text-2xl text-transparent bg-clip-text bg-gradient-to-br from-fuchsia-500 to-purple-500">
           Buku Yang Di Pinjam
         </h1>
+        <h3 className="poppins-semibold mb-3">Total {data.length}</h3>
         <ListBookBorrows data={data} />
       </section>
     </UserContainer>
