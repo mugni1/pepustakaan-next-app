@@ -118,7 +118,7 @@ export default function MemberList({ members }: { members: Member[] }) {
                 {/* end delete update show  */}
               </tr>
             ))}
-            {memberList.length == 0 && (
+            {memberList?.length == 0 && (
               <tr className="border-b">
                 <td
                   colSpan={6}

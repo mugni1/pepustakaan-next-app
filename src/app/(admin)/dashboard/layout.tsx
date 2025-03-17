@@ -11,13 +11,19 @@ export default function Layout({ children }: { children: ReactNode }) {
   const [sidebar, setSidebar] = useState(false);
 
   const token = Cookies.get("auth_token");
+  const role = Cookies.get("roleName");
   const router = useRouter();
 
-  // cek token
+  // VALIDASI TERLEBIH DAHULU
   useEffect(() => {
     if (token == null) {
       router.push("/login");
     }
+
+    if (role != "superUser") {
+      router.push("/");
+    }
+
     axios({
       method: "get",
       url: process.env.NEXT_PUBLIC_BASE_API_URL + "/profile",
@@ -25,7 +31,12 @@ export default function Layout({ children }: { children: ReactNode }) {
         Authorization: "Bearer " + token,
       },
     })
-      .then((res) => {})
+      .then((res) => {
+        const roleID = res.data.data.roles.id;
+        if (roleID != 1) {
+          router.push("/");
+        }
+      })
       .catch((err) => {
         if (err.response.status == 401) {
           router.push("/login");
