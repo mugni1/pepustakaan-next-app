@@ -1,3 +1,4 @@
+import UserContainer from "@/components/utilities/Container/UserContainer";
 import ListBooks from "@/components/utilities/ListBooks";
 import NavigationBar from "@/components/utilities/NavigationBar";
 import SubTitle from "@/components/utilities/SubTitle";
@@ -7,13 +8,11 @@ export default async function Home() {
   const { data } = await getBooks();
 
   return (
-    <main className="w-full">
-      <section className="mx-auto container px-5 flex flex-col gap-3 py-5">
+    <UserContainer>
+      <section className=" px-5 flex flex-col gap-3 py-5">
         <SubTitle>Terbaru</SubTitle>
         <ListBooks books={data} />
       </section>
-
-      <NavigationBar />
-    </main>
+    </UserContainer>
   );
 }

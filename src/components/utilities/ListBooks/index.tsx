@@ -30,7 +30,7 @@ export default function ListBooks({ books }: { books: Book[] }) {
           {/* body  */}
           <div className="p-3 flex flex-col">
             <span className="poppins-semibold line-clamp-1">{book.title}</span>
-            <span className="text-slate-400">{book.writer}</span>
+            <span className="text-slate-400 mb-1">{book.writer}</span>
             <span
               className={` ${
                 book.stock > 0
