@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import swal from "sweetalert";
 import { usePathname } from "next/navigation";
+import Cookies from "js-cookie";
 
 interface User {
   id: number;
@@ -30,6 +31,7 @@ interface Props {
 export default function TransactionList({ data }: { data: Props[] }) {
   const [datas, setDatas] = useState(data || []);
   const [keyword, setKeyword] = useState("");
+  const token = Cookies.get("auth_token");
 
   // FILTER DATAS
   useEffect(() => {
@@ -56,7 +58,7 @@ export default function TransactionList({ data }: { data: Props[] }) {
           method: "PATCH",
           url: `${process.env.NEXT_PUBLIC_BASE_API_URL}/borrowings/${id}`,
           headers: {
-            Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
+            Authorization: `Bearer ${token}`,
           },
         })
           .then((res) => {

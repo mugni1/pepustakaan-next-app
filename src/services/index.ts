@@ -118,3 +118,14 @@ export async function getHistoryTransactionsFine(token: Token) {
   });
   return res.json();
 }
+
+/////////////   FOR USER   //////////////////////
+export async function getBorrowBookUser(token: Token) {
+  const res = await fetch(`${baseUrl}/borrowings-user`, {
+    headers: {
+      Accept: "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return res.json();
+}
