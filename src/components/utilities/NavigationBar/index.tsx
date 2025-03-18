@@ -118,16 +118,18 @@ export default function NavigationBar() {
         <Link
           href={"/"}
           className={`${
-            pathname == "/" && "text-purple-500 bg-purple-200 rounded-xl"
-          } transition-all duration-200 ease-in-out p-2`}
+            pathname == "/" &&
+            "text-purple-500 bg-purple-200 rounded-xl scale-110 "
+          } transition-all duration-300 ease-in-out p-2 scale-100`}
         >
           <HouseLine size={24} />
         </Link>
         <Link
           href={"/profile"}
           className={`${
-            pathname == "/profile" && "text-purple-500 bg-purple-200 rounded-xl"
-          } transition-all duration-200 ease-in-out p-2`}
+            pathname == "/profile" &&
+            "text-purple-500 bg-purple-200 rounded-xl scale-110"
+          } transition-all duration-300 ease-in-out p-2 scale-100`}
         >
           <User size={24} />
         </Link>
@@ -135,16 +137,19 @@ export default function NavigationBar() {
           href={"/borrowings"}
           className={`${
             pathname == "/borrowings" &&
-            "text-purple-500 bg-purple-200 rounded-xl"
-          } transition-all duration-200 ease-in-out p-2`}
+            "text-purple-500 bg-purple-200 rounded-xl scale-110"
+          } transition-all duration-300 ease-in-out p-2 scale-100`}
         >
           <BookOpenUser size={24} />
         </Link>
-        <button>
-          <MagnifyingGlass size={24} />
-        </button>
         {token && (
-          <button onClick={validateLogout}>
+          <button
+            onClick={validateLogout}
+            className={`${
+              pathname == "/login" &&
+              "text-purple-500 bg-purple-200 rounded-xl scale-110"
+            } transition-all duration-300 ease-in-out p-2 scale-100`}
+          >
             <SignOut size={24} />
           </button>
         )}
@@ -152,8 +157,9 @@ export default function NavigationBar() {
           <Link
             href={"/login"}
             className={`${
-              pathname == "/login" && "text-purple-500 bg-purple-200 rounded-xl"
-            } transition-all duration-200 ease-in-out p-2`}
+              pathname == "/login" &&
+              "text-purple-500 bg-purple-200 rounded-xl scale-110"
+            } transition-all duration-300 ease-in-out p-2 scale-100`}
           >
             <SignIn size={24} />
           </Link>

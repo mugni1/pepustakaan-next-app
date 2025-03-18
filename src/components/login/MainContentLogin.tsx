@@ -87,7 +87,7 @@ export default function MainContentLogin() {
         swal({
           icon: "error",
           title: "Error!",
-          text: err.response.data.message,
+          text: err.response?.data?.message || "Terjadi kesalahan",
         });
       })
       .finally(() => {
@@ -144,7 +144,7 @@ export default function MainContentLogin() {
                 Logout dari semua perangkat
               </label>
             </div>
-            <BtnClick className="bg-gradient-to-r from-fuchsia-500 to-purple-500">
+            <BtnClick className="bg-gradient-to-r from-fuchsia-500 to-purple-500 flex justify-center text-center">
               {loadingBtn ? (
                 <SpinnerGap className="animate-spin" size={24} />
               ) : (
