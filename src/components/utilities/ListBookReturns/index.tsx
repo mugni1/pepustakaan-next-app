@@ -24,7 +24,7 @@ export default function ListBookReturns({ data }: { data: Borrow[] }) {
   const [borrows, setBorrows] = useState<Borrow[]>(data || []);
 
   if (borrows.length < 1) {
-    return <h1>No data results</h1>;
+    return <h1>Belum Ada Transaksi</h1>;
   }
 
   return (

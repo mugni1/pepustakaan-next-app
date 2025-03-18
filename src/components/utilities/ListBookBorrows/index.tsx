@@ -28,7 +28,7 @@ export default function ListBookBorrows({ data }: { data: Borrow[] }) {
   }, []);
 
   if (borrows.length < 1) {
-    return <h1>No data results</h1>;
+    return <h1>Belum Ada Transaksi</h1>;
   }
 
   return (
