@@ -59,7 +59,7 @@ export default function HistoryTransactionsList({
             <MagnifyingGlass size={20} />
           </span>
           <input
-            type="text"
+            type="number"
             className=" py-1 px-2 border border-slate-400 rounded-md bg-white outline-purple-500 ps-10"
             placeholder="Cari ID"
             value={keyword}
@@ -84,16 +84,18 @@ export default function HistoryTransactionsList({
           <tbody>
             {historyTrans?.map((HT, index) => (
               <tr key={index} className="border-b border-slate-600">
-                <td className="poppins-semibold text-center ">
-                  <span className="bg-gradient-to-r from-fuchsia-500 to-purple-500 text-white py-1 px-4 rounded-md">
+                <td className="poppins-semibold text-center px-2">
+                  <div className="bg-gradient-to-r from-fuchsia-500 to-purple-500 text-white py-1 px-4 rounded-md w-full">
                     {HT.borrowing.id}
-                  </span>
+                  </div>
                 </td>
-                <td className=" text-center">{HT.borrowing.user.username}</td>
+                <td className=" text-center poppins-semibold">
+                  {HT.borrowing.user.username}
+                </td>
                 <td className=" text-center">{HT.borrowing.book.title}</td>
                 <td className=" text-center">
                   <span
-                    className={`py-1 px-3 rounded-lg shadow-md text-sm ${
+                    className={`py-1 px-3 rounded-lg text-sm ${
                       HT.transaction_type == "peminjaman" &&
                       "bg-amber-100 text-amber-600"
                     } ${

@@ -38,7 +38,7 @@ export default function TransactionList({ data }: { data: Props[] }) {
     keyword.length > 0
       ? setDatas(
           data.filter((borrow) =>
-            borrow.user?.username.toLowerCase().includes(keyword.toLowerCase())
+            borrow.id.toString().toLowerCase().includes(keyword.toLowerCase())
           )
         )
       : setDatas(data);
@@ -93,9 +93,9 @@ export default function TransactionList({ data }: { data: Props[] }) {
             <MagnifyingGlass size={20} />
           </span>
           <input
-            type="text"
+            type="number"
             className=" py-1 px-2 border border-slate-400 rounded-md bg-white outline-purple-500 ps-10"
-            placeholder="Cari Peminjam"
+            placeholder="Cari ID"
             value={keyword}
             onChange={(e) => setKeyword(e.target.value)}
           />
@@ -106,7 +106,8 @@ export default function TransactionList({ data }: { data: Props[] }) {
         <table className="w-full">
           <thead>
             <tr className="border-b border-slate-500 poppins-bold">
-              <th className="w-3/12 py-5">Peminjam</th>
+              <th className="py-2 w-1/12">ID Transaksi</th>
+              <th className="w-2/12 py-5 ">Peminjam</th>
               <th className="w-3/12">Judul Buku</th>
               <th className="w-1/12 px-2">Tgl peminjaman</th>
               <th className="w-1/12 px-2">Tgl dikembalikan</th>
@@ -120,7 +121,14 @@ export default function TransactionList({ data }: { data: Props[] }) {
           <tbody>
             {datas?.map((data: Props, index) => (
               <tr key={index} className="border-b border-slate-500">
-                <td className="text-center">{data.user?.username}</td>
+                <td className="poppins-semibold text-center  px-2">
+                  <div className="bg-gradient-to-r from-fuchsia-500 to-purple-500 text-white py-1 px-4 rounded-md w-full">
+                    {data.id}
+                  </div>
+                </td>
+                <td className="text-center poppins-semibold">
+                  {data.user?.username}
+                </td>
                 <td className="text-center">{data.book?.title}</td>
                 <td className="text-center">{data.borrow_date}</td>
                 <td className="text-center">{data.return_date}</td>
