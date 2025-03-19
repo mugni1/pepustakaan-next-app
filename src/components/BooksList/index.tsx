@@ -27,7 +27,7 @@ interface Books {
 export default function BooksList({ data }: { data: Books[] }) {
   //token
   const token = Cookies.get("auth_token");
-  const [books, setBooks] = useState<Books[]>(data);
+  const [books, setBooks] = useState<Books[]>(data || []);
   const [keyword, setKeyword] = useState("");
   const router = useRouter();
 
@@ -102,7 +102,7 @@ export default function BooksList({ data }: { data: Books[] }) {
         <table className="w-full">
           <TableHead />
           <tbody className="w-full">
-            {books.map((book: Books, index: number) => (
+            {books?.map((book: Books, index: number) => (
               <tr key={index} className="w-full border-b border-slate-400">
                 {/* cover book  */}
                 <td className="w-2/12 p-4">
@@ -157,6 +157,16 @@ export default function BooksList({ data }: { data: Books[] }) {
                 {/* end delete update show  */}
               </tr>
             ))}
+            {books.length <= 0 && (
+              <tr className="border-b border-slate-400">
+                <td
+                  colSpan={7}
+                  className="text-center text-red-500 poppins-bold py-5"
+                >
+                  Tidak ada data
+                </td>
+              </tr>
+            )}
           </tbody>
         </table>
       </Container>

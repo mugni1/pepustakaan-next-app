@@ -16,7 +16,7 @@ interface Props {
 export default function CategoryList({ datas }: { datas: Props[] }) {
   //token
   const token = Cookies.get("auth_token");
-  const [categories, setCategories] = useState(datas);
+  const [categories, setCategories] = useState(datas || []);
   const [keyword, setKeyword] = useState("");
   const router = useRouter();
 
@@ -100,7 +100,7 @@ export default function CategoryList({ datas }: { datas: Props[] }) {
           {/* end thead  */}
           {/* tbody  */}
           <tbody className="w-full">
-            {categories.map((category: Props, index: number) => (
+            {categories?.map((category: Props, index: number) => (
               <tr key={index} className="w-full border-b border-slate-400">
                 <td className="text-center w-2/12 font-semibold">
                   {index + 1}
@@ -124,6 +124,16 @@ export default function CategoryList({ datas }: { datas: Props[] }) {
                 </td>
               </tr>
             ))}
+            {categories.length <= 0 && (
+              <tr className="border-b border-slate-400">
+                <td
+                  colSpan={4}
+                  className="text-center text-red-500 poppins-bold py-5"
+                >
+                  Tidak ada data
+                </td>
+              </tr>
+            )}
           </tbody>
           {/* end tbody  */}
         </table>
