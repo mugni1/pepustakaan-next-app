@@ -42,7 +42,8 @@ export default function HistoryTransactionsList({
     keyword.length > 0
       ? setHistoryTrans(
           datas.filter((HT) =>
-            HT.borrowing.user.username
+            HT.borrowing.id
+              .toString()
               .toLowerCase()
               .includes(keyword.toLowerCase())
           )
@@ -60,7 +61,7 @@ export default function HistoryTransactionsList({
           <input
             type="text"
             className=" py-1 px-2 border border-slate-400 rounded-md bg-white outline-purple-500 ps-10"
-            placeholder="Cari Peminjam"
+            placeholder="Cari ID"
             value={keyword}
             onChange={(e) => setKeyword(e.target.value)}
           />
