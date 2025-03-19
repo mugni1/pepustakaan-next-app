@@ -1,5 +1,5 @@
 "use client";
-import { Clock } from "@phosphor-icons/react";
+import { Calendar, Clock } from "@phosphor-icons/react";
 import { useEffect, useState } from "react";
 
 export default function TimeNow() {
@@ -11,13 +11,13 @@ export default function TimeNow() {
       const formattedTime = now
         .toLocaleString("id-ID", {
           day: "2-digit",
-          month: "2-digit",
+          month: "short",
           year: "numeric",
+          weekday: "long",
           hour: "2-digit",
           minute: "2-digit",
           second: "2-digit",
         })
-        .replace(/\//g, "-")
         .replace(/\./g, ":");
 
       setTime(formattedTime);
@@ -25,9 +25,9 @@ export default function TimeNow() {
   });
   return (
     <div className="h-full flex items-center">
-      <div className=" flex bg-gradient-to-br from-fuchsia-500 to-purple-500 poppins-semibold text-white px-2 gap-2 py-1 rounded-lg">
+      <div className=" flex bg-gradient-to-br from-fuchsia-200 to-purple-200 poppins-semibold text-purple-600 px-2 gap-2 py-1 rounded-lg">
         <span>
-          <Clock size={24} />
+          <Calendar size={24} />
         </span>
         <span>{time}</span>
       </div>
