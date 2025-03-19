@@ -6,6 +6,7 @@ import MainContainer from "../Admin/MainContainer";
 import { useEffect, useState } from "react";
 import swal from "sweetalert";
 import axios from "axios";
+import Cookies from "js-cookie";
 
 interface Member {
   id: number;
@@ -18,6 +19,7 @@ interface Member {
 export default function MemberList({ members }: { members: Member[] }) {
   const [memberList, setMemberList] = useState(members || []);
   const [keyword, setKeyword] = useState("");
+  const token = Cookies.get("auth_token");
 
   useEffect(() => {
     keyword.length > 0
@@ -29,6 +31,7 @@ export default function MemberList({ members }: { members: Member[] }) {
       : setMemberList(members);
   }, [keyword]);
 
+  // HANDLE DELETE USER
   function handleDelete(id: number) {
     swal({
       icon: "warning",
@@ -38,31 +41,37 @@ export default function MemberList({ members }: { members: Member[] }) {
       dangerMode: true,
     }).then((isTrue) => {
       if (isTrue) {
-        axios({
-          method: "delete",
-          url: `${process.env.NEXT_PUBLIC_BASE_API_URL}/users/${id}`,
-          headers: {
-            Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
-          },
-        })
-          .then((res) => {
-            swal({
-              icon: "success",
-              title: "Success!",
-              text: res.data.message,
-            });
-            setMemberList(memberList.filter((member) => member.id != id));
-          })
-          .catch((err) => {
-            swal({
-              icon: "error",
-              title: "Error!",
-              text: "Harap coba lagi nanti!",
-            });
-          });
+        deleteUser(id);
       }
     });
   }
+
+  // DELETE USER
+  function deleteUser(id: number) {
+    axios({
+      method: "delete",
+      url: `${process.env.NEXT_PUBLIC_BASE_API_URL}/users/${id}`,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((res) => {
+        swal({
+          icon: "success",
+          title: "Success!",
+          text: res.data.message,
+        });
+        setMemberList(memberList.filter((member) => member.id != id));
+      })
+      .catch((err) => {
+        swal({
+          icon: "error",
+          title: "Error!",
+          text: err.response?.data?.message || "Harap coba Lagi nanti",
+        });
+      });
+  }
+
   return (
     <MainContainer>
       {/* search  */}

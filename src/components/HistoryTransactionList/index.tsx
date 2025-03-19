@@ -90,9 +90,15 @@ export default function HistoryTransactionsList({
                   </div>
                 </td>
                 <td className=" text-center poppins-semibold">
-                  {HT.borrowing.user.username}
+                  {HT.borrowing.user?.username || (
+                    <span className="text-red-500">UserDeleted</span>
+                  )}
                 </td>
-                <td className=" text-center">{HT.borrowing.book.title}</td>
+                <td className=" text-center">
+                  {HT.borrowing.book?.title || (
+                    <span className="text-red-500">BookDeleted</span>
+                  )}
+                </td>
                 <td className=" text-center">
                   <span
                     className={`py-1 px-3 rounded-lg text-sm ${

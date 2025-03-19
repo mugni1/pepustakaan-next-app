@@ -127,9 +127,15 @@ export default function TransactionList({ data }: { data: Props[] }) {
                   </div>
                 </td>
                 <td className="text-center poppins-semibold">
-                  {data.user?.username}
+                  {data.user?.username || (
+                    <span className="text-red-500">UserDeleted</span>
+                  )}
                 </td>
-                <td className="text-center">{data.book?.title}</td>
+                <td className="text-center">
+                  {data.book?.title || (
+                    <span className="text-red-500">BookDeleted</span>
+                  )}
+                </td>
                 <td className="text-center">{data.borrow_date}</td>
                 <td className="text-center">{data.return_date}</td>
                 <td className="text-center px-2">
