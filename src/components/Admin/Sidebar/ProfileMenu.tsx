@@ -5,6 +5,7 @@ import { SignOut, UserCircle } from "@phosphor-icons/react";
 import axios from "axios";
 import swal from "sweetalert";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function ProfileMenu() {
   const [fullName, setFullName] = useState<string | undefined>("");
@@ -144,12 +145,15 @@ export default function ProfileMenu() {
           </span>
           Logout
         </button>
-        <button className="flex items-center gap-1 cursor-pointer hover:text-purple-500">
+        <Link
+          href={"profile"}
+          className="flex items-center gap-1 cursor-pointer hover:text-purple-500"
+        >
           <span>
             <UserCircle size={20} />
           </span>
           Profile
-        </button>
+        </Link>
       </div>
     </section>
   );
