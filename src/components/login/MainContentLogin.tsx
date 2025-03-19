@@ -84,6 +84,7 @@ export default function MainContentLogin() {
         }, 1000);
       })
       .catch((err) => {
+        console.log(err);
         swal({
           icon: "error",
           title: "Error!",

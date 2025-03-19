@@ -5,15 +5,15 @@ import NavigationBar from "@/components/utilities/NavigationBar";
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   const pathName = usePathname();
   return (
     <html lang="en">
       <body>
         {children}
-        {!pathName.startsWith("/dashboard/") && pathName != "/login" && (
+        {!pathName.startsWith("/dashboard/") && pathName !== "/login" && (
           <NavigationBar />
         )}
       </body>

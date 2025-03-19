@@ -45,7 +45,7 @@ export default function ListBooks({ books }: { books: Book[] }) {
 
       <SubTitle>Terbaru</SubTitle>
       <section className="w-full grid grid-cols-2 md:grid-cols-4 xl:grid-cols-5 gap-5 mt-2">
-        {datas?.map((book: Book) => (
+        {datas?.map((book: Book, index) => (
           <div
             key={book.id}
             className="columns-1 rounded-xl shadow-lg border border-slate-200 overflow-hidden"
