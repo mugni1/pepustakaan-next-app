@@ -101,8 +101,8 @@ export default function Page() {
               <option value="" disabled>
                 - Pilih Anggota -
               </option>
-              {members.map((member: Member, index) => (
-                <option key={index} value={member.id}>
+              {members.map((member: Member, index: number) => (
+                <option key={index + member.id} value={member.id}>
                   {member.username}
                 </option>
               ))}

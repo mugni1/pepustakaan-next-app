@@ -33,9 +33,9 @@ export default function ListBookBorrows({ data }: { data: Borrow[] }) {
 
   return (
     <section className="w-full grid grid-cols-1 xl:grid-cols-3 gap-5">
-      {borrows.map((borrow: Borrow) => (
+      {borrows.map((borrow: Borrow, index: number) => (
         <div
-          key={borrow.id}
+          key={borrow.id + index}
           className="border rounded-lg flex shadow-lg overflow-hidden border-slate-200"
         >
           {/* card image  */}

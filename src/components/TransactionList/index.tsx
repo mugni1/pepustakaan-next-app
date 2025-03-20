@@ -119,8 +119,8 @@ export default function TransactionList({ data }: { data: Props[] }) {
             </tr>
           </thead>
           <tbody>
-            {datas?.map((data: Props, index) => (
-              <tr key={index} className="border-b border-slate-500">
+            {datas?.map((data: Props, index: number) => (
+              <tr key={index + data.id} className="border-b border-slate-500">
                 <td className="poppins-semibold text-center  px-2">
                   <div className="bg-gradient-to-r from-fuchsia-500 to-purple-500 text-white py-1 px-4 rounded-md w-full">
                     {data.id}

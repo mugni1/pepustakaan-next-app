@@ -101,7 +101,10 @@ export default function CategoryList({ datas }: { datas: Props[] }) {
           {/* tbody  */}
           <tbody className="w-full">
             {categories?.map((category: Props, index: number) => (
-              <tr key={index} className="w-full border-b border-slate-400">
+              <tr
+                key={index + category.id}
+                className="w-full border-b border-slate-400"
+              >
                 <td className="text-center w-2/12 font-semibold">
                   {index + 1}
                 </td>

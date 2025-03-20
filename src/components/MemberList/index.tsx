@@ -109,7 +109,7 @@ export default function MemberList({ members }: { members: Member[] }) {
           </thead>
           <tbody>
             {memberList?.map((member: Member, index) => (
-              <tr key={index} className="border-b">
+              <tr key={index + member.id} className="border-b">
                 <td className="text-center py-5">{member.id}</td>
                 <td className="text-center py-5">{member.full_name}</td>
                 <td className="text-center">{member.username}</td>

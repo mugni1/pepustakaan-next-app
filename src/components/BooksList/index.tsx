@@ -103,7 +103,10 @@ export default function BooksList({ data }: { data: Books[] }) {
           <TableHead />
           <tbody className="w-full">
             {books?.map((book: Books, index: number) => (
-              <tr key={index} className="w-full border-b border-slate-400">
+              <tr
+                key={index + book.id}
+                className="w-full border-b border-slate-400"
+              >
                 {/* cover book  */}
                 <td className="w-2/12 p-4">
                   <img

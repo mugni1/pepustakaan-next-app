@@ -82,8 +82,8 @@ export default function HistoryTransactionsList({
             </tr>
           </thead>
           <tbody>
-            {historyTrans?.map((HT, index) => (
-              <tr key={index} className="border-b border-slate-600">
+            {historyTrans?.map((HT: DetailTransaction, index: number) => (
+              <tr key={index + HT.id} className="border-b border-slate-600">
                 <td className="poppins-semibold text-center px-2">
                   <div className="bg-gradient-to-r from-fuchsia-500 to-purple-500 text-white py-1 px-4 rounded-md w-full">
                     {HT.borrowing.id}
