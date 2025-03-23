@@ -2,16 +2,11 @@ import { NextRequest, NextResponse } from "next/server";
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
-  const cookieStore = request.cookies;
+  const roleName = request.cookies.get("roleName")?.value; // Ambil nilai dari cookie atau string kosong
+  const token = request.cookies.get("auth_token")?.value; // Ambil nilai dari cookie atau string kosong
 
-  if (pathname == "/profile" || pathname == "/borrowings") {
-    if (!cookieStore.get("auth_token")) {
-      return NextResponse.rewrite(new URL("/forbiden", request.nextUrl));
-    }
-  }
-
+  // Middleware login
   if (pathname === "/login") {
-    const roleName = request.cookies.get("roleName")?.value; // Ambil nilai dari cookie atau string kosong
     if (roleName === "superUser") {
       return NextResponse.redirect(new URL("/dashboard/home", request.nextUrl));
     }
@@ -20,14 +15,23 @@ export function middleware(request: NextRequest) {
     }
   }
 
+  // Middleware for user
+  if (pathname === "/profile" || pathname === "/borrowings") {
+    if (!token) {
+      return NextResponse.rewrite(new URL("/forbiden", request.nextUrl));
+    }
+  }
+
+  // Middleware for superUser
   if (pathname.startsWith("/dashboard")) {
-    const roleName = request.cookies.get("roleName")?.value; // Ambil nilai dari cookie atau string kosong
-    const token = request.cookies.get("auth_token")?.value; // Ambil nilai dari cookie atau string kosong
     if (!token) {
       return NextResponse.redirect(new URL("/login", request.nextUrl));
     }
+
     if (roleName === "user") {
       return NextResponse.redirect(new URL("/", request.nextUrl));
     }
   }
+
+  return NextResponse.next(); // Pastikan untuk melanjutkan proses lainnya
 }

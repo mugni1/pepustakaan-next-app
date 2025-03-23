@@ -9,8 +9,6 @@ export default async function Page() {
   const token = cookieStore.get("auth_token")?.value;
   const borrows = await getBorrowBookUser(token);
   const returns = await getReturnBookUser(token);
-
-  console.log(returns.data);
   return (
     <UserContainer>
       <h1 className="poppins-bold text-lg xl:text-2xl text-transparent bg-clip-text bg-gradient-to-br from-fuchsia-500 to-purple-500 mb-1">

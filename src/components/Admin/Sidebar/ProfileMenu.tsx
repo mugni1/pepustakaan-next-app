@@ -61,7 +61,7 @@ export default function ProfileMenu() {
                 Cookies.remove("roleName");
                 router.push("/login");
               })
-              .catch((err) => {
+              .catch(() => {
                 swal({
                   icon: "error",
                   title: "Error!",
@@ -97,7 +97,7 @@ export default function ProfileMenu() {
                 Cookies.remove("roleName");
                 router.push("/login");
               })
-              .catch((err) => {
+              .catch(() => {
                 swal({
                   icon: "error",
                   title: "Error!",
