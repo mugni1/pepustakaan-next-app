@@ -2,6 +2,7 @@
 import { MagnifyingGlass } from "@phosphor-icons/react";
 import { useEffect, useState } from "react";
 import SubTitle from "../SubTitle";
+import Image from "next/image";
 
 interface Book {
   id: number;
@@ -16,14 +17,12 @@ export default function ListBooks({ books }: { books: Book[] }) {
   const [keyword, setKeyword] = useState("");
 
   useEffect(() => {
-    keyword.length > 0
-      ? setDatas(
-          books.filter((book) =>
-            book.title.toLowerCase().includes(keyword.toLowerCase())
-          )
-        )
-      : setDatas(books);
-  }, [keyword]);
+    if (keyword.length > 0) {
+      setDatas(books.filter((book: Book) => book.title.includes(keyword)));
+    } else {
+      setDatas(books);
+    }
+  }, [keyword, books]);
   return (
     <>
       {/* search and add button  */}
@@ -52,10 +51,12 @@ export default function ListBooks({ books }: { books: Book[] }) {
           >
             {/* head  */}
             <div className="w-full h-52 md:h-60 xl:h-72">
-              <img
+              <Image
                 src={`${process.env.NEXT_PUBLIC_BASE_IMAGE_URL}/${book.image}`}
                 className="object-cover h-full w-full"
                 alt=""
+                width={150}
+                height={200}
               />
             </div>
             {/* end head  */}
