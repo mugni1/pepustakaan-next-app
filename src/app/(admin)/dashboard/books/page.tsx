@@ -1,4 +1,4 @@
-import BooksList from "@/components/BooksList";
+import BooksList from "@/components/Admin/BooksList";
 import { getBooks } from "@/services";
 import { Metadata } from "next";
 

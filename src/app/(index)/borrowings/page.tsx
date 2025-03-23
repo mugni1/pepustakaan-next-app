@@ -1,6 +1,6 @@
-import UserContainer from "@/components/utilities/Container/UserContainer";
-import ListBookBorrows from "@/components/utilities/ListBookBorrows";
-import ListBookReturns from "@/components/utilities/ListBookReturns";
+import UserContainer from "@/components/User/Container/UserContainer";
+import ListBookBorrows from "@/components/User/ListBookBorrows";
+import ListBookReturns from "@/components/User/ListBookReturns";
 import { getBorrowBookUser, getReturnBookUser } from "@/services";
 import { cookies } from "next/headers";
 

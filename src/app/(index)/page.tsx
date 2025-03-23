@@ -1,5 +1,5 @@
-import UserContainer from "@/components/utilities/Container/UserContainer";
-import ListBooks from "@/components/utilities/ListBooks";
+import UserContainer from "@/components/User/Container/UserContainer";
+import ListBooks from "@/components/User/ListBooks";
 import { getBooks } from "@/services";
 import { Metadata } from "next";
 
