@@ -11,19 +11,10 @@ export default function Layout({ children }: { children: ReactNode }) {
   const [sidebar, setSidebar] = useState(false);
 
   const token = Cookies.get("auth_token");
-  const role = Cookies.get("roleName");
   const router = useRouter();
 
   // VALIDASI TERLEBIH DAHULU
   useEffect(() => {
-    if (token == null) {
-      router.push("/login");
-    }
-
-    if (role != "superUser") {
-      router.push("/");
-    }
-
     axios({
       method: "get",
       url: process.env.NEXT_PUBLIC_BASE_API_URL + "/profile",

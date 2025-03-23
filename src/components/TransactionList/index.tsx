@@ -35,14 +35,16 @@ export default function TransactionList({ data }: { data: Props[] }) {
 
   // FILTER DATAS
   useEffect(() => {
-    keyword.length > 0
-      ? setDatas(
-          data.filter((borrow) =>
-            borrow.id.toString().toLowerCase().includes(keyword.toLowerCase())
-          )
+    if (keyword.length > 0) {
+      setDatas(
+        data.filter((borrow) =>
+          borrow.id.toString().toLowerCase().includes(keyword.toLowerCase())
         )
-      : setDatas(data);
-  }, [keyword]);
+      );
+    } else {
+      setDatas(data);
+    }
+  }, [keyword, data]);
 
   // HANDLE RETURN
   function handleReturn(id: number) {
@@ -120,7 +122,10 @@ export default function TransactionList({ data }: { data: Props[] }) {
           </thead>
           <tbody>
             {datas?.map((data: Props, index: number) => (
-              <tr key={index + data.id} className="border-b border-slate-500">
+              <tr
+                key={`${index}${data.id}`}
+                className="border-b border-slate-500"
+              >
                 <td className="poppins-semibold text-center  px-2">
                   <div className="bg-gradient-to-r from-fuchsia-500 to-purple-500 text-white py-1 px-4 rounded-md w-full">
                     {data.id}

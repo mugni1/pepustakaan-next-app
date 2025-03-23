@@ -39,17 +39,20 @@ export default function HistoryTransactionsList({
 
   // FILTER DATAS
   useEffect(() => {
-    keyword.length > 0
-      ? setHistoryTrans(
-          datas.filter((HT) =>
-            HT.borrowing.id
-              .toString()
-              .toLowerCase()
-              .includes(keyword.toLowerCase())
-          )
+    if (keyword.length > 0) {
+      setHistoryTrans(
+        datas.filter((HT) =>
+          HT.borrowing.id
+            .toString()
+            .toLowerCase()
+            .includes(keyword.toLowerCase())
         )
-      : setHistoryTrans(datas);
-  }, [keyword]);
+      );
+    } else {
+      setHistoryTrans(datas);
+    }
+  }, [keyword, datas]);
+
   return (
     <MainContainer>
       {/* search  */}
@@ -83,7 +86,10 @@ export default function HistoryTransactionsList({
           </thead>
           <tbody>
             {historyTrans?.map((HT: DetailTransaction, index: number) => (
-              <tr key={index + HT.id} className="border-b border-slate-600">
+              <tr
+                key={`${HT.id}${index}`}
+                className="border-b border-slate-600"
+              >
                 <td className="poppins-semibold text-center px-2">
                   <div className="bg-gradient-to-r from-fuchsia-500 to-purple-500 text-white py-1 px-4 rounded-md w-full">
                     {HT.borrowing.id}
