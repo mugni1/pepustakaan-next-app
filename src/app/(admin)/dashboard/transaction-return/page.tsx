@@ -1,4 +1,4 @@
-import TransactionList from "@/components/TransactionList";
+import TransactionList from "@/components/Admin/TransactionList";
 import { getReturn } from "@/services";
 import { Metadata } from "next";
 import { cookies } from "next/headers";

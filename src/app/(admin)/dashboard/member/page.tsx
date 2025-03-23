@@ -1,4 +1,4 @@
-import MemberList from "@/components/MemberList";
+import MemberList from "@/components/Admin/MemberList";
 import { getMember } from "@/services";
 import { Metadata } from "next";
 import { cookies } from "next/headers";

@@ -1,8 +1,8 @@
 "use client";
 import { ArrowArcLeft, Eye, MagnifyingGlass } from "@phosphor-icons/react";
-import MainContainer from "../Admin/MainContainer";
-import Container from "../Admin/Container";
-import BtnHref from "../Admin/Button/BtnHref";
+import MainContainer from "../MainContainer";
+import Container from "../Container";
+import BtnHref from "../Button/BtnHref";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import swal from "sweetalert";

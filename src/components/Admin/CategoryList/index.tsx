@@ -4,9 +4,9 @@ import axios from "axios";
 import swal from "sweetalert";
 import { MagnifyingGlass, Pencil, Trash } from "@phosphor-icons/react";
 import { useRouter } from "next/navigation";
-import MainContainer from "../Admin/MainContainer";
-import Container from "../Admin/Container";
-import BtnHref from "../Admin/Button/BtnHref";
+import MainContainer from "../MainContainer";
+import Container from "../Container";
+import BtnHref from "../Button/BtnHref";
 import Cookies from "js-cookie";
 
 interface Props {
