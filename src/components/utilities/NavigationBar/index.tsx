@@ -3,13 +3,12 @@
 import {
   BookOpenUser,
   HouseLine,
-  MagnifyingGlass,
   SignIn,
   SignOut,
   User,
 } from "@phosphor-icons/react";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import axios from "axios";
@@ -23,7 +22,6 @@ export default function NavigationBar() {
     setToken(Cookies.get("auth_token"));
   }, []);
 
-  const router = useRouter();
   const handleLogoutAll = () => {
     axios({
       method: "get",
@@ -148,7 +146,7 @@ export default function NavigationBar() {
             className={`${
               pathname == "/login" &&
               "text-purple-500 bg-purple-200 rounded-xl scale-110"
-            } transition-all duration-300 ease-in-out p-2 scale-100`}
+            } transition-all duration-300 ease-in-out p-2 scale-100 cursor-pointer`}
           >
             <SignOut size={24} />
           </button>
