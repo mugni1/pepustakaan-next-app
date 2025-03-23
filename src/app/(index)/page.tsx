@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 };
 
 export default async function Home() {
-  await new Promise((res) => setTimeout(res, 2000));
+  // await new Promise((res) => setTimeout(res, 10000));
   const { data } = await getBooks();
 
   return (

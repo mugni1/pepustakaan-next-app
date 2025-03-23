@@ -15,10 +15,24 @@ export function middleware(request: NextRequest) {
     }
   }
 
-  // Middleware for user
+  if (pathname == "/") {
+    if (roleName == "superUser") {
+      return NextResponse.redirect(new URL("/dashboard/home", request.nextUrl));
+    }
+  }
+
+  if (pathname == "/borrowings") {
+    if (roleName == "superUser") {
+      return NextResponse.redirect(new URL("/dashboard/home", request.nextUrl));
+    }
+  }
+
   if (pathname === "/profile" || pathname === "/borrowings") {
     if (!token) {
       return NextResponse.rewrite(new URL("/forbiden", request.nextUrl));
+    }
+    if (roleName == "superUser") {
+      return NextResponse.redirect(new URL("/dashboard/home", request.nextUrl));
     }
   }
 

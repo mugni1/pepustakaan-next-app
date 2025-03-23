@@ -22,7 +22,7 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: "poppins";
+  font-family: "poppins", Arial, "Helvetica Neue", Helvetica;
 }
 
 .bglogin {
@@ -79,4 +79,31 @@ body {
 @font-face {
   font-family: "poppins-semibold";
   src: url("/fonts/Poppins-SemiBold.ttf");
+}
+
+.animate-bounce-custom1 {
+  animation: bounce-custom 1.3s infinite ease-in-out;
+}
+.animate-bounce-custom2 {
+  animation: bounce-custom 1.3s infinite ease-in-out;
+  animation-delay: 0.3s;
+}
+.animate-bounce-custom3 {
+  animation: bounce-custom 1.3s infinite ease-in-out;
+  animation-delay: 0.6s;
+}
+
+@keyframes bounce-custom {
+  0% {
+    transform: translateY(0);
+    background-color: purple;
+  }
+  50% {
+    transform: translateY(-20px);
+    background-color: fuchsia;
+  }
+  100% {
+    transform: translateY(0);
+    background-color: purple;
+  }
 }
