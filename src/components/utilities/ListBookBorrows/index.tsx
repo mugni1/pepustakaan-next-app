@@ -1,5 +1,6 @@
 "use client";
 import { ClockCounterClockwise } from "@phosphor-icons/react";
+import Image from "next/image";
 import { useState, useEffect } from "react";
 import Countdown from "react-countdown";
 
@@ -40,10 +41,12 @@ export default function ListBookBorrows({ data }: { data: Borrow[] }) {
         >
           {/* card image  */}
           <div className="w-4/12">
-            <img
+            <Image
               src={`${process.env.NEXT_PUBLIC_BASE_IMAGE_URL}/${borrow.book.image}`}
               alt=""
               className="object-cover h-full w-full object-center"
+              width={150}
+              height={200}
             />
           </div>
           {/* end card  */}
