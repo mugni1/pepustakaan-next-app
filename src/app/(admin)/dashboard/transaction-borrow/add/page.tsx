@@ -46,7 +46,7 @@ export default function Page() {
         daily_fine: dailyFine.current?.value,
       },
     })
-      .then((res) => {
+      .then(() => {
         swal({
           icon: "success",
           title: "Success!",
@@ -82,7 +82,7 @@ export default function Page() {
     }).then((res) => {
       setBooks(res.data.data);
     });
-  }, []);
+  }, [token]);
 
   return (
     <MainContainer>

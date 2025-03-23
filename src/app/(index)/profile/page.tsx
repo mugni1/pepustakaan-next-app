@@ -1,6 +1,7 @@
 import BtnHref from "@/components/Admin/Button/BtnHref";
 import UserContainer from "@/components/utilities/Container/UserContainer";
 import { cookies } from "next/headers";
+import Image from "next/image";
 
 export default async function Page() {
   const cookieStore = await cookies();
@@ -25,10 +26,12 @@ export default async function Page() {
     <UserContainer>
       <section className="w-full md:w-4/12 mx-auto flex flex-col gap-3 rounded-xl shadow-md mt-20 p-5 border border-slate-200">
         <div className="w-6/12 aspect-square mx-auto rounded-full overflow-hidden">
-          <img
+          <Image
             src="/blankprofile.webp"
             alt=""
             className="w-full h-full object-cover scale-125"
+            height={200}
+            width={200}
           />
         </div>
         <h1 className="poppins-bold text-center text-xl">{fullName}</h1>

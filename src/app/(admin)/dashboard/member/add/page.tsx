@@ -49,7 +49,7 @@ export default function Page() {
           }
         });
       })
-      .catch((err) => {
+      .catch(() => {
         swal({
           icon: "error",
           title: "Error!",

@@ -55,7 +55,7 @@ export default function Page() {
       .then((res) => {
         swal({
           title: "Success!",
-          text: "Buku berhasil di tambahkan",
+          text: res.data.message,
           icon: "success",
         });
       })

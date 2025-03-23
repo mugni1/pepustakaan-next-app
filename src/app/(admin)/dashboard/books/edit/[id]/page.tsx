@@ -65,7 +65,7 @@ export default function Page() {
           text: res.data.message,
         });
       })
-      .catch((err) => {
+      .catch(() => {
         swal({
           icon: "error",
           title: "Error!",
@@ -108,7 +108,7 @@ export default function Page() {
       setDescription(description);
       setCategoeyID(category == null ? "no-select" : category.id);
     });
-  }, []);
+  }, [id]);
 
   return (
     <MainContainer>

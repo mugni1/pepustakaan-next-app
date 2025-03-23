@@ -2,8 +2,7 @@ import Container from "@/components/Admin/Container";
 import MainContainer from "@/components/Admin/MainContainer";
 import TitleForm from "@/components/Admin/Title/TitleForm";
 
-export default async function Page({ params }: { params: { id: string } }) {
-  const { id } = await params;
+export default async function Page() {
   return (
     <MainContainer>
       <Container>

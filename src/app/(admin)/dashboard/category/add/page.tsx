@@ -33,10 +33,10 @@ export default function Page() {
         swal({
           icon: "success",
           title: "Success!",
-          text: "Kategori berhasil di tambahkan",
+          text: res.data.message,
         });
       })
-      .catch((err) => {
+      .catch(() => {
         swal({
           icon: "error",
           title: "ERROR",

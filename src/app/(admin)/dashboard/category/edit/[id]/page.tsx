@@ -45,7 +45,7 @@ export default function Page() {
           }
         });
       })
-      .catch((err) => {
+      .catch(() => {
         swal({
           icon: "error",
           title: "Error",
@@ -63,7 +63,7 @@ export default function Page() {
       method: "get",
       url: `${process.env.NEXT_PUBLIC_BASE_API_URL}/categories/${id}`,
     }).then((res) => setName(res.data?.data.name || ""));
-  }, []);
+  }, [id]);
 
   // render
   return (

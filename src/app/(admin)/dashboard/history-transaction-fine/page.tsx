@@ -1,4 +1,3 @@
-import MainContainer from "@/components/Admin/MainContainer";
 import HistoryTransactionsList from "@/components/HistoryTransactionList";
 import { getHistoryTransactionsFine } from "@/services";
 import { cookies } from "next/headers";

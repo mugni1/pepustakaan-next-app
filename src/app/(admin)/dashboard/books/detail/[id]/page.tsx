@@ -3,6 +3,7 @@ import Container from "@/components/Admin/Container";
 import MainContainer from "@/components/Admin/MainContainer";
 import { getBooksDetail } from "@/services";
 import { Metadata } from "next";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Book Details",
@@ -41,10 +42,12 @@ export default async function Page({ params }: { params: { id: string } }) {
         <section className="w-full flex">
           {/* image  */}
           <div className="w-3/12 rounded-lg overflow-hidden shadow-lg">
-            <img
+            <Image
               src={`${process.env.NEXT_PUBLIC_BASE_IMAGE_URL}${data.image}`}
               alt=""
               className="w-full "
+              width={200}
+              height={300}
             />
           </div>
           {/* end image  */}
