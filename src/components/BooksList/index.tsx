@@ -9,6 +9,7 @@ import BtnHref from "../Admin/Button/BtnHref";
 import Container from "../Admin/Container";
 import MainContainer from "../Admin/MainContainer";
 import Cookies from "js-cookie";
+import Image from "next/image";
 
 interface Books {
   category: { id: number; name: string };
@@ -55,7 +56,7 @@ export default function BooksList({ data }: { data: Books[] }) {
             });
             setBooks(books.filter((book: Books) => book.id != id));
           })
-          .catch((err) => {
+          .catch(() => {
             swal({
               icon: "error",
               title: "ERROR",
@@ -68,14 +69,16 @@ export default function BooksList({ data }: { data: Books[] }) {
 
   // unMount Categories
   useEffect(() => {
-    keyword.length > 0
-      ? setBooks(
-          data.filter((book) =>
-            book.title.toLowerCase().includes(keyword.toLowerCase())
-          )
+    if (keyword.length > 0) {
+      setBooks(
+        data.filter((book) =>
+          book.title.toLowerCase().includes(keyword.toLowerCase())
         )
-      : setBooks(data);
-  }, [keyword]);
+      );
+    } else {
+      setBooks(data);
+    }
+  }, [keyword, data]);
 
   return (
     <MainContainer>
@@ -109,10 +112,12 @@ export default function BooksList({ data }: { data: Books[] }) {
               >
                 {/* cover book  */}
                 <td className="w-2/12 p-4">
-                  <img
+                  <Image
                     src={`${process.env.NEXT_PUBLIC_BASE_IMAGE_URL}/${book.image}`}
                     alt=""
                     className="h-32 w-24 mx-auto object-cover object-center border border-slate-400 shadow-md rounded-lg"
+                    width={100}
+                    height={150}
                   />
                 </td>
                 {/* end cover book  */}

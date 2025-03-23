@@ -1,7 +1,7 @@
 "use client";
-import { Calendar, ClockCounterClockwise } from "@phosphor-icons/react";
-import { useState, useEffect } from "react";
-import Countdown from "react-countdown";
+import { Calendar } from "@phosphor-icons/react";
+import Image from "next/image";
+import { useState } from "react";
 
 interface Book {
   id: number;
@@ -36,10 +36,12 @@ export default function ListBookReturns({ data }: { data: Borrow[] }) {
         >
           {/* card image  */}
           <div className="w-4/12">
-            <img
+            <Image
               src={`${process.env.NEXT_PUBLIC_BASE_IMAGE_URL}/${borrow.book.image}`}
               alt=""
               className="object-cover h-full w-full object-center"
+              height={150}
+              width={100}
             />
           </div>
           {/* end card  */}

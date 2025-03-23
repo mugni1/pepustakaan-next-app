@@ -45,8 +45,8 @@ export default function ListBookBorrows({ data }: { data: Borrow[] }) {
               src={`${process.env.NEXT_PUBLIC_BASE_IMAGE_URL}/${borrow.book.image}`}
               alt=""
               className="object-cover h-full w-full object-center"
-              width={150}
-              height={200}
+              width={100}
+              height={150}
             />
           </div>
           {/* end card  */}

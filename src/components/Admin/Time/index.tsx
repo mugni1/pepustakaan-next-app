@@ -1,5 +1,5 @@
 "use client";
-import { Calendar, Clock } from "@phosphor-icons/react";
+import { Calendar } from "@phosphor-icons/react";
 import { useEffect, useState } from "react";
 
 export default function TimeNow() {

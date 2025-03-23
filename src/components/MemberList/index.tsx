@@ -1,5 +1,5 @@
 "use client";
-import { MagnifyingGlass, Pencil, Trash } from "@phosphor-icons/react";
+import { MagnifyingGlass, Trash } from "@phosphor-icons/react";
 import BtnHref from "../Admin/Button/BtnHref";
 import Container from "../Admin/Container";
 import MainContainer from "../Admin/MainContainer";
@@ -22,14 +22,16 @@ export default function MemberList({ members }: { members: Member[] }) {
   const token = Cookies.get("auth_token");
 
   useEffect(() => {
-    keyword.length > 0
-      ? setMemberList(
-          members.filter((member: Member) =>
-            member.full_name.toLowerCase().includes(keyword.toLowerCase())
-          )
+    if (keyword.length > 0) {
+      setMemberList(
+        members.filter((member: Member) =>
+          member.full_name.toLowerCase().includes(keyword.toLowerCase())
         )
-      : setMemberList(members);
-  }, [keyword]);
+      );
+    } else {
+      setMemberList(members);
+    }
+  }, [keyword, members]);
 
   // HANDLE DELETE USER
   function handleDelete(id: number) {

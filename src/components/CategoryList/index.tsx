@@ -21,14 +21,16 @@ export default function CategoryList({ datas }: { datas: Props[] }) {
   const router = useRouter();
 
   useEffect(() => {
-    keyword.length > 0
-      ? setCategories(
-          datas.filter((category) =>
-            category.name.toLowerCase().includes(keyword.toLowerCase())
-          )
+    if (keyword.length > 0) {
+      setCategories(
+        datas.filter((category) =>
+          category.name.toLowerCase().includes(keyword.toLowerCase())
         )
-      : setCategories(datas);
-  }, [keyword]);
+      );
+    } else {
+      setCategories(datas);
+    }
+  }, [keyword,datas]);
 
   function handleDelete(id: number) {
     swal({
