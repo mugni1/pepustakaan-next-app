@@ -11,7 +11,6 @@ import Cookies from "js-cookie";
 
 interface User {
   id: number;
-  full_name: string;
   username: string;
 }
 interface Book {
@@ -20,10 +19,11 @@ interface Book {
 }
 interface Props {
   id: number;
-  user: User | null;
-  book: Book | null;
-  borrow_date: string;
-  return_date: string;
+  users: User | null;
+  books: Book | null;
+  borrow_date?: string;
+  return_date?: string;
+  actual_return_date?: string;
   status: string;
   daily_fine: number;
 }
@@ -32,7 +32,6 @@ export default function TransactionList({ data }: { data: Props[] }) {
   const [datas, setDatas] = useState(data || []);
   const [keyword, setKeyword] = useState("");
   const token = Cookies.get("auth_token");
-
   // FILTER DATAS
   useEffect(() => {
     if (keyword.length > 0) {
@@ -64,12 +63,15 @@ export default function TransactionList({ data }: { data: Props[] }) {
           },
         })
           .then((res) => {
-            console.log(res);
-            swal({ icon: "success", title: "Success!" });
+            swal({
+              icon: "success",
+              title: "Success!",
+              text: res.data.message,
+            });
+            setDatas(datas.filter((data) => data.id != id));
           })
-          .catch((err) => {
-            console.log(err);
-            swal({ icon: "error", title: "Error!" });
+          .catch(() => {
+            swal({ icon: "error", title: "Error!", text: "Terjadi kesalahan" });
           });
       }
     });
@@ -111,9 +113,25 @@ export default function TransactionList({ data }: { data: Props[] }) {
               <th className="py-2 w-1/12">ID Transaksi</th>
               <th className="w-2/12 py-5 ">Peminjam</th>
               <th className="w-3/12">Judul Buku</th>
-              <th className="w-1/12 px-2">Tgl peminjaman</th>
-              <th className="w-1/12 px-2">Tgl dikembalikan</th>
-              <th className="w-1/12 px-2">Denda telat/hari</th>
+              <th className="w-1/12 px-2">Tgl Peminjaman</th>
+              {pathName == "/dashboard/transaction-borrow" && (
+                <th className="w-1/12 px-2">Harus Dikembalikan</th>
+              )}
+              {pathName == "/dashboard/transaction-late" && (
+                <th className="w-1/12 px-2">Harus Dikembalikan</th>
+              )}
+              {pathName == "/dashboard/transaction-late" && (
+                <th className="w-1/12 px-2">Tgl Dikembalikan</th>
+              )}
+              {pathName == "/dashboard/transaction-return" && (
+                <th className="w-1/12 px-2">Tgl Dikembalikan</th>
+              )}
+              {pathName == "/dashboard/transaction-borrow" && (
+                <th className="w-1/12 px-2">Denda telat/hari</th>
+              )}
+              {pathName == "/dashboard/transaction-return" && (
+                <th className="w-1/12 px-2">Denda telat/hari</th>
+              )}
               <th className="w-2/12">Status</th>
               <th className="w-1/12" colSpan={3}>
                 Action
@@ -132,20 +150,38 @@ export default function TransactionList({ data }: { data: Props[] }) {
                   </div>
                 </td>
                 <td className="text-center poppins-semibold">
-                  {data.user?.username || (
+                  {data.users?.username || (
                     <span className="text-red-500">UserDeleted</span>
                   )}
                 </td>
                 <td className="text-center">
-                  {data.book?.title || (
+                  {data.books?.title || (
                     <span className="text-red-500">BookDeleted</span>
                   )}
                 </td>
                 <td className="text-center">{data.borrow_date}</td>
-                <td className="text-center">{data.return_date}</td>
-                <td className="text-center px-2">
-                  Rp{data.daily_fine.toLocaleString("id-ID")}
-                </td>
+                {pathName == "/dashboard/transaction-late" && (
+                  <td className="text-center">{data.return_date}</td>
+                )}
+                {pathName == "/dashboard/transaction-borrow" && (
+                  <td className="text-center">{data.return_date}</td>
+                )}
+                {pathName == "/dashboard/transaction-late" && (
+                  <td className="text-center">{data.actual_return_date}</td>
+                )}
+                {pathName == "/dashboard/transaction-return" && (
+                  <td className="text-center">{data.actual_return_date}</td>
+                )}
+                {pathName == "/dashboard/transaction-borrow" && (
+                  <td className="text-center px-2">
+                    Rp{data.daily_fine?.toLocaleString("id-ID")}
+                  </td>
+                )}
+                {pathName == "/dashboard/transaction-return" && (
+                  <td className="text-center px-2">
+                    Rp{data.daily_fine?.toLocaleString("id-ID")}
+                  </td>
+                )}
                 <td className="text-center">
                   <span
                     className={`py-1 px-3 rounded-lg ${
