@@ -21,7 +21,7 @@ interface Borrow {
 }
 
 export default function ListBookReturns({ data }: { data: Borrow[] }) {
-  const [borrows, setBorrows] = useState<Borrow[]>(data || []);
+  const [borrows] = useState<Borrow[]>(data || []);
 
   if (borrows.length < 1) {
     return <h1>Belum Ada Transaksi</h1>;

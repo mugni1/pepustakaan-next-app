@@ -21,7 +21,7 @@ interface Borrow {
 }
 
 export default function ListBookBorrows({ data }: { data: Borrow[] }) {
-  const [borrows, setBorrows] = useState<Borrow[]>(data || []);
+  const [borrows] = useState<Borrow[]>(data || []);
   const [isClient, setIsClient] = useState(false); //  Tambahkan state isClient
 
   useEffect(() => {
