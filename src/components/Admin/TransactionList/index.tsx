@@ -8,6 +8,7 @@ import axios from "axios";
 import swal from "sweetalert";
 import { usePathname } from "next/navigation";
 import Cookies from "js-cookie";
+import Link from "next/link";
 
 interface User {
   id: number;
@@ -196,14 +197,13 @@ export default function TransactionList({ data }: { data: Props[] }) {
                     {data.status}
                   </span>
                 </td>
-                {/* delete update show  */}
+                {/* return  show  */}
                 <td className="text-center px-1  py-2">
-                  <button
-                    // onClick={() => router.push(`books/detail/${book.id}`)}
-                    className=" p-2 rounded-full bg-sky-500 text-white cursor-pointer"
-                  >
-                    <Eye size={24} />
-                  </button>
+                  <Link href={`/transaction-detail/` + data.id}>
+                    <button className=" p-2 rounded-full bg-sky-500 text-white cursor-pointer">
+                      <Eye size={24} />
+                    </button>
+                  </Link>
                 </td>
                 {data.status == "dipinjam" && (
                   <td className="text-center px-1  py-2">
@@ -215,7 +215,7 @@ export default function TransactionList({ data }: { data: Props[] }) {
                     </button>
                   </td>
                 )}
-                {/* end delete update show  */}
+                {/* end return  show  */}
               </tr>
             ))}
 
