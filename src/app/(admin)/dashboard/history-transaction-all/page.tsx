@@ -1,5 +1,5 @@
 import HistoryTransactionsList from "@/components/Admin/HistoryTransactionList";
-import Pagination from "@/components/Admin/HistoryTransactionList/Pagination";
+import Pagination from "@/components/Admin/Pagination/Pagination";
 import { getHistoryTransactions } from "@/services";
 import { cookies } from "next/headers";
 
