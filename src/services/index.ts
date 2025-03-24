@@ -59,37 +59,7 @@ export async function getTransaction(token: Token, url: string) {
 }
 
 // HISTORY TRANSACTION ALL
-export async function getHistoryTransactions(token: Token, url: string) {
-  const res = await fetch(url, {
-    headers: {
-      Accept: "application/json",
-      Authorization: `Bearer ${token}`,
-    },
-  });
-  return res.json();
-}
-// HISTORY TRANSACTION BORROW
-export async function getHistoryTransactionsBorrow(token: Token, url: string) {
-  const res = await fetch(url, {
-    headers: {
-      Accept: "application/json",
-      Authorization: `Bearer ${token}`,
-    },
-  });
-  return res.json();
-}
-// HISTORY TRANSACTION RETURN
-export async function getHistoryTransactionsReturn(token: Token, url: string) {
-  const res = await fetch(url, {
-    headers: {
-      Accept: "application/json",
-      Authorization: `Bearer ${token}`,
-    },
-  });
-  return res.json();
-}
-// HISTORY TRANSACTION FINE
-export async function getHistoryTransactionsFine(token: Token, url: string) {
+export async function getHistoryTransaction(token: Token, url: string) {
   const res = await fetch(url, {
     headers: {
       Accept: "application/json",

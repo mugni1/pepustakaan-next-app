@@ -1,6 +1,6 @@
 import HistoryTransactionsList from "@/components/Admin/HistoryTransactionList";
 import Pagination from "@/components/Admin/Pagination/Pagination";
-import { getHistoryTransactionsBorrow } from "@/services";
+import { getHistoryTransaction } from "@/services";
 import { cookies } from "next/headers";
 
 // base url from env
@@ -24,7 +24,7 @@ export default async function Page({
   }
 
   // fetch data
-  const { data } = await getHistoryTransactionsBorrow(authToken, url);
+  const { data } = await getHistoryTransaction(authToken, url);
 
   // render
   return (
@@ -32,8 +32,8 @@ export default async function Page({
       <HistoryTransactionsList datas={data.data} />
       <Pagination
         url="/dashboard/history-transaction-borrow"
-        from={data?.from ?? 0}
-        to={data?.to ?? 0}
+        from={data.from}
+        to={data.to}
         current_page={data.current_page}
         prev_page_url={data.prev_page_url}
         next_page_url={data.next_page_url}
