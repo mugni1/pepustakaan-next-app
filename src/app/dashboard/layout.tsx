@@ -29,7 +29,7 @@ export default function Layout({ children }: { children: ReactNode }) {
         }
       })
       .catch((err) => {
-        if (err.response.status == 401) {
+        if (err.response?.status == 401) {
           router.push("/login");
           Cookies.remove("auth_token");
           Cookies.remove("email");
