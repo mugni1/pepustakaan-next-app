@@ -5,6 +5,8 @@ import Link from "next/link";
 interface Props {
   url: string;
   current_page: number;
+  from: number;
+  to: number;
   prev_page_url: string;
   next_page_url: string;
 }
@@ -12,6 +14,8 @@ interface Props {
 export default function Pagination({
   url,
   current_page,
+  from = 0,
+  to = 0,
   prev_page_url,
   next_page_url,
 }: Props) {
@@ -28,8 +32,11 @@ export default function Pagination({
           >
             Prev
           </Link>
-          <div>
-            <span> Page {current_page}</span>
+          <div className="flex flex-col justify-center items-center">
+            <span className="poppins-semibold">Halaman ke {current_page}</span>
+            <span className="poppins-semibold text-sm text-slate-600">
+              Dari {from} - {to}
+            </span>
           </div>
           <Link
             scroll={false}

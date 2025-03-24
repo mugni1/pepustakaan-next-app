@@ -32,6 +32,8 @@ export default async function Page({
       <HistoryTransactionsList datas={data.data} />
       <Pagination
         url="/dashboard/history-transaction-borrow"
+        from={data?.from ?? 0}
+        to={data?.to ?? 0}
         current_page={data.current_page}
         prev_page_url={data.prev_page_url}
         next_page_url={data.next_page_url}

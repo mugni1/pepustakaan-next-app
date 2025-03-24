@@ -79,8 +79,8 @@ export async function getLate(token: Token) {
 }
 
 // HISTORY TRANSACTION ALL
-export async function getHistoryTransactions(token: Token) {
-  const res = await fetch(baseUrl + "/transactions", {
+export async function getHistoryTransactions(token: Token, url: string) {
+  const res = await fetch(url, {
     headers: {
       Accept: "application/json",
       Authorization: `Bearer ${token}`,
@@ -99,8 +99,8 @@ export async function getHistoryTransactionsBorrow(token: Token, url: string) {
   return res.json();
 }
 // HISTORY TRANSACTION RETURN
-export async function getHistoryTransactionsReturn(token: Token) {
-  const res = await fetch(baseUrl + "/transactions-return", {
+export async function getHistoryTransactionsReturn(token: Token, url: string) {
+  const res = await fetch(url, {
     headers: {
       Accept: "application/json",
       Authorization: `Bearer ${token}`,
@@ -109,8 +109,8 @@ export async function getHistoryTransactionsReturn(token: Token) {
   return res.json();
 }
 // HISTORY TRANSACTION FINE
-export async function getHistoryTransactionsFine(token: Token) {
-  const res = await fetch(baseUrl + "/transactions-fine", {
+export async function getHistoryTransactionsFine(token: Token, url: string) {
+  const res = await fetch(url, {
     headers: {
       Accept: "application/json",
       Authorization: `Bearer ${token}`,
