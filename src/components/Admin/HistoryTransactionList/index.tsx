@@ -10,39 +10,40 @@ interface Book {
 }
 
 interface User {
-  full_name: string;
   username: string;
 }
 
 interface Transaction {
   id: number;
   actual_return_date: string;
-  status: string;
-  book: Book;
-  user: User;
+  books: Book;
+  users: User;
 }
-
-interface DetailTransaction {
+interface DataTransaction {
   id: number;
   amount: number;
-  borrowing: Transaction;
+  borrowings: Transaction;
   transaction_type: string;
 }
 
 export default function HistoryTransactionsList({
   datas,
 }: {
-  datas: DetailTransaction[];
+  datas: DataTransaction[];
 }) {
-  const [historyTrans, setHistoryTrans] = useState(datas || []);
+  const [historyTrans, setHistoryTrans] = useState<DataTransaction[]>(
+    datas || []
+  ); // hanya daftar history
+
+  // keyword
   const [keyword, setKeyword] = useState("");
 
   // FILTER DATAS
   useEffect(() => {
     if (keyword.length > 0) {
       setHistoryTrans(
-        datas.filter((HT) =>
-          HT.borrowing.id
+        datas.filter((HT: DataTransaction) =>
+          HT.borrowings.id
             .toString()
             .toLowerCase()
             .includes(keyword.toLowerCase())
@@ -80,28 +81,24 @@ export default function HistoryTransactionsList({
               <th className="w-2/12">Judul Buku</th>
               <th className="w-2/12">Status</th>
               <th className="w-2/12">Denda</th>
-              <th className="w-2/12">Dikembalikan</th>
               <th className="w-1/12">Action</th>
             </tr>
           </thead>
           <tbody>
-            {historyTrans?.map((HT: DetailTransaction, index: number) => (
-              <tr
-                key={`${HT.id}${index}`}
-                className="border-b border-slate-600"
-              >
+            {historyTrans?.map((HT: DataTransaction, index: number) => (
+              <tr key={`${index}`} className="border-b border-slate-600">
                 <td className="poppins-semibold text-center px-2">
                   <div className="bg-gradient-to-r from-fuchsia-500 to-purple-500 text-white py-1 px-4 rounded-md w-full">
-                    {HT.borrowing.id}
+                    {HT.borrowings.id}
                   </div>
                 </td>
                 <td className=" text-center poppins-semibold">
-                  {HT.borrowing.user?.username || (
+                  {HT.borrowings.users?.username || (
                     <span className="text-red-500">UserDeleted</span>
                   )}
                 </td>
                 <td className=" text-center">
-                  {HT.borrowing.book?.title || (
+                  {HT.borrowings.books?.title || (
                     <span className="text-red-500">BookDeleted</span>
                   )}
                 </td>
@@ -127,9 +124,6 @@ export default function HistoryTransactionsList({
                   }`}
                 >
                   <span>Rp{HT.amount.toLocaleString("id-ID")}</span>
-                </td>
-                <td className="text-center">
-                  <span>2025-06-15</span>
                 </td>
                 <td className="text-center px-1 py-2">
                   <button className=" p-2 rounded-full bg-sky-500 text-white cursor-pointer">

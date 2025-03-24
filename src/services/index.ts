@@ -89,8 +89,8 @@ export async function getHistoryTransactions(token: Token) {
   return res.json();
 }
 // HISTORY TRANSACTION BORROW
-export async function getHistoryTransactionsBorrow(token: Token) {
-  const res = await fetch(baseUrl + "/transactions-borrow", {
+export async function getHistoryTransactionsBorrow(token: Token, url: string) {
+  const res = await fetch(url, {
     headers: {
       Accept: "application/json",
       Authorization: `Bearer ${token}`,
