@@ -35,7 +35,7 @@ export default function Pagination({
           <div className="flex flex-col justify-center items-center">
             <span className="poppins-semibold">Halaman ke {current_page}</span>
             <span className="poppins-semibold text-sm text-slate-600">
-              Dari {from} - {to}
+              Data {from != null ? from : 0} - {to != null ? to : 0}
             </span>
           </div>
           <Link

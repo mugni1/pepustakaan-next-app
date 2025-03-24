@@ -47,29 +47,9 @@ export async function getMember(token: Token) {
   return res.json();
 }
 
-// TRANSAKSI PEMINJAMAN
-export async function getBorrow(token: Token) {
-  const res = await fetch(`${baseUrl}/borrowings-borrow`, {
-    headers: {
-      Accept: "application/json",
-      Authorization: `Bearer ${token}`,
-    },
-  });
-  return res.json();
-}
-// TRANSAKSI PENGEMBALIAN
-export async function getReturn(token: Token) {
-  const res = await fetch(`${baseUrl}/borrowings-return`, {
-    headers: {
-      Accept: "application/json",
-      Authorization: `Bearer ${token}`,
-    },
-  });
-  return res.json();
-}
-// TRANSAKSI TERLAMBAT
-export async function getLate(token: Token) {
-  const res = await fetch(`${baseUrl}/borrowings-late`, {
+// TRANSAKSI
+export async function getTransaction(token: Token, url: string) {
+  const res = await fetch(url, {
     headers: {
       Accept: "application/json",
       Authorization: `Bearer ${token}`,
