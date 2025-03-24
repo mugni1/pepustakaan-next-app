@@ -12,7 +12,7 @@ export default function ErrorPage({
   return (
     <section className="min-h-screen flex  justify-between  items-center w-full ">
       <div className="w-fit mx-auto flex flex-col items-center justify-center gap-2">
-        <h1 className="poppins-semibold text-2xl">Please try again later</h1>
+        <h1 className="poppins-semibold text-2xl">Terjadi Kesalahan</h1>
         <p>{error.message}</p>
         <BtnClick
           click={() => reset()}
