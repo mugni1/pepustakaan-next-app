@@ -14,7 +14,7 @@ export default function BookDetails({
 }: BookDetail) {
   return (
     <section className="my-4 flex gap-4 w-full">
-      <div className="h-72 w-48 bg-emerald-300 rounded-xl overflow-hidden shadow-lg">
+      <div className="h-72 w-56 bg-emerald-300 rounded-xl overflow-hidden shadow-lg border">
         <Image
           width={150}
           height={200}
@@ -41,7 +41,7 @@ export default function BookDetails({
                 </svg>
                 Penulis
               </td>
-              <td className="w-10/12">: {writer}</td>
+              <td className="w-9/12">: {writer}</td>
             </tr>
             {/* end penulis  */}
             {/* Penerbit  */}

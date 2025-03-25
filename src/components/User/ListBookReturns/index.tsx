@@ -50,25 +50,19 @@ export default function ListBookReturns({ data }: { data: Borrow[] }) {
             <h2 className="poppins-semibold text-lg line-clamp-1">
               {borrow.book.title}
             </h2>
-            <span className="text-slate-600">{borrow.book.writer}</span>
-            <span className="py-1 px-2 rounded-md bg-sky-100 text-sky-600 text-xs w-fit my-2">
-              Pinjaman ID : {borrow.id}
+            <span className="text-slate-600 text-sm">{borrow.book.writer}</span>
+            <span className="py-1 px-2 rounded-md bg-sky-100 text-sky-600 text-sm w-fit my-2 poppins-semibold">
+              ID : {borrow.id}
             </span>
-            <span className="text-sm">
-              Tgl Peminjaman : {borrow.borrow_date}
-            </span>
-            <span className="text-sm">
-              Tgl Pengembalian : {borrow.return_date}
-            </span>
-            <span className="text-sm">
-              Tgl Dikembalikan : {borrow.actual_return_date}
-            </span>
-
+            <div className="flex flex-col text-xs">
+              <span>Tgl Pengembalian : {borrow.return_date}</span>
+              <span>Tgl Dikembalikan : {borrow.actual_return_date}</span>
+            </div>
             <span
-              className={`font-semibold ${
+              className={`font-semibold py-1 px-2 text-xs my-2 ${
                 borrow.status === "dikembalikan"
-                  ? "text-green-600"
-                  : "text-red-600"
+                  ? "text-green-600 bg-green-200  rounded-md w-fit"
+                  : "text-red-600 bg-red-200 rounded-md w-fit"
               }`}
             >
               {borrow.status}

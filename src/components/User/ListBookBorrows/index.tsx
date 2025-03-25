@@ -55,14 +55,14 @@ export default function ListBookBorrows({ data }: { data: Borrow[] }) {
             <h2 className="poppins-semibold text-lg line-clamp-1">
               {borrow.book.title}
             </h2>
-            <span className="text-slate-600">{borrow.book.writer}</span>
-            <span className="py-1 px-2 rounded-md bg-sky-100 text-sky-600 text-xs w-fit my-2">
-              Pinjaman ID : {borrow.id}
+            <span className="text-slate-600 text-sm">{borrow.book.writer}</span>
+            <span className="py-1 px-2 rounded-md bg-sky-100 text-sky-600 text-sm poppins-semibold w-fit my-2">
+              ID : {borrow.id}
             </span>
-            <span className="text-sm">
+            <span className="text-xs">
               Tgl Peminjaman : {borrow.borrow_date}
             </span>
-            <span className="text-sm">
+            <span className="text-xs">
               Tgl Pengembalian : {borrow.return_date}
             </span>
             {/* Countdown */}
