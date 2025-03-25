@@ -36,7 +36,7 @@ export default function ListBookBorrows({ data }: { data: Borrow[] }) {
     <section className="w-full grid grid-cols-1 xl:grid-cols-3 gap-5">
       {borrows.map((borrow: Borrow, index: number) => (
         <div
-          key={`${borrow.id}${index}`}
+          key={`${index}${borrow.status}`}
           className="border rounded-lg flex shadow-lg overflow-hidden border-slate-200"
         >
           {/* card image  */}
@@ -59,8 +59,14 @@ export default function ListBookBorrows({ data }: { data: Borrow[] }) {
             <span className="py-1 px-2 rounded-md bg-sky-100 text-sky-600 text-xs w-fit my-2">
               Pinjaman ID : {borrow.id}
             </span>
+            <span className="text-sm">
+              Tgl Peminjaman : {borrow.borrow_date}
+            </span>
+            <span className="text-sm">
+              Tgl Pengembalian : {borrow.return_date}
+            </span>
             {/* Countdown */}
-            <div className="py-1 flex flex-col text-sm">
+            <div className="py-2 flex flex-col text-sm">
               <span className="flex items-center gap-1 poppins-semibold">
                 <ClockCounterClockwise size={20} /> Pengembalian
               </span>
@@ -73,7 +79,7 @@ export default function ListBookBorrows({ data }: { data: Borrow[] }) {
                       const returnDate = new Date(borrow.return_date).getTime();
                       const currentDate = new Date().getTime();
                       const lateTime = currentDate - returnDate;
-                      const lateDays = Math.ceil(
+                      const lateDays = Math.floor(
                         lateTime / (1000 * 60 * 60 * 24)
                       );
                       return (

@@ -1,7 +1,8 @@
 import { RequestCookie } from "next/dist/compiled/@edge-runtime/cookies";
 import { redirect } from "next/navigation";
-const baseUrl = process.env.NEXT_PUBLIC_BASE_API_URL;
 
+// env
+const baseUrl = process.env.NEXT_PUBLIC_BASE_API_URL;
 type Token = string | undefined | null | RequestCookie;
 
 // COUNT
@@ -57,6 +58,23 @@ export async function getTransaction(token: Token, url: string) {
   });
   return res.json();
 }
+export async function getTransactionDetails(token: Token, id: string) {
+  const res = await fetch(`${baseUrl}/borrowings/${id}`, {
+    headers: {
+      Accept: "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  if (!res.ok) {
+    return {
+      data: {
+        status: false,
+        message: "Failed fetch data",
+      },
+    };
+  }
+  return res.json();
+}
 
 // HISTORY TRANSACTION ALL
 export async function getHistoryTransaction(token: Token, url: string) {
@@ -79,7 +97,6 @@ export async function getBorrowBookUser(token: Token) {
   });
   return res.json();
 }
-
 export async function getReturnBookUser(token: Token) {
   const res = await fetch(`${baseUrl}/borrowings-return-user`, {
     headers: {

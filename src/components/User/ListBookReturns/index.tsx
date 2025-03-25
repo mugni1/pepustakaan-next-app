@@ -31,7 +31,7 @@ export default function ListBookReturns({ data }: { data: Borrow[] }) {
     <section className="w-full grid grid-cols-1 xl:grid-cols-3 gap-5">
       {borrows.map((borrow: Borrow, index: number) => (
         <div
-          key={borrow.id + index}
+          key={`${index}${borrow.status}`}
           className="border rounded-lg flex shadow-lg overflow-hidden border-slate-200"
         >
           {/* card image  */}
@@ -54,14 +54,16 @@ export default function ListBookReturns({ data }: { data: Borrow[] }) {
             <span className="py-1 px-2 rounded-md bg-sky-100 text-sky-600 text-xs w-fit my-2">
               Pinjaman ID : {borrow.id}
             </span>
-            {/* TAnggal */}
-            <div className="py-1 flex flex-col text-sm">
-              <span className="flex items-center gap-1 poppins-semibold">
-                <Calendar size={20} /> Dikembalikan
-              </span>
-              <span>{borrow.actual_return_date}</span>
-            </div>
-            {/* end Tanggal */}
+            <span className="text-sm">
+              Tgl Peminjaman : {borrow.borrow_date}
+            </span>
+            <span className="text-sm">
+              Tgl Pengembalian : {borrow.return_date}
+            </span>
+            <span className="text-sm">
+              Tgl Dikembalikan : {borrow.actual_return_date}
+            </span>
+
             <span
               className={`font-semibold ${
                 borrow.status === "dikembalikan"

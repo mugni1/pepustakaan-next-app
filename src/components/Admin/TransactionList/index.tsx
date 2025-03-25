@@ -199,7 +199,7 @@ export default function TransactionList({ data }: { data: Props[] }) {
                 </td>
                 {/* return  show  */}
                 <td className="text-center px-1  py-2">
-                  <Link href={`/transaction-detail/` + data.id}>
+                  <Link href={`/dashboard/transaction/` + data.id}>
                     <button className=" p-2 rounded-full bg-sky-500 text-white cursor-pointer">
                       <Eye size={24} />
                     </button>
