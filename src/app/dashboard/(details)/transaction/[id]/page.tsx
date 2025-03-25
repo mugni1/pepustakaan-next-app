@@ -4,7 +4,6 @@ import InformationTransaction from "@/components/Admin/InformationTransaction";
 import InformationUser from "@/components/Admin/InformationUser";
 import MainContainer from "@/components/Admin/MainContainer";
 import { getTransactionDetails } from "@/services";
-import { cookies } from "next/headers";
 import React from "react";
 
 export default async function page({
@@ -12,12 +11,10 @@ export default async function page({
 }: {
   params: Promise<{ id: string }>;
 }) {
-  const cookieStore = await cookies();
-  const authToken = cookieStore.get("auth_token")?.value;
   const { id } = await params;
 
   // result transaction details
-  const { data } = await getTransactionDetails(authToken, id);
+  const { data } = await getTransactionDetails(id);
 
   return (
     <MainContainer>

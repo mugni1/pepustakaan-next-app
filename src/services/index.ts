@@ -59,11 +59,12 @@ export async function getTransaction(token: Token, url: string) {
   });
   return res.json();
 }
-export async function getTransactionDetails(token: Token, id: string) {
+export async function getTransactionDetails(id: string) {
+  const auth_token = (await cookies()).get("auth_token")?.value;
   const res = await fetch(`${baseUrl}/borrowings/${id}`, {
     headers: {
       Accept: "application/json",
-      Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${auth_token}`,
     },
   });
   if (!res.ok) {

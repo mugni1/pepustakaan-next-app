@@ -10,6 +10,7 @@ import Container from "../Container";
 import MainContainer from "../MainContainer";
 import Cookies from "js-cookie";
 import Image from "next/image";
+import Link from "next/link";
 
 interface Books {
   category: { id: number; name: string };
@@ -155,12 +156,11 @@ export default function BooksList({ data }: { data: Books[] }) {
                   </button>
                 </td>
                 <td className="text-center px-1">
-                  <button
-                    onClick={() => router.push(`books/detail/${book.id}`)}
-                    className=" p-2 rounded-full bg-sky-500 text-white cursor-pointer"
-                  >
-                    <Eye size={24} />
-                  </button>
+                  <Link href={`books/${book.id}`}>
+                    <button className=" p-2 rounded-full bg-sky-500 text-white cursor-pointer">
+                      <Eye size={24} />
+                    </button>
+                  </Link>
                 </td>
                 {/* end delete update show  */}
               </tr>
