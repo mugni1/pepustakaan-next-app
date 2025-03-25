@@ -7,6 +7,7 @@ interface InformationTrans {
   actual_return_date: string;
   daily_fine: number;
   status: string;
+  amount?: number | null | string;
 }
 
 export default function InformationTransaction({
@@ -16,6 +17,7 @@ export default function InformationTransaction({
   actual_return_date,
   daily_fine,
   status,
+  amount,
 }: InformationTrans) {
   const returnDate = new Date(return_date).getTime();
   const actualReturn = new Date(actual_return_date).getTime();
@@ -30,8 +32,12 @@ export default function InformationTransaction({
         <h1
           className={`text-xl px-3  poppins-semibold rounded-lg 
               ${status == "dipinjam" && "text-amber-500 bg-amber-200"} 
+              ${status == "peminjaman" && "text-amber-500 bg-amber-200"} 
               ${status == "dikembalikan" && "text-green-500 bg-green-200"}
-              ${status == "terlambat" && "text-red-500 bg-red-200"}`}
+              ${status == "pengembalian" && "text-green-500 bg-green-200"}
+              ${status == "terlambat" && "text-red-500 bg-red-200"}
+              ${status == "denda" && "text-red-500 bg-red-200"}
+              `}
         >
           {status.toUpperCase() ?? "noStatus"}
         </h1>
@@ -78,7 +84,13 @@ export default function InformationTransaction({
                   </span>
                 </td>
               )}
-              {status != "terlambat" && <td>: Tidak ada denda</td>}
+              {!amount ? (
+                status != "terlambat" && <td>: Tidak ada denda</td>
+              ) : (
+                <td className="text-red-500">
+                  : Rp{amount.toLocaleString("id-ID")}
+                </td>
+              )}
             </tr>
           </tbody>
         </table>

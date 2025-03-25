@@ -1,4 +1,5 @@
 import { RequestCookie } from "next/dist/compiled/@edge-runtime/cookies";
+import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
 // env
@@ -82,6 +83,16 @@ export async function getHistoryTransaction(token: Token, url: string) {
     headers: {
       Accept: "application/json",
       Authorization: `Bearer ${token}`,
+    },
+  });
+  return res.json();
+}
+export async function getHistoryTransactionDetails(id: string) {
+  const auth_token = (await cookies()).get("auth_token")?.value;
+  const res = await fetch(`${baseUrl}/transactions/${id}`, {
+    headers: {
+      Accept: "application/json",
+      Authorization: `Bearer ${auth_token}`,
     },
   });
   return res.json();

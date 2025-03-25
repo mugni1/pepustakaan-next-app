@@ -127,7 +127,7 @@ export default function HistoryTransactionsList({
                 </td>
                 <td className="text-center px-1 py-2">
                   <button className=" p-2 rounded-full bg-sky-500 text-white cursor-pointer">
-                    <Link href={"history-transaction-detail/" + HT.id}>
+                    <Link href={"transaction-history/" + HT.id}>
                       <Eye size={24} />
                     </Link>
                   </button>
