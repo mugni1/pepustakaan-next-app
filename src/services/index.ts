@@ -39,11 +39,15 @@ export async function getCategorys() {
 }
 
 // ANGGOTA
-export async function getMember(token: Token) {
-  const res = await fetch(`${baseUrl}/users-user`, {
+export async function getMember(page: string) {
+  const auth_token = (await cookies()).get("auth_token")?.value;
+  let url = !page
+    ? `${baseUrl}/users-user`
+    : `${baseUrl}/users-user?page=${page}`;
+  const res = await fetch(url, {
     headers: {
       Accept: "application/json",
-      Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${auth_token}`,
     },
   });
   return res.json();
