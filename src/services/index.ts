@@ -99,14 +99,15 @@ export async function getHistoryTransactionDetails(id: string) {
   return res.json();
 }
 export async function getCountHistoryTrans(status: string, year?: string) {
+  const auth_token = (await cookies()).get("auth_token")?.value;
+
   let url = `http://localhost:8000/api/transactions-${status}-data`;
   if (year) {
     url = `http://localhost:8000/api/transactions-${status}-data?year=${year}`;
   }
   const res = await fetch(url, {
     headers: {
-      Authorization:
-        "Bearer 145|J1aQyCNLoDLQkRTTENlS58juIXNFMz3XTDiQ1CH8f1d0abde",
+      Authorization: `Bearer ${auth_token}`,
     },
   });
   return res.json();
