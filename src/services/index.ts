@@ -98,6 +98,19 @@ export async function getHistoryTransactionDetails(id: string) {
   });
   return res.json();
 }
+export async function getCountHistoryTrans(status: string, year?: string) {
+  let url = `http://localhost:8000/api/transactions-${status}-data`;
+  if (year) {
+    url = `http://localhost:8000/api/transactions-${status}-data?year=${year}`;
+  }
+  const res = await fetch(url, {
+    headers: {
+      Authorization:
+        "Bearer 145|J1aQyCNLoDLQkRTTENlS58juIXNFMz3XTDiQ1CH8f1d0abde",
+    },
+  });
+  return res.json();
+}
 
 /////////////   FOR USER   //////////////////////
 export async function getBorrowBookUser(token: Token) {
