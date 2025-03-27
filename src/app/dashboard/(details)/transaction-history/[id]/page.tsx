@@ -3,7 +3,6 @@ import Container from "@/components/Admin/Container";
 import InformationTransaction from "@/components/Admin/InformationTransaction";
 import InformationUser from "@/components/Admin/InformationUser";
 import MainContainer from "@/components/Admin/MainContainer";
-import TitleForm from "@/components/Admin/Title/TitleForm";
 import { getHistoryTransactionDetails } from "@/services";
 
 export default async function Page({

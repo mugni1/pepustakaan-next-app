@@ -1,5 +1,3 @@
-import Container from "@/components/Admin/Container";
-import MainContainer from "@/components/Admin/MainContainer";
 import React from "react";
 
 export default function Loading() {

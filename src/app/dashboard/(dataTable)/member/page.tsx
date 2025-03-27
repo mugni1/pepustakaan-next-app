@@ -2,7 +2,6 @@ import MemberList from "@/components/Admin/MemberList";
 import Pagination from "@/components/Admin/Pagination/Pagination";
 import { getMember } from "@/services";
 import { Metadata } from "next";
-import { cookies } from "next/headers";
 
 export const metadata: Metadata = {
   title: "Dashboard - Member",

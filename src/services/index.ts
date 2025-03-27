@@ -42,7 +42,7 @@ export async function getCategorys() {
 // ANGGOTA
 export async function getMember(page: string) {
   const auth_token = (await cookies()).get("auth_token")?.value;
-  let url = !page
+  const url = !page
     ? `${baseUrl}/users-user`
     : `${baseUrl}/users-user?page=${page}`;
   const res = await fetch(url, {

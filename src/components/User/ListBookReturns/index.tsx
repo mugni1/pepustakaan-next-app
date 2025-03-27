@@ -1,5 +1,4 @@
 "use client";
-import { Calendar } from "@phosphor-icons/react";
 import Image from "next/image";
 import { useState } from "react";
 
