@@ -23,8 +23,9 @@ export async function getCount(params: string, token: Token) {
 }
 
 // BUKU
-export async function getBooks() {
-  const res = await fetch(`${baseUrl}/books`);
+export async function getBooks(page?: string) {
+  const url = !page ? `${baseUrl}/books` : `${baseUrl}/books?page=${page}`;
+  const res = await fetch(url);
   return res.json();
 }
 export async function getBooksDetail(id: string) {
