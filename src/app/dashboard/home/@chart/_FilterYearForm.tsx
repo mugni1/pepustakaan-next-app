@@ -23,7 +23,7 @@ export default function FilterYearForm() {
         className="py-1 px-3 border rounded-md border-slate-600"
         ref={year}
       />
-      <button className=" h-auto px-5 bg-green-500 text-white poppins-semibold rounded-md cursor-pointer active:scale-95 transition-all ease-in-out active:bg-slate-500">
+      <button className=" h-auto px-5 bg-green-500 text-white poppins-semibold rounded-md cursor-pointer active:scale-95 transition-all ease-in-out active:bg-slate-500 ">
         Simpan
       </button>
     </form>

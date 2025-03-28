@@ -44,17 +44,19 @@ export function SimpleBarChart({
   }));
 
   return (
-    <ResponsiveContainer width="100%" height={400}>
-      <BarChart data={data}>
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="name" />
-        <YAxis />
-        <Tooltip />
-        <Legend />
-        <Bar dataKey="peminjaman" fill="orange" />
-        <Bar dataKey="pengembalian" fill="green" />
-        <Bar dataKey="denda" fill="red" />
-      </BarChart>
-    </ResponsiveContainer>
+    <section className="border border-slate-600 w-full pt-4 pb-2 pe-4 rounded-lg">
+      <ResponsiveContainer width="100%" height={400}>
+        <BarChart data={data}>
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="name" />
+          <YAxis />
+          <Tooltip />
+          <Legend />
+          <Bar dataKey="peminjaman" fill="orange" />
+          <Bar dataKey="pengembalian" fill="green" />
+          <Bar dataKey="denda" fill="red" />
+        </BarChart>
+      </ResponsiveContainer>
+    </section>
   );
 }

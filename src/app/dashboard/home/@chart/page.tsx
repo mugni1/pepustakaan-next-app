@@ -16,20 +16,23 @@ export default async function Page({
   const dendaCount = await getCountHistoryTrans("fine", year);
   return (
     <Container className="mt-10 flex flex-col gap-2">
-      <div className="flex justify-between items-center">
+      {/* title  */}
+      <section className="flex justify-between items-center">
         <SubTitle>Sejarah Transaksi</SubTitle>
         <span className="poppins-bold text-xl">
           Tahun : {!year ? new Date().getFullYear() : year}
         </span>
-      </div>
+      </section>
+      {/* end title  */}
+
+      {/* simple bar chart  */}
       <FilterYearForm />
-      <div className="border border-slate-600 w-full pt-4 pb-2 pe-4 rounded-lg">
-        <SimpleBarChart
-          pengembalian={pengembalianCount}
-          peminjaman={peminjamanCount}
-          denda={dendaCount}
-        />
-      </div>
+      <SimpleBarChart
+        pengembalian={pengembalianCount}
+        peminjaman={peminjamanCount}
+        denda={dendaCount}
+      />
+      {/* end simple bar chart  */}
     </Container>
   );
 }
