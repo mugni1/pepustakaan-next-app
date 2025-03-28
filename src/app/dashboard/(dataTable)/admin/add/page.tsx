@@ -34,7 +34,7 @@ export default function Page() {
         username: username.current?.value.toLowerCase(),
         email: email.current?.value,
         password: password.current?.value,
-        role_id: 2,
+        role_id: 1,
       },
     })
       .then((res) => {
@@ -42,8 +42,9 @@ export default function Page() {
           icon: "success",
           title: "Success!",
           text: `Berhasil menambah user baru : '${res.data.data.username}'`,
+          buttons: [false],
         });
-        router.push("/dashboard/member");
+        router.push("/dashboard/admin");
       })
       .catch(() => {
         swal({
@@ -53,14 +54,14 @@ export default function Page() {
           buttons: [false],
           timer: 2000,
         });
-        router.push("/dashboard/member");
+        router.push("/dashboard/admin");
       });
   };
 
   return (
     <MainContainer>
       <Container className="w-8/12 mx-auto  flex flex-col gap-5">
-        <TitleForm>Tambah Anggota</TitleForm>
+        <TitleForm>Tambah Admin</TitleForm>
         <form onSubmit={handleSubmit}>
           {/* input  */}
           <section className="w-full grid grid-cols-2 gap-5 mb-5">
@@ -100,7 +101,7 @@ export default function Page() {
             <BtnClick typeBtn="submit" className="bg-green-500">
               Submit
             </BtnClick>
-            <BtnHref href="/dashboard/member" className="bg-sky-500 text-white">
+            <BtnHref href="/dashboard/admin" className="bg-sky-500 text-white">
               Back
             </BtnHref>
           </section>
