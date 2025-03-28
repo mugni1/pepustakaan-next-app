@@ -51,6 +51,11 @@ export default function Sidebar({ className }: { className: string }) {
           <UsersThree size={24} />
         </BarMenu>
         {/* End Member  */}
+        {/* Admin  */}
+        <BarMenu title="Admin" href="/dashboard/admin">
+          <UsersThree size={24} />
+        </BarMenu>
+        {/* End Admin  */}
         {/* Books  */}
         <BarMenu title="Buku" href="/dashboard/books">
           <BookOpenText size={24} />

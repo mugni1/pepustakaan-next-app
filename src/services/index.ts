@@ -39,7 +39,7 @@ export async function getCategorys() {
   return res.json();
 }
 
-// ANGGOTA
+// ANGGOTA LIST
 export async function getMember(page: string) {
   const auth_token = (await cookies()).get("auth_token")?.value;
   const url = !page
@@ -51,6 +51,23 @@ export async function getMember(page: string) {
       Authorization: `Bearer ${auth_token}`,
     },
   });
+  return res.json();
+}
+
+// ADMIN LIST
+export async function getAdminList(page: string) {
+  const auth_token = (await cookies()).get("auth_token")?.value;
+  const url = !page
+    ? `${baseUrl}/users-superUser`
+    : `${baseUrl}/users-superUser?page=${page}`;
+
+  const res = await fetch(url, {
+    headers: {
+      Accept: "application/json",
+      Authorization: `Bearer ${auth_token}`,
+    },
+  });
+
   return res.json();
 }
 
