@@ -112,9 +112,9 @@ export default function MemberAndAdminList({ members }: { members: Member[] }) {
               <th className="w-2/12 py-2">Nama Lengkap</th>
               <th className="w-2/12">Username</th>
               <th className="w-2/12">Email</th>
-              <th className="w-2/12">Role</th>
+              <th className="w-2/12">Peran</th>
               <th colSpan={2} className="w-1/12">
-                Action
+                Tindakan
               </th>
             </tr>
           </thead>

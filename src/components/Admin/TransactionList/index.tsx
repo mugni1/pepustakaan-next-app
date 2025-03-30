@@ -135,7 +135,7 @@ export default function TransactionList({ data }: { data: Props[] }) {
               )}
               <th className="w-2/12">Status</th>
               <th className="w-1/12" colSpan={3}>
-                Action
+                Tindakan
               </th>
             </tr>
           </thead>

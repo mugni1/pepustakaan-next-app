@@ -81,7 +81,7 @@ export default function HistoryTransactionsList({
               <th className="w-2/12">Judul Buku</th>
               <th className="w-2/12">Status</th>
               <th className="w-2/12">Denda</th>
-              <th className="w-1/12">Action</th>
+              <th className="w-1/12">Tindakan</th>
             </tr>
           </thead>
           <tbody>

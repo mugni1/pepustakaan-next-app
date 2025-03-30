@@ -8,7 +8,7 @@ export default function TableHead() {
         <th>Penerbit</th>
         <th>Stock</th>
         <th colSpan={3} className="w-1/12">
-          Aciton
+          Tindakan
         </th>
       </tr>
     </thead>

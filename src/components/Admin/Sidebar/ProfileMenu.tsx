@@ -119,14 +119,14 @@ export default function ProfileMenu() {
   return (
     <section className="flex w-full items-center px-5 py-5 gap-2 cursor-pointer group relative">
       {/* avatar  */}
-      <div className="w-4/12 flex items-center">
-        <div className="h-12 w-12 rounded-full bg-emerald-500 text-center flex items-center justify-center text-2xl text-white">
+      <div className="w-4/12 2xl:w-3/12 me-auto flex items-center">
+        <div className="w-full aspect-square rounded-full bg-emerald-500 text-center flex items-center justify-center text-2xl text-white">
           <span>{initialName}</span>
         </div>
       </div>
       {/* end awatar */}
       {/* name and status  */}
-      <div className="w-8/12 flex flex-col gap-1">
+      <div className="w-8/12 h-auto flex flex-col gap-1 ps-2 2xl:ps-0 text-sm 2xl:text-lg">
         <span className="poppins-semibold line-clamp-1">
           {fullName ? fullName : "Anonim"}
         </span>

@@ -95,7 +95,7 @@ export default function CategoryList({ datas }: { datas: Props[] }) {
               <th className="py-2 mb-2 w-1/12">No</th>
               <th>Nama</th>
               <th className="w-1/12" colSpan={2}>
-                Aciton
+                Tindakan
               </th>
             </tr>
           </thead>
