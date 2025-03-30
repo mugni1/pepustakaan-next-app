@@ -1,4 +1,4 @@
-import MemberAndAdminList from "@/components/Admin/MemberAndAdminList";
+import MemberAndAdminList from "@/components/Admin/ListAdminAndMember";
 import Pagination from "@/components/Admin/Pagination/Pagination";
 import { getMember } from "@/services";
 import { Metadata } from "next";

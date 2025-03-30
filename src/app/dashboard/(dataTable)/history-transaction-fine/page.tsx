@@ -1,4 +1,4 @@
-import HistoryTransactionsList from "@/components/Admin/HistoryTransactionList";
+import HistoryTransactionsList from "@/components/Admin/ListHistoryTransaction";
 import Pagination from "@/components/Admin/Pagination/Pagination";
 import { getHistoryTransaction } from "@/services";
 import { cookies } from "next/headers";

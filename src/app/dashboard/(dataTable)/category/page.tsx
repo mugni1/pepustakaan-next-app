@@ -1,4 +1,4 @@
-import CategoryList from "@/components/Admin/CategoryList";
+import CategoryList from "@/components/Admin/ListCategory";
 import { getCategorys } from "@/services";
 import { Metadata } from "next";
 

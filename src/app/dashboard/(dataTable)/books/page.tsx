@@ -1,4 +1,4 @@
-import BooksList from "@/components/Admin/BooksList";
+import BooksList from "@/components/Admin/ListBook";
 import Pagination from "@/components/Admin/Pagination/Pagination";
 import { getBooks } from "@/services";
 import { Metadata } from "next";
