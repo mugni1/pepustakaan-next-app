@@ -30,7 +30,7 @@ export default async function Page({
     <>
       <TransactionList data={data.data} />
       <Pagination
-        url="/dashboard/transaction-borrow"
+        url="/dashboard/transaction-late"
         current_page={data.current_page}
         from={data.from}
         to={data.to}

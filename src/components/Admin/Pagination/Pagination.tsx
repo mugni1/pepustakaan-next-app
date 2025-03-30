@@ -1,6 +1,9 @@
+"use client";
 import React from "react";
 import Container from "../Container";
 import Link from "next/link";
+import { ArrowCircleLeft, ArrowCircleRight } from "@phosphor-icons/react";
+import { useRouter } from "next/navigation";
 
 interface Props {
   url: string;
@@ -19,34 +22,42 @@ export default function Pagination({
   prev_page_url,
   next_page_url,
 }: Props) {
+  const router = useRouter();
   return (
     <section className="px-5 mb-5">
       <Container>
         <section className="flex gap-5 justify-between  items-center">
-          <Link
-            scroll={false}
-            className={`py-2 px-6 bg-purple-500 text-white poppins-semibold rounded-lg ${
-              !prev_page_url && "invisible"
+          <button
+            className={`py-2 px-6 text-white transition-all ease-in-out active:scale-95 poppins-semibold rounded-lg flex items-center gap-2 ${
+              !prev_page_url
+                ? "bg-slate-500 cursor-not-allowed"
+                : "bg-gradient-to-r from-fuchsia-600 to-purple-600 cursor-pointer"
             }`}
-            href={`${url}?page=${current_page - 1}`}
+            disabled={!prev_page_url}
+            onClick={() => router.push(`${url}?page=${current_page - 1}`)}
           >
-            Prev
-          </Link>
+            <ArrowCircleLeft size={28} />
+            <span>Sebelumnya</span>
+          </button>
           <div className="flex flex-col justify-center items-center">
             <span className="poppins-semibold">Halaman ke {current_page}</span>
             <span className="poppins-semibold text-sm text-slate-600">
               Data {from != null ? from : 0} - {to != null ? to : 0}
             </span>
           </div>
-          <Link
-            scroll={false}
-            className={`py-2 px-6 bg-purple-500 text-white poppins-semibold rounded-lg ${
-              !next_page_url && "invisible"
+          <button
+            aria-disabled
+            className={`py-2 px-6 text-white transition-all ease-in-out active:scale-95 poppins-semibold rounded-lg flex items-center gap-2 ${
+              !next_page_url
+                ? "bg-slate-500 cursor-not-allowed"
+                : "bg-gradient-to-r from-fuchsia-600 to-purple-600 cursor-pointer"
             }`}
-            href={`${url}?page=${current_page + 1}`}
+            disabled={!next_page_url}
+            onClick={() => router.push(`${url}?page=${current_page + 1}`)}
           >
-            Next
-          </Link>
+            <span>Selanjutnya</span>
+            <ArrowCircleRight size={28} />
+          </button>
         </section>
       </Container>
     </section>

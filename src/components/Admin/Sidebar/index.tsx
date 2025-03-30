@@ -8,8 +8,9 @@ import {
   CashRegister,
   ClockCounterClockwise,
   HouseLine,
-  Tag,
-  UsersThree,
+  TagSimple,
+  UserCheck,
+  Users,
 } from "@phosphor-icons/react";
 import ProfileMenu from "./ProfileMenu";
 import TitleAside from "./TitleAside";
@@ -48,12 +49,12 @@ export default function Sidebar({ className }: { className: string }) {
         {/* End Home  */}
         {/* Member  */}
         <BarMenu title="Anggota" href="/dashboard/member">
-          <UsersThree size={24} />
+          <Users size={24} />
         </BarMenu>
         {/* End Member  */}
         {/* Admin  */}
         <BarMenu title="Admin" href="/dashboard/admin">
-          <UsersThree size={24} />
+          <UserCheck size={24} />
         </BarMenu>
         {/* End Admin  */}
         {/* Books  */}
@@ -63,7 +64,7 @@ export default function Sidebar({ className }: { className: string }) {
         {/* Edn Books  */}
         {/* Tag  */}
         <BarMenu title="Kategori" href="/dashboard/category">
-          <Tag size={24} />
+          <TagSimple size={24} />
         </BarMenu>
         {/* End tag  */}
         {/* Transaction  */}
@@ -92,7 +93,7 @@ export default function Sidebar({ className }: { className: string }) {
             <BarMenu2 title="Peminjaman" href="/dashboard/transaction-borrow">
               <CaretCircleRight size={20} />
             </BarMenu2>
-            <BarMenu2 title="Pengembalian" href="/dashboard/transaction-return">
+            <BarMenu2 title="Dikembalkan" href="/dashboard/transaction-return">
               <CaretCircleRight size={20} />
             </BarMenu2>
             <BarMenu2 title="Terlambat" href="/dashboard/transaction-late">

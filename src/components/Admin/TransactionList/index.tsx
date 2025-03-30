@@ -116,10 +116,10 @@ export default function TransactionList({ data }: { data: Props[] }) {
               <th className="w-3/12">Judul Buku</th>
               <th className="w-1/12 px-2">Tgl Peminjaman</th>
               {pathName == "/dashboard/transaction-borrow" && (
-                <th className="w-1/12 px-2">Harus Dikembalikan</th>
+                <th className="w-1/12 px-2">Tgl Pengembalian</th>
               )}
               {pathName == "/dashboard/transaction-late" && (
-                <th className="w-1/12 px-2">Harus Dikembalikan</th>
+                <th className="w-1/12 px-2">Tgl Pengembalian</th>
               )}
               {pathName == "/dashboard/transaction-late" && (
                 <th className="w-1/12 px-2">Tgl Dikembalikan</th>
