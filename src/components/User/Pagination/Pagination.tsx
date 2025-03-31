@@ -9,6 +9,7 @@ interface Props {
   to: number;
   prev_page_url: string;
   next_page_url: string;
+  q?: string;
 }
 
 export default function PaginationUser({
@@ -18,6 +19,7 @@ export default function PaginationUser({
   to = 0,
   prev_page_url,
   next_page_url,
+  q,
 }: Props) {
   return (
     <Container className="my-5 border border-purple-500">
@@ -27,7 +29,11 @@ export default function PaginationUser({
           className={`py-2 px-6 bg-purple-500 text-white poppins-semibold rounded-lg ${
             !prev_page_url && "invisible"
           }`}
-          href={`${url}?page=${current_page - 1}`}
+          href={
+            !q
+              ? `${url}?page=${current_page - 1}`
+              : `${url}?page=${current_page - 1}&q=${q}`
+          }
         >
           Prev
         </Link>
@@ -42,7 +48,11 @@ export default function PaginationUser({
           className={`py-2 px-6 bg-purple-500 text-white poppins-semibold rounded-lg ${
             !next_page_url && "invisible"
           }`}
-          href={`${url}?page=${current_page + 1}`}
+          href={
+            !q
+              ? `${url}?page=${current_page + 1}`
+              : `${url}?page=${current_page + 1}&q=${q}`
+          }
         >
           Next
         </Link>

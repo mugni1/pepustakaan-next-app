@@ -13,10 +13,11 @@ export const metadata: Metadata = {
 export default async function Home({
   searchParams,
 }: {
-  searchParams: Promise<{ page: string }>;
+  searchParams: Promise<{ page: string; q: string }>;
 }) {
   const { page } = await searchParams;
-  const result = await getBooks(page);
+  const { q } = await searchParams;
+  const result = await getBooks(page, q);
 
   return (
     <UserContainer>
@@ -29,6 +30,7 @@ export default async function Home({
           from={result.meta.from}
           next_page_url={result.links.next}
           prev_page_url={result.links.prev}
+          q={q}
         />
       </div>
     </UserContainer>
