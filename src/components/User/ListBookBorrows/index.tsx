@@ -13,7 +13,7 @@ interface Book {
 
 interface Borrow {
   id: number;
-  book: Book;
+  books: Book;
   borrow_date: string;
   return_date: string;
   status: string;
@@ -42,7 +42,7 @@ export default function ListBookBorrows({ data }: { data: Borrow[] }) {
           {/* card image  */}
           <div className="w-4/12">
             <Image
-              src={`${process.env.NEXT_PUBLIC_BASE_IMAGE_URL}/${borrow.book.image}`}
+              src={`${process.env.NEXT_PUBLIC_BASE_IMAGE_URL}/${borrow.books.image}`}
               alt=""
               className="object-cover h-full w-full object-center"
               width={100}
@@ -54,11 +54,13 @@ export default function ListBookBorrows({ data }: { data: Borrow[] }) {
           <div className="w-8/12 flex flex-col p-2">
             {/* title  */}
             <h2 className="poppins-semibold text-lg line-clamp-1">
-              {borrow.book.title}
+              {borrow.books.title}
             </h2>
             {/* end title  */}
             {/* writer  */}
-            <span className="text-slate-600 text-sm">{borrow.book.writer}</span>
+            <span className="text-slate-600 text-sm">
+              {borrow.books.writer}
+            </span>
             {/* end writer  */}
             {/* id  */}
             <span className="py-1 px-2 rounded-md bg-sky-100 text-sky-600 text-sm poppins-semibold w-fit my-2">

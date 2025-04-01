@@ -7,7 +7,7 @@ export default async function Page() {
   const borrows = await getBorrowBookUser();
   return (
     <UserContainer>
-      <SubTitle2 className="bg-emerald-600">DAFTAR PEMINJAMAN</SubTitle2>
+      <SubTitle2 className="bg-amber-600">DAFTAR PEMINJAMAN</SubTitle2>
       <ListBookBorrows data={borrows.data} />
     </UserContainer>
   );
