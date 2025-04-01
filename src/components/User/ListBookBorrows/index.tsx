@@ -20,6 +20,14 @@ interface Borrow {
   daily_fine: number;
 }
 
+function getLateDay(return_date: string) {
+  const returnDate = new Date(return_date).getTime();
+  const currentDate = new Date().getTime();
+  const lateTime = currentDate - returnDate;
+  const lateDays = Math.floor(lateTime / (1000 * 60 * 60 * 24));
+  return lateDays;
+}
+
 export default function ListBookBorrows({ data }: { data: Borrow[] }) {
   const [borrows] = useState<Borrow[]>(data || []);
   const [isClient, setIsClient] = useState(false); //  Tambahkan state isClient
@@ -63,10 +71,10 @@ export default function ListBookBorrows({ data }: { data: Borrow[] }) {
             </span>
             {/* end writer  */}
             {/* id  */}
-            <span className="py-1 px-2 rounded-md bg-sky-100 text-sky-600 text-sm poppins-semibold w-fit my-2">
+            <span className="py-1 px-2 rounded-md bg-sky-100 text-sky-600 text-sm w-fit my-2 poppins-semibold">
               ID : {borrow.id}
             </span>
-            {/* end id  */}
+            {/* status  */}
             {/* date  */}
             <div className="flex flex-col">
               <span className="flex items-center gap-1 poppins-semibold text-sm">
@@ -79,44 +87,38 @@ export default function ListBookBorrows({ data }: { data: Borrow[] }) {
                 <span className="text-emerald-500">{borrow.return_date}</span>
               </div>
             </div>
-            {/* end date  */}
             {/* Countdown */}
             <div className="py-2 flex flex-col text-sm">
-              <span className="flex items-center gap-1 poppins-semibold">
+              <div className="flex items-center gap-1 poppins-semibold">
                 <ClockCountdown size={20} />
                 <span>Hitung Mundur</span>
-              </span>
+              </div>
               {isClient && ( // tampilkan saat isClients == true
                 <Countdown
-                  date={new Date(borrow.return_date).getTime()}
+                  date={new Date(borrow.return_date).getTime()} // tujuan
                   daysInHours={true}
                   renderer={({ days, hours, minutes, seconds, completed }) => {
                     if (completed) {
-                      const returnDate = new Date(borrow.return_date).getTime();
-                      const currentDate = new Date().getTime();
-                      const lateTime = currentDate - returnDate;
-                      const lateDays = Math.floor(
-                        lateTime / (1000 * 60 * 60 * 24)
-                      );
+                      const lateDays = getLateDay(borrow.return_date);
                       return (
-                        <>
-                          <div className="text-red-500">
+                        <div className=" flex flex-col">
+                          <span className="text-red-500">
                             {lateDays > 0
                               ? `Sudah lewat ${lateDays} hari, denda`
                               : "Segera kembalikan, denda"}
-                          </div>
-                          <div className="text-red-500 poppins-semibold">
-                            Rp{" "}
+                          </span>
+                          <span className="text-red-500 poppins-semibold">
+                            Rp
                             {(lateDays * borrow.daily_fine).toLocaleString(
                               "id-ID"
                             )}
-                          </div>
-                        </>
+                          </span>
+                        </div>
                       );
                     } else {
                       return (
                         <span className="text-green-500">
-                          {days}H - {hours} Jam : {minutes} Menit : {seconds}{" "}
+                          {days} Hari, {hours} Jam : {minutes} Mnt : {seconds}{" "}
                           detik
                         </span>
                       );
@@ -125,7 +127,6 @@ export default function ListBookBorrows({ data }: { data: Borrow[] }) {
                 />
               )}
             </div>
-            {/* end Countdown */}
           </div>
           {/* end card body */}
         </div>

@@ -39,17 +39,19 @@ export default async function Home({
       {/* END LIST BOOK  */}
 
       {/* PAGINATION  */}
-      <div className="mb-20">
-        <PaginationUser
-          url="/"
-          current_page={result.meta.current_page}
-          to={result.meta.to}
-          from={result.meta.from}
-          next_page_url={result.links.next}
-          prev_page_url={result.links.prev}
-          q={q}
-        />
-      </div>
+      {result.meta.to >= 20 && (
+        <div className="mb-20">
+          <PaginationUser
+            url="/"
+            current_page={result.meta.current_page}
+            to={result.meta.to}
+            from={result.meta.from}
+            next_page_url={result.links.next}
+            prev_page_url={result.links.prev}
+            q={q}
+          />
+        </div>
+      )}
       {/* END PAGINATION  */}
     </UserContainer>
   );

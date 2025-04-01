@@ -77,9 +77,11 @@ export default function ListBookReturns({ data }: { data: Borrow[] }) {
           {/* end card  */}
           {/* card body  */}
           <div className="w-8/12 flex flex-col p-2">
+            {/* title  */}
             <h2 className="poppins-semibold text-lg line-clamp-1">
               {borrow.books.title}
             </h2>
+            {/* waiter  */}
             <span className="text-slate-600 text-sm">
               {borrow.books.writer}
             </span>
@@ -87,15 +89,16 @@ export default function ListBookReturns({ data }: { data: Borrow[] }) {
             <span className="py-1 px-2 rounded-md bg-sky-100 text-sky-600 text-sm w-fit my-2 poppins-semibold">
               ID : {borrow.id}
             </span>
-            {/* end id  */}
             {/* status  */}
             <div className="flex flex-col text-sm mb-2 poppins-semibold">
-              <span>Status</span>
+              <span className="flex items-center gap-1">
+                <CashRegister size={20} /> Status
+              </span>
               <span
                 className={`px-2 text-xs py-1 gap-1 flex items-center ${
                   borrow.status === "dikembalikan"
-                    ? "text-green-600 bg-green-200  rounded-md w-fit"
-                    : "text-red-600 bg-red-200 rounded-md w-fit"
+                    ? "text-green-600 bg-green-200 rounded w-fit"
+                    : "text-red-600 bg-red-200 rounded w-fit"
                 }`}
               >
                 <span>{borrow.status}</span>
@@ -107,10 +110,9 @@ export default function ListBookReturns({ data }: { data: Borrow[] }) {
                 )}
               </span>
             </div>
-            {/* end status  */}
-            {/* denda  */}
+            {/* total fine */}
             <div className="flex flex-col">
-              <span className="flex items-center gap-2 poppins-semibold text-sm">
+              <span className="flex items-center gap-1 poppins-semibold text-sm">
                 <Coin size={20} />
                 Denda
               </span>
@@ -122,7 +124,6 @@ export default function ListBookReturns({ data }: { data: Borrow[] }) {
                 )}
               </span>
             </div>
-            {/* end denda  */}
           </div>
           {/* end card body */}
         </div>

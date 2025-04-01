@@ -1,6 +1,8 @@
 "use client";
 
 import {
+  ArrowFatLinesLeft,
+  ArrowFatLinesRight,
   BookOpenUser,
   HouseLine,
   SignIn,
@@ -138,7 +140,7 @@ export default function NavigationBar() {
             "text-purple-500 bg-purple-200 rounded-xl scale-110"
           } transition-all duration-300 ease-in-out p-2 scale-100`}
         >
-          <BookOpenUser size={24} />
+          <ArrowFatLinesRight size={24} />
         </Link>
         <Link
           href={"/returns"}
@@ -147,7 +149,7 @@ export default function NavigationBar() {
             "text-purple-500 bg-purple-200 rounded-xl scale-110"
           } transition-all duration-300 ease-in-out p-2 scale-100`}
         >
-          <BookOpenUser size={24} />
+          <ArrowFatLinesLeft size={24} />
         </Link>
         {token && (
           <button
