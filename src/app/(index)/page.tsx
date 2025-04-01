@@ -7,17 +7,17 @@ import SubTitle from "@/components/User/SubTitle";
 import { getBooks } from "@/services";
 import { Metadata } from "next";
 
+interface Props {
+  searchParams: Promise<{ page: string; q: string }>;
+}
+
 export const metadata: Metadata = {
   title: "HOME",
   description:
     "Perpus adalah aplikasi perpustakaan online yang dibuat oleh Asep Abdul Mugni. Aplikasi ini berfungsi sebagai pengelolaan buku perpustakaan, peminjaman buku, dan pengembalian buku. Aplikasi ini dibuat dengan menggunakan teknologi Next.js dan Tailwind CSS.",
 };
 
-export default async function Home({
-  searchParams,
-}: {
-  searchParams: Promise<{ page: string; q: string }>;
-}) {
+export default async function Home({ searchParams }: Props) {
   const { page } = await searchParams;
   const { q } = await searchParams;
   const result = await getBooks(page, q);
