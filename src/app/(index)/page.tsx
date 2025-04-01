@@ -30,11 +30,13 @@ export default async function Home({
       <SubTitle>Daftar Buku</SubTitle>
       {/* END TITLE  */}
 
+      {/* LIST BOOK */}
       {result.data.length > 0 ? (
         <ListBooks books={result.data} />
       ) : (
         <NoResult q={q} />
       )}
+      {/* END LIST BOOK  */}
 
       {/* PAGINATION  */}
       <div className="mb-20">

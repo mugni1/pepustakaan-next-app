@@ -46,7 +46,6 @@ export default function Pagination({
             </span>
           </div>
           <button
-            aria-disabled
             className={`py-2 px-6 text-white transition-all ease-in-out active:scale-95 poppins-semibold rounded-lg flex items-center gap-2 ${
               !next_page_url
                 ? "bg-slate-500 cursor-not-allowed"
