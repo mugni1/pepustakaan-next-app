@@ -140,6 +140,15 @@ export default function NavigationBar() {
         >
           <BookOpenUser size={24} />
         </Link>
+        <Link
+          href={"/returns"}
+          className={`${
+            pathname == "/returns" &&
+            "text-purple-500 bg-purple-200 rounded-xl scale-110"
+          } transition-all duration-300 ease-in-out p-2 scale-100`}
+        >
+          <BookOpenUser size={24} />
+        </Link>
         {token && (
           <button
             onClick={validateLogout}
