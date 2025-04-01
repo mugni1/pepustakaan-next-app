@@ -1,6 +1,10 @@
 import BtnHref from "@/components/Admin/Button/BtnHref";
+import { Metadata } from "next";
 import React from "react";
 
+export const metadata: Metadata = {
+  title: "403 FORBIDEN",
+};
 export default function Page() {
   return (
     <div className="w-full min-h-screen flex justify-center items-center ">
