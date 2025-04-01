@@ -137,11 +137,12 @@ export async function getCountHistoryTrans(status: string, year?: string) {
 }
 
 /////////////   FOR USER   //////////////////////
-export async function getBorrowBookUser(token: Token) {
+export async function getBorrowBookUser() {
+  const auth_token = (await cookies()).get("auth_token")?.value;
   const res = await fetch(`${baseUrl}/borrowings-borrow-user`, {
     headers: {
       Accept: "application/json",
-      Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${auth_token}`,
     },
   });
   return res.json();
