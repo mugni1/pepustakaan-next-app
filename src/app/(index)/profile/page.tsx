@@ -1,26 +1,18 @@
-import BtnHref from "@/components/Admin/Button/BtnHref";
 import UserContainer from "@/components/User/Container/UserContainer";
+import { Metadata } from "next";
 import { cookies } from "next/headers";
 import Image from "next/image";
 
+export const metadata: Metadata = {
+  title: "PROFILE",
+};
+
 export default async function Page() {
   const cookieStore = await cookies();
-  const token = cookieStore.get("auth_token")?.value;
   const fullName = cookieStore.get("fullName")?.value || "Anonim";
   const username = cookieStore.get("username")?.value || "Anonim";
   const roleName = cookieStore.get("roleName")?.value || "No have role";
   const email = cookieStore.get("email")?.value || "anonim";
-
-  if (!token) {
-    return (
-      <section className="min-h-screen flex justify-center items-center flex-col gap-5">
-        <span className="poppins-semibold text-xl">
-          Harap Login Terlebih Dahulu
-        </span>
-        <BtnHref href="/login">Login</BtnHref>
-      </section>
-    );
-  }
 
   return (
     <UserContainer>
@@ -35,7 +27,7 @@ export default async function Page() {
           />
         </div>
         <h1 className="poppins-bold text-center text-xl">{fullName}</h1>
-        <div className="flex flex-col">
+        <div className="flex flex-col text-sm">
           <span className="poppins-semibold">More Information</span>
           <p>Username : {username}</p>
           <p>Email : {email}</p>
