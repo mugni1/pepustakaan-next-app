@@ -1,6 +1,9 @@
 import UserContainer from "@/components/User/Container/UserContainer";
 import ListBooks from "@/components/User/ListBooks";
+import NoResult from "@/components/User/ListBooks/NoResult";
 import PaginationUser from "@/components/User/Pagination/Pagination";
+import SearchBookForm from "@/components/User/SearchBookForm";
+import SubTitle from "@/components/User/SubTitle";
 import { getBooks } from "@/services";
 import { Metadata } from "next";
 
@@ -21,7 +24,19 @@ export default async function Home({
 
   return (
     <UserContainer>
-      <ListBooks books={result.data} />
+      <SearchBookForm />
+
+      {/* TITLE  */}
+      <SubTitle>Daftar Buku</SubTitle>
+      {/* END TITLE  */}
+
+      {result.data.length > 0 ? (
+        <ListBooks books={result.data} />
+      ) : (
+        <NoResult q={q} />
+      )}
+
+      {/* PAGINATION  */}
       <div className="mb-20">
         <PaginationUser
           url="/"
@@ -33,6 +48,7 @@ export default async function Home({
           q={q}
         />
       </div>
+      {/* END PAGINATION  */}
     </UserContainer>
   );
 }

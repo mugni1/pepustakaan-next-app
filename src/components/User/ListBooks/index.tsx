@@ -1,8 +1,9 @@
-"use client";
-import { MagnifyingGlass } from "@phosphor-icons/react";
-import { useEffect, useState } from "react";
+// "use client";
+// import { MagnifyingGlass } from "@phosphor-icons/react";
+// import { useEffect, useState } from "react";
 import SubTitle from "../SubTitle";
 import Image from "next/image";
+// import NoResult from "./NoResult";
 
 interface Book {
   id: number;
@@ -12,21 +13,21 @@ interface Book {
   stock: number;
 }
 
-export default function ListBooks({ books }: { books: Book[] }) {
-  const [datas, setDatas] = useState(books || []);
-  const [keyword, setKeyword] = useState("");
+export default function ListBooks({ books, q }: { books: Book[]; q?: string }) {
+  // const [datas, setDatas] = useState(books || []);
+  // const [keyword, setKeyword] = useState("");
 
-  useEffect(() => {
-    if (keyword.length > 0) {
-      setDatas(books.filter((book: Book) => book.title.includes(keyword)));
-    } else {
-      setDatas(books);
-    }
-  }, [keyword, books]);
+  // useEffect(() => {
+  //   if (keyword.length > 0) {
+  //     setDatas(books.filter((book: Book) => book.title.includes(keyword)));
+  //   } else {
+  //     setDatas(books);
+  //   }
+  // }, [keyword, books]);
   return (
     <>
       {/* search and add button  */}
-      <section className="w-full flex items-center justify-between mb-5">
+      {/* <section className="w-full flex items-center justify-between mb-5">
         <div className="relative h-fit w-auto group text-slate-600">
           <span className="absolute h-full flex items-center px-2">
             <MagnifyingGlass size={20} />
@@ -39,12 +40,11 @@ export default function ListBooks({ books }: { books: Book[] }) {
             onChange={(e) => setKeyword(e.target.value)}
           />
         </div>
-      </section>
+      </section> */}
       {/* end search  and add button */}
 
-      <SubTitle>Terbaru</SubTitle>
       <section className="w-full grid grid-cols-2 md:grid-cols-4 xl:grid-cols-5 gap-5 mt-2">
-        {datas?.map((book: Book, index) => (
+        {books?.map((book: Book, index) => (
           <div
             key={book.id + index}
             className="columns-1 rounded-xl shadow-lg border border-slate-200 overflow-hidden"
