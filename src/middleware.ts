@@ -15,19 +15,24 @@ export function middleware(request: NextRequest) {
     }
   }
 
-  if (pathname == "/") {
+  // cek apakah user role nya superUser
+  if (
+    pathname == "/" ||
+    pathname === "/profile" ||
+    pathname === "/borrowings" ||
+    pathname === "/returns"
+  ) {
     if (roleName == "superUser") {
       return NextResponse.redirect(new URL("/dashboard/home", request.nextUrl));
     }
   }
 
-  if (pathname == "/borrowings") {
-    if (roleName == "superUser") {
-      return NextResponse.redirect(new URL("/dashboard/home", request.nextUrl));
-    }
-  }
-
-  if (pathname === "/profile" || pathname === "/borrowings") {
+  // middleware for check user login
+  if (
+    pathname === "/profile" ||
+    pathname === "/borrowings" ||
+    pathname === "/returns"
+  ) {
     if (!token) {
       return NextResponse.rewrite(new URL("/forbiden", request.nextUrl));
     }
@@ -41,7 +46,6 @@ export function middleware(request: NextRequest) {
     if (!token) {
       return NextResponse.redirect(new URL("/login", request.nextUrl));
     }
-
     if (roleName === "user") {
       return NextResponse.redirect(new URL("/", request.nextUrl));
     }
