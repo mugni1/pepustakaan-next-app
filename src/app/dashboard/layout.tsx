@@ -9,7 +9,6 @@ import { useRouter } from "next/navigation";
 
 export default function Layout({ children }: { children: ReactNode }) {
   const [sidebar, setSidebar] = useState(false);
-
   const token = Cookies.get("auth_token");
   const router = useRouter();
 
@@ -65,11 +64,8 @@ export default function Layout({ children }: { children: ReactNode }) {
           >
             <SidebarSimple size={28} />
           </button>
-          {/* end btn side bar */}
-
           {/* clock real time  */}
           <TimeNow />
-          {/* end clock real time  */}
         </nav>
         {/* END NAVBAR  */}
 
