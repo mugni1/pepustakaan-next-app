@@ -16,12 +16,6 @@ export default async function Page() {
       </h1>
       <h3 className="poppins-semibold">Total {borrows.data?.length ?? 0}</h3>
       <ListBookBorrows data={borrows.data} />
-
-      <h1 className="poppins-bold text-lg xl:text-2xl text-transparent bg-clip-text bg-gradient-to-br from-fuchsia-500 to-purple-500 mt-5 mb-1">
-        Buku Yang Sudah Di Kembalikan
-      </h1>
-      <h3 className="poppins-semibold">Total {returns.data?.length ?? 0}</h3>
-      <ListBookReturns data={returns.data} />
     </UserContainer>
   );
 }

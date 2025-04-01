@@ -85,8 +85,9 @@ export default function ListBookBorrows({ data }: { data: Borrow[] }) {
                       return (
                         <>
                           <div className="text-red-500">
-                            Sudah lewat {lateDays > 0 && `${lateDays} hari`},
-                            denda
+                            {lateDays > 0
+                              ? `Sudah lewat ${lateDays} hari, denda`
+                              : "Segera kembalikan, denda"}
                           </div>
                           <div className="text-red-500 poppins-semibold">
                             Rp{" "}
