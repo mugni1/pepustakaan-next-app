@@ -1,9 +1,7 @@
 "use client";
-
 import {
   ArrowFatLinesLeft,
   ArrowFatLinesRight,
-  BookOpenUser,
   HouseLine,
   SignIn,
   SignOut,

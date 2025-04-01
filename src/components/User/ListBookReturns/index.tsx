@@ -1,5 +1,5 @@
 "use client";
-import { CalendarDots, CashRegister, Coin, Money } from "@phosphor-icons/react";
+import { CashRegister, Coin } from "@phosphor-icons/react";
 import Image from "next/image";
 import { useState } from "react";
 

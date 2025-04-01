@@ -5,11 +5,9 @@ import React, { ReactNode } from "react";
 export default function SubTitle2({
   children,
   className = "bg-purple-600",
-  total = "0",
 }: {
   children: ReactNode;
   className?: string;
-  total?: string;
 }) {
   return (
     <section className={`mb-3 w-full flex items-center `}>
