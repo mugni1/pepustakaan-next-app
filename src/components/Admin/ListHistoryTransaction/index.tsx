@@ -4,15 +4,14 @@ import Container from "../Container";
 import MainContainer from "../MainContainer";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 interface Book {
   title: string;
 }
-
 interface User {
   username: string;
 }
-
 interface Transaction {
   id: number;
   actual_return_date: string;
@@ -54,6 +53,8 @@ export default function HistoryTransactionsList({
     }
   }, [keyword, datas]);
 
+  // usePathname()
+  const pathName = usePathname();
   return (
     <MainContainer>
       {/* search  */}
@@ -126,11 +127,34 @@ export default function HistoryTransactionsList({
                   <span>Rp{HT.amount.toLocaleString("id-ID")}</span>
                 </td>
                 <td className="text-center px-1 py-2">
-                  <button className=" p-2 rounded-full bg-sky-500 text-white cursor-pointer">
-                    <Link href={"transaction-history/" + HT.id}>
-                      <Eye size={24} />
+                  {pathName == "/dashboard/history-transaction-all" && (
+                    <Link href={"transaction-history-all/" + HT.id}>
+                      <button className=" p-2 rounded-full bg-sky-500 text-white cursor-pointer">
+                        <Eye size={24} />
+                      </button>
                     </Link>
-                  </button>
+                  )}
+                  {pathName == "/dashboard/history-transaction-borrow" && (
+                    <Link href={"transaction-history-borrow/" + HT.id}>
+                      <button className=" p-2 rounded-full bg-sky-500 text-white cursor-pointer">
+                        <Eye size={24} />
+                      </button>
+                    </Link>
+                  )}
+                  {pathName == "/dashboard/history-transaction-return" && (
+                    <Link href={"transaction-history-return/" + HT.id}>
+                      <button className=" p-2 rounded-full bg-sky-500 text-white cursor-pointer">
+                        <Eye size={24} />
+                      </button>
+                    </Link>
+                  )}
+                  {pathName == "/dashboard/history-transaction-fine" && (
+                    <Link href={"transaction-history-fine/" + HT.id}>
+                      <button className=" p-2 rounded-full bg-sky-500 text-white cursor-pointer">
+                        <Eye size={24} />
+                      </button>
+                    </Link>
+                  )}
                 </td>
               </tr>
             ))}

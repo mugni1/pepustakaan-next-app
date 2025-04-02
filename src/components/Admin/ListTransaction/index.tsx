@@ -234,7 +234,6 @@ export default function TransactionList({ data }: { data: Props[] }) {
                 {/* end return  show  */}
               </tr>
             ))}
-
             {datas?.length == 0 && (
               <tr className="border-b">
                 <td
