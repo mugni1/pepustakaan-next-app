@@ -4,15 +4,9 @@ interface User {
   full_name: string;
   username: string;
   email: string;
-  role: string;
 }
 
-export default function InformationUser({
-  full_name,
-  username,
-  email,
-  role,
-}: User) {
+export default function InformationUser({ full_name, username, email }: User) {
   return (
     <section className="w-full flex flex-col my-4">
       <h2 className="font-semibold text-xl poppins-semibold mb-1">
@@ -24,7 +18,6 @@ export default function InformationUser({
             <th className="py-3 w-3/12">Nama Lengkap</th>
             <th className="w-3/12">Username</th>
             <th className="w-3/12">Email</th>
-            <th className="w-3/12">Role</th>
           </tr>
         </thead>
         <tbody>
@@ -32,7 +25,6 @@ export default function InformationUser({
             <td className="text-center py-3 w-3/12">{full_name}</td>
             <td className="text-center w-3/12">{username}</td>
             <td className="text-center w-3/12">{email}</td>
-            <td className="text-center w-3/12">{role}</td>
           </tr>
         </tbody>
       </table>

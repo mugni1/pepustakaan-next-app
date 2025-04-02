@@ -199,11 +199,27 @@ export default function TransactionList({ data }: { data: Props[] }) {
                 </td>
                 {/* return  show  */}
                 <td className="text-center px-1  py-2">
-                  <Link href={`/dashboard/transaction/` + data.id}>
-                    <button className=" p-2 rounded-full bg-sky-500 text-white cursor-pointer">
-                      <Eye size={24} />
-                    </button>
-                  </Link>
+                  {pathName == "/dashboard/transaction-borrow" && (
+                    <Link href={`/dashboard/transaction-borrow/${data.id}`}>
+                      <button className=" p-2 rounded-full bg-sky-500 text-white cursor-pointer">
+                        <Eye size={24} />
+                      </button>
+                    </Link>
+                  )}
+                  {pathName == "/dashboard/transaction-return" && (
+                    <Link href={`/dashboard/transaction-return/${data.id}`}>
+                      <button className=" p-2 rounded-full bg-sky-500 text-white cursor-pointer">
+                        <Eye size={24} />
+                      </button>
+                    </Link>
+                  )}
+                  {pathName == "/dashboard/transaction-late" && (
+                    <Link href={`/dashboard/transaction-late/${data.id}`}>
+                      <button className=" p-2 rounded-full bg-sky-500 text-white cursor-pointer">
+                        <Eye size={24} />
+                      </button>
+                    </Link>
+                  )}
                 </td>
                 {data.status == "dipinjam" && (
                   <td className="text-center px-1  py-2">

@@ -40,7 +40,6 @@ export default async function Page({
           full_name={data.borrowing.user?.full_name ?? "-"}
           username={data.borrowing.user?.username ?? "-"}
           email={data.borrowing.user?.email ?? "-"}
-          role={data.borrowing.user?.roles?.name || "-"}
         />
       </Container>
     </MainContainer>
