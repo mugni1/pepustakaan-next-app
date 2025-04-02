@@ -128,28 +128,28 @@ export default function HistoryTransactionsList({
                 </td>
                 <td className="text-center px-1 py-2">
                   {pathName == "/dashboard/history-transaction-all" && (
-                    <Link href={"transaction-history-all/" + HT.id}>
+                    <Link href={"history-transaction-all/" + HT.id}>
                       <button className=" p-2 rounded-full bg-sky-500 text-white cursor-pointer">
                         <Eye size={24} />
                       </button>
                     </Link>
                   )}
                   {pathName == "/dashboard/history-transaction-borrow" && (
-                    <Link href={"transaction-history-borrow/" + HT.id}>
+                    <Link href={"history-transaction-borrow/" + HT.id}>
                       <button className=" p-2 rounded-full bg-sky-500 text-white cursor-pointer">
                         <Eye size={24} />
                       </button>
                     </Link>
                   )}
                   {pathName == "/dashboard/history-transaction-return" && (
-                    <Link href={"transaction-history-return/" + HT.id}>
+                    <Link href={"history-transaction-return/" + HT.id}>
                       <button className=" p-2 rounded-full bg-sky-500 text-white cursor-pointer">
                         <Eye size={24} />
                       </button>
                     </Link>
                   )}
                   {pathName == "/dashboard/history-transaction-fine" && (
-                    <Link href={"transaction-history-fine/" + HT.id}>
+                    <Link href={"history-transaction-fine/" + HT.id}>
                       <button className=" p-2 rounded-full bg-sky-500 text-white cursor-pointer">
                         <Eye size={24} />
                       </button>
