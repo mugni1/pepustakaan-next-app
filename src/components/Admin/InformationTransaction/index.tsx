@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
+import Countdown from "react-countdown";
 
 interface InformationTrans {
   id: number | string;
@@ -33,6 +35,14 @@ function getTotalDelay(return_date: string, actual_return_date: string) {
   return totalDelay;
 }
 
+function getLateDay(return_date: string) {
+  const returnDate = new Date(return_date).getTime();
+  const currentDate = new Date().getTime();
+  const lateTime = currentDate - returnDate;
+  const lateDays = Math.floor(lateTime / (1000 * 60 * 60 * 24));
+  return lateDays;
+}
+
 export default function InformationTransaction({
   id,
   borrow_date,
@@ -42,6 +52,10 @@ export default function InformationTransaction({
   status,
   amount,
 }: InformationTrans) {
+  const [startCoutdown, setStartCoutdown] = useState(false);
+  useEffect(() => {
+    setStartCoutdown(true);
+  }, []);
   return (
     <>
       {/* header  */}
@@ -98,7 +112,7 @@ export default function InformationTransaction({
             {/* total fine  */}
             <tr>
               <td>Total denda</td>
-              {status == "terlambat" && (
+              {status == "terlambat" || status == "denda" ? (
                 <td>
                   <span className="text-red-500">
                     : Rp
@@ -111,15 +125,61 @@ export default function InformationTransaction({
                     hari
                   </span>
                 </td>
-              )}
-              {/* for history  */}
-              {!amount ? (
-                status != "terlambat" && <td>: Tidak ada denda</td>
               ) : (
-                <td className="text-red-500">
-                  : Rp{amount.toLocaleString("id-ID")} - Telat{" "}
-                  {getTotalDelay(return_date, actual_return_date)} hari
+                <td>
+                  <span>: -</span>
                 </td>
+              )}
+            </tr>
+            {/* coutdown  */}
+            <tr>
+              <td>Hitung mundur</td>
+              {status == "dipinjam" || status == "peminjaman" ? (
+                <td>
+                  {startCoutdown ? (
+                    <Countdown
+                      date={new Date(return_date).getTime()} // tujuan
+                      daysInHours={true}
+                      renderer={({
+                        days,
+                        hours,
+                        minutes,
+                        seconds,
+                        completed,
+                      }) => {
+                        if (completed) {
+                          const late = getLateDay(return_date);
+                          const fine = late * daily_fine;
+                          if (late > 0) {
+                            return (
+                              <span className="text-red-500">
+                                : Telat mengembalikan {late} hari, Denda Rp
+                                {fine.toLocaleString("id-ID")}
+                              </span>
+                            );
+                          } else {
+                            return (
+                              <span className="text-red-500">
+                                : Waktu pengembalian hampir berakhir
+                              </span>
+                            );
+                          }
+                        } else {
+                          return (
+                            <span className="text-green-500">
+                              : {days} Hari, {hours} Jam : {minutes} Mnt :{" "}
+                              {seconds} detik
+                            </span>
+                          );
+                        }
+                      }}
+                    />
+                  ) : (
+                    <span>: Memuat..</span>
+                  )}
+                </td>
+              ) : (
+                <td>: -</td>
               )}
             </tr>
           </tbody>
