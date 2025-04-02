@@ -1,4 +1,5 @@
 import BookDetails from "@/components/Admin/BookDetail";
+import BtnHref from "@/components/Admin/Button/BtnHref";
 import Container from "@/components/Admin/Container";
 import InformationTransaction from "@/components/Admin/InformationTransaction";
 import InformationUser from "@/components/Admin/InformationUser";
@@ -14,6 +15,9 @@ export default async function Page({
   const { data } = await getHistoryTransactionDetails(id);
   return (
     <MainContainer>
+      <div className="mb-5 flex">
+        <BtnHref href="/dashboard/history-transaction-borrow">Kembali</BtnHref>
+      </div>
       <Container>
         <InformationTransaction
           id={data.borrowing.id}
