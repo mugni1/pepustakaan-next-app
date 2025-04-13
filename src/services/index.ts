@@ -56,19 +56,29 @@ export async function getMember(page: string) {
 }
 
 // ADMIN LIST
-export async function getAdminList(page: string) {
+export async function getAdmin(page: string, keyword: string) {
   const auth_token = (await cookies()).get("auth_token")?.value;
-  const url = !page
-    ? `${baseUrl}/users-superUser`
-    : `${baseUrl}/users-superUser?page=${page}`;
-
+  let url = `${baseUrl}/users-superUser`;
+  if (page) {
+    if (page && keyword) {
+      url = `${baseUrl}/users-superUser?page=${page}&keyword=${keyword}`;
+    } else {
+      url = `${baseUrl}/users-superUser?page=${page}`;
+    }
+  }
+  if (keyword) {
+    if (page && keyword) {
+      url = `${baseUrl}/users-superUser?page=${page}&keyword=${keyword}`;
+    } else {
+      url = `${baseUrl}/users-superUser?keyword=${keyword}`;
+    }
+  }
   const res = await fetch(url, {
     headers: {
       Accept: "application/json",
       Authorization: `Bearer ${auth_token}`,
     },
   });
-
   return res.json();
 }
 

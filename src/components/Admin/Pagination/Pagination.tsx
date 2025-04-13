@@ -5,6 +5,7 @@ import { ArrowCircleLeft, ArrowCircleRight } from "@phosphor-icons/react";
 import { useRouter } from "next/navigation";
 
 interface Props {
+  keyword: string;
   url: string;
   current_page: number;
   from: number;
@@ -14,6 +15,7 @@ interface Props {
 }
 
 export default function Pagination({
+  keyword = "",
   url,
   current_page,
   from = 0,
@@ -32,7 +34,9 @@ export default function Pagination({
               : "bg-gradient-to-r from-fuchsia-600 to-purple-600 cursor-pointer"
           }`}
           disabled={!prev_page_url}
-          onClick={() => router.push(`${url}?page=${current_page - 1}`)}
+          onClick={() =>
+            router.push(`${url}?page=${current_page - 1}&keyword=${keyword}`)
+          }
         >
           <ArrowCircleLeft size={28} />
           <span>Sebelumnya</span>
@@ -50,7 +54,9 @@ export default function Pagination({
               : "bg-gradient-to-r from-fuchsia-600 to-purple-600 cursor-pointer"
           }`}
           disabled={!next_page_url}
-          onClick={() => router.push(`${url}?page=${current_page + 1}`)}
+          onClick={() =>
+            router.push(`${url}?page=${current_page + 1}&keyword=${keyword}`)
+          }
         >
           <span>Selanjutnya</span>
           <ArrowCircleRight size={28} />

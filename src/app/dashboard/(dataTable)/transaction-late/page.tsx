@@ -7,6 +7,7 @@ import { cookies } from "next/headers";
 export const metadata: Metadata = {
   title: "Dashboard - Transaction Late",
 };
+
 const baseUrl = process.env.NEXT_PUBLIC_BASE_API_URL;
 
 export default async function Page({
