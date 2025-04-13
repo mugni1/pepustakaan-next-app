@@ -40,7 +40,8 @@ export default function SearchAddBtn({
         <input
           type="text"
           className="py-1 ps-2 border border-slate-400 rounded-md bg-white outline-purple-500 pe-9 shadow-md"
-          placeholder="Cari Anggota"
+          placeholder="Cari..."
+          required
           onChange={(e) => setKey(e.target.value)}
         />
       </form>

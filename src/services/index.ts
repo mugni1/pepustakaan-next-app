@@ -41,11 +41,23 @@ export async function getCategorys() {
 }
 
 // ANGGOTA LIST
-export async function getMember(page: string) {
+export async function getMember(page: string, keyword: string) {
   const auth_token = (await cookies()).get("auth_token")?.value;
-  const url = !page
-    ? `${baseUrl}/users-user`
-    : `${baseUrl}/users-user?page=${page}`;
+  let url = `${baseUrl}/users-user`;
+  if (page) {
+    if (page && keyword) {
+      url = `${baseUrl}/users-user?page=${page}&keyword=${keyword}`;
+    } else {
+      url = `${baseUrl}/users-user?page=${page}`;
+    }
+  }
+  if (keyword) {
+    if (page && keyword) {
+      url = `${baseUrl}/users-user?page=${page}&keyword=${keyword}`;
+    } else {
+      url = `${baseUrl}/users-user?keyword=${keyword}`;
+    }
+  }
   const res = await fetch(url, {
     headers: {
       Accept: "application/json",
