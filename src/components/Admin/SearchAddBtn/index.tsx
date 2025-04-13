@@ -2,14 +2,18 @@
 import BtnHref from "@/components/Admin/Button/BtnHref";
 import { MagnifyingGlass } from "@phosphor-icons/react";
 import { usePathname, useRouter } from "next/navigation";
-import React, { useState } from "react";
-import { AiOutlineUserAdd } from "react-icons/ai";
+import React, { ReactNode, useState } from "react";
 
-export default function SearchAddBtn() {
+export default function SearchAddBtn({
+  addLink,
+  children,
+}: {
+  addLink: string;
+  children: ReactNode;
+}) {
   const pathName = usePathname();
   const router = useRouter();
   const [key, setKey] = useState<string>("");
-  const addLink = pathName == "/dashboard/member" ? "member/add" : "admin/add";
 
   function handleSearch() {
     event?.preventDefault();
@@ -19,9 +23,7 @@ export default function SearchAddBtn() {
   return (
     <section className="w-full flex items-center justify-between mb-5">
       {/* btn href  */}
-      <BtnHref href={addLink}>
-        <AiOutlineUserAdd size={24} /> Tambah
-      </BtnHref>
+      <BtnHref href={addLink}>{children}</BtnHref>
       {/* end btn href  */}
 
       {/* search */}

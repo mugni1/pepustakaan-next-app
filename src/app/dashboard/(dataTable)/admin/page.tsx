@@ -2,8 +2,9 @@ import MemberAndAdminList from "@/components/Admin/ListAdminAndMember";
 import Pagination from "@/components/Admin/Pagination/Pagination";
 import { getAdmin } from "@/services";
 import { Metadata } from "next";
-import SearchAddBtn from "./SearchAddBtn";
 import MainContainer from "@/components/Admin/MainContainer";
+import { AiOutlineUserAdd } from "react-icons/ai";
+import SearchAddBtn from "@/components/Admin/SearchAddBtn";
 
 export const metadata: Metadata = {
   title: "Dashboard - Admin",
@@ -19,7 +20,9 @@ export default async function Page({
 
   return (
     <MainContainer>
-      <SearchAddBtn />
+      <SearchAddBtn addLink="admin/add">
+        <AiOutlineUserAdd size={24} /> Tambah
+      </SearchAddBtn>
 
       <MemberAndAdminList members={result.data} />
 
