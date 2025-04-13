@@ -2,6 +2,8 @@ import MemberAndAdminList from "@/components/Admin/ListAdminAndMember";
 import Pagination from "@/components/Admin/Pagination/Pagination";
 import { getAdminList } from "@/services";
 import React from "react";
+import SearchAddBtn from "./SearchAddBtn";
+import MainContainer from "@/components/Admin/MainContainer";
 
 export default async function Page({
   searchParams,
@@ -11,7 +13,8 @@ export default async function Page({
   const { page } = await searchParams;
   const result = await getAdminList(page);
   return (
-    <>
+    <MainContainer>
+      <SearchAddBtn />
       <MemberAndAdminList members={result.data} />
       <Pagination
         url="/dashboard/admin"
@@ -21,6 +24,6 @@ export default async function Page({
         next_page_url={result.links.next}
         prev_page_url={result.links.prev}
       />
-    </>
+    </MainContainer>
   );
 }
