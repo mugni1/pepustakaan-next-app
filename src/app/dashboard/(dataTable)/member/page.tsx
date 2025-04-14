@@ -4,6 +4,7 @@ import Pagination from "@/components/Admin/Pagination/Pagination";
 import SearchAddBtn from "@/components/Admin/SearchAddBtn";
 import { getMember } from "@/services";
 import { Metadata } from "next";
+import { AiOutlineUserAdd } from "react-icons/ai";
 
 export const metadata: Metadata = {
   title: "Dashboard - Member",
@@ -19,7 +20,10 @@ export default async function Page({
 
   return (
     <MainContainer>
-      <SearchAddBtn addLink="member/add">Tambah</SearchAddBtn>
+      <SearchAddBtn addLink="member/add">
+        {" "}
+        <AiOutlineUserAdd size={24} /> Tambah
+      </SearchAddBtn>
       <MemberAndAdminList members={result.data} />
       <Pagination
         keyword={keyword}
