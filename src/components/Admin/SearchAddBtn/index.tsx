@@ -21,7 +21,11 @@ export default function SearchAddBtn({
   }
 
   return (
-    <section className={`w-full flex items-center justify-between  mb-5`}>
+    <section
+      className={`w-full flex items-center  mb-5 ${
+        !addLink ? "justify-end" : "justify-between"
+      }`}
+    >
       {/* btn href  */}
       {addLink && <BtnHref href={addLink}>{children}</BtnHref>}
       {/* end btn href  */}
