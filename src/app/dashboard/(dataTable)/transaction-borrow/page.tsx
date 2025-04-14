@@ -1,6 +1,6 @@
 import Pagination from "@/components/Admin/Pagination/Pagination";
 import TransactionList from "@/components/Admin/ListTransaction";
-import { getTransactionBorrow } from "@/services";
+import { getTransaction } from "@/services";
 import { Metadata } from "next";
 import MainContainer from "@/components/Admin/MainContainer";
 import SearchAddBtn from "@/components/Admin/SearchAddBtn";
@@ -16,7 +16,7 @@ export default async function Page({
   searchParams: Promise<{ page: string; keyword: string }>;
 }) {
   const { page, keyword } = await searchParams;
-  const { data } = await getTransactionBorrow(page, keyword);
+  const { data } = await getTransaction("/borrowings-borrow", page, keyword);
 
   return (
     <MainContainer>

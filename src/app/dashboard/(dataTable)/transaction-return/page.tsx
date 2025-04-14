@@ -1,23 +1,21 @@
 import Pagination from "@/components/Admin/Pagination/Pagination";
 import TransactionList from "@/components/Admin/ListTransaction";
-import { getTransactionReturn } from "@/services";
+import { getTransaction } from "@/services";
 import { Metadata } from "next";
 import MainContainer from "@/components/Admin/MainContainer";
 import SearchAddBtn from "@/components/Admin/SearchAddBtn";
 
 export const metadata: Metadata = {
-  title: "Dashboard - Borrowings",
+  title: "Dashboard - Transaction Return",
 };
-const baseUrl = process.env.NEXT_PUBLIC_BASE_API_URL;
 
 export default async function Page({
   searchParams,
 }: {
   searchParams: Promise<{ page: string; keyword: string }>;
 }) {
-  // url
   const { page, keyword } = await searchParams;
-  const { data } = await getTransactionReturn(page, keyword);
+  const { data } = await getTransaction("/borrowings-return", page, keyword);
 
   return (
     <MainContainer>
@@ -25,7 +23,7 @@ export default async function Page({
       <TransactionList data={data.data} />
       <Pagination
         keyword={keyword}
-        url="/dashboard/transaction-borrow"
+        url="/dashboard/transaction-return"
         current_page={data.current_page}
         from={data.from}
         to={data.to}

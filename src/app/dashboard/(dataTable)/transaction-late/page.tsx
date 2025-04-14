@@ -1,13 +1,12 @@
 import Pagination from "@/components/Admin/Pagination/Pagination";
 import TransactionList from "@/components/Admin/ListTransaction";
-import { getTransactionLate } from "@/services";
+import { getTransaction } from "@/services";
 import { Metadata } from "next";
 import MainContainer from "@/components/Admin/MainContainer";
 import SearchAddBtn from "@/components/Admin/SearchAddBtn";
-import { TbArrowBigRightLines } from "react-icons/tb";
 
 export const metadata: Metadata = {
-  title: "Dashboard - Transaction Borrow",
+  title: "Dashboard - Transaction Late",
 };
 
 export default async function Page({
@@ -16,16 +15,15 @@ export default async function Page({
   searchParams: Promise<{ page: string; keyword: string }>;
 }) {
   const { page, keyword } = await searchParams;
-  const { data } = await getTransactionLate(page, keyword);
+  const { data } = await getTransaction("/borrowings-late", page, keyword);
 
   return (
     <MainContainer>
       <SearchAddBtn />
-
       <TransactionList data={data?.data} />
       <Pagination
         keyword={keyword}
-        url="/dashboard/transaction-borrow"
+        url="/dashboard/transaction-late"
         current_page={data.current_page}
         from={data.from}
         to={data.to}
