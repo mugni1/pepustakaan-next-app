@@ -286,6 +286,31 @@ export async function getHistoryTransactionReturn(
   });
   return res.json();
 }
+export async function getHistoryTransactionFine(page: string, keyword: string) {
+  const auth_token = (await cookies()).get("auth_token")?.value;
+  let url = `${baseUrl}/transactions-fine`;
+  if (page) {
+    if (page && keyword) {
+      url = `${baseUrl}/transactions-fine?page=${page}&keyword=${keyword}`;
+    } else {
+      url = `${baseUrl}/transactions-fine?page=${page}`;
+    }
+  }
+  if (keyword) {
+    if (page && keyword) {
+      url = `${baseUrl}/transactions-fine?page=${page}&keyword=${keyword}`;
+    } else {
+      url = `${baseUrl}/transactions-fine?keyword=${keyword}`;
+    }
+  }
+  const res = await fetch(url, {
+    headers: {
+      Accept: "application/json",
+      Authorization: `Bearer ${auth_token}`,
+    },
+  });
+  return res.json();
+}
 
 export async function getHistoryTransactionDetails(id: string) {
   const auth_token = (await cookies()).get("auth_token")?.value;
