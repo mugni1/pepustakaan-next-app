@@ -1,10 +1,12 @@
 "use client";
 import BtnClick from "@/components/Admin/Button/BtnClick";
 import BtnHref from "@/components/Admin/Button/BtnHref";
-import { useEffect } from "react";
+import axios from "axios";
+import swal from "sweetalert";
+import { useEffect, useRef, useState } from "react";
+import Cookies from "js-cookie";
 import React from "react";
 import { toast } from "react-toastify";
-import { createBorrow } from "@/_actions";
 
 interface Member {
   id: number;
@@ -24,18 +26,58 @@ export default function FormAdd({
   books: Book[];
   members: Member[];
 }) {
+  //token
+  const token = Cookies.get("auth_token");
+  const [usernameID, setUsernameID] = useState("");
+  const [titleID, setTitleID] = useState("");
+  const returnDate = useRef<HTMLInputElement>(null);
+  const dailyFine = useRef<HTMLInputElement>(null);
+
+  // handle Submit
+  const handleSubmit = () => {
+    event?.preventDefault();
+    axios({
+      method: "post",
+      url: `${process.env.NEXT_PUBLIC_BASE_API_URL}/borrowings`,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      data: {
+        user_id: usernameID,
+        book_id: titleID,
+        return_date: returnDate.current?.value,
+        daily_fine: dailyFine.current?.value,
+      },
+    })
+      .then(() => {
+        swal({
+          icon: "success",
+          title: "Success!",
+          text: "Berhasil Meminjam Buku",
+        });
+      })
+      .catch((err) => {
+        swal({
+          icon: "error",
+          title: "Error!",
+          text: err.response.data.message,
+        });
+      });
+  };
+
   useEffect(() => {
     toast.info("Omagaaaaaaaa");
   }, []);
   return (
-    <form action={createBorrow}>
+    <form onSubmit={handleSubmit}>
       {/* input  */}
       <section className="w-full grid grid-cols-2 gap-5 mb-5">
         {/* select members  */}
         <select
           required
           className="py-1 px-2 outline-purple-600 border border-slate-400 rounded-md text-slate-600"
-          name="memberID"
+          value={usernameID}
+          onChange={(e) => setUsernameID(e.target.value)}
         >
           <option value="" disabled>
             - Pilih Anggota -
@@ -51,7 +93,8 @@ export default function FormAdd({
         <select
           required
           className="py-1 px-2 outline-purple-600 border border-slate-400 rounded-md text-slate-600"
-          name="bookID"
+          value={titleID}
+          onChange={(e) => setTitleID(e.target.value)}
         >
           <option value="">- Pilih Buku -</option>
           {books.map((book: Book, index) => (
@@ -68,7 +111,7 @@ export default function FormAdd({
             className="py-1 px-2 outline-purple-600 border border-slate-400 rounded-md text-slate-600"
             type="date"
             id="returnDate"
-            name="returnDate"
+            ref={returnDate}
           />
         </div>
         <div className="w-full flex flex-col">
@@ -79,7 +122,7 @@ export default function FormAdd({
             type="number"
             placeholder="30000"
             id="dailyFine"
-            name="dailyFine"
+            ref={dailyFine}
           />
         </div>
       </section>
