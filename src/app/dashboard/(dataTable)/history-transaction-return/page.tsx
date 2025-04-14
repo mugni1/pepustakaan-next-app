@@ -3,20 +3,19 @@ import MainContainer from "@/components/Admin/MainContainer";
 import Pagination from "@/components/Admin/Pagination/Pagination";
 import SearchAddBtn from "@/components/Admin/SearchAddBtn";
 import { getHistoryTransactionReturn } from "@/services";
-// base url from env
-const baseURL = process.env.NEXT_PUBLIC_BASE_API_URL;
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Dashboard - History Transaction Reuturn",
+};
 
 export default async function Page({
   searchParams,
 }: {
   searchParams: Promise<{ page: string; keyword: string }>;
 }) {
-  // params
   const { page, keyword } = await searchParams;
-  // fetch data
   const { data } = await getHistoryTransactionReturn(page, keyword);
-
-  // render
   return (
     <MainContainer>
       <SearchAddBtn />

@@ -3,6 +3,11 @@ import MainContainer from "@/components/Admin/MainContainer";
 import Pagination from "@/components/Admin/Pagination/Pagination";
 import SearchAddBtn from "@/components/Admin/SearchAddBtn";
 import { getHistoryTransactionFine } from "@/services";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Dashboard - History Transaction Return",
+};
 
 export default async function Page({
   searchParams,
