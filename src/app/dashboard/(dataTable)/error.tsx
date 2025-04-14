@@ -2,7 +2,6 @@
 import BtnClick from "@/components/Admin/Button/BtnClick";
 import MainContainer from "@/components/Admin/MainContainer";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
 
 export default function ErrorPage({
   reset,
@@ -11,14 +10,10 @@ export default function ErrorPage({
   reset: () => void;
 }) {
   const router = useRouter();
-  const [retry, setRetry] = useState(false);
-
-  useEffect(() => {
-    if (retry) {
-      reset(); // Hapus error state
-      router.refresh(); // Refresh data dari API
-    }
-  }, [retry, reset, router]);
+  function handleRetry() {
+    reset(); // Hapus error state
+    router.refresh(); // Refresh data dari API
+  }
   return (
     <MainContainer>
       <section className="mt-40 flex justify-center items-center flex-col">
@@ -27,7 +22,7 @@ export default function ErrorPage({
           Terjadi Kesalahan
         </h1>
         <BtnClick
-          click={() => setRetry(true)}
+          click={() => handleRetry()}
           className="bg-gradient-to-r from-fuchsia-500 to-purple-600"
         >
           Coba Lagi
