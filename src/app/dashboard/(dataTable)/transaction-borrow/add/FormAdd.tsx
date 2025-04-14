@@ -6,6 +6,7 @@ import swal from "sweetalert";
 import { useEffect, useRef, useState } from "react";
 import Cookies from "js-cookie";
 import React from "react";
+import { toast } from "react-toastify";
 
 interface Member {
   id: number;
@@ -63,6 +64,10 @@ export default function FormAdd({
         });
       });
   };
+
+  useEffect(() => {
+    toast.info("Omagaaaaaaaa");
+  }, []);
   return (
     <form onSubmit={handleSubmit}>
       {/* input  */}
