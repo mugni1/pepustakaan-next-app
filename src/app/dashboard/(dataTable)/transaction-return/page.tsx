@@ -1,8 +1,9 @@
 import Pagination from "@/components/Admin/Pagination/Pagination";
 import TransactionList from "@/components/Admin/ListTransaction";
-import { getTransaction } from "@/services";
+import { getTransactionReturn } from "@/services";
 import { Metadata } from "next";
-import { cookies } from "next/headers";
+import MainContainer from "@/components/Admin/MainContainer";
+import SearchAddBtn from "@/components/Admin/SearchAddBtn";
 
 export const metadata: Metadata = {
   title: "Dashboard - Borrowings",
@@ -12,24 +13,18 @@ const baseUrl = process.env.NEXT_PUBLIC_BASE_API_URL;
 export default async function Page({
   searchParams,
 }: {
-  searchParams: Promise<{ page: string }>;
+  searchParams: Promise<{ page: string; keyword: string }>;
 }) {
-  const cookieStore = await cookies();
-  const authToken = cookieStore.get("auth_token")?.value;
-
   // url
-  const { page } = await searchParams;
-  let url = baseUrl + "/borrowings-return?page=" + page;
-  if (!page) {
-    url = baseUrl + "/borrowings-return";
-  }
-
-  const { data } = await getTransaction(authToken, url);
+  const { page, keyword } = await searchParams;
+  const { data } = await getTransactionReturn(page, keyword);
 
   return (
-    <>
+    <MainContainer>
+      <SearchAddBtn />
       <TransactionList data={data.data} />
       <Pagination
+        keyword={keyword}
         url="/dashboard/transaction-borrow"
         current_page={data.current_page}
         from={data.from}
@@ -37,6 +32,6 @@ export default async function Page({
         prev_page_url={data.prev_page_url}
         next_page_url={data.next_page_url}
       />
-    </>
+    </MainContainer>
   );
 }

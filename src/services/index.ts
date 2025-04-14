@@ -109,7 +109,7 @@ export async function getAdmin(page: string, keyword: string) {
 }
 
 // TRANSAKSI
-export async function getTransaction(page: string, keyword: string) {
+export async function getTransactionBorrow(page: string, keyword: string) {
   const auth_token = (await cookies()).get("auth_token")?.value;
   let url = `${baseUrl}/borrowings-borrow`;
   if (page) {
@@ -134,6 +134,57 @@ export async function getTransaction(page: string, keyword: string) {
   });
   return res.json();
 }
+export async function getTransactionReturn(page: string, keyword: string) {
+  const auth_token = (await cookies()).get("auth_token")?.value;
+  let url = `${baseUrl}/borrowings-return`;
+  if (page) {
+    if (page && keyword) {
+      url = `${baseUrl}/borrowings-return?page=${page}&keyword=${keyword}`;
+    } else {
+      url = `${baseUrl}/borrowings-return?page=${page}`;
+    }
+  }
+  if (keyword) {
+    if (page && keyword) {
+      url = `${baseUrl}/borrowings-return?page=${page}&keyword=${keyword}`;
+    } else {
+      url = `${baseUrl}/borrowings-return?keyword=${keyword}`;
+    }
+  }
+  const res = await fetch(url, {
+    headers: {
+      Accept: "application/json",
+      Authorization: `Bearer ${auth_token}`,
+    },
+  });
+  return res.json();
+}
+export async function getTransactionLate(page: string, keyword: string) {
+  const auth_token = (await cookies()).get("auth_token")?.value;
+  let url = `${baseUrl}/borrowings-late`;
+  if (page) {
+    if (page && keyword) {
+      url = `${baseUrl}/borrowings-late?page=${page}&keyword=${keyword}`;
+    } else {
+      url = `${baseUrl}/borrowings-late?page=${page}`;
+    }
+  }
+  if (keyword) {
+    if (page && keyword) {
+      url = `${baseUrl}/borrowings-late?page=${page}&keyword=${keyword}`;
+    } else {
+      url = `${baseUrl}/borrowings-late?keyword=${keyword}`;
+    }
+  }
+  const res = await fetch(url, {
+    headers: {
+      Accept: "application/json",
+      Authorization: `Bearer ${auth_token}`,
+    },
+  });
+  return res.json();
+}
+// get transaction details
 export async function getTransactionDetails(id: string) {
   const auth_token = (await cookies()).get("auth_token")?.value;
   const res = await fetch(`${baseUrl}/borrowings/${id}`, {

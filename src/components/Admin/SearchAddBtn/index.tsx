@@ -8,8 +8,8 @@ export default function SearchAddBtn({
   addLink,
   children,
 }: {
-  addLink: string;
-  children: ReactNode;
+  addLink?: string;
+  children?: ReactNode;
 }) {
   const pathName = usePathname();
   const router = useRouter();
@@ -21,9 +21,9 @@ export default function SearchAddBtn({
   }
 
   return (
-    <section className="w-full flex items-center justify-between mb-5">
+    <section className={`w-full flex items-center justify-between  mb-5`}>
       {/* btn href  */}
-      <BtnHref href={addLink}>{children}</BtnHref>
+      {addLink && <BtnHref href={addLink}>{children}</BtnHref>}
       {/* end btn href  */}
 
       {/* search */}

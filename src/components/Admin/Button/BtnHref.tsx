@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 interface Props {
-  href: string;
+  href?: string;
   children: React.ReactNode;
   className?: string;
 }
