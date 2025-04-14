@@ -42,6 +42,16 @@ export async function getBooks(page: string, keyword: string) {
   const res = await fetch(url);
   return res.json();
 }
+export async function getBooksTitleStock() {
+  const auth_token = (await cookies()).get("auth_token")?.value;
+  const res = await fetch(`${baseUrl}/books-title-stock`, {
+    headers: {
+      Accept: "application/json",
+      Authorization: `Bearer ${auth_token}`,
+    },
+  });
+  return res.json();
+}
 // book detail
 export async function getBooksDetail(id: string) {
   const res = await fetch(`${baseUrl}/books/${id}`);
@@ -73,6 +83,16 @@ export async function getMember(page: string, keyword: string) {
     }
   }
   const res = await fetch(url, {
+    headers: {
+      Accept: "application/json",
+      Authorization: `Bearer ${auth_token}`,
+    },
+  });
+  return res.json();
+}
+export async function getMemberUsername() {
+  const auth_token = (await cookies()).get("auth_token")?.value;
+  const res = await fetch(`${baseUrl}/users-username`, {
     headers: {
       Accept: "application/json",
       Authorization: `Bearer ${auth_token}`,
