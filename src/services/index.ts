@@ -164,7 +164,7 @@ export async function getTransactionLate(page: string, keyword: string) {
   let url = `${baseUrl}/borrowings-late`;
   if (page) {
     if (page && keyword) {
-      url = `${baseUrl}/borrowings-late?page=${page}&keyword=${keyword}`;
+      url = `${baseUrl}/borrowings-late=${page}&keyword=${keyword}`;
     } else {
       url = `${baseUrl}/borrowings-late?page=${page}`;
     }
@@ -205,11 +205,55 @@ export async function getTransactionDetails(id: string) {
 }
 
 // HISTORY TRANSACTION ALL
-export async function getHistoryTransaction(token: Token, url: string) {
+export async function getHistoryTransactionAll(page: string, keyword: string) {
+  const auth_token = (await cookies()).get("auth_token")?.value;
+  let url = `${baseUrl}/transactions`;
+  if (page) {
+    if (page && keyword) {
+      url = `${baseUrl}/transactions?page=${page}&keyword=${keyword}`;
+    } else {
+      url = `${baseUrl}/transactions?page=${page}`;
+    }
+  }
+  if (keyword) {
+    if (page && keyword) {
+      url = `${baseUrl}/transactions?page=${page}&keyword=${keyword}`;
+    } else {
+      url = `${baseUrl}/transactions?page?keyword=${keyword}`;
+    }
+  }
   const res = await fetch(url, {
     headers: {
       Accept: "application/json",
-      Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${auth_token}`,
+    },
+  });
+  return res.json();
+}
+export async function getHistoryTransactionBorrow(
+  page: string,
+  keyword: string
+) {
+  const auth_token = (await cookies()).get("auth_token")?.value;
+  let url = `${baseUrl}/transactions-borrow`;
+  if (page) {
+    if (page && keyword) {
+      url = `${baseUrl}/transactions-borrow?page=${page}&keyword=${keyword}`;
+    } else {
+      url = `${baseUrl}/transactions-borrow?page=${page}`;
+    }
+  }
+  if (keyword) {
+    if (page && keyword) {
+      url = `${baseUrl}/transactions-borrow?page=${page}&keyword=${keyword}`;
+    } else {
+      url = `${baseUrl}/transactions-borrow?page?keyword=${keyword}`;
+    }
+  }
+  const res = await fetch(url, {
+    headers: {
+      Accept: "application/json",
+      Authorization: `Bearer ${auth_token}`,
     },
   });
   return res.json();
