@@ -2,11 +2,11 @@ import HistoryTransactionsList from "@/components/Admin/ListHistoryTransaction";
 import MainContainer from "@/components/Admin/MainContainer";
 import Pagination from "@/components/Admin/Pagination/Pagination";
 import SearchAddBtn from "@/components/Admin/SearchAddBtn";
-import { getHistoryTransactionReturn } from "@/services";
+import { getHistoryTransaction } from "@/services";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Dashboard - History Transaction Reuturn",
+  title: "Dashboard - History Transaction Return",
 };
 
 export default async function Page({
@@ -15,7 +15,11 @@ export default async function Page({
   searchParams: Promise<{ page: string; keyword: string }>;
 }) {
   const { page, keyword } = await searchParams;
-  const { data } = await getHistoryTransactionReturn(page, keyword);
+  const { data } = await getHistoryTransaction(
+    "/transactions-return",
+    page,
+    keyword
+  );
   return (
     <MainContainer>
       <SearchAddBtn />

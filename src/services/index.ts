@@ -205,102 +205,25 @@ export async function getTransactionDetails(id: string) {
 }
 
 // HISTORY TRANSACTION ALL
-export async function getHistoryTransactionAll(page: string, keyword: string) {
-  const auth_token = (await cookies()).get("auth_token")?.value;
-  let url = `${baseUrl}/transactions`;
-  if (page) {
-    if (page && keyword) {
-      url = `${baseUrl}/transactions?page=${page}&keyword=${keyword}`;
-    } else {
-      url = `${baseUrl}/transactions?page=${page}`;
-    }
-  }
-  if (keyword) {
-    if (page && keyword) {
-      url = `${baseUrl}/transactions?page=${page}&keyword=${keyword}`;
-    } else {
-      url = `${baseUrl}/transactions?keyword=${keyword}`;
-    }
-  }
-  const res = await fetch(url, {
-    headers: {
-      Accept: "application/json",
-      Authorization: `Bearer ${auth_token}`,
-    },
-  });
-  return res.json();
-}
-export async function getHistoryTransactionBorrow(
+export async function getHistoryTransaction(
+  endPoint: string,
   page: string,
   keyword: string
 ) {
   const auth_token = (await cookies()).get("auth_token")?.value;
-  let url = `${baseUrl}/transactions-borrow`;
+  let url = `${baseUrl + endPoint}`;
   if (page) {
     if (page && keyword) {
-      url = `${baseUrl}/transactions-borrow?page=${page}&keyword=${keyword}`;
+      url = `${baseUrl + endPoint}?page=${page}&keyword=${keyword}`;
     } else {
-      url = `${baseUrl}/transactions-borrow?page=${page}`;
+      url = `${baseUrl + endPoint}?page=${page}`;
     }
   }
   if (keyword) {
     if (page && keyword) {
-      url = `${baseUrl}/transactions-borrow?page=${page}&keyword=${keyword}`;
+      url = `${baseUrl + endPoint}?page=${page}&keyword=${keyword}`;
     } else {
-      url = `${baseUrl}/transactions-borrow?keyword=${keyword}`;
-    }
-  }
-  const res = await fetch(url, {
-    headers: {
-      Accept: "application/json",
-      Authorization: `Bearer ${auth_token}`,
-    },
-  });
-  return res.json();
-}
-export async function getHistoryTransactionReturn(
-  page: string,
-  keyword: string
-) {
-  const auth_token = (await cookies()).get("auth_token")?.value;
-  let url = `${baseUrl}/transactions-return`;
-  if (page) {
-    if (page && keyword) {
-      url = `${baseUrl}/transactions-return?page=${page}&keyword=${keyword}`;
-    } else {
-      url = `${baseUrl}/transactions-return?page=${page}`;
-    }
-  }
-  if (keyword) {
-    if (page && keyword) {
-      url = `${baseUrl}/transactions-return?page=${page}&keyword=${keyword}`;
-    } else {
-      url = `${baseUrl}/transactions-return?keyword=${keyword}`;
-    }
-  }
-  const res = await fetch(url, {
-    headers: {
-      Accept: "application/json",
-      Authorization: `Bearer ${auth_token}`,
-    },
-  });
-  return res.json();
-}
-export async function getHistoryTransactionFine(page: string, keyword: string) {
-  const auth_token = (await cookies()).get("auth_token")?.value;
-  let url = `${baseUrl}/transactions-fine`;
-  if (page) {
-    if (page && keyword) {
-      url = `${baseUrl}/transactions-fine?page=${page}&keyword=${keyword}`;
-    } else {
-      url = `${baseUrl}/transactions-fine?page=${page}`;
-    }
-  }
-  if (keyword) {
-    if (page && keyword) {
-      url = `${baseUrl}/transactions-fine?page=${page}&keyword=${keyword}`;
-    } else {
-      url = `${baseUrl}/transactions-fine?keyword=${keyword}`;
+      url = `${baseUrl + endPoint}?keyword=${keyword}`;
     }
   }
   const res = await fetch(url, {
