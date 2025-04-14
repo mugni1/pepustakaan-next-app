@@ -219,7 +219,7 @@ export async function getHistoryTransactionAll(page: string, keyword: string) {
     if (page && keyword) {
       url = `${baseUrl}/transactions?page=${page}&keyword=${keyword}`;
     } else {
-      url = `${baseUrl}/transactions?page?keyword=${keyword}`;
+      url = `${baseUrl}/transactions?keyword=${keyword}`;
     }
   }
   const res = await fetch(url, {
@@ -247,7 +247,7 @@ export async function getHistoryTransactionBorrow(
     if (page && keyword) {
       url = `${baseUrl}/transactions-borrow?page=${page}&keyword=${keyword}`;
     } else {
-      url = `${baseUrl}/transactions-borrow?page?keyword=${keyword}`;
+      url = `${baseUrl}/transactions-borrow?keyword=${keyword}`;
     }
   }
   const res = await fetch(url, {
@@ -258,6 +258,35 @@ export async function getHistoryTransactionBorrow(
   });
   return res.json();
 }
+export async function getHistoryTransactionReturn(
+  page: string,
+  keyword: string
+) {
+  const auth_token = (await cookies()).get("auth_token")?.value;
+  let url = `${baseUrl}/transactions-return`;
+  if (page) {
+    if (page && keyword) {
+      url = `${baseUrl}/transactions-return?page=${page}&keyword=${keyword}`;
+    } else {
+      url = `${baseUrl}/transactions-return?page=${page}`;
+    }
+  }
+  if (keyword) {
+    if (page && keyword) {
+      url = `${baseUrl}/transactions-return?page=${page}&keyword=${keyword}`;
+    } else {
+      url = `${baseUrl}/transactions-return?keyword=${keyword}`;
+    }
+  }
+  const res = await fetch(url, {
+    headers: {
+      Accept: "application/json",
+      Authorization: `Bearer ${auth_token}`,
+    },
+  });
+  return res.json();
+}
+
 export async function getHistoryTransactionDetails(id: string) {
   const auth_token = (await cookies()).get("auth_token")?.value;
   const res = await fetch(`${baseUrl}/transactions/${id}`, {
