@@ -109,11 +109,27 @@ export async function getAdmin(page: string, keyword: string) {
 }
 
 // TRANSAKSI
-export async function getTransaction(token: Token, url: string) {
+export async function getTransaction(page: string, keyword: string) {
+  const auth_token = (await cookies()).get("auth_token")?.value;
+  let url = `${baseUrl}/borrowings-borrow`;
+  if (page) {
+    if (page && keyword) {
+      url = `${baseUrl}/borrowings-borrow?page=${page}&keyword=${keyword}`;
+    } else {
+      url = `${baseUrl}/borrowings-borrow?page=${page}`;
+    }
+  }
+  if (keyword) {
+    if (page && keyword) {
+      url = `${baseUrl}/borrowings-borrow?page=${page}&keyword=${keyword}`;
+    } else {
+      url = `${baseUrl}/borrowings-borrow?keyword=${keyword}`;
+    }
+  }
   const res = await fetch(url, {
     headers: {
       Accept: "application/json",
-      Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${auth_token}`,
     },
   });
   return res.json();
