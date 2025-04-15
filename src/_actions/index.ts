@@ -55,6 +55,10 @@ export const createBorrow = async (
       };
     }
     revalidatePath("/dashboard/transaction-borrow/add");
+    revalidatePath("/dashboard/home");
+    revalidatePath("/dashboard/transaction-borrow");
+    revalidatePath("/dashboard/history-transaction-all");
+    revalidatePath("/dashboard/history-transaction-borrow");
     return {
       status: "success",
       message: "Berhasil Meminjam buku",
@@ -84,4 +88,43 @@ export const createBook = async (formData: FormData) => {
 
   formData.get("");
   console.log(dataBody);
+};
+
+// return book
+export const returnBook = async (id: number) => {
+  const token = (await cookies()).get("auth_token")?.value;
+  try {
+    const res = await fetch(`${baseApiURL}/borrowings/${id}`, {
+      method: "PATCH",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    console.log(res);
+    if (!res.ok) {
+      return {
+        status: "failed",
+        message: "Terjadi Kesalah saat mengembalikan buku",
+      };
+    }
+    revalidatePath("/dashboard/home");
+    revalidatePath("/dashboard/transaction-borrow");
+    revalidatePath("/dashboard/transaction-return");
+    revalidatePath("/dashboard/transaction-late");
+    revalidatePath("/dashboard/history-transaction-all");
+    revalidatePath("/dashboard/history-transaction-return");
+    revalidatePath("/dashboard/history-transaction-fine");
+    const text = await res.text();
+    const json = JSON.parse(text);
+    const message = json.message;
+    return {
+      status: "success",
+      message: message,
+    };
+  } catch {
+    return {
+      status: "failed",
+      message: "Ada Kesalahan, Silahkan coba lagi nanti",
+    };
+  }
 };

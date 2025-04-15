@@ -1,13 +1,13 @@
 "use client";
-import { ArrowArcLeft, Eye } from "@phosphor-icons/react";
+import { Eye } from "@phosphor-icons/react";
 import Container from "../Container";
 import { useEffect, useState } from "react";
-import axios from "axios";
 import swal from "sweetalert";
 import { usePathname } from "next/navigation";
-import Cookies from "js-cookie";
 import Link from "next/link";
 import { LuArrowLeftToLine } from "react-icons/lu";
+import { returnBook } from "@/_actions";
+import { toast } from "react-toastify";
 
 interface User {
   id: number;
@@ -30,40 +30,32 @@ interface Props {
 
 export default function TransactionList({ data }: { data: Props[] }) {
   const [datas, setDatas] = useState(data || []);
-  const token = Cookies.get("auth_token");
   // FILTER DATAS
   useEffect(() => {
     setDatas(data);
   }, [data]);
+
+  async function resReturn(id: number) {
+    const res = await returnBook(id);
+    if (res.status == "success") {
+      toast.success(res.message);
+    }
+    if (res.status == "failed") {
+      toast.error(res.message);
+    }
+  }
 
   // HANDLE RETURN
   function handleReturn(id: number) {
     swal({
       icon: "warning",
       dangerMode: true,
-      title: "Warning!",
-      text: "Apakah kamu ingin mengembalikan buku ini?",
+      title: "Peringatan!",
+      text: "Apakah anggota sudah mengembalikan buku?",
       buttons: ["Batal", "Ya"],
     }).then((isTrue) => {
       if (isTrue) {
-        axios({
-          method: "PATCH",
-          url: `${process.env.NEXT_PUBLIC_BASE_API_URL}/borrowings/${id}`,
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        })
-          .then((res) => {
-            swal({
-              icon: "success",
-              title: "Success!",
-              text: res.data.message,
-            });
-            setDatas(datas.filter((data) => data.id != id));
-          })
-          .catch(() => {
-            swal({ icon: "error", title: "Error!", text: "Terjadi kesalahan" });
-          });
+        resReturn(id);
       }
     });
   }

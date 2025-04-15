@@ -155,6 +155,7 @@ export async function getTransaction(
       Accept: "application/json",
       Authorization: `Bearer ${auth_token}`,
     },
+    cache: "force-cache",
   });
   return res.json();
 }
@@ -205,6 +206,7 @@ export async function getHistoryTransaction(
       Accept: "application/json",
       Authorization: `Bearer ${auth_token}`,
     },
+    cache: "force-cache",
   });
   return res.json();
 }
