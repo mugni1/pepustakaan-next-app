@@ -68,12 +68,12 @@ export default function HistoryTransactionsList({
         <tbody>
           {historyTrans?.map((HT: DataTransaction, index: number) => (
             <tr key={`${index}`} className="border-b border-slate-600">
-              <td className="font-semibold text-center border px-2">
+              <td className="font-bold text-center border px-2">
                 <div className="bg-gradient-to-r from-accent1 to-accent2 text-white py-1 px-4 rounded-md w-full">
                   {HT.borrowings.id}
                 </div>
               </td>
-              <td className=" text-center border font-semibold">
+              <td className=" text-center border">
                 {HT.borrowings.users?.username || (
                   <span className="text-red-500">UserDeleted</span>
                 )}

@@ -123,7 +123,7 @@ export default function TransactionList({ data }: { data: Props[] }) {
         <tbody>
           {datas?.map((data: Props, index: number) => (
             <tr key={`${index}${data.id}`}>
-              <td className="poppins-semibold text-center px-2 border">
+              <td className="font-bold text-center px-2 border">
                 <div className="bg-gradient-to-r from-accent1 to-accent2 text-white py-1 px-4 rounded-md w-full">
                   {data.id}
                 </div>
