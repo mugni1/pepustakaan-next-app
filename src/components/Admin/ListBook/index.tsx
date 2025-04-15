@@ -76,29 +76,26 @@ export default function BooksList({ data }: { data: Books[] }) {
         <TableHead />
         <tbody className="w-full">
           {books?.map((book: Books, index: number) => (
-            <tr
-              key={index + book.id}
-              className="w-full border-b border-slate-400"
-            >
+            <tr key={index + book.id}>
               {/* cover book  */}
-              <td className="w-2/12 p-4">
+              <td className="w-2/12 p-4 border">
                 <Image
                   src={`${process.env.NEXT_PUBLIC_BASE_IMAGE_URL}/${book.image}`}
                   alt=""
-                  className="h-32 w-24 mx-auto object-cover object-center border border-slate-400 shadow-md rounded-lg"
+                  className="h-32 w-24 mx-auto object-cover object-center border shadow-md rounded-lg"
                   width={100}
                   height={150}
                 />
               </td>
               {/* end cover book  */}
-              <td className="text-start w-2/12 poppins-semibold">
+              <td className="w-2/12 font-semibold border text-center">
                 {book.title}
               </td>
-              <td className="text-center w-2/12">{book.writer}</td>
-              <td className="text-center w-2/12">{book.publisher}</td>
-              <td className="text-center w-2/12">
+              <td className="text-center border w-2/12">{book.writer}</td>
+              <td className="text-center border w-2/12">{book.publisher}</td>
+              <td className="text-center border w-2/12">
                 <span
-                  className={`poppins-bold  px-4 py-1 rounded-md ${
+                  className={`font-bold  px-4 py-1 rounded-md ${
                     book.stock > 0
                       ? "text-green-600 bg-green-200"
                       : "text-red-600 bg-red-200"
@@ -108,28 +105,26 @@ export default function BooksList({ data }: { data: Books[] }) {
                 </span>
               </td>
               {/* delete update show  */}
-              <td className="text-center px-1">
-                <button
-                  onClick={() => handleDelete(book.id)}
-                  className=" p-2 rounded-full bg-red-500 text-white cursor-pointer"
-                >
-                  <Trash size={24} />
-                </button>
-              </td>
-              <td className="text-center px-1">
-                <button
-                  onClick={() => router.push(`books/edit/${book.id}`)}
-                  className=" p-2 rounded-full bg-amber-500 text-white cursor-pointer"
-                >
-                  <Pencil size={24} />
-                </button>
-              </td>
-              <td className="text-center px-1">
-                <Link href={`books/${book.id}`}>
-                  <button className=" p-2 rounded-full bg-sky-500 text-white cursor-pointer">
-                    <Eye size={24} />
+              <td className="text-center border px-1 w-1/12">
+                <div className="w-full text-center gap-2 flex mx-auto justify-center">
+                  <button
+                    onClick={() => handleDelete(book.id)}
+                    className=" p-2 rounded-full bg-red-500 text-white cursor-pointer"
+                  >
+                    <Trash size={24} />
                   </button>
-                </Link>
+                  <button
+                    onClick={() => router.push(`books/edit/${book.id}`)}
+                    className=" p-2 rounded-full bg-amber-500 text-white cursor-pointer"
+                  >
+                    <Pencil size={24} />
+                  </button>
+                  <Link href={`books/${book.id}`}>
+                    <button className=" p-2 rounded-full bg-sky-500 text-white cursor-pointer">
+                      <Eye size={24} />
+                    </button>
+                  </Link>
+                </div>
               </td>
               {/* end delete update show  */}
             </tr>
@@ -138,7 +133,7 @@ export default function BooksList({ data }: { data: Books[] }) {
             <tr className="border-b border-slate-400">
               <td
                 colSpan={7}
-                className="text-center text-red-500 poppins-bold py-5"
+                className="text-center text-red-500 font-bold py-5"
               >
                 Tidak ada data
               </td>

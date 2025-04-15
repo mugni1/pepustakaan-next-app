@@ -1,13 +1,17 @@
 export default function TableHead() {
   return (
     <thead>
-      <tr className="border-b border-slate-400 poppins-bold">
-        <th className="py-2 mb-2">Gambar</th>
-        <th>Judul</th>
-        <th>Penulis</th>
-        <th>Penerbit</th>
-        <th>Stock</th>
-        <th colSpan={3} className="w-1/12">
+      <tr>
+        <th className="py-4 font-bold bg-accent2/10 text-accent2 border">
+          Gambar
+        </th>
+        <th className="font-bold bg-accent2/10 text-accent2 border">Judul</th>
+        <th className="font-bold bg-accent2/10 text-accent2 border">Penulis</th>
+        <th className="font-bold bg-accent2/10 text-accent2 border">
+          Penerbit
+        </th>
+        <th className="font-bold bg-accent2/10 text-accent2 border">Stock</th>
+        <th className="font-bold bg-accent2/10 text-accent2 border w-1/2">
           Tindakan
         </th>
       </tr>

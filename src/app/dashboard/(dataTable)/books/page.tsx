@@ -4,7 +4,7 @@ import Pagination from "@/components/Admin/Pagination/Pagination";
 import SearchAddBtn from "@/components/Admin/SearchAddBtn";
 import { getBooks } from "@/services";
 import { Metadata } from "next";
-import { FaBookMedical } from "react-icons/fa";
+import { LuBookPlus } from "react-icons/lu";
 
 export const metadata: Metadata = {
   title: "Dashboard - Books",
@@ -20,7 +20,7 @@ export default async function Page({
   return (
     <MainContainer>
       <SearchAddBtn addLink="books/add/">
-        <FaBookMedical /> Tambah
+        <LuBookPlus size={20} /> Tambah
       </SearchAddBtn>
       <BooksList data={result.data} />
       <Pagination
