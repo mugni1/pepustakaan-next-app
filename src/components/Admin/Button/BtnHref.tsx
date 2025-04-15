@@ -8,12 +8,12 @@ interface Props {
 export default function BtnHref({
   href = "#",
   children = "Title",
-  className = " bg-gradient-to-r from-fuchsia-500 to-purple-500 text-white",
+  className = " bg-gradient-to-r from-accent1 to-accent2 text-background1",
 }: Props) {
   return (
     <Link
       href={href}
-      className={`py-1 px-5 rounded-md shadow-md poppins-semibold flex items-center gap-1 active:scale-90 active:bg-slate-500 transition-all ${className}`}
+      className={`py-1 px-5 rounded-md shadow-md poppins-semibold flex items-center gap-1 active:scale-90 active:bg-foreground transition-all ${className}`}
     >
       {children}
     </Link>
