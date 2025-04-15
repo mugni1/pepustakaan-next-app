@@ -120,7 +120,7 @@ export default function ProfileMenu() {
     <section className="flex w-full items-center px-5 py-5 gap-2 cursor-pointer group relative">
       {/* avatar  */}
       <div className="w-4/12 2xl:w-3/12 me-auto flex items-center">
-        <div className="w-full aspect-square rounded-full bg-emerald-500 text-center flex items-center justify-center text-2xl text-white">
+        <div className="w-full aspect-square rounded-full bg-emerald-500 text-center flex items-center justify-center text-2xl text-background1">
           <span>{initialName}</span>
         </div>
       </div>
@@ -135,10 +135,10 @@ export default function ProfileMenu() {
         </span>
       </div>
       {/* edn name and status */}
-      <div className="absolute top-3 -right-16 px-3 py-2 h-fit bg-white rounded-md shadow-lg flex flex-col gap-2 invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-all duration-200 ease-linear z-50">
+      <div className="absolute top-3 -right-16 px-3 py-2 h-fit bg-background1 rounded-md shadow-lg flex flex-col gap-2 invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-all duration-200 ease-linear z-50">
         <button
           onClick={handleLogout}
-          className=" flex items-center gap-1 cursor-pointer hover:text-purple-500"
+          className=" flex items-center gap-1 cursor-pointer hover:text-accent2"
         >
           <span>
             <SignOut size={20} />

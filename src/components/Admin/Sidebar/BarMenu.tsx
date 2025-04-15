@@ -13,10 +13,10 @@ export default function BarMenu({ children, href, title }: Props) {
   const pathName = usePathname();
   return (
     <li
-      className={`w-full px-5 py-2 transition-all ease-in-out duration-150 hover:text-purple-600 ${
+      className={`w-full px-5 py-2 transition-all ease-in-out duration-150 hover:text-accent2 ${
         pathName === href || pathName.startsWith(`${href}/`)
-          ? "bg-purple-100 text-purple-600 font-semibold"
-          : "text-slate-800"
+          ? "bg-purple-100 text-accent2 font-semibold"
+          : "text-foreground"
       }`}
     >
       <Link className="w-full  flex justify-between items-center" href={href}>

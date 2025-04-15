@@ -1,9 +1,9 @@
 "use client";
-import { Calendar } from "@phosphor-icons/react";
 import { useEffect, useState } from "react";
+import { LuClock } from "react-icons/lu";
 
 export default function TimeNow() {
-  const [time, setTime] = useState("");
+  const [time, setTime] = useState("Tunggu Sebentar...");
 
   useEffect(() => {
     setInterval(() => {
@@ -24,13 +24,9 @@ export default function TimeNow() {
     }, 1000);
   });
   return (
-    <div className="h-full flex items-center">
-      <div className=" flex bg-gradient-to-br from-fuchsia-200 to-purple-200 poppins-semibold text-purple-600 px-2 gap-2 py-1 rounded-lg">
-        <span>
-          <Calendar size={24} />
-        </span>
-        <span>{time}</span>
-      </div>
+    <div className=" flex items-center font-semibold bg-accent1/10 text-accent2 px-2 gap-2 py-1 rounded-lg">
+      <LuClock size={20} />
+      <span>{time}</span>
     </div>
   );
 }

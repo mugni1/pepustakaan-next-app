@@ -49,17 +49,17 @@ export default function Layout({ children }: { children: ReactNode }) {
       <section
         className={`${
           sidebar ? "w-10/12" : "w-full"
-        } ms-auto min-h-screen bg-slate-100 transition-all ease-in-out duration-100 overflow-x-hidden`}
+        } ms-auto min-h-screen bg-background2 transition-all ease-in-out duration-100 overflow-x-hidden`}
       >
         {/* NAVBAR  */}
         <nav
-          className={`h-16 bg-white border-b border-slate-200 transition-all ease-in-out duration-100 flex items-center justify-between px-5 fixed z-50 ${
+          className={`h-16 bg-background1 border-b border-slate-200 transition-all ease-in-out duration-100 flex items-center justify-between px-5 fixed z-50 ${
             sidebar ? "w-10/12" : "w-full"
           }`}
         >
           {/* btn sidebar  */}
           <button
-            className={`cursor-pointer ${sidebar ? "text-purple-600" : ""}`}
+            className={`cursor-pointer ${sidebar ? "text-accent2" : ""}`}
             onClick={() => setSidebar(!sidebar)}
           >
             <SidebarSimple size={28} />

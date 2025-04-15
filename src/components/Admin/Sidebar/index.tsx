@@ -69,12 +69,12 @@ export default function Sidebar({ className }: { className: string }) {
         {/* End tag  */}
         {/* Transaction  */}
         <li
-          className={`w-full px-5 py-2 transition-all ease-in-out duration-150 flex flex-col cursor-pointer group hover:bg-purple-100 ${
+          className={`w-full px-5 py-2 transition-all ease-in-out duration-150 flex flex-col cursor-pointer group hover:bg-accent2/10 ${
             pathTransactions.some(
               (path) => pathName === path || pathName.startsWith(`${path}/`)
             )
-              ? "bg-purple-100 "
-              : "text-slate-800"
+              ? "bg-accent2/10 "
+              : "text-foreground"
           } `}
         >
           <div className="w-full flex justify-between items-center mb-2">
@@ -104,12 +104,12 @@ export default function Sidebar({ className }: { className: string }) {
         {/* End Transaction  */}
         {/* TRANSACTION HISTORY */}
         <li
-          className={`w-full px-5 py-2 transition-all ease-in-out duration-150 flex flex-col cursor-pointer group hover:bg-purple-100 ${
+          className={`w-full px-5 py-2 transition-all ease-in-out duration-150 flex flex-col cursor-pointer group hover:bg-accent2/10 ${
             pathHistoryTransactions.some(
               (path) => pathName == path || pathName.startsWith(path + "/")
             )
-              ? "bg-purple-100"
-              : "text-slate-800"
+              ? "bg-accent2/10"
+              : "text-foreground"
           } `}
         >
           <div className="w-full flex justify-between items-center mb-2">
