@@ -78,7 +78,7 @@ export default function Sidebar({ className }: { className: string }) {
           } `}
         >
           <div className="w-full flex justify-between items-center mb-2">
-            <span>Transaksi</span>
+            <span>Transaksi Berlangsung</span>
             <LuArrowLeftRight size={24} />
           </div>
           <ul

@@ -7,6 +7,7 @@ import swal from "sweetalert";
 import { usePathname } from "next/navigation";
 import Cookies from "js-cookie";
 import Link from "next/link";
+import { LuArrowLeftToLine } from "react-icons/lu";
 
 interface User {
   id: number;
@@ -131,7 +132,7 @@ export default function TransactionList({ data }: { data: Props[] }) {
           {datas?.map((data: Props, index: number) => (
             <tr key={`${index}${data.id}`}>
               <td className="poppins-semibold text-center px-2 border">
-                <div className="bg-gradient-to-r from-fuchsia-500 to-purple-500 text-white py-1 px-4 rounded-md w-full">
+                <div className="bg-gradient-to-r from-accent1 to-accent2 text-white py-1 px-4 rounded-md w-full">
                   {data.id}
                 </div>
               </td>
@@ -186,38 +187,39 @@ export default function TransactionList({ data }: { data: Props[] }) {
               </td>
               {/* return  show  */}
               <td className="text-center px-1  py-2 border">
-                {pathName == "/dashboard/transaction-borrow" && (
-                  <Link href={`/dashboard/transaction-borrow/${data.id}`}>
-                    <button className=" p-2 rounded-full bg-sky-500 text-white cursor-pointer">
-                      <Eye size={24} />
+                <div className="w-full flex gap-2 items-center justify-center">
+                  {pathName == "/dashboard/transaction-borrow" && (
+                    <Link href={`/dashboard/transaction-borrow/${data.id}`}>
+                      <button className=" p-2 rounded-full bg-sky-500 text-white cursor-pointer">
+                        <Eye size={24} />
+                      </button>
+                    </Link>
+                  )}
+                  {pathName == "/dashboard/transaction-return" && (
+                    <Link href={`/dashboard/transaction-return/${data.id}`}>
+                      <button className=" p-2 rounded-full bg-sky-500 text-white cursor-pointer">
+                        <Eye size={24} />
+                      </button>
+                    </Link>
+                  )}
+                  {pathName == "/dashboard/transaction-late" && (
+                    <Link href={`/dashboard/transaction-late/${data.id}`}>
+                      <button className=" p-2 rounded-full bg-sky-500 text-white cursor-pointer">
+                        <Eye size={24} />
+                      </button>
+                    </Link>
+                  )}
+                  {data.status == "dipinjam" && (
+                    <button
+                      onClick={() => handleReturn(data.id)}
+                      className=" p-2 rounded-full bg-emerald-500 text-white cursor-pointer"
+                    >
+                      <LuArrowLeftToLine size={24} />
                     </button>
-                  </Link>
-                )}
-                {pathName == "/dashboard/transaction-return" && (
-                  <Link href={`/dashboard/transaction-return/${data.id}`}>
-                    <button className=" p-2 rounded-full bg-sky-500 text-white cursor-pointer">
-                      <Eye size={24} />
-                    </button>
-                  </Link>
-                )}
-                {pathName == "/dashboard/transaction-late" && (
-                  <Link href={`/dashboard/transaction-late/${data.id}`}>
-                    <button className=" p-2 rounded-full bg-sky-500 text-white cursor-pointer">
-                      <Eye size={24} />
-                    </button>
-                  </Link>
-                )}
+                  )}
+                </div>
               </td>
-              {data.status == "dipinjam" && (
-                <td className="text-center px-1  py-2 border">
-                  <button
-                    onClick={() => handleReturn(data.id)}
-                    className=" p-2 rounded-full bg-emerald-500 text-white cursor-pointer"
-                  >
-                    <ArrowArcLeft size={28} />
-                  </button>
-                </td>
-              )}
+
               {/* end return  show  */}
             </tr>
           ))}
