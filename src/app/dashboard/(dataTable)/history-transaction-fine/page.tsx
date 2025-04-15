@@ -1,3 +1,5 @@
+import Container from "@/components/Admin/Container";
+import HistoryTransAllToExcel from "@/components/Admin/Export/HistoryTransAllToExcel";
 import HistoryTransactionsList from "@/components/Admin/ListHistoryTransaction";
 import MainContainer from "@/components/Admin/MainContainer";
 import Pagination from "@/components/Admin/Pagination/Pagination";
@@ -33,6 +35,15 @@ export default async function Page({
         prev_page_url={data.prev_page_url}
         next_page_url={data.next_page_url}
       />
+      <Container className="mt-5 flex justify-between items-center">
+        <b className="poppins-bold text-xl">Export</b>
+        <div>
+          <HistoryTransAllToExcel
+            title={`History-transaksi-denda-page-(${data.current_page})`}
+            data={data.data}
+          />
+        </div>
+      </Container>
     </MainContainer>
   );
 }
