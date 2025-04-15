@@ -58,7 +58,7 @@ export default function Page() {
           {/* input name  */}
           <input
             type="text"
-            className="py-1 px-2 outline-purple-600 border border-slate-400 rounded-lg"
+            className="py-1 px-2 outline-accent2 border border-foreground/60 rounded-md"
             placeholder="Judul Kategori"
             ref={name}
             required
@@ -66,7 +66,7 @@ export default function Page() {
           {/* end input title  */}
           {/* btn back and submit  */}
           <div className=" flex gap-5 items-center ">
-            <BtnClick className=" bg-gradient-to-br from-fuchsia-500 to-purple-600 ">
+            <BtnClick className=" bg-green-500 ">
               {loadingBtn ? (
                 <SpinnerGap className="animate-spin" size={24} />
               ) : (
@@ -75,7 +75,7 @@ export default function Page() {
             </BtnClick>
             <BtnHref
               href="/dashboard/category"
-              className="bg-sky-500 text-white"
+              className="bg-sky-500 text-background1"
             >
               Kembali
             </BtnHref>

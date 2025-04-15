@@ -124,7 +124,7 @@ export default function Page() {
         >
           <input
             type="text"
-            className="py-1 px-2 outline-purple-600 border border-slate-400 rounded-md "
+            className="py-1 px-2 outline-accent2 border border-foreground/60 rounded-md "
             placeholder="Judul Buku"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
@@ -132,7 +132,7 @@ export default function Page() {
           />
           <input
             type="text"
-            className="py-1 px-2 outline-purple-600 border border-slate-400 rounded-md "
+            className="py-1 px-2 outline-accent2 border border-foreground/60 rounded-md "
             placeholder="Penulis Buku"
             value={writer}
             onChange={(e) => setWriter(e.target.value)}
@@ -140,7 +140,7 @@ export default function Page() {
           />
           <input
             type="text"
-            className="py-1 px-2 outline-purple-600 border border-slate-400 rounded-md "
+            className="py-1 px-2 outline-accent2 border border-foreground/60 rounded-md "
             placeholder="Penerbit Buku"
             value={publisher}
             onChange={(e) => setPublisher(e.target.value)}
@@ -148,7 +148,7 @@ export default function Page() {
           />
           <input
             type="number"
-            className="py-1 px-2 outline-purple-600 border border-slate-400 rounded-md "
+            className="py-1 px-2 outline-accent2 border border-foreground/60 rounded-md "
             placeholder="Stock"
             value={stock}
             onChange={(e) => setStock(e.target.value)}
@@ -156,7 +156,7 @@ export default function Page() {
           />
           <input
             type="date"
-            className="py-1 px-2 outline-purple-600 border border-slate-400 rounded-md "
+            className="py-1 px-2 outline-accent2 border border-foreground/60 rounded-md "
             placeholder="Tahun Terbit"
             value={publicationDate}
             onChange={(e) => setPublicationDate(e.target.value)}
@@ -165,12 +165,16 @@ export default function Page() {
           <select
             name="category"
             id="category"
-            className="py-1 px-2 outline-purple-600 border border-slate-400 rounded-md "
+            className="py-1 px-2 outline-accent2 border border-foreground/60 rounded-md "
             value={categoeyID}
             onChange={(e) => setCategoeyID(e.target.value)}
             required
           >
-            <option value="no-select" className="text-slate-400" disabled>
+            <option
+              value="no-select"
+              className="text-foreborder-foreground/60"
+              disabled
+            >
               - Pilih Kategori -
             </option>
             {categories?.map((category: Category, index: number) => (
@@ -189,12 +193,12 @@ export default function Page() {
               id="cover"
               type="file"
               accept=".jpeg,.jpg,.png,.jfif,.avif,.webp"
-              className="py-1 px-2 outline-purple-600 border border-slate-400 rounded-md w-full"
+              className="py-1 px-2 outline-accent2 border border-foreground/60 rounded-md w-full"
               onChange={(e) => setImage(e.target.files?.[0] || null)}
             />
           </div>
           <textarea
-            className="col-span-2 py-1 px-2 outline-purple-600 border border-slate-400 rounded-md"
+            className="col-span-2 py-1 px-2 outline-accent2 border border-foreground/60 rounded-md"
             rows={8}
             placeholder="Deskripsi Buku"
             value={description}
