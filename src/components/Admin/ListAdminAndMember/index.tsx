@@ -74,27 +74,40 @@ export default function MemberAndAdminList({ members }: { members: Member[] }) {
       <Container className="mb-5">
         <table className="w-full">
           <thead>
-            <tr className="border-b poppins-bold">
-              <th className="w-1/12 py-2">ID</th>
-              <th className="w-2/12 py-2">Nama Lengkap</th>
-              <th className="w-2/12">Username</th>
-              <th className="w-2/12">Email</th>
-              <th className="w-2/12">Peran</th>
-              <th colSpan={2} className="w-1/12">
+            <tr>
+              <th className="w-1/12 font-bold bg-accent2/10 text-accent2 border py-4">
+                ID
+              </th>
+              <th className="w-2/12 font-bold bg-accent2/10 text-accent2 border py-2">
+                Nama Lengkap
+              </th>
+              <th className="w-2/12 font-bold bg-accent2/10 text-accent2 border">
+                Username
+              </th>
+              <th className="w-2/12 font-bold bg-accent2/10 text-accent2 border">
+                Email
+              </th>
+              <th className="w-2/12 font-bold bg-accent2/10 text-accent2 border">
+                Peran
+              </th>
+              <th
+                colSpan={2}
+                className="w-1/12 font-bold bg-accent2/10 text-accent2 border"
+              >
                 Tindakan
               </th>
             </tr>
           </thead>
           <tbody>
             {memberList?.map((member: Member, index) => (
-              <tr key={index + member.id} className="border-b">
-                <td className="text-center py-5">{member.id}</td>
-                <td className="text-center py-5">{member.full_name}</td>
-                <td className="text-center">{member.username}</td>
-                <td className="text-center">{member.email}</td>
-                <td className="text-center">{member.roles.name}</td>
+              <tr key={index + member.id}>
+                <td className="text-center border py-5">{member.id}</td>
+                <td className="text-center border py-5">{member.full_name}</td>
+                <td className="text-center border">{member.username}</td>
+                <td className="text-center border">{member.email}</td>
+                <td className="text-center border">{member.roles.name}</td>
                 {/* delete update show  */}
-                <td className="text-center px-1">
+                <td className="text-center border px-1">
                   <button
                     onClick={() => handleDelete(member.id)}
                     className=" p-2 rounded-full bg-red-500 text-white cursor-pointer"
@@ -109,7 +122,7 @@ export default function MemberAndAdminList({ members }: { members: Member[] }) {
               <tr className="border-b">
                 <td
                   colSpan={6}
-                  className="text-center text-red-500 poppins-bold py-5"
+                  className="text-center border text-red-500 font-bold py-5"
                 >
                   Tidak ada data
                 </td>

@@ -70,14 +70,14 @@ export default function Page() {
           <section className="w-full grid grid-cols-2 gap-5 mb-5">
             <input
               type="text"
-              className="py-1 px-3 rounded-lg outline-purple-500 border border-slate-500 w-full"
+              className="py-1 px-3 rounded-md outline-accent2 border border-foreground/60 w-full"
               placeholder="Nama Lengkap"
               ref={fullName}
               required
             />
             <input
               type="text"
-              className="py-1 px-3 rounded-lg outline-purple-500 border border-slate-500 w-full"
+              className="py-1 px-3 rounded-md outline-accent2 border border-foreground/60 w-full"
               placeholder="username"
               maxLength={10}
               ref={username}
@@ -85,7 +85,7 @@ export default function Page() {
             />
             <input
               type="email"
-              className="py-1 px-3 rounded-lg outline-purple-500 border border-slate-500 w-full"
+              className="py-1 px-3 rounded-md outline-accent2 border border-foreground/60 w-full"
               placeholder="email"
               ref={email}
               required
@@ -93,14 +93,14 @@ export default function Page() {
             <div className="relative">
               <input
                 type={isPassword ? "password" : "text"}
-                className="py-1 px-3 rounded-lg outline-purple-500 border border-slate-500 w-full"
+                className="py-1 px-3 rounded-md outline-accent2 border border-foreground/60 w-full"
                 placeholder="Password"
                 ref={password}
                 required
               />
               <span
                 onClick={() => setIsPassword(!isPassword)}
-                className="absolute top-0 bottom-0 h-full right-2 flex items-center cursor-pointer select-none text-slate-600"
+                className="absolute top-0 bottom-0 h-full right-2 flex items-center cursor-pointer select-none text-foreground/60"
               >
                 {isPassword ? <FaEyeSlash size={20} /> : <FaEye size={20} />}
               </span>
@@ -114,7 +114,7 @@ export default function Page() {
               className="bg-green-500 flex items-center gap-1"
             >
               <IoSaveSharp size={20} />
-              <span>Simpan</span>
+              Simpan
             </BtnClick>
             <BtnHref href="/dashboard/member" className="bg-sky-500 text-white">
               <RiArrowGoBackFill size={20} /> Back

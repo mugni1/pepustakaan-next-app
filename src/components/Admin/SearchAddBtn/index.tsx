@@ -33,7 +33,7 @@ export default function SearchAddBtn({
       {/* search */}
       <form
         action={() => handleSearch()}
-        className="relative h-fit w-auto group text-slate-600"
+        className="relative h-fit w-auto group text-foreground/80"
       >
         <button
           type="submit"
@@ -43,7 +43,7 @@ export default function SearchAddBtn({
         </button>
         <input
           type="text"
-          className="py-1 ps-2 border border-slate-400 rounded-md bg-white outline-purple-500 pe-9 shadow-md"
+          className="py-1 ps-2 border border-slate-400 rounded-md bg-background1 outline-accent2 pe-9 shadow-md"
           placeholder="Cari..."
           required
           onChange={(e) => setKey(e.target.value)}

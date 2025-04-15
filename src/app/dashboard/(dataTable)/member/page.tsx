@@ -21,7 +21,6 @@ export default async function Page({
   return (
     <MainContainer>
       <SearchAddBtn addLink="member/add">
-        {" "}
         <AiOutlineUserAdd size={24} /> Tambah
       </SearchAddBtn>
       <MemberAndAdminList members={result.data} />
