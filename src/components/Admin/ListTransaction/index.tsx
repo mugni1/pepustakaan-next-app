@@ -29,20 +29,11 @@ interface Props {
 
 export default function TransactionList({ data }: { data: Props[] }) {
   const [datas, setDatas] = useState(data || []);
-  const [keyword, setKeyword] = useState("");
   const token = Cookies.get("auth_token");
   // FILTER DATAS
   useEffect(() => {
-    if (keyword.length > 0) {
-      setDatas(
-        data.filter((borrow) =>
-          borrow.id.toString().toLowerCase().includes(keyword.toLowerCase())
-        )
-      );
-    } else {
-      setDatas(data);
-    }
-  }, [keyword, data]);
+    setDatas(data);
+  }, [data]);
 
   // HANDLE RETURN
   function handleReturn(id: number) {
