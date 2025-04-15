@@ -6,9 +6,12 @@ import MainContainer from "@/components/Admin/MainContainer";
 import TitleForm from "@/components/Admin/Title/TitleForm";
 import axios from "axios";
 import swal from "sweetalert";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
+import { IoSaveSharp } from "react-icons/io5";
+import { RiArrowGoBackFill } from "react-icons/ri";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 export default function Page() {
   const token = Cookies.get("auth_token");
@@ -16,6 +19,7 @@ export default function Page() {
   const username = useRef<HTMLInputElement>(null);
   const email = useRef<HTMLInputElement>(null);
   const password = useRef<HTMLInputElement>(null);
+  const [isPassword, setIsPassword] = useState(true);
 
   // Router
   const router = useRouter();
@@ -86,22 +90,34 @@ export default function Page() {
               ref={email}
               required
             />
-            <input
-              type="password"
-              className="py-1 px-3 rounded-lg outline-purple-500 border border-slate-500 w-full"
-              placeholder="password"
-              ref={password}
-              required
-            />
+            <div className="relative">
+              <input
+                type={isPassword ? "password" : "text"}
+                className="py-1 px-3 rounded-lg outline-purple-500 border border-slate-500 w-full"
+                placeholder="Password"
+                ref={password}
+                required
+              />
+              <span
+                onClick={() => setIsPassword(!isPassword)}
+                className="absolute top-0 bottom-0 h-full right-2 flex items-center cursor-pointer select-none text-slate-600"
+              >
+                {isPassword ? <FaEyeSlash size={20} /> : <FaEye size={20} />}
+              </span>
+            </div>
           </section>
           {/* end input  */}
           {/* btn  */}
-          <section className="w-full flex gap-5">
-            <BtnClick typeBtn="submit" className="bg-green-500">
-              Submit
+          <section className="w-full flex gap-5 items-stretch">
+            <BtnClick
+              typeBtn="submit"
+              className="bg-green-500 flex items-center gap-1"
+            >
+              <IoSaveSharp size={20} />
+              <span>Simpan</span>
             </BtnClick>
             <BtnHref href="/dashboard/member" className="bg-sky-500 text-white">
-              Back
+              <RiArrowGoBackFill size={20} /> Back
             </BtnHref>
           </section>
           {/* end btn  */}

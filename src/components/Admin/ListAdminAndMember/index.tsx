@@ -19,7 +19,6 @@ interface Member {
 
 export default function MemberAndAdminList({ members }: { members: Member[] }) {
   const [memberList, setMemberList] = useState(members || []);
-  const [keyword, setKeyword] = useState("");
   const token = Cookies.get("auth_token");
 
   // pathname
@@ -72,30 +71,6 @@ export default function MemberAndAdminList({ members }: { members: Member[] }) {
 
   return (
     <>
-      {/* search  */}
-      {/* <section className="w-full flex items-center justify-between mb-5">
-        {pathName.startsWith("/dashboard/member") && (
-          <BtnHref href="member/add">Tambah Anggota</BtnHref>
-        )}
-        {pathName.startsWith("/dashboard/admin") && (
-          <BtnHref href="admin/add">Tambah Admin</BtnHref>
-        )}
-        <div className="relative h-fit w-auto group text-slate-600">
-          <span className="absolute h-full flex items-center px-2">
-            <MagnifyingGlass size={20} />
-          </span>
-          <input
-            type="text"
-            className="py-1 px-2 border border-slate-400 rounded-md bg-white outline-purple-500 ps-9 shadow-md"
-            placeholder="Cari Anggota"
-            value={keyword}
-            onChange={(e) => setKeyword(e.target.value)}
-          />
-        </div>
-      </section> */}
-      {/* end search  */}
-
-      {/* table  */}
       <Container className="mb-5">
         <table className="w-full">
           <thead>
@@ -143,7 +118,6 @@ export default function MemberAndAdminList({ members }: { members: Member[] }) {
           </tbody>
         </table>
       </Container>
-      {/* end table  */}
     </>
   );
 }

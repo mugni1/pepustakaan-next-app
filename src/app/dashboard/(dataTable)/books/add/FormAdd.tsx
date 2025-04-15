@@ -6,6 +6,8 @@ import axios from "axios";
 import { useEffect, useRef, useState } from "react";
 import swal from "sweetalert";
 import Cookies from "js-cookie";
+import { IoSaveSharp } from "react-icons/io5";
+import { RiArrowGoBackFill } from "react-icons/ri";
 
 interface Category {
   id: number;
@@ -159,15 +161,21 @@ export default function FormAdd() {
       {/* end input  */}
       {/* btn  */}
       <section className="w-full flex gap-5 items-stretch">
-        <BtnClick typeBtn="submit" className="bg-green-500">
+        <BtnClick
+          typeBtn="submit"
+          className="bg-green-500 flex items-center gap-1"
+        >
           {btnLoading ? (
             <SpinnerGap className="animate-spin" size={24} />
           ) : (
-            <span>Kirim</span>
+            <>
+              <IoSaveSharp size={20} />
+              <span>Simpan</span>
+            </>
           )}
         </BtnClick>
         <BtnHref href="/dashboard/books" className="bg-sky-500 text-white">
-          Back
+          <RiArrowGoBackFill size={20} /> Back
         </BtnHref>
       </section>
       {/* end btn  */}

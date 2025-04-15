@@ -66,3 +66,22 @@ export const createBorrow = async (
     };
   }
 };
+
+const createBookValidateSchema = z.object({
+  title: z.string().min(1, "Masukan Judul Buku"),
+  writer: z.string().min(1, "Masukan Penulis Buku"),
+  publisher: z.string().min(1, "Masukan Penerbit Buku"),
+  stock: z.string().min(1, "Masukan Stock Buku").transform(Number),
+  publication_date: z.string().min(1, "Masukan Tahun Terbit Buku"),
+  category: z.string().min(1, "Pilih salah satu kategori").transform(Number),
+  description: z.string().min(1, "Masukan Deskripsi"),
+});
+export const createBook = async (formData: FormData) => {
+  const token = (await cookies()).get("auth_token")?.value;
+  const dataBody = createBookValidateSchema.safeParse(
+    Object.fromEntries(formData.entries())
+  );
+
+  formData.get("");
+  console.log(dataBody);
+};

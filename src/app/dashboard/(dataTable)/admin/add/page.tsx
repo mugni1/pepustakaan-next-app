@@ -9,6 +9,8 @@ import swal from "sweetalert";
 import { useRef } from "react";
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
+import { IoSaveSharp } from "react-icons/io5";
+import { RiArrowGoBackFill } from "react-icons/ri";
 
 export default function Page() {
   const token = Cookies.get("auth_token");
@@ -97,12 +99,16 @@ export default function Page() {
           </section>
           {/* end input  */}
           {/* btn  */}
-          <section className="w-full flex gap-5">
-            <BtnClick typeBtn="submit" className="bg-green-500">
-              Submit
+          <section className="w-full flex gap-5 items-stretch">
+            <BtnClick
+              typeBtn="submit"
+              className="bg-green-500 flex items-center gap-1"
+            >
+              <IoSaveSharp size={20} />
+              <span>Simpan</span>
             </BtnClick>
             <BtnHref href="/dashboard/admin" className="bg-sky-500 text-white">
-              Back
+              <RiArrowGoBackFill size={20} /> Back
             </BtnHref>
           </section>
           {/* end btn  */}
