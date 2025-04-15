@@ -18,10 +18,10 @@ export default function InfoCard({
     <div className="column-1 p-4  flex flex-col gap-3 bg-white rounded-xl shadow-lg">
       {/* logo dan title */}
       <div className="w-full flex items-center gap-4">
-        <span className={`p-3 text-white rounded-full ${className}`}>
+        <div className={`p-3 text-white rounded-full ${className}`}>
           {children}
-        </span>
-        <span className="text-2xl poppins-bold">
+        </div>
+        <span className="text-xl font-bold">
           {count} {title}
         </span>
       </div>
