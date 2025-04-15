@@ -4,6 +4,7 @@ import { getTransaction } from "@/services";
 import { Metadata } from "next";
 import MainContainer from "@/components/Admin/MainContainer";
 import SearchAddBtn from "@/components/Admin/SearchAddBtn";
+import { LuArrowRightFromLine } from "react-icons/lu";
 
 export const metadata: Metadata = {
   title: "Dashboard - Transaction Return",
@@ -19,7 +20,9 @@ export default async function Page({
 
   return (
     <MainContainer>
-      <SearchAddBtn />
+      <SearchAddBtn addLink="transaction-borrow/add">
+        <LuArrowRightFromLine size={24} /> Pinjam Buku
+      </SearchAddBtn>
       <TransactionList data={data.data} />
       <Pagination
         keyword={keyword}

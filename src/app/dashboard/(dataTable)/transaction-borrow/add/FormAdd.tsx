@@ -5,6 +5,7 @@ import { useActionState, useEffect } from "react";
 import React from "react";
 import { toast } from "react-toastify";
 import { createBorrow } from "@/_actions";
+import { useRouter } from "next/navigation";
 
 interface Member {
   id: number;
@@ -37,6 +38,8 @@ export default function FormAdd({
       toast.error(state.message);
     }
   }, [state]);
+
+  const router = useRouter();
   return (
     <form action={formAction}>
       {/* input  */}
@@ -103,12 +106,9 @@ export default function FormAdd({
         <BtnClick typeBtn="submit" className="bg-green-500">
           Submit
         </BtnClick>
-        <BtnHref
-          href="/dashboard/transaction-borrow"
-          className="bg-sky-500 text-white"
-        >
+        <BtnClick click={() => router.back()} className="bg-sky-500 text-white">
           Back
-        </BtnHref>
+        </BtnClick>
       </section>
       {/* end btn  */}
     </form>
