@@ -127,10 +127,10 @@ export default function ProfileMenu() {
       {/* end awatar */}
       {/* name and status  */}
       <div className="w-8/12 h-auto flex flex-col gap-1 ps-2 2xl:ps-0 text-sm 2xl:text-lg">
-        <span className="poppins-semibold line-clamp-1">
+        <span className="font-semibold line-clamp-1">
           {fullName ? fullName : "Anonim"}
         </span>
-        <span className="py-1 text-xs text-center w-full rounded-md bg-amber-200 text-amber-600 poppins-semibold">
+        <span className="py-1 text-xs text-center w-full rounded-md bg-amber-200 text-amber-600 font-semibold">
           {roleName ? roleName : "no role"}
         </span>
       </div>

@@ -2,18 +2,18 @@
 import { usePathname } from "next/navigation";
 import BarMenu from "./BarMenu";
 import BarMenu2 from "./BarMenu2";
-import {
-  BookOpenText,
-  CaretCircleRight,
-  CashRegister,
-  ClockCounterClockwise,
-  HouseLine,
-  TagSimple,
-  UserCheck,
-  Users,
-} from "@phosphor-icons/react";
+import { CaretCircleRight, ClockCounterClockwise } from "@phosphor-icons/react";
 import ProfileMenu from "./ProfileMenu";
 import TitleAside from "./TitleAside";
+import {
+  LuArrowLeftRight,
+  LuBookText,
+  LuHistory,
+  LuHouse,
+  LuTags,
+  LuUserRound,
+  LuUserRoundCheck,
+} from "react-icons/lu";
 
 export default function Sidebar({ className }: { className: string }) {
   const pathTransactions = [
@@ -44,27 +44,27 @@ export default function Sidebar({ className }: { className: string }) {
       <ul className="w-full overflow-hidden">
         {/* Home  */}
         <BarMenu title="Beranda" href="/dashboard/home">
-          <HouseLine size={24} />
+          <LuHouse size={24} />
         </BarMenu>
         {/* End Home  */}
         {/* Member  */}
         <BarMenu title="Anggota" href="/dashboard/member">
-          <Users size={24} />
+          <LuUserRound size={24} />
         </BarMenu>
         {/* End Member  */}
         {/* Admin  */}
         <BarMenu title="Admin" href="/dashboard/admin">
-          <UserCheck size={24} />
+          <LuUserRoundCheck size={24} />
         </BarMenu>
         {/* End Admin  */}
         {/* Books  */}
         <BarMenu title="Buku" href="/dashboard/books">
-          <BookOpenText size={24} />
+          <LuBookText size={24} />
         </BarMenu>
         {/* Edn Books  */}
         {/* Tag  */}
         <BarMenu title="Kategori" href="/dashboard/category">
-          <TagSimple size={24} />
+          <LuTags size={24} />
         </BarMenu>
         {/* End tag  */}
         {/* Transaction  */}
@@ -73,13 +73,13 @@ export default function Sidebar({ className }: { className: string }) {
             pathTransactions.some(
               (path) => pathName === path || pathName.startsWith(`${path}/`)
             )
-              ? "bg-purple-100"
-              : ""
+              ? "bg-purple-100 "
+              : "text-slate-800"
           } `}
         >
           <div className="w-full flex justify-between items-center mb-2">
             <span>Transaksi</span>
-            <CashRegister size={24} />
+            <LuArrowLeftRight size={24} />
           </div>
           <ul
             className={`w-full group-hover:h-28 overflow-hidden group-hover:visible transition-all ease-in-out duration-200 ${
@@ -109,12 +109,12 @@ export default function Sidebar({ className }: { className: string }) {
               (path) => pathName == path || pathName.startsWith(path + "/")
             )
               ? "bg-purple-100"
-              : ""
+              : "text-slate-800"
           } `}
         >
           <div className="w-full flex justify-between items-center mb-2">
             <span>Riwayat Transaksi</span>
-            <ClockCounterClockwise size={24} />
+            <LuHistory size={24} />
           </div>
           <ul
             className={`w-full group-hover:h-40 overflow-hidden group-hover:visible transition-all ease-in-out duration-200 ${

@@ -12,32 +12,32 @@ export default function Layout({ children }: { children: ReactNode }) {
   const token = Cookies.get("auth_token");
   const router = useRouter();
 
-  // VALIDASI TERLEBIH DAHULU
-  useEffect(() => {
-    axios({
-      method: "get",
-      url: process.env.NEXT_PUBLIC_BASE_API_URL + "/profile",
-      headers: {
-        Authorization: "Bearer " + token,
-      },
-    })
-      .then((res) => {
-        const roleID = res.data.data.roles.id;
-        if (roleID != 1) {
-          router.push("/");
-        }
-      })
-      .catch((err) => {
-        if (err.response?.status == 401) {
-          router.push("/login");
-          Cookies.remove("auth_token");
-          Cookies.remove("email");
-          Cookies.remove("fullName");
-          Cookies.remove("roleName");
-          Cookies.remove("username");
-        }
-      });
-  }, [router, token]);
+  // // VALIDASI TERLEBIH DAHULU
+  // useEffect(() => {
+  //   axios({
+  //     method: "get",
+  //     url: process.env.NEXT_PUBLIC_BASE_API_URL + "/profile",
+  //     headers: {
+  //       Authorization: "Bearer " + token,
+  //     },
+  //   })
+  //     .then((res) => {
+  //       const roleID = res.data.data.roles.id;
+  //       if (roleID != 1) {
+  //         router.push("/");
+  //       }
+  //     })
+  //     .catch((err) => {
+  //       if (err.response?.status == 401) {
+  //         router.push("/login");
+  //         Cookies.remove("auth_token");
+  //         Cookies.remove("email");
+  //         Cookies.remove("fullName");
+  //         Cookies.remove("roleName");
+  //         Cookies.remove("username");
+  //       }
+  //     });
+  // }, [router, token]);
 
   return (
     <main className="w-full flex font-gabarito">

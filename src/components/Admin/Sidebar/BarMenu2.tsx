@@ -14,7 +14,7 @@ export default function BarMenu2({ children, href, title }: Props) {
     <li
       className={`w-full py-2 transition-all ease-in-out duration-150 hover:text-purple-600 ${
         pathName === href || pathName.startsWith(`${href}/`)
-          ? " text-purple-600 poppins-semibold"
+          ? " text-purple-600 font-semibold"
           : ""
       }`}
     >
