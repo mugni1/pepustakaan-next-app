@@ -8,6 +8,7 @@ import MainContainer from "../MainContainer";
 import Container from "../Container";
 import BtnHref from "../Button/BtnHref";
 import Cookies from "js-cookie";
+import { LuTag } from "react-icons/lu";
 
 interface Props {
   id: number;
@@ -71,7 +72,9 @@ export default function CategoryList({ datas }: { datas: Props[] }) {
     <MainContainer>
       {/* btn href adn search */}
       <section className="w-full flex items-center justify-between mb-5">
-        <BtnHref href="category/add">Tambah Kategori</BtnHref>
+        <BtnHref href="category/add">
+          <LuTag size={20} /> Tambah
+        </BtnHref>
         <div className="relative h-fit w-auto group text-slate-600">
           <span className="absolute h-full flex items-center px-2">
             <MagnifyingGlass size={20} />
@@ -92,9 +95,14 @@ export default function CategoryList({ datas }: { datas: Props[] }) {
           {/* thead  */}
           <thead>
             <tr className="border-b border-slate-400 poppins-bold">
-              <th className="py-2 mb-2 w-1/12">No</th>
-              <th>Nama</th>
-              <th className="w-1/12" colSpan={2}>
+              <th className="py-4 mb-2 w-1/12 bg-accent2/10 text-accent2 border">
+                No
+              </th>
+              <th className="bg-accent2/10 text-accent2 border">Nama</th>
+              <th
+                className="w-1/12 bg-accent2/10 text-accent2 border"
+                colSpan={2}
+              >
                 Tindakan
               </th>
             </tr>
@@ -107,25 +115,29 @@ export default function CategoryList({ datas }: { datas: Props[] }) {
                 key={index + category.id}
                 className="w-full border-b border-slate-400"
               >
-                <td className="text-center w-2/12 font-semibold">
+                <td className="text-center w-1/12 font-semibold border">
                   {index + 1}
                 </td>
-                <td className="text-center font-semibold">{category.name}</td>
-                <td className="text-center p-2">
-                  <button
-                    onClick={() => router.push(`category/edit/${category.id}`)}
-                    className=" p-2 rounded-full bg-amber-500 text-white cursor-pointer"
-                  >
-                    <Pencil size={24} />
-                  </button>
+                <td className="text-center font-semibold border">
+                  {category.name}
                 </td>
-                <td className="text-center p-2">
-                  <button
-                    onClick={() => handleDelete(category.id)}
-                    className=" p-2 rounded-full bg-red-500 text-white cursor-pointer"
-                  >
-                    <Trash size={24} />
-                  </button>
+                <td className="text-center p-2 border">
+                  <div className="w-full flex items-center gap-2">
+                    <button
+                      onClick={() =>
+                        router.push(`category/edit/${category.id}`)
+                      }
+                      className=" p-2 rounded-full bg-amber-500 text-white cursor-pointer"
+                    >
+                      <Pencil size={24} />
+                    </button>
+                    <button
+                      onClick={() => handleDelete(category.id)}
+                      className=" p-2 rounded-full bg-red-500 text-white cursor-pointer"
+                    >
+                      <Trash size={24} />
+                    </button>
+                  </div>
                 </td>
               </tr>
             ))}
@@ -133,7 +145,7 @@ export default function CategoryList({ datas }: { datas: Props[] }) {
               <tr className="border-b border-slate-400">
                 <td
                   colSpan={4}
-                  className="text-center text-red-500 poppins-bold py-5"
+                  className="text-center text-red-500 font-bold py-5"
                 >
                   Tidak ada data
                 </td>
