@@ -1,5 +1,11 @@
+import { Gabarito } from "next/font/google";
 import { ToastContainer } from "react-toastify";
 import "./globals.css";
+
+const gabarito = Gabarito({
+  variable: "--font-gabarito-sans",
+  subsets: ["latin"],
+});
 
 export default function RootLayout({
   children,
@@ -7,8 +13,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body>
+    <html lang="id">
+      <body className={`${gabarito.variable} antialiased`}>
         {children}
         <ToastContainer position="bottom-right" />
       </body>

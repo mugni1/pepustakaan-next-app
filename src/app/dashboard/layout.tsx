@@ -40,7 +40,7 @@ export default function Layout({ children }: { children: ReactNode }) {
   }, [router, token]);
 
   return (
-    <main className="w-full flex">
+    <main className="w-full flex font-gabarito">
       {/* SIDE BAR  */}
       <Sidebar className={sidebar ? "visible w-2/12 " : "invisible  w-0 "} />
       {/* END SIDE BAR  */}
