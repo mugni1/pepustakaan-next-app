@@ -73,80 +73,106 @@ export default function TransactionList({ data }: { data: Props[] }) {
     <Container className="mb-5">
       <table className="w-full">
         <thead>
-          <tr className="border-b border-slate-500 poppins-bold">
-            <th className="py-2 w-1/12">ID Transaksi</th>
-            <th className="w-2/12 py-5 ">Peminjam</th>
-            <th className="w-3/12">Judul Buku</th>
-            <th className="w-1/12 px-2">Tgl Peminjaman</th>
+          <tr>
+            <th className="border py-2 text-accent2 bg-accent2/10  w-1/12">
+              ID Transaksi
+            </th>
+            <th className="border py-2 text-accent2 bg-accent2/10 w-2/12  ">
+              Peminjam
+            </th>
+            <th className="border py-2 text-accent2 bg-accent2/10 w-2/12">
+              Judul Buku
+            </th>
+            <th className="border py-2 text-accent2 bg-accent2/10 w-1/12 px-2">
+              Tgl Peminjaman
+            </th>
             {pathName == "/dashboard/transaction-borrow" && (
-              <th className="w-1/12 px-2">Tgl Pengembalian</th>
+              <th className="border py-2 text-accent2 bg-accent2/10 w-1/12 px-2">
+                Tgl Pengembalian
+              </th>
             )}
             {pathName == "/dashboard/transaction-late" && (
-              <th className="w-1/12 px-2">Tgl Pengembalian</th>
+              <th className="border py-2 text-accent2 bg-accent2/10 w-1/12 px-2">
+                Tgl Pengembalian
+              </th>
             )}
             {pathName == "/dashboard/transaction-late" && (
-              <th className="w-1/12 px-2">Tgl Dikembalikan</th>
+              <th className="border py-2 text-accent2 bg-accent2/10 w-1/12 px-2">
+                Tgl Dikembalikan
+              </th>
             )}
             {pathName == "/dashboard/transaction-return" && (
-              <th className="w-1/12 px-2">Tgl Dikembalikan</th>
+              <th className="border py-2 text-accent2 bg-accent2/10 w-1/12 px-2">
+                Tgl Dikembalikan
+              </th>
             )}
             {pathName == "/dashboard/transaction-borrow" && (
-              <th className="w-1/12 px-2">Denda telat/hari</th>
+              <th className="border py-2 text-accent2 bg-accent2/10 w-1/12 px-2">
+                Denda telat/hari
+              </th>
             )}
             {pathName == "/dashboard/transaction-return" && (
-              <th className="w-1/12 px-2">Denda telat/hari</th>
+              <th className="border py-2 text-accent2 bg-accent2/10 w-1/12 px-2">
+                Denda telat/hari
+              </th>
             )}
-            <th className="w-2/12">Status</th>
-            <th className="w-1/12" colSpan={3}>
+            <th className="border py-2 text-accent2 bg-accent2/10 w-1/12">
+              Status
+            </th>
+            <th
+              className="border py-2 text-accent2 bg-accent2/10 w-1/12"
+              colSpan={3}
+            >
               Tindakan
             </th>
           </tr>
         </thead>
         <tbody>
           {datas?.map((data: Props, index: number) => (
-            <tr
-              key={`${index}${data.id}`}
-              className="border-b border-slate-500"
-            >
-              <td className="poppins-semibold text-center  px-2">
+            <tr key={`${index}${data.id}`}>
+              <td className="poppins-semibold text-center px-2 border">
                 <div className="bg-gradient-to-r from-fuchsia-500 to-purple-500 text-white py-1 px-4 rounded-md w-full">
                   {data.id}
                 </div>
               </td>
-              <td className="text-center poppins-semibold">
+              <td className="text-center  border">
                 {data.users?.username || (
                   <span className="text-red-500">UserDeleted</span>
                 )}
               </td>
-              <td className="text-center">
+              <td className="text-center border">
                 {data.books?.title || (
                   <span className="text-red-500">BookDeleted</span>
                 )}
               </td>
-              <td className="text-center">{data.borrow_date}</td>
+              <td className="text-center border">{data.borrow_date}</td>
               {pathName == "/dashboard/transaction-late" && (
-                <td className="text-center">{data.return_date}</td>
+                <td className="text-center border">{data.return_date}</td>
               )}
               {pathName == "/dashboard/transaction-borrow" && (
-                <td className="text-center">{data.return_date}</td>
+                <td className="text-center border">{data.return_date}</td>
               )}
               {pathName == "/dashboard/transaction-late" && (
-                <td className="text-center">{data.actual_return_date}</td>
+                <td className="text-center border">
+                  {data.actual_return_date}
+                </td>
               )}
               {pathName == "/dashboard/transaction-return" && (
-                <td className="text-center">{data.actual_return_date}</td>
+                <td className="text-center border">
+                  {data.actual_return_date}
+                </td>
               )}
               {pathName == "/dashboard/transaction-borrow" && (
-                <td className="text-center px-2">
+                <td className="text-center border px-2">
                   Rp{data.daily_fine?.toLocaleString("id-ID")}
                 </td>
               )}
               {pathName == "/dashboard/transaction-return" && (
-                <td className="text-center px-2">
+                <td className="text-center border px-2">
                   Rp{data.daily_fine?.toLocaleString("id-ID")}
                 </td>
               )}
-              <td className="text-center">
+              <td className="text-center border">
                 <span
                   className={`py-1 px-3 rounded-lg ${
                     data.status == "dipinjam" && "text-amber-600 bg-amber-200"
@@ -159,7 +185,7 @@ export default function TransactionList({ data }: { data: Props[] }) {
                 </span>
               </td>
               {/* return  show  */}
-              <td className="text-center px-1  py-2">
+              <td className="text-center px-1  py-2 border">
                 {pathName == "/dashboard/transaction-borrow" && (
                   <Link href={`/dashboard/transaction-borrow/${data.id}`}>
                     <button className=" p-2 rounded-full bg-sky-500 text-white cursor-pointer">
@@ -183,7 +209,7 @@ export default function TransactionList({ data }: { data: Props[] }) {
                 )}
               </td>
               {data.status == "dipinjam" && (
-                <td className="text-center px-1  py-2">
+                <td className="text-center px-1  py-2 border">
                   <button
                     onClick={() => handleReturn(data.id)}
                     className=" p-2 rounded-full bg-emerald-500 text-white cursor-pointer"
@@ -196,10 +222,10 @@ export default function TransactionList({ data }: { data: Props[] }) {
             </tr>
           ))}
           {datas?.length == 0 && (
-            <tr className="border-b">
+            <tr className="border">
               <td
                 colSpan={7}
-                className="text-center text-red-500 poppins-bold py-5"
+                className="text-center text-red-500 font-bold py-5"
               >
                 Tidak ada data
               </td>

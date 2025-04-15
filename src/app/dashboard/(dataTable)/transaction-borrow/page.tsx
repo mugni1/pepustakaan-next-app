@@ -4,7 +4,7 @@ import { getTransaction } from "@/services";
 import { Metadata } from "next";
 import MainContainer from "@/components/Admin/MainContainer";
 import SearchAddBtn from "@/components/Admin/SearchAddBtn";
-import { TbArrowBigRightLines } from "react-icons/tb";
+import { LuArrowRightFromLine } from "react-icons/lu";
 
 export const metadata: Metadata = {
   title: "Dashboard - Transaction Borrow",
@@ -21,7 +21,7 @@ export default async function Page({
   return (
     <MainContainer>
       <SearchAddBtn addLink="transaction-borrow/add">
-        <TbArrowBigRightLines size={24} /> Pinjam
+        <LuArrowRightFromLine size={24} /> Pinjam Buku
       </SearchAddBtn>
       <TransactionList data={data?.data} />
       <Pagination
