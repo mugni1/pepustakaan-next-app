@@ -66,7 +66,7 @@ export const createBorrow = async (
   } catch {
     return {
       status: "failed",
-      message: "Terjadi Kesalah",
+      message: "Terjadi Kesalah, Coba lagi nanti",
     };
   }
 };
@@ -125,6 +125,58 @@ export const returnBook = async (id: number) => {
     return {
       status: "failed",
       message: "Ada Kesalahan, Silahkan coba lagi nanti",
+    };
+  }
+};
+
+// create category
+const createCategoryValidateSchema = z.object({
+  name: z.string().min(1, "Harap Masukan Nama Kategori"),
+});
+
+export const createCategory = async (prevState: any, formData: FormData) => {
+  const token = (await cookies()).get("auth_token")?.value;
+  const dataBody = createCategoryValidateSchema.safeParse(
+    Object.fromEntries(formData.entries())
+  );
+
+  if (!dataBody.success) {
+    return {
+      status: "warning",
+      message: "Harap isi semua form dengan benar dan coba lagi",
+      Error: dataBody.error.flatten().fieldErrors,
+    };
+  }
+
+  try {
+    const res = await fetch(`${baseApiURL}/categories`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json", // penting untuk JSON
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        name: dataBody.data.name,
+      }),
+    });
+    if (!res.ok) {
+      const text = await res.text();
+      const json = JSON.parse(text);
+      const message = json.message;
+      return {
+        status: "warning",
+        message: message,
+      };
+    }
+    return {
+      status: "success",
+      message: "Berhasil Menyimpan Kategori",
+    };
+  } catch {
+    return {
+      status: "failed",
+      message: "Terjadi Kesalah, Coba lagi nanti",
     };
   }
 };
