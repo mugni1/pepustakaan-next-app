@@ -86,7 +86,7 @@ export default function ListBookReturns({ data }: { data: Borrow[] }) {
               {borrow.books.writer}
             </span>
             {/* id  */}
-            <span className="py-1 px-2 rounded-md bg-sky-100 text-sky-600 text-sm w-fit my-2 poppins-semibold">
+            <span className="py-1 px-2 rounded-md bg-accent2/20 text-accent2 text-sm w-fit my-2 poppins-semibold">
               ID : {borrow.id}
             </span>
             {/* status  */}
