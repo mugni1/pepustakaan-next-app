@@ -168,6 +168,8 @@ export const createCategory = async (prevState: any, formData: FormData) => {
         message: message,
       };
     }
+    revalidatePath("/dashboard/category");
+    revalidatePath("/dashboard/home");
     return {
       status: "success",
       message: "Berhasil Menyimpan Kategori",
@@ -220,6 +222,8 @@ export const updateCategory = async (
         message: message,
       };
     }
+    revalidatePath("/dashboard/category");
+    revalidatePath("/dashboard/home");
     return {
       status: "success",
       message: "Berhasil Menyimpan Kategori",
@@ -228,6 +232,38 @@ export const updateCategory = async (
     return {
       status: "failed",
       message: "Terjadi Kesalah, Coba lagi nanti",
+    };
+  }
+};
+// delete category
+export const deleteCategory = async (id: number) => {
+  const token = (await cookies()).get("auth_token")?.value;
+  try {
+    const res = await fetch(`${baseApiURL}/categories/${id}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    if (!res.ok) {
+      const text = await res.text();
+      const json = JSON.parse(text);
+      const message = json.message;
+      return {
+        status: "failed",
+        message: message,
+      };
+    }
+    revalidatePath("/dashboard/category");
+    revalidatePath("/dashboard/home");
+    return {
+      status: "success",
+      message: "Berhasil Menghapus Kategori",
+    };
+  } catch {
+    return {
+      status: "failed",
+      message: "Terjadi Kesalahan, Coba lagi nanti",
     };
   }
 };

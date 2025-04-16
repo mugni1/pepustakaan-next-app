@@ -61,7 +61,7 @@ export default function ListBookBorrows({ data }: { data: Borrow[] }) {
           {/* card body  */}
           <div className="w-8/12 flex flex-col p-2">
             {/* title  */}
-            <h2 className="poppins-semibold text-lg line-clamp-1">
+            <h2 className="font-semibold text-lg line-clamp-1">
               {borrow.books.title}
             </h2>
             {/* end title  */}
@@ -71,13 +71,13 @@ export default function ListBookBorrows({ data }: { data: Borrow[] }) {
             </span>
             {/* end writer  */}
             {/* id  */}
-            <span className="py-1 px-2 rounded-md bg-sky-100 text-sky-600 text-sm w-fit my-2 poppins-semibold">
+            <span className="py-1 px-4 rounded bg-accent2/20 text-accent2 text-sm w-fit my-2 font-bold">
               ID : {borrow.id}
             </span>
             {/* status  */}
             {/* date  */}
             <div className="flex flex-col">
-              <span className="flex items-center gap-1 poppins-semibold text-sm">
+              <span className="flex items-center gap-1 font-semibold text-sm">
                 <CalendarDots size={20} />
                 <span>Pinjam & Pengembalian</span>
               </span>
@@ -89,9 +89,9 @@ export default function ListBookBorrows({ data }: { data: Borrow[] }) {
             </div>
             {/* Countdown */}
             <div className="py-2 flex flex-col text-sm">
-              <div className="flex items-center gap-1 poppins-semibold">
+              <div className="flex items-center gap-1 font-semibold">
                 <ClockCountdown size={20} />
-                <span>Hitung Mundur</span>
+                <span>Hitung Mundur Pengembalian</span>
               </div>
               {isClient && ( // tampilkan saat isClients == true
                 <Countdown
@@ -107,7 +107,7 @@ export default function ListBookBorrows({ data }: { data: Borrow[] }) {
                               ? `Sudah lewat ${lateDays} hari, denda`
                               : "Segera kembalikan, denda"}
                           </span>
-                          <span className="text-red-500 poppins-semibold">
+                          <span className="text-red-500 font-semibold">
                             Rp
                             {(lateDays * borrow.daily_fine).toLocaleString(
                               "id-ID"

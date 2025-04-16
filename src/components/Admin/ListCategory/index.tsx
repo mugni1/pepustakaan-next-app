@@ -1,6 +1,5 @@
 "use client";
 import { useState, useEffect } from "react";
-import axios from "axios";
 import swal from "sweetalert";
 import { MagnifyingGlass, Pencil, Trash } from "@phosphor-icons/react";
 import { useRouter } from "next/navigation";
@@ -9,14 +8,14 @@ import Container from "../Container";
 import BtnHref from "../Button/BtnHref";
 import Cookies from "js-cookie";
 import { LuTag } from "react-icons/lu";
+import { toast } from "react-toastify";
+import { deleteCategory } from "@/_actions";
 
 interface Props {
   id: number;
   name: string;
 }
 export default function CategoryList({ datas }: { datas: Props[] }) {
-  //token
-  const token = Cookies.get("auth_token");
   const [categories, setCategories] = useState(datas || []);
   const [keyword, setKeyword] = useState("");
   const router = useRouter();
@@ -33,6 +32,19 @@ export default function CategoryList({ datas }: { datas: Props[] }) {
     }
   }, [keyword, datas]);
 
+  async function handleDeleteCategory(id: number) {
+    const res = await deleteCategory(id);
+    if (res.status == "warning") {
+      toast.warning(res.message);
+    }
+    if (res?.status == "success") {
+      toast.success(res.message);
+    }
+    if (res?.status == "failed") {
+      toast.error(res.message);
+    }
+  }
+
   function handleDelete(id: number) {
     swal({
       icon: "warning",
@@ -42,28 +54,7 @@ export default function CategoryList({ datas }: { datas: Props[] }) {
       buttons: ["Cancel", "OK"],
     }).then((isTrue) => {
       if (isTrue) {
-        axios({
-          method: "delete",
-          url: `${process.env.NEXT_PUBLIC_BASE_API_URL}/categories/${id}`,
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        })
-          .then((res) => {
-            setCategories(categories.filter((category) => category.id != id));
-            swal({
-              icon: "success",
-              title: "success",
-              text: res.data.message,
-            });
-          })
-          .catch((err) => {
-            swal({
-              icon: "error",
-              title: "error",
-              text: err.response?.data?.message || "Terjadi kesalahan",
-            });
-          });
+        handleDeleteCategory(id);
       }
     });
   }

@@ -60,7 +60,9 @@ export async function getBooksDetail(id: string) {
 
 // KATEGORI
 export async function getCategorys() {
-  const res = await fetch(`${baseUrl}/categories`);
+  const res = await fetch(`${baseUrl}/categories`, {
+    cache: "force-cache",
+  });
   return res.json();
 }
 export async function getCategorysDetail(id: number) {
