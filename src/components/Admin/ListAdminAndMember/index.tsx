@@ -1,15 +1,12 @@
 "use client";
-import { MagnifyingGlass, Trash } from "@phosphor-icons/react";
-import BtnHref from "../Button/BtnHref";
+import { Trash } from "@phosphor-icons/react";
 import Container from "../Container";
-import MainContainer from "../MainContainer";
 import { useEffect, useState } from "react";
 import swal from "sweetalert";
 import axios from "axios";
 import Cookies from "js-cookie";
-import { usePathname } from "next/navigation";
 
-interface Member {
+interface User {
   id: number;
   full_name: string;
   username: string;
@@ -17,15 +14,12 @@ interface Member {
   roles: { id: number; name: string };
 }
 
-export default function MemberAndAdminList({ members }: { members: Member[] }) {
-  const [memberList, setMemberList] = useState(members || []);
+export default function MemberAndAdminList({ members }: { members: User[] }) {
+  const [userList, setUserList] = useState(members || []);
   const token = Cookies.get("auth_token");
 
-  // pathname
-  const pathName = usePathname();
-
   useEffect(() => {
-    setMemberList(members);
+    setUserList(members);
   }, [members]);
 
   // HANDLE DELETE USER
@@ -58,7 +52,7 @@ export default function MemberAndAdminList({ members }: { members: Member[] }) {
           title: "Success!",
           text: res.data.message,
         });
-        setMemberList(memberList.filter((member) => member.id != id));
+        setUserList(userList.filter((user) => user.id != id));
       })
       .catch((err) => {
         swal({
@@ -99,17 +93,17 @@ export default function MemberAndAdminList({ members }: { members: Member[] }) {
             </tr>
           </thead>
           <tbody>
-            {memberList?.map((member: Member, index) => (
-              <tr key={index + member.id}>
-                <td className="text-center border py-5">{member.id}</td>
-                <td className="text-center border py-5">{member.full_name}</td>
-                <td className="text-center border">{member.username}</td>
-                <td className="text-center border">{member.email}</td>
-                <td className="text-center border">{member.roles.name}</td>
+            {userList?.map((user: User, index) => (
+              <tr key={index + user.id}>
+                <td className="text-center border py-5">{user.id}</td>
+                <td className="text-center border py-5">{user.full_name}</td>
+                <td className="text-center border">{user.username}</td>
+                <td className="text-center border">{user.email}</td>
+                <td className="text-center border">{user.roles.name}</td>
                 {/* delete update show  */}
                 <td className="text-center border px-1">
                   <button
-                    onClick={() => handleDelete(member.id)}
+                    onClick={() => handleDelete(user.id)}
                     className=" p-2 rounded-full bg-red-500 text-white cursor-pointer"
                   >
                     <Trash size={24} />
@@ -118,7 +112,7 @@ export default function MemberAndAdminList({ members }: { members: Member[] }) {
                 {/* end delete update show  */}
               </tr>
             ))}
-            {memberList?.length == 0 && (
+            {userList?.length == 0 && (
               <tr className="border-b">
                 <td
                   colSpan={6}
