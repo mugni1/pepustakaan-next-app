@@ -1,14 +1,14 @@
 "use client";
-import Column1 from "@/components/Login/Column1";
 import { useState } from "react";
 import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import TitleForm from "../Admin/Title/TitleForm";
-import BtnClick from "../Admin/Button/BtnClick";
 import { Eye, EyeSlash, SpinnerGap } from "@phosphor-icons/react";
 import swal from "sweetalert";
 import Cookies from "js-cookie";
+import Column1 from "./Column1";
+import TitleForm from "@/components/Admin/Title/TitleForm";
+import BtnClick from "@/components/Admin/Button/BtnClick";
 
 const urlLogin: string = "http://localhost:8000/api/login";
 const urlLoginLogout: string = "http://localhost:8000/api/login-logout";
@@ -113,7 +113,7 @@ export default function MainContentLogin() {
             <input
               type="email"
               placeholder="Email"
-              className="py-1 px-3 rounded-lg border w-full border-slate-600 outline-purple-500"
+              className="py-1 px-3 rounded-lg border w-full border-foreground/70 outline-accent2"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
@@ -122,7 +122,7 @@ export default function MainContentLogin() {
               <input
                 type={isPassword ? "password" : "text"}
                 placeholder="Password"
-                className="py-1 px-3 rounded-lg border w-full border-slate-600 outline-purple-500 pe-8"
+                className="py-1 px-3 rounded-lg border w-full border-foreground/70 outline-accent2 pe-8"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
@@ -145,7 +145,7 @@ export default function MainContentLogin() {
                 Logout dari semua perangkat
               </label>
             </div>
-            <BtnClick className="bg-gradient-to-r from-fuchsia-500 to-purple-500 flex justify-center text-center">
+            <BtnClick className="bg-gradient-to-r from-accent1 to-accent2 flex justify-center text-center">
               {loadingBtn ? (
                 <SpinnerGap className="animate-spin" size={24} />
               ) : (
