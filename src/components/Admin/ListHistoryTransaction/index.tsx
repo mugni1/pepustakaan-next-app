@@ -4,6 +4,7 @@ import Container from "../Container";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import DataTableNoResult from "@/app/(admin)/_components/DataTableNoResult";
 
 interface Book {
   title: string;
@@ -139,16 +140,7 @@ export default function HistoryTransactionsList({
               </td>
             </tr>
           ))}
-          {historyTrans?.length == 0 && (
-            <tr className="border-b">
-              <td
-                colSpan={7}
-                className="text-center border text-red-500 font-bold py-5"
-              >
-                Tidak ada data
-              </td>
-            </tr>
-          )}
+          {historyTrans?.length == 0 && <DataTableNoResult />}
         </tbody>
       </table>
     </Container>
