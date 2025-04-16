@@ -129,14 +129,13 @@ export const returnBook = async (id: number) => {
   }
 };
 
-// create category
-const createCategoryValidateSchema = z.object({
+const categoryValidateSchema = z.object({
   name: z.string().min(1, "Harap Masukan Nama Kategori"),
 });
-
+// create category
 export const createCategory = async (prevState: any, formData: FormData) => {
   const token = (await cookies()).get("auth_token")?.value;
-  const dataBody = createCategoryValidateSchema.safeParse(
+  const dataBody = categoryValidateSchema.safeParse(
     Object.fromEntries(formData.entries())
   );
 
@@ -158,6 +157,58 @@ export const createCategory = async (prevState: any, formData: FormData) => {
       },
       body: JSON.stringify({
         name: dataBody.data.name,
+      }),
+    });
+    if (!res.ok) {
+      const text = await res.text();
+      const json = JSON.parse(text);
+      const message = json.message;
+      return {
+        status: "warning",
+        message: message,
+      };
+    }
+    return {
+      status: "success",
+      message: "Berhasil Menyimpan Kategori",
+    };
+  } catch {
+    return {
+      status: "failed",
+      message: "Terjadi Kesalah, Coba lagi nanti",
+    };
+  }
+};
+// update category
+export const updateCategory = async (
+  id: number,
+  prevState: any,
+  formData: FormData
+) => {
+  const token = (await cookies()).get("auth_token")?.value;
+  const dataBody = categoryValidateSchema.safeParse(
+    Object.fromEntries(formData.entries())
+  );
+
+  if (!dataBody.success) {
+    return {
+      status: "warning",
+      message: "Harap isi semua form dengan benar dan coba lagi",
+      Error: dataBody.error.flatten().fieldErrors,
+    };
+  }
+
+  try {
+    const res = await fetch(`${baseApiURL}/categories/${id}`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json", // penting untuk JSON
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        name: dataBody.data.name,
+        _method: "put",
       }),
     });
     if (!res.ok) {
