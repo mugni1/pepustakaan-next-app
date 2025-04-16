@@ -1,8 +1,8 @@
-import UserContainer from "@/components/User/Container/UserContainer";
-import ListBookBorrows from "@/components/User/ListBookBorrows";
-import SubTitle2 from "@/components/User/SubTitle2";
 import { getBorrowBookUser } from "@/services";
 import { Metadata } from "next";
+import MainContainer from "../_components/MainContainer";
+import SubTitle2 from "../_components/SubTitle2";
+import ListBookBorrows from "../_components/ListBookBorrows";
 
 export const metadata: Metadata = {
   title: "Pustaka - Borrow Books",
@@ -11,9 +11,9 @@ export const metadata: Metadata = {
 export default async function Page() {
   const borrows = await getBorrowBookUser();
   return (
-    <UserContainer>
+    <MainContainer>
       <SubTitle2 className="bg-amber-600">DAFTAR PEMINJAMAN</SubTitle2>
       <ListBookBorrows data={borrows.data} />
-    </UserContainer>
+    </MainContainer>
   );
 }

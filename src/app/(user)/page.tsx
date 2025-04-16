@@ -5,7 +5,7 @@ import SearchBookForm from "./_components/SearchBookForm";
 import SubTitle from "./_components/SubTitle";
 import ListBooks from "./_components/ListBooks";
 import NoResult from "./_components/ListBooks/NoResult";
-import PaginationUser from "@/components/User/Pagination/Pagination";
+import PaginationUser from "./_components/Pagination/Pagination";
 
 interface Props {
   searchParams: Promise<{ page: string; q: string }>;

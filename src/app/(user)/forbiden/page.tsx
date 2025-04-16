@@ -13,7 +13,7 @@ export default function Page() {
         <p className="mb-5 text-base text-foreground/80">
           Silahkan Login terlebih dahulu
         </p>
-        <BtnHref href="/login">SIGN IN</BtnHref>
+        <BtnHref href="/login">SignIn</BtnHref>
       </div>
     </section>
   );
