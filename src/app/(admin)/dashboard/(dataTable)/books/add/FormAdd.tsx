@@ -25,7 +25,7 @@ export default function FormAdd({ categories }: { categories: Category[] }) {
     }
   }, [state]);
   return (
-    <form action={formAction} method="POST" encType="multipart/form-data">
+    <form action={formAction}>
       {/* input  */}
       <section className="w-full grid grid-cols-2 gap-5 mb-5">
         <div className="flex flex-col">
@@ -111,7 +111,7 @@ export default function FormAdd({ categories }: { categories: Category[] }) {
             className="py-1 px-2 outline-purple-600 border border-slate-400 rounded-md w-full"
             name="image"
           />
-          <i className="text-xs text-red-500">{state?.Error.image}</i>
+          <i className="text-xs text-red-500">{state?.Error?.image}</i>
         </div>
         <div className="flex flex-col col-span-2">
           <textarea

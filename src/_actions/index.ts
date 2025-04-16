@@ -70,7 +70,7 @@ export const createBorrow = async (
     };
   }
 };
-const MAX_IMAGE_SIZE = 5 * 1024 * 1024; // 2MB
+const MAX_IMAGE_SIZE = 3 * 1024 * 1024; // 2MB
 const ACCEPTED_IMAGE_TYPES = [
   "image/jpeg",
   "image/jpg",
@@ -82,13 +82,13 @@ const createBookValidateSchema = z.object({
   title: z.string().min(1, "Masukan Judul Buku"),
   writer: z.string().min(1, "Masukan Penulis Buku"),
   publisher: z.string().min(1, "Masukan Penerbit Buku"),
-  stock: z.string().min(1, "Masukan Stock Buku").transform(Number),
+  stock: z.string().min(1, "Masukan Stock Buku"),
   publication_date: z.string().min(1, "Masukan Tahun Terbit Buku"),
-  category: z.string().min(1, "Pilih salah satu kategori").transform(Number),
+  category: z.string().min(1, "Pilih salah satu kategori"),
   image: z
     .instanceof(File)
     .refine((file) => file.size < MAX_IMAGE_SIZE, {
-      message: "Ukuran gambar maksimal 5MB",
+      message: "Ukuran gambar maksimal 3MB",
     })
     .refine((file) => ACCEPTED_IMAGE_TYPES.includes(file.type), {
       message: "Masukan gambar dengan Format harus JPG, PNG, WebP, atau JFIF",
@@ -101,11 +101,49 @@ export const createBook = async (prevData: any, formData: FormData) => {
   const dataBody = createBookValidateSchema.safeParse(
     Object.fromEntries(formData.entries())
   );
+
   if (!dataBody.success) {
     return {
       status: "warning",
       message: "Harap isi semua form dengan benar!",
       Error: dataBody.error.flatten().fieldErrors,
+    };
+  }
+
+  console.log(dataBody);
+
+  try {
+    const form = new FormData();
+    form.append("title", dataBody.data.title);
+    form.append("writer", dataBody.data.writer);
+    form.append("publisher", dataBody.data.publisher);
+    form.append("publication_date", dataBody.data.publication_date);
+    form.append("stock", dataBody.data.stock);
+    form.append("category_id", dataBody.data.category);
+    form.append("description", dataBody.data.description);
+    form.append("image", dataBody.data.image);
+
+    const res = await fetch(`${baseApiURL}/books`, {
+      method: "POST",
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+      body: form,
+    });
+    if (!res.ok) {
+      return {
+        status: "failed",
+        message: "Gagal Menyimpan Buku",
+      };
+    }
+    return {
+      status: "success",
+      message: "Berhasil Menyimpan Buku",
+    };
+  } catch {
+    return {
+      status: "failed",
+      message: "Koneksi Error, Coba lagi nanti",
     };
   }
 };
