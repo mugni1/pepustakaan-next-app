@@ -5,7 +5,7 @@ import BtnHref from "@/components/Admin/Button/BtnHref";
 import React, { useActionState, useEffect } from "react";
 import { toast } from "react-toastify";
 
-export default function FormEdit({ id }: { id: number }) {
+export default function FormEdit({ id, name }: { id: number; name: string }) {
   const updateCategoryWithID = updateCategory.bind(null, id);
   const [state, formAction] = useActionState(updateCategoryWithID, null);
   useEffect(() => {
@@ -28,6 +28,7 @@ export default function FormEdit({ id }: { id: number }) {
           className="py-1 px-2 outline-accent2 border border-foreground/60 rounded-md"
           placeholder="Nama Kategori"
           name="name"
+          defaultValue={name}
           required
         />
         <i className="text-xs text-red-500">{state?.Error?.name}</i>

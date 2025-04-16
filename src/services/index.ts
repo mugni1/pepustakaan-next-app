@@ -63,6 +63,10 @@ export async function getCategorys() {
   const res = await fetch(`${baseUrl}/categories`);
   return res.json();
 }
+export async function getCategorysDetail(id: number) {
+  const res = await fetch(`${baseUrl}/categories/${id}`);
+  return res.json();
+}
 
 // ANGGOTA LIST
 export async function getMember(page: string, keyword: string) {
