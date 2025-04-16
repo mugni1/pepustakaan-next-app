@@ -16,11 +16,11 @@ export default function SearchBookForm() {
       <form onSubmit={handleSubmit} className="gap-3 flex">
         <input
           type="text"
-          className="py-1 px-3 border rounded-md shadow-md border-slate-500 outline-purple-500"
+          className="py-1 px-3 border rounded-md shadow-md border-slate-500 outline-accent2"
           placeholder="Cari buku"
           ref={q}
         />
-        <button className="bg-gradient-to-r from-fuchsia-600 to-purple-600 px-2 py-1 rounded-md text-white shadow-md cursor-pointer">
+        <button className="bg-gradient-to-r from-accent1 to-accent2 px-2 py-1 rounded-md text-background1 shadow-md cursor-pointer">
           <MagnifyingGlass size={28} />
         </button>
       </form>

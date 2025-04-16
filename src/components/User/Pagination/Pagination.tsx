@@ -29,10 +29,10 @@ export default function PaginationUser({
       <section className="flex gap-5 justify-between  items-center">
         {/* btn prev  */}
         <button
-          className={`py-2 px-3 text-white transition-all ease-in-out active:scale-95 poppins-semibold rounded-lg flex items-center gap-2 ${
+          className={`py-2 px-3 text-white transition-all ease-in-out active:scale-95 font-semibold rounded-lg flex items-center gap-2 ${
             !prev_page_url
               ? "bg-slate-500 cursor-not-allowed"
-              : "bg-gradient-to-r from-fuchsia-600 to-purple-600 cursor-pointer"
+              : "bg-gradient-to-r from-accent1 to-accent2 cursor-pointer"
           }`}
           disabled={!prev_page_url}
           onClick={() =>
@@ -48,17 +48,17 @@ export default function PaginationUser({
         </button>
         {/* end btn prev  */}
         <div className="flex flex-col justify-center items-center">
-          <span className="poppins-semibold">Halaman ke {current_page}</span>
-          <span className="poppins-semibold text-sm text-slate-600">
+          <span className="font-semibold">Halaman ke {current_page}</span>
+          <span className="font-semibold text-sm text-slate-600">
             Data {from != null ? from : 0} - {to != null ? to : 0}
           </span>
         </div>
         {/* btn next  */}
         <button
-          className={`py-2 px-3 text-white transition-all ease-in-out active:scale-95 poppins-semibold rounded-lg flex items-center gap-2 ${
+          className={`py-2 px-3 text-white transition-all ease-in-out active:scale-95 font-semibold rounded-lg flex items-center gap-2 ${
             !next_page_url
               ? "bg-slate-500 cursor-not-allowed"
-              : "bg-gradient-to-r from-fuchsia-600 to-purple-600 cursor-pointer"
+              : "bg-gradient-to-r from-accent1 to-accent2 cursor-pointer"
           }`}
           disabled={!next_page_url}
           onClick={() =>

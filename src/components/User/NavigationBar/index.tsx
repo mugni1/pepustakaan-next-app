@@ -112,12 +112,12 @@ export default function NavigationBar() {
 
   return (
     <div className="w-full fixed bottom-5 px-5">
-      <div className=" w-full md:w-6/12 xl:w-4/12 mx-auto  py-3 px-5 rounded-lg shadow-lg flex items-center justify-between gap-5 backdrop-blur-md bg-white/50 border border-purple-500">
+      <div className=" w-full md:w-6/12 xl:w-4/12 mx-auto  py-3 px-5 rounded-lg shadow-lg flex items-center justify-between gap-5 backdrop-blur-md bg-white/50 border border-actext-accent2">
         <Link
           href={"/"}
           className={`${
             pathname == "/" &&
-            "text-purple-500 bg-purple-200 rounded-xl scale-110 "
+            "text-accent2 bg-accent2/20 rounded-lg scale-110 "
           } transition-all duration-300 ease-in-out p-2 scale-100`}
         >
           <HouseLine size={24} />
@@ -126,7 +126,7 @@ export default function NavigationBar() {
           href={"/profile"}
           className={`${
             pathname == "/profile" &&
-            "text-purple-500 bg-purple-200 rounded-xl scale-110"
+            "text-accent2 bg-accent2/20 rounded-lg scale-110"
           } transition-all duration-300 ease-in-out p-2 scale-100`}
         >
           <User size={24} />
@@ -135,7 +135,7 @@ export default function NavigationBar() {
           href={"/borrowings"}
           className={`${
             pathname == "/borrowings" &&
-            "text-purple-500 bg-purple-200 rounded-xl scale-110"
+            "text-accent2 bg-accent2/20 rounded-lg scale-110"
           } transition-all duration-300 ease-in-out p-2 scale-100`}
         >
           <ArrowFatLinesRight size={24} />
@@ -144,7 +144,7 @@ export default function NavigationBar() {
           href={"/returns"}
           className={`${
             pathname == "/returns" &&
-            "text-purple-500 bg-purple-200 rounded-xl scale-110"
+            "text-accent2 bg-accent2/20 rounded-lg scale-110"
           } transition-all duration-300 ease-in-out p-2 scale-100`}
         >
           <ArrowFatLinesLeft size={24} />
@@ -154,7 +154,7 @@ export default function NavigationBar() {
             onClick={validateLogout}
             className={`${
               pathname == "/login" &&
-              "text-purple-500 bg-purple-200 rounded-xl scale-110"
+              "text-accent2 bg-accent2/20 rounded-lg scale-110"
             } transition-all duration-300 ease-in-out p-2 scale-100 cursor-pointer`}
           >
             <SignOut size={24} />
@@ -165,7 +165,7 @@ export default function NavigationBar() {
             href={"/login"}
             className={`${
               pathname == "/login" &&
-              "text-purple-500 bg-purple-200 rounded-xl scale-110"
+              "text-accent2 bg-accent2/20 rounded-lg scale-110"
             } transition-all duration-300 ease-in-out p-2 scale-100`}
           >
             <SignIn size={24} />

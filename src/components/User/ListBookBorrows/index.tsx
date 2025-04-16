@@ -61,7 +61,7 @@ export default function ListBookBorrows({ data }: { data: Borrow[] }) {
           {/* card body  */}
           <div className="w-8/12 flex flex-col p-2">
             {/* title  */}
-            <h2 className="font-semibold text-lg line-clamp-1">
+            <h2 className="font-bold text-lg line-clamp-1">
               {borrow.books.title}
             </h2>
             {/* end title  */}
@@ -71,7 +71,7 @@ export default function ListBookBorrows({ data }: { data: Borrow[] }) {
             </span>
             {/* end writer  */}
             {/* id  */}
-            <span className="py-1 px-4 rounded bg-accent2/20 text-accent2 text-sm w-fit my-2 font-bold">
+            <span className="px-2 rounded-md bg-gradient-to-br from-accent1 to-accent2 text-base text-background1 w-fit my-2 font-extrabold">
               ID : {borrow.id}
             </span>
             {/* status  */}
@@ -91,9 +91,9 @@ export default function ListBookBorrows({ data }: { data: Borrow[] }) {
             <div className="py-2 flex flex-col text-sm">
               <div className="flex items-center gap-1 font-semibold">
                 <ClockCountdown size={20} />
-                <span>Hitung Mundur Pengembalian</span>
+                <span>Batas Waktu</span>
               </div>
-              {isClient && ( // tampilkan saat isClients == true
+              {isClient ? ( // tampilkan saat isClients == true
                 <Countdown
                   date={new Date(borrow.return_date).getTime()} // tujuan
                   daysInHours={true}
@@ -101,13 +101,13 @@ export default function ListBookBorrows({ data }: { data: Borrow[] }) {
                     if (completed) {
                       const lateDays = getLateDay(borrow.return_date);
                       return (
-                        <div className=" flex flex-col">
-                          <span className="text-red-500">
+                        <div className="flex flex-col">
+                          <span className="text-red-500 font-bold">
                             {lateDays > 0
                               ? `Sudah lewat ${lateDays} hari, denda`
                               : "Segera kembalikan, denda"}
                           </span>
-                          <span className="text-red-500 font-semibold">
+                          <span className="text-red-500 font-bold">
                             Rp
                             {(lateDays * borrow.daily_fine).toLocaleString(
                               "id-ID"
@@ -117,7 +117,7 @@ export default function ListBookBorrows({ data }: { data: Borrow[] }) {
                       );
                     } else {
                       return (
-                        <span className="text-green-500">
+                        <span className="text-green-500 font-bold">
                           {days} Hari, {hours} Jam : {minutes} Mnt : {seconds}{" "}
                           detik
                         </span>
@@ -125,6 +125,10 @@ export default function ListBookBorrows({ data }: { data: Borrow[] }) {
                     }
                   }}
                 />
+              ) : (
+                <span className="font-semibold text-accent2">
+                  Memuat waktu..
+                </span>
               )}
             </div>
           </div>

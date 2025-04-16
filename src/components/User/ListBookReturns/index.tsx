@@ -2,6 +2,7 @@
 import { CashRegister, Coin } from "@phosphor-icons/react";
 import Image from "next/image";
 import { useState } from "react";
+import { FaCoins, FaRegCalendarCheck } from "react-icons/fa";
 
 interface Book {
   id: number;
@@ -32,13 +33,13 @@ function getFine(
   const totalFine = daily_fine * delay;
   if (delay > 0) {
     return (
-      <span className="text-red-500 poppins-semibold">
+      <span className="text-red-500 font-semibold">
         Rp{totalFine.toLocaleString("id-ID")}
       </span>
     );
   } else {
     return (
-      <span className="text-emerald-500 poppins-semibold">Tidak ada denda</span>
+      <span className="text-emerald-500 font-semibold">Tidak ada denda</span>
     );
   }
 }
@@ -78,7 +79,7 @@ export default function ListBookReturns({ data }: { data: Borrow[] }) {
           {/* card body  */}
           <div className="w-8/12 flex flex-col p-2">
             {/* title  */}
-            <h2 className="poppins-semibold text-lg line-clamp-1">
+            <h2 className="font-semibold text-lg line-clamp-1">
               {borrow.books.title}
             </h2>
             {/* waiter  */}
@@ -86,13 +87,13 @@ export default function ListBookReturns({ data }: { data: Borrow[] }) {
               {borrow.books.writer}
             </span>
             {/* id  */}
-            <span className="py-1 px-2 rounded-md bg-accent2/20 text-accent2 text-sm w-fit my-2 poppins-semibold">
+            <span className="px-2 rounded-md bg-gradient-to-br from-accent1 to-accent2 text-base text-background1 w-fit my-2 font-extrabold">
               ID : {borrow.id}
             </span>
             {/* status  */}
-            <div className="flex flex-col text-sm mb-2 poppins-semibold">
-              <span className="flex items-center gap-1">
-                <CashRegister size={20} /> Status
+            <div className="flex flex-col text-sm mb-2 font-semibold gap-1">
+              <span className="flex items-center gap-1 font-semibold">
+                <FaRegCalendarCheck size={20} /> Tgl Dikembalikan
               </span>
               <span
                 className={`px-2 text-xs py-1 gap-1 flex items-center ${
@@ -101,7 +102,7 @@ export default function ListBookReturns({ data }: { data: Borrow[] }) {
                     : "text-red-600 bg-red-200 rounded w-fit"
                 }`}
               >
-                <span>{borrow.status}</span>
+                <span>{borrow.actual_return_date}</span>
                 {borrow.status == "terlambat" && (
                   <span>
                     : {getDelay(borrow.return_date, borrow.actual_return_date)}{" "}
@@ -112,8 +113,8 @@ export default function ListBookReturns({ data }: { data: Borrow[] }) {
             </div>
             {/* total fine */}
             <div className="flex flex-col">
-              <span className="flex items-center gap-1 poppins-semibold text-sm">
-                <Coin size={20} />
+              <span className="flex items-center gap-1 font-semibold">
+                <FaCoins size={18} />
                 Denda
               </span>
               <span className="text-sm">
