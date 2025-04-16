@@ -97,13 +97,13 @@ export default function MainContentLogin() {
   };
 
   return (
-    <section className="flex w-full min-h-screen  flex-wrap overflow-hidden relative px-5 md:px-0  bg-gradient-to-br from-fuchsia-500 to-purple-500 ">
+    <section className="font-gabarito flex w-full min-h-screen  flex-wrap overflow-hidden relative px-5 md:px-0  bg-gradient-to-br bg-background2 ">
       {/* column 1  */}
       <Column1 />
       {/* end column 1  */}
       {/* column 2  */}
       <div className="w-full md:w-4/12 min-h-screen flex items-center justify-center">
-        <div className="w-full md:w-10/12 xl:w-8/12 2xl:w-1/2 mx-auto rounded-xl shadow-lg p-5 flex flex-col gap-5 bg-white">
+        <div className="w-full md:w-10/12 xl:w-8/12 2xl:w-1/2 mx-auto rounded-xl shadow-lg p-5 flex flex-col gap-5 bg-background1 border border-foreground/10">
           <TitleForm>SIGN IN</TitleForm>
           <form
             onSubmit={handleSubmit}
