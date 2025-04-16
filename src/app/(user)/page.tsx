@@ -1,11 +1,11 @@
-import UserContainer from "@/components/User/Container/UserContainer";
-import ListBooks from "@/components/User/ListBooks";
-import NoResult from "@/components/User/ListBooks/NoResult";
-import PaginationUser from "@/components/User/Pagination/Pagination";
-import SearchBookForm from "@/components/User/SearchBookForm";
-import SubTitle from "@/components/User/SubTitle";
 import { getBooks } from "@/services";
 import { Metadata } from "next";
+import MainContainer from "./_components/MainContainer";
+import SearchBookForm from "./_components/SearchBookForm";
+import SubTitle from "./_components/SubTitle";
+import ListBooks from "./_components/ListBooks";
+import NoResult from "./_components/ListBooks/NoResult";
+import PaginationUser from "@/components/User/Pagination/Pagination";
 
 interface Props {
   searchParams: Promise<{ page: string; q: string }>;
@@ -23,7 +23,7 @@ export default async function Home({ searchParams }: Props) {
   const result = await getBooks(page, q);
 
   return (
-    <UserContainer>
+    <MainContainer>
       <SearchBookForm />
 
       {/* TITLE  */}
@@ -53,6 +53,6 @@ export default async function Home({ searchParams }: Props) {
         </div>
       )}
       {/* END PAGINATION  */}
-    </UserContainer>
+    </MainContainer>
   );
 }
