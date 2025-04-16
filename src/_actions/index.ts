@@ -110,8 +110,6 @@ export const createBook = async (prevData: any, formData: FormData) => {
     };
   }
 
-  console.log(dataBody);
-
   try {
     const form = new FormData();
     form.append("title", dataBody.data.title);
