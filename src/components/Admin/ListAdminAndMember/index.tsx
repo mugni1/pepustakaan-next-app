@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import swal from "sweetalert";
 import axios from "axios";
 import Cookies from "js-cookie";
+import DataTableNoResult from "@/app/(admin)/_components/DataTableNoResult";
 
 interface User {
   id: number;
@@ -112,16 +113,7 @@ export default function MemberAndAdminList({ members }: { members: User[] }) {
                 {/* end delete update show  */}
               </tr>
             ))}
-            {userList?.length == 0 && (
-              <tr className="border-b">
-                <td
-                  colSpan={6}
-                  className="text-center border text-red-500 font-bold py-5"
-                >
-                  Tidak ada data
-                </td>
-              </tr>
-            )}
+            {userList?.length == 0 && <DataTableNoResult />}
           </tbody>
         </table>
       </Container>
