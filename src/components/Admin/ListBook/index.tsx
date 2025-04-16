@@ -9,6 +9,7 @@ import Container from "../Container";
 import Cookies from "js-cookie";
 import Image from "next/image";
 import Link from "next/link";
+import DataTableNoResult from "@/app/(admin)/_components/DataTableNoResult";
 
 interface Books {
   category: { id: number; name: string };
@@ -78,7 +79,7 @@ export default function BooksList({ data }: { data: Books[] }) {
           {books?.map((book: Books, index: number) => (
             <tr key={index + book.id}>
               {/* cover book  */}
-              <td className="w-2/12 p-4 border">
+              <td className="p-4 border">
                 <Image
                   src={`${process.env.NEXT_PUBLIC_BASE_IMAGE_URL}/${book.image}`}
                   alt=""
@@ -88,12 +89,10 @@ export default function BooksList({ data }: { data: Books[] }) {
                 />
               </td>
               {/* end cover book  */}
-              <td className="w-2/12 font-semibold border text-center">
-                {book.title}
-              </td>
-              <td className="text-center border w-2/12">{book.writer}</td>
-              <td className="text-center border w-2/12">{book.publisher}</td>
-              <td className="text-center border w-2/12">
+              <td className="font-semibold border text-center">{book.title}</td>
+              <td className="text-center border">{book.writer}</td>
+              <td className="text-center border">{book.publisher}</td>
+              <td className="text-center border">
                 <span
                   className={`font-bold  px-4 py-1 rounded-md ${
                     book.stock > 0
@@ -105,7 +104,7 @@ export default function BooksList({ data }: { data: Books[] }) {
                 </span>
               </td>
               {/* delete update show  */}
-              <td className="text-center border px-1 w-1/12">
+              <td className="text-center border px-1">
                 <div className="w-full text-center gap-2 flex mx-auto justify-center">
                   <button
                     onClick={() => handleDelete(book.id)}
@@ -129,16 +128,7 @@ export default function BooksList({ data }: { data: Books[] }) {
               {/* end delete update show  */}
             </tr>
           ))}
-          {books.length <= 0 && (
-            <tr className="border-b border-slate-400">
-              <td
-                colSpan={7}
-                className="text-center text-red-500 font-bold py-5"
-              >
-                Tidak ada data
-              </td>
-            </tr>
-          )}
+          {books.length <= 0 && <DataTableNoResult />}
         </tbody>
       </table>
     </Container>

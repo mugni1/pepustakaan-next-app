@@ -8,6 +8,7 @@ import Link from "next/link";
 import { LuArrowLeftToLine } from "react-icons/lu";
 import { returnBook } from "@/_actions";
 import { toast } from "react-toastify";
+import DataTableNoResult from "@/app/(admin)/_components/DataTableNoResult";
 
 interface User {
   id: number;
@@ -79,32 +80,16 @@ export default function TransactionList({ data }: { data: Props[] }) {
             <th className="border py-2 text-accent2 bg-accent2/10 w-1/12 px-2">
               Tgl Peminjaman
             </th>
-            {pathName == "/dashboard/transaction-borrow" && (
-              <th className="border py-2 text-accent2 bg-accent2/10 w-1/12 px-2">
-                Tgl Pengembalian
-              </th>
-            )}
-            {pathName == "/dashboard/transaction-late" && (
-              <th className="border py-2 text-accent2 bg-accent2/10 w-1/12 px-2">
-                Tgl Pengembalian
-              </th>
-            )}
-            {pathName == "/dashboard/transaction-late" && (
+            <th className="border py-2 text-accent2 bg-accent2/10 w-1/12 px-2">
+              Tgl Pengembalian
+            </th>
+            {pathName == "/dashboard/transaction-late" ||
+            pathName == "/dashboard/transaction-return" ? (
               <th className="border py-2 text-accent2 bg-accent2/10 w-1/12 px-2">
                 Tgl Dikembalikan
               </th>
-            )}
-            {pathName == "/dashboard/transaction-return" && (
-              <th className="border py-2 text-accent2 bg-accent2/10 w-1/12 px-2">
-                Tgl Dikembalikan
-              </th>
-            )}
+            ) : null}
             {pathName == "/dashboard/transaction-borrow" && (
-              <th className="border py-2 text-accent2 bg-accent2/10 w-1/12 px-2">
-                Denda telat/hari
-              </th>
-            )}
-            {pathName == "/dashboard/transaction-return" && (
               <th className="border py-2 text-accent2 bg-accent2/10 w-1/12 px-2">
                 Denda telat/hari
               </th>
@@ -138,29 +123,31 @@ export default function TransactionList({ data }: { data: Props[] }) {
                   <span className="text-red-500">BookDeleted</span>
                 )}
               </td>
-              <td className="text-center border">{data.borrow_date}</td>
-              {pathName == "/dashboard/transaction-late" && (
-                <td className="text-center border">{data.return_date}</td>
-              )}
-              {pathName == "/dashboard/transaction-borrow" && (
-                <td className="text-center border">{data.return_date}</td>
-              )}
-              {pathName == "/dashboard/transaction-late" && (
+              <td className="text-center border">
+                <span className="text-amber-600 font-semibold">
+                  {data.borrow_date}
+                </span>
+              </td>
+              <td className="text-center border">
+                <span className="text-sky-600 font-semibold">
+                  {data.return_date}
+                </span>
+              </td>
+              {pathName == "/dashboard/transaction-late" ||
+              pathName == "/dashboard/transaction-return" ? (
                 <td className="text-center border">
-                  {data.actual_return_date}
+                  <span
+                    className={`font-semibold ${
+                      pathName == "/dashboard/transaction-late"
+                        ? "text-red-600"
+                        : "text-green-600"
+                    }`}
+                  >
+                    {data.actual_return_date}
+                  </span>
                 </td>
-              )}
-              {pathName == "/dashboard/transaction-return" && (
-                <td className="text-center border">
-                  {data.actual_return_date}
-                </td>
-              )}
+              ) : null}
               {pathName == "/dashboard/transaction-borrow" && (
-                <td className="text-center border px-2">
-                  Rp{data.daily_fine?.toLocaleString("id-ID")}
-                </td>
-              )}
-              {pathName == "/dashboard/transaction-return" && (
                 <td className="text-center border px-2">
                   Rp{data.daily_fine?.toLocaleString("id-ID")}
                 </td>
@@ -211,20 +198,10 @@ export default function TransactionList({ data }: { data: Props[] }) {
                   )}
                 </div>
               </td>
-
               {/* end return  show  */}
             </tr>
           ))}
-          {datas?.length == 0 && (
-            <tr className="border">
-              <td
-                colSpan={7}
-                className="text-center text-red-500 font-bold py-5"
-              >
-                Tidak ada data
-              </td>
-            </tr>
-          )}
+          {datas?.length == 0 && <DataTableNoResult />}
         </tbody>
       </table>
     </Container>

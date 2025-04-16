@@ -10,6 +10,7 @@ import Cookies from "js-cookie";
 import { LuTag } from "react-icons/lu";
 import { toast } from "react-toastify";
 import { deleteCategory } from "@/_actions";
+import DataTableNoResult from "@/app/(admin)/_components/DataTableNoResult";
 
 interface Props {
   id: number;
@@ -132,16 +133,7 @@ export default function CategoryList({ datas }: { datas: Props[] }) {
                 </td>
               </tr>
             ))}
-            {categories.length <= 0 && (
-              <tr className="border-b border-slate-400">
-                <td
-                  colSpan={4}
-                  className="text-center text-red-500 font-bold py-5"
-                >
-                  Tidak ada data
-                </td>
-              </tr>
-            )}
+            {categories.length <= 0 && <DataTableNoResult />}
           </tbody>
           {/* end tbody  */}
         </table>
