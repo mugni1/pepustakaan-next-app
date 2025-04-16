@@ -16,7 +16,7 @@ export default function RootLayout({
     <html lang="id">
       <body className={`${gabarito.variable} antialiased`}>
         {children}
-        <ToastContainer position="bottom-right" />
+        <ToastContainer position="bottom-right" className="font-sans" />
       </body>
     </html>
   );
