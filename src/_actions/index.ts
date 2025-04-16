@@ -70,7 +70,14 @@ export const createBorrow = async (
     };
   }
 };
-
+const MAX_IMAGE_SIZE = 5 * 1024 * 1024; // 2MB
+const ACCEPTED_IMAGE_TYPES = [
+  "image/jpeg",
+  "image/jpg",
+  "image/png",
+  "image/webp",
+  "image/jfif",
+];
 const createBookValidateSchema = z.object({
   title: z.string().min(1, "Masukan Judul Buku"),
   writer: z.string().min(1, "Masukan Penulis Buku"),
@@ -78,18 +85,30 @@ const createBookValidateSchema = z.object({
   stock: z.string().min(1, "Masukan Stock Buku").transform(Number),
   publication_date: z.string().min(1, "Masukan Tahun Terbit Buku"),
   category: z.string().min(1, "Pilih salah satu kategori").transform(Number),
+  image: z
+    .instanceof(File)
+    .refine((file) => file.size < MAX_IMAGE_SIZE, {
+      message: "Ukuran gambar maksimal 5MB",
+    })
+    .refine((file) => ACCEPTED_IMAGE_TYPES.includes(file.type), {
+      message: "Masukan gambar dengan Format harus JPG, PNG, WebP, atau JFIF",
+    }),
   description: z.string().min(1, "Masukan Deskripsi"),
 });
-export const createBook = async (formData: FormData) => {
+// createbook
+export const createBook = async (prevData: any, formData: FormData) => {
   const token = (await cookies()).get("auth_token")?.value;
   const dataBody = createBookValidateSchema.safeParse(
     Object.fromEntries(formData.entries())
   );
-
-  formData.get("");
-  console.log(dataBody);
+  if (!dataBody.success) {
+    return {
+      status: "warning",
+      message: "Harap isi semua form dengan benar!",
+      Error: dataBody.error.flatten().fieldErrors,
+    };
+  }
 };
-
 // return book
 export const returnBook = async (id: number) => {
   const token = (await cookies()).get("auth_token")?.value;
