@@ -5,7 +5,7 @@ import { getBorrowBookUser } from "@/services";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "DAFTAR PINJAMAN",
+  title: "Pustaka - Borrow Books",
 };
 
 export default async function Page() {

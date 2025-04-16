@@ -4,7 +4,7 @@ import { cookies } from "next/headers";
 import Image from "next/image";
 
 export const metadata: Metadata = {
-  title: "PROFILE",
+  title: "Pustaka - Profile",
 };
 
 export default async function Page() {

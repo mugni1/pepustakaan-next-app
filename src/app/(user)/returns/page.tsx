@@ -5,7 +5,7 @@ import { getReturnBookUser } from "@/services";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "DAFTAR PENGEMBALIAN",
+  title: "Pustaka - Return Books",
 };
 
 export default async function Page() {
