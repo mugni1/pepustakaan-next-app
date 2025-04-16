@@ -1,4 +1,5 @@
 "use client";
+import BtnClick from "@/components/Admin/Button/BtnClick";
 import { useRouter } from "next/navigation";
 import React, { useRef } from "react";
 
@@ -12,20 +13,18 @@ export default function FilterYearForm() {
     );
   };
   return (
-    <form className=" flex gap-2" onSubmit={handleSubmit}>
+    <form className=" flex gap-2 mb-3" onSubmit={handleSubmit}>
       <input
         type="number"
         name="year"
         id="year"
         min="2000"
         max="2200"
-        placeholder="Pilih Tahun"
-        className="py-1 px-3 border rounded-md border-slate-600"
+        placeholder="Masukan Tahun"
+        className="py-1 px-3 border rounded-md border-foreground outline-foreground w-2/12 "
         ref={year}
       />
-      <button className=" h-auto px-5 bg-green-500 text-white poppins-semibold rounded-md cursor-pointer active:scale-95 transition-all ease-in-out active:bg-slate-500 ">
-        Simpan
-      </button>
+      <BtnClick>Simpan</BtnClick>
     </form>
   );
 }

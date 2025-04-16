@@ -1,6 +1,5 @@
 import Container from "@/components/Admin/Container";
 import { SimpleBarChart } from "@/components/Admin/ReCharts/ReChart";
-import SubTitle from "@/components/User/SubTitle";
 import { getCountHistoryTrans } from "@/services";
 import React from "react";
 import FilterYearForm from "./_FilterYearForm";
@@ -17,9 +16,9 @@ export default async function Page({
   return (
     <Container className="mt-10 flex flex-col gap-2">
       {/* title  */}
-      <section className="flex justify-between items-center">
-        <SubTitle>Sejarah Transaksi</SubTitle>
-        <span className="poppins-bold text-xl">
+      <section className="flex justify-between items-center text-foreground">
+        <h1 className="font-bold text-xl">Sejarah Transaksi</h1>
+        <span className="font-bold text-xl">
           Tahun : {!year ? new Date().getFullYear() : year}
         </span>
       </section>
