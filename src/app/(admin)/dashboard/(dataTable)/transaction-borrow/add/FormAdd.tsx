@@ -47,7 +47,7 @@ export default function FormAdd({
         {/* select members  */}
         <div className="w-full flex flex-col">
           <select
-            className="py-1 px-2 outline-purple-600 border border-slate-400 rounded-md text-slate-600"
+            className="py-1 px-2 outline-accent2 border border-foreground/70 rounded-md text-foreground/70"
             name="memberID"
           >
             <option value="">- Pilih Anggota -</option>
@@ -63,7 +63,7 @@ export default function FormAdd({
         {/* select book  */}
         <div className="w-full flex flex-col">
           <select
-            className="py-1 px-2 outline-purple-600 border border-slate-400 rounded-md text-slate-600"
+            className="py-1 px-2 outline-accent2 border border-foreground/70 rounded-md text-foreground/70"
             name="bookID"
           >
             <option value="">- Pilih Buku -</option>
@@ -79,7 +79,7 @@ export default function FormAdd({
         <div className="w-full flex flex-col">
           <label htmlFor="returnDate">Taggal di kembalikan</label>
           <input
-            className="py-1 px-2 outline-purple-600 border border-slate-400 rounded-md text-slate-600"
+            className="py-1 px-2 outline-accent2 border border-foreground/70 rounded-md text-foreground/70"
             type="date"
             id="returnDate"
             name="returnDate"
@@ -91,7 +91,7 @@ export default function FormAdd({
         <div className="w-full flex flex-col">
           <label htmlFor="dailyFine">Denda telat / hari</label>
           <input
-            className="py-1 px-2 outline-purple-600 border border-slate-400 rounded-md text-slate-600"
+            className="py-1 px-2 outline-accent2 border border-foreground/70 rounded-md text-foreground/70"
             type="number"
             placeholder="30000"
             id="dailyFine"
