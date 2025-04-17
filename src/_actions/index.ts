@@ -134,6 +134,89 @@ export const createBook = async (prevData: any, formData: FormData) => {
         message: "Gagal Menyimpan Buku",
       };
     }
+    revalidatePath("/dashboard/books");
+    revalidatePath("/");
+    return {
+      status: "success",
+      message: "Berhasil Menyimpan Buku",
+    };
+  } catch {
+    return {
+      status: "failed",
+      message: "Koneksi Error, Coba lagi nanti",
+    };
+  }
+};
+
+const editBookValidateSchema = z.object({
+  title: z.string().min(1, "Masukan Judul Buku"),
+  writer: z.string().min(1, "Masukan Penulis Buku"),
+  publisher: z.string().min(1, "Masukan Penerbit Buku"),
+  stock: z.string().min(1, "Masukan Stock Buku"),
+  publication_date: z.string().min(1, "Masukan Tahun Terbit Buku"),
+  category: z.string().min(1, "Pilih salah satu kategori"),
+  image: z.union([
+    z
+      .instanceof(File)
+      .refine((file) => file.size < MAX_IMAGE_SIZE, {
+        message: "Ukuran gambar maksimal 3MB",
+      })
+      .refine((file) => ACCEPTED_IMAGE_TYPES.includes(file.type), {
+        message: "Masukan gambar dengan format JPG, PNG, WebP, atau JFIF",
+      }),
+    z.null(),
+  ]),
+  description: z.string().min(1, "Masukan Deskripsi"),
+});
+export const editBook = async (
+  id: number,
+  prevState: any,
+  formData: FormData
+) => {
+  const token = (await cookies()).get("auth_token")?.value;
+  const dataBody = Object.fromEntries(formData.entries());
+  const rawImage = formData.get("image"); /// ambil data
+  (dataBody as any).image =
+    rawImage instanceof File && rawImage.size > 0 ? rawImage : null; // jika file tidak di upload maka ubah ke null
+  const dataBodyValidate = editBookValidateSchema.safeParse(dataBody);
+  if (!dataBodyValidate.success) {
+    return {
+      status: "warning",
+      message: "Harap isi semua form dengan benar",
+      Error: dataBodyValidate.error.flatten().fieldErrors,
+    };
+  }
+
+  try {
+    //formData
+    const form = new FormData();
+    form.append("title", dataBodyValidate.data.title);
+    form.append("writer", dataBodyValidate.data.writer);
+    form.append("publisher", dataBodyValidate.data.publisher);
+    form.append("publication_date", dataBodyValidate.data.publication_date);
+    form.append("stock", dataBodyValidate.data.stock);
+    form.append("category_id", dataBodyValidate.data.category);
+    form.append("description", dataBodyValidate.data.description);
+    if (dataBodyValidate.data.image != null) {
+      form.append("image", dataBodyValidate.data.image);
+    }
+    form.append("_method", "PUT");
+    const res = await fetch(`${baseApiURL}/books/${id}`, {
+      method: "post",
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+      body: form,
+    });
+    if (!res.ok) {
+      return {
+        status: "failed",
+        message: "Gagal Menyimpan Buku",
+      };
+    }
+    revalidatePath("/dashboard/books/edit/" + id);
+    revalidatePath("/dashboard/books");
+    revalidatePath("/");
     return {
       status: "success",
       message: "Berhasil Menyimpan Buku",
