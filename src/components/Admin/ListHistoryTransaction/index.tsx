@@ -71,32 +71,32 @@ export default function HistoryTransactionsList({
             <tr key={`${index}`} className="border-b border-slate-600">
               <td className="font-bold text-center border px-2">
                 <div className="bg-gradient-to-r from-accent1 to-accent2 text-white py-1 px-4 rounded-md w-full">
-                  {HT.borrowings.id}
+                  {HT?.borrowings?.id || "--"}
                 </div>
               </td>
               <td className=" text-center border">
-                {HT.borrowings.users?.username || (
+                {HT.borrowings?.users?.username || (
                   <span className="text-red-500">UserDeleted</span>
                 )}
               </td>
               <td className=" text-center border">
-                {HT.borrowings.books?.title || (
+                {HT.borrowings?.books?.title || (
                   <span className="text-red-500">BookDeleted</span>
                 )}
               </td>
               <td className=" text-center border">
                 <span
                   className={` pt-1 pb-2 px-3 rounded-lg ${
-                    HT.transaction_type == "peminjaman" &&
+                    HT?.transaction_type == "peminjaman" &&
                     "bg-amber-100 text-amber-600"
                   } ${
-                    HT.transaction_type == "pengembalian" &&
+                    HT?.transaction_type == "pengembalian" &&
                     "bg-green-100 text-green-600"
                   }  ${
-                    HT.transaction_type == "denda" && "bg-red-100 text-red-600"
+                    HT?.transaction_type == "denda" && "bg-red-100 text-red-600"
                   }`}
                 >
-                  {HT.transaction_type}
+                  {HT?.transaction_type}
                 </span>
               </td>
               <td className="text-center border ">

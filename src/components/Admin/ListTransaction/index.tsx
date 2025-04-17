@@ -5,8 +5,8 @@ import { useEffect, useState } from "react";
 import swal from "sweetalert";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { LuArrowLeftToLine } from "react-icons/lu";
-import { returnBook } from "@/_actions";
+import { LuArrowLeftToLine, LuTrash } from "react-icons/lu";
+import { deleteBorrow, returnBook } from "@/_actions";
 import { toast } from "react-toastify";
 import DataTableNoResult from "@/app/(admin)/_components/DataTableNoResult";
 
@@ -46,6 +46,16 @@ export default function TransactionList({ data }: { data: Props[] }) {
     }
   }
 
+  async function resDelete(id: number) {
+    const res = await deleteBorrow(id);
+    if (res.status == "success") {
+      toast.success(res.message);
+    }
+    if (res.status == "failed") {
+      toast.error(res.message);
+    }
+  }
+
   // HANDLE RETURN
   function handleReturn(id: number) {
     swal({
@@ -53,6 +63,21 @@ export default function TransactionList({ data }: { data: Props[] }) {
       dangerMode: true,
       title: "Peringatan!",
       text: "Apakah anggota sudah mengembalikan buku?",
+      buttons: ["Batal", "Ya"],
+    }).then((isTrue) => {
+      if (isTrue) {
+        resReturn(id);
+      }
+    });
+  }
+
+  // HANDLE DELETE
+  function handleDelete(id: number) {
+    swal({
+      icon: "warning",
+      dangerMode: true,
+      title: "Peringatan!",
+      text: "Apakah anda yakin ingin menghapus?",
       buttons: ["Batal", "Ya"],
     }).then((isTrue) => {
       if (isTrue) {
@@ -190,8 +215,16 @@ export default function TransactionList({ data }: { data: Props[] }) {
                   )}
                   {data.status == "dipinjam" && (
                     <button
+                      onClick={() => handleDelete(data.id)}
+                      className="p-2 rounded-full bg-red-500 text-white cursor-pointer"
+                    >
+                      <LuTrash size={24} />
+                    </button>
+                  )}
+                  {data.status == "dipinjam" && (
+                    <button
                       onClick={() => handleReturn(data.id)}
-                      className=" p-2 rounded-full bg-emerald-500 text-white cursor-pointer"
+                      className="p-2 rounded-full bg-emerald-500 text-white cursor-pointer"
                     >
                       <LuArrowLeftToLine size={24} />
                     </button>

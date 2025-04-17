@@ -30,9 +30,9 @@ export default function HistoryTransAllToExcel({
   title: string;
 }) {
   const exportData = data.map((item: DataTransaction) => ({
-    "ID Transaksi": item.borrowings.id,
-    Peminjam: item.borrowings.users?.username || "UserDeleted",
-    "Judul Buku": item.borrowings.books?.title || "BookDeleted",
+    "ID Transaksi": item.borrowings?.id,
+    Peminjam: item.borrowings?.users?.username || "UserDeleted",
+    "Judul Buku": item.borrowings?.books?.title || "BookDeleted",
     Status: item.transaction_type,
     Denda: "Rp " + item.amount,
   }));

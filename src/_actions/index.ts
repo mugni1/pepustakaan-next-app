@@ -6,6 +6,7 @@ import { z } from "zod";
 
 const baseApiURL = process.env.NEXT_PUBLIC_BASE_API_URL;
 
+// TRANSACTION / BORROWINGS
 const borrowValidateSchema = z.object({
   memberID: z.string().min(1, "Harap Pilih Anggota").transform(Number),
   bookID: z.string().min(1, "Harap Pilih Buku").transform(Number),
@@ -70,6 +71,78 @@ export const createBorrow = async (
     };
   }
 };
+// delete book
+export const deleteBorrow = async (id: number) => {
+  const token = (await cookies()).get("auth_token")?.value;
+  try {
+    const res = await fetch(`${baseApiURL}/borrowings/${id}`, {
+      method: "DELETE",
+      headers: {
+        Accept: "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    if (!res.ok) {
+      return {
+        status: "failed",
+        message: "Gagal Menghapus, Coba lagi nanti",
+      };
+    }
+    revalidatePath("/dashboard/home");
+    revalidatePath("/dashboard/transaction-borrow");
+    revalidatePath("/dashboard/history-transaction-all");
+    revalidatePath("/dashboard/history-transaction-borrow");
+    return {
+      status: "success",
+      message: "Berhasil menghapus pinjaman",
+    };
+  } catch {
+    return {
+      status: "failed",
+      message: "Gagal Menghapus, Server sedang sibuk",
+    };
+  }
+};
+// return book
+export const returnBook = async (id: number) => {
+  const token = (await cookies()).get("auth_token")?.value;
+  try {
+    const res = await fetch(`${baseApiURL}/borrowings/${id}`, {
+      method: "PATCH",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    console.log(res);
+    if (!res.ok) {
+      return {
+        status: "failed",
+        message: "Terjadi Kesalah saat mengembalikan buku",
+      };
+    }
+    revalidatePath("/dashboard/home");
+    revalidatePath("/dashboard/transaction-borrow");
+    revalidatePath("/dashboard/transaction-return");
+    revalidatePath("/dashboard/transaction-late");
+    revalidatePath("/dashboard/history-transaction-all");
+    revalidatePath("/dashboard/history-transaction-return");
+    revalidatePath("/dashboard/history-transaction-fine");
+    const text = await res.text();
+    const json = JSON.parse(text);
+    const message = json.message;
+    return {
+      status: "success",
+      message: message,
+    };
+  } catch {
+    return {
+      status: "failed",
+      message: "Ada Kesalahan, Silahkan coba lagi nanti",
+    };
+  }
+};
+
+/// BOOK
 const MAX_IMAGE_SIZE = 3 * 1024 * 1024; // 2MB
 const ACCEPTED_IMAGE_TYPES = [
   "image/jpeg",
@@ -147,7 +220,7 @@ export const createBook = async (prevData: any, formData: FormData) => {
     };
   }
 };
-
+// edit book
 const editBookValidateSchema = z.object({
   title: z.string().min(1, "Masukan Judul Buku"),
   writer: z.string().min(1, "Masukan Penulis Buku"),
@@ -225,44 +298,6 @@ export const editBook = async (
     return {
       status: "failed",
       message: "Koneksi Error, Coba lagi nanti",
-    };
-  }
-};
-// return book
-export const returnBook = async (id: number) => {
-  const token = (await cookies()).get("auth_token")?.value;
-  try {
-    const res = await fetch(`${baseApiURL}/borrowings/${id}`, {
-      method: "PATCH",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    console.log(res);
-    if (!res.ok) {
-      return {
-        status: "failed",
-        message: "Terjadi Kesalah saat mengembalikan buku",
-      };
-    }
-    revalidatePath("/dashboard/home");
-    revalidatePath("/dashboard/transaction-borrow");
-    revalidatePath("/dashboard/transaction-return");
-    revalidatePath("/dashboard/transaction-late");
-    revalidatePath("/dashboard/history-transaction-all");
-    revalidatePath("/dashboard/history-transaction-return");
-    revalidatePath("/dashboard/history-transaction-fine");
-    const text = await res.text();
-    const json = JSON.parse(text);
-    const message = json.message;
-    return {
-      status: "success",
-      message: message,
-    };
-  } catch {
-    return {
-      status: "failed",
-      message: "Ada Kesalahan, Silahkan coba lagi nanti",
     };
   }
 };
