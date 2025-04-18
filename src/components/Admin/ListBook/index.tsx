@@ -4,12 +4,12 @@ import TableHead from "./TableHead";
 import { Eye, Pencil, Trash } from "@phosphor-icons/react";
 import swal from "sweetalert";
 import { useRouter } from "next/navigation";
-import axios from "axios";
 import Container from "../Container";
-import Cookies from "js-cookie";
 import Image from "next/image";
 import Link from "next/link";
 import DataTableNoResult from "@/app/(admin)/_components/DataTableNoResult";
+import { deleteBook } from "@/_actions/BookDelete";
+import { toast } from "react-toastify";
 
 interface Books {
   category: { id: number; name: string };
@@ -27,41 +27,29 @@ interface Books {
 
 export default function BooksList({ data }: { data: Books[] }) {
   //token
-  const token = Cookies.get("auth_token");
   const [books, setBooks] = useState<Books[]>(data || []);
   const router = useRouter();
+
+  async function handleDeleteBook(id: number) {
+    const res = await deleteBook(id);
+    if (res.status == "failed") {
+      toast.error(res.message);
+    }
+    if (res.status == "success") {
+      toast.success(res.message);
+    }
+  }
 
   const handleDelete = (id: number) => {
     swal({
       icon: "warning",
       dangerMode: true,
-      title: "Warning",
+      title: "Peringatan!",
       text: "Apakah kamu yakin ingin menghapus?",
       buttons: ["Batal", "Ya"],
     }).then((isTrue) => {
       if (isTrue) {
-        axios({
-          method: "delete",
-          url: process.env.NEXT_PUBLIC_BASE_API_URL + "/books/" + id,
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        })
-          .then((res) => {
-            swal({
-              icon: "success",
-              title: "Success!",
-              text: res.data?.message,
-            });
-            setBooks(books.filter((book: Books) => book.id != id));
-          })
-          .catch(() => {
-            swal({
-              icon: "error",
-              title: "ERROR",
-              text: "Please try again later",
-            });
-          });
+        handleDeleteBook(id);
       }
     });
   };
@@ -112,12 +100,11 @@ export default function BooksList({ data }: { data: Books[] }) {
                   >
                     <Trash size={24} />
                   </button>
-                  <button
-                    onClick={() => router.push(`books/edit/${book.id}`)}
-                    className=" p-2 rounded-full bg-amber-500 text-white cursor-pointer"
-                  >
-                    <Pencil size={24} />
-                  </button>
+                  <Link href={`books/edit/${book.id}`}>
+                    <button className=" p-2 rounded-full bg-amber-500 text-white cursor-pointer">
+                      <Pencil size={24} />
+                    </button>
+                  </Link>
                   <Link href={`books/${book.id}`}>
                     <button className=" p-2 rounded-full bg-sky-500 text-white cursor-pointer">
                       <Eye size={24} />
