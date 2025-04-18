@@ -4,6 +4,8 @@ import Container from "@/components/Admin/Container";
 import MainContainer from "@/components/Admin/MainContainer";
 import { getBooksDetail } from "@/services";
 import React from "react";
+import DeleteBtn from "./DeleteBtn";
+import BackAndDeleteBtn from "./DeleteBtn";
 
 export default async function Page({
   params,
@@ -14,12 +16,7 @@ export default async function Page({
   const { data } = await getBooksDetail(id);
   return (
     <MainContainer>
-      <BtnHref
-        href="/dashboard/books"
-        className="w-fit bg-gradient-to-br from-fuchsia-500 to-purple-500 text-white mb-5"
-      >
-        Back
-      </BtnHref>
+      <BackAndDeleteBtn id={data.id} />
       <Container className="py-1">
         <BookDetails
           image={data.image}
