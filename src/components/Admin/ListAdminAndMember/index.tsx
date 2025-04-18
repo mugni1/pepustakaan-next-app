@@ -100,7 +100,16 @@ export default function MemberAndAdminList({ members }: { members: User[] }) {
                 <td className="text-center border py-5">{user.full_name}</td>
                 <td className="text-center border">{user.username}</td>
                 <td className="text-center border">{user.email}</td>
-                <td className="text-center border">{user.roles.name}</td>
+                {user.roles.name == "user" && (
+                  <td className="text-center border">
+                    {user.roles.name == "user" ? "anggota" : "anonim"}
+                  </td>
+                )}
+                {user.roles.name == "superUser" && (
+                  <td className="text-center border">
+                    {user.roles.name == "superUser" ? "admin" : "anonim"}
+                  </td>
+                )}
                 {/* delete update show  */}
                 <td className="text-center border px-1">
                   <button

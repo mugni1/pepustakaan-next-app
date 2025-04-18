@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <MainContainer>
-      <Container className="w-6/12 bg-emerald-400 mx-auto my-auto flex flex-col gap-5">
+      <Container className="w-6/12 mx-auto my-auto flex flex-col gap-5">
         <TitleForm>Tambah Admin</TitleForm>
         <FormAdd />
       </Container>

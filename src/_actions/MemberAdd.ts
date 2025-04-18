@@ -16,7 +16,7 @@ const validateSchema = z.object({
     .max(8, "Kata sandi maksimal 8 digit"),
 });
 
-export const createAdmin = async (prevState: any, formData: FormData) => {
+export const createMember = async (prevState: any, formData: FormData) => {
   const token = (await cookies()).get("auth_token")?.value;
   const data = Object.fromEntries(formData.entries());
   const dataValidate = validateSchema.safeParse(data);
@@ -34,7 +34,7 @@ export const createAdmin = async (prevState: any, formData: FormData) => {
     form.append("username", dataValidate.data.username);
     form.append("email", dataValidate.data.email);
     form.append("password", dataValidate.data.password);
-    form.append("role_id", "1");
+    form.append("role_id", "2");
 
     const res = await fetch(`${baseApiURL}/users`, {
       method: "POST",
@@ -49,11 +49,11 @@ export const createAdmin = async (prevState: any, formData: FormData) => {
         message: "Gagal menyimpan, Coba lagi nanti!",
       };
     }
-    revalidatePath("/dashboard/admin");
+    revalidatePath("/dashboard/member");
     revalidatePath("/dashboard/home");
     return {
       status: "success",
-      message: "Berhasil menyimpan akun admin",
+      message: "Berhasil menyimpan akun member",
     };
   } catch {
     return {
