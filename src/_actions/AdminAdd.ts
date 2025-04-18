@@ -43,7 +43,7 @@ export const createAdmin = async (prevState: any, formData: FormData) => {
       },
       body: form,
     });
-    if (!res.ok) {
+    if (res.status != 201) {
       return {
         status: "failed",
         message: "Gagal menyimpan, Coba lagi nanti!",

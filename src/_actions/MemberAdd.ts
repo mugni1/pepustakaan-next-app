@@ -43,7 +43,6 @@ export const createMember = async (prevState: any, formData: FormData) => {
       },
       body: form,
     });
-    console.log(res);
     if (res.status != 201) {
       return {
         status: "failed",
