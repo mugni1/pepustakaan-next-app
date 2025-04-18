@@ -1,3 +1,4 @@
+import BtnHref from "@/components/Admin/Button/BtnHref";
 import Container from "@/components/Admin/Container";
 import MainContainer from "@/components/Admin/MainContainer";
 import { Metadata } from "next";
@@ -9,6 +10,7 @@ export const metadata: Metadata = {
 
 export default async function Page() {
   const cookieStore = await cookies();
+  const id = cookieStore.get("id")?.value || 0;
   const fullName = cookieStore.get("fullName")?.value || "Anonim";
   const email = cookieStore.get("email")?.value || "Anonim";
   const username = cookieStore.get("username")?.value || "Anonim";
@@ -29,7 +31,15 @@ export default async function Page() {
           <h2 className="font-semibold">Detail Informasi</h2>
           <p>Username : {username}</p>
           <p>Email : {email}</p>
-          <p>Roles : {roleName}</p>
+          <p>Roles : {roleName == "superUser" ? "Admin" : "Tidak diketahui"}</p>
+        </div>
+        <div className="w-full flex justify-center">
+          <BtnHref
+            className="bg-amber-500 text-background1"
+            href={`/dashboard/admin/edit/${id}`}
+          >
+            Edit Akun
+          </BtnHref>
         </div>
       </Container>
     </MainContainer>

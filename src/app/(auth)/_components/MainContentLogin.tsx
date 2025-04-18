@@ -44,32 +44,38 @@ export default function MainContentLogin() {
         });
         // set info ke cookie
         const { token } = res.data;
+        const id = res.data.data.id;
         const email = res.data.data.email;
         const fullName = res.data.data.full_name;
         const roles = res.data.data.roles.name;
         const username = res.data.data.username;
         Cookies.set("auth_token", token, {
-          expires: 30, // 17hari
+          expires: 30, // 30hari
+          secure: true,
+          sameSite: "Strict",
+        });
+        Cookies.set("id", id, {
+          expires: 30, // 30hari
           secure: true,
           sameSite: "Strict",
         });
         Cookies.set("email", email, {
-          expires: 30, // 17hari
+          expires: 30, // 30hari
           secure: true,
           sameSite: "Strict",
         });
         Cookies.set("username", username, {
-          expires: 30, // 17hari
+          expires: 30, // 30hari
           secure: true,
           sameSite: "Strict",
         });
         Cookies.set("fullName", fullName, {
-          expires: 30, // 17hari
+          expires: 30, // 30hari
           secure: true,
           sameSite: "Strict",
         });
         Cookies.set("roleName", roles, {
-          expires: 30, // 17hari
+          expires: 30, // 30hari
           secure: true,
           sameSite: "Strict",
         });
