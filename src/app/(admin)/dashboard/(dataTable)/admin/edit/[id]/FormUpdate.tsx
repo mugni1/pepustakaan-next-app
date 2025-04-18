@@ -4,10 +4,10 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { toast } from "react-toastify";
 import SaveAndBackBtn from "@/app/(admin)/_components/SaveAndBackBtn";
 import { User } from "@/_types/User";
-import { updateMember } from "@/_actions/MemberEdit";
+import { updateAdmin } from "@/_actions/AdminEdit";
 
 export default function FormEdit({ member }: { member: User }) {
-  const updateWithID = updateMember.bind(null, member.id);
+  const updateWithID = updateAdmin.bind(null, member.id);
   const [isPassword, setIsPassword] = useState(true);
   const [state, formAction] = useActionState(updateWithID, null);
 
@@ -78,7 +78,7 @@ export default function FormEdit({ member }: { member: User }) {
       </section>
       {/* end input  */}
       {/* btn  */}
-      <SaveAndBackBtn backLink="member" />
+      <SaveAndBackBtn backLink="admin" />
       {/* end btn  */}
     </form>
   );
