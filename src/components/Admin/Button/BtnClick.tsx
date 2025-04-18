@@ -5,6 +5,7 @@ interface Props {
   typeBtn?: "submit" | "reset" | "button" | undefined;
   className?: string;
   children: ReactNode;
+  disabled?: boolean;
 }
 
 export default function BtnClick({
@@ -12,11 +13,15 @@ export default function BtnClick({
   className = "bg-emerald-600 ",
   children = "Btn Name",
   typeBtn = undefined,
+  disabled,
 }: Props) {
   return (
     <button
       type={typeBtn}
-      className={`py-1 px-5 text-white font-semibold cursor-pointer rounded-md active:scale-90 active:bg-slate-500 transition-all shadow-md ${className}`}
+      disabled={disabled}
+      className={`py-1 px-5 text-white font-semibold rounded-md active:scale-90 active:bg-slate-500 transition-all shadow-md ${
+        disabled ? "cursor-not-allowed" : "cursor-pointer"
+      } ${className}`}
       onClick={click}
     >
       {children}
