@@ -2,15 +2,10 @@
 import Sidebar from "@/components/Admin/Sidebar";
 import TimeNow from "@/components/Admin/Time";
 import { SidebarSimple } from "@phosphor-icons/react";
-// import axios from "axios";
 import { ReactNode, useState } from "react";
-// import Cookies from "js-cookie";
-// import { useRouter } from "next/navigation";
 
 export default function Layout({ children }: { children: ReactNode }) {
   const [sidebar, setSidebar] = useState(false);
-  // const token = Cookies.get("auth_token");
-  // const router = useRouter();
 
   // // VALIDASI TERLEBIH DAHULU
   // useEffect(() => {
@@ -55,7 +50,6 @@ export default function Layout({ children }: { children: ReactNode }) {
           sidebar ? "w-10/12" : "w-full"
         } ms-auto min-h-screen bg-background2 transition-all ease-in-out duration-300 overflow-x-hidden`}
       >
-        {/* NAVBAR  */}
         <nav
           className={`h-16 bg-background1 border-b border-slate-200 transition-all ease-in-out duration-100 flex items-center justify-between px-5 fixed z-50 ${
             sidebar ? "w-10/12" : "w-full"
