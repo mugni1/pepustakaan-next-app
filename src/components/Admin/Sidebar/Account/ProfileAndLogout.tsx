@@ -116,7 +116,7 @@ export default function ProfileAndLogout() {
       </button>
       <Link
         href={"profile"}
-        className="flex items-center gap-1 cursor-pointer hover:text-purple-500"
+        className="flex items-center gap-1 cursor-pointer hover:text-accent2"
       >
         <span>
           <UserCircle size={20} />
