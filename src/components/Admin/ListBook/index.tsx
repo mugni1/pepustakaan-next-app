@@ -89,7 +89,7 @@ export default function BooksList({ data }: { data: Books[] }) {
                 />
               </td>
               {/* end cover book  */}
-              <td className="font-semibold border text-center">{book.title}</td>
+              <td className=" border text-center">{book.title}</td>
               <td className="text-center border">{book.writer}</td>
               <td className="text-center border">{book.publisher}</td>
               <td className="text-center border">

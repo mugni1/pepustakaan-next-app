@@ -1,7 +1,6 @@
 "use client";
 import { createBook } from "@/_actions";
-import BtnClick from "@/components/Admin/Button/BtnClick";
-import BtnHref from "@/components/Admin/Button/BtnHref";
+import SaveAndBackBtn from "@/app/(admin)/_components/SaveAndBackBtn";
 import { FileImage } from "@phosphor-icons/react";
 import { useActionState, useEffect } from "react";
 import { toast } from "react-toastify";
@@ -31,7 +30,7 @@ export default function FormAdd({ categories }: { categories: Category[] }) {
         <div className="flex flex-col">
           <input
             type="text"
-            className="py-1 px-2 outline-purple-600 border border-slate-400 rounded-md "
+            className="py-1 px-2 outline-accent2 border border-foreground/50 rounded-md "
             placeholder="Judul Buku"
             name="title"
           />
@@ -40,7 +39,7 @@ export default function FormAdd({ categories }: { categories: Category[] }) {
         <div className="flex flex-col">
           <input
             type="text"
-            className="py-1 px-2 outline-purple-600 border border-slate-400 rounded-md "
+            className="py-1 px-2 outline-accent2 border border-foreground/50 rounded-md "
             placeholder="Penulis Buku"
             name="writer"
           />
@@ -49,7 +48,7 @@ export default function FormAdd({ categories }: { categories: Category[] }) {
         <div className="flex flex-col">
           <input
             type="text"
-            className="py-1 px-2 outline-purple-600 border border-slate-400 rounded-md "
+            className="py-1 px-2 outline-accent2 border border-foreground/50 rounded-md "
             placeholder="Penerbit Buku"
             name="publisher"
           />
@@ -58,7 +57,7 @@ export default function FormAdd({ categories }: { categories: Category[] }) {
         <div className="flex flex-col">
           <input
             type="number"
-            className="py-1 px-2 outline-purple-600 border border-slate-400 rounded-md "
+            className="py-1 px-2 outline-accent2 border border-foreground/50 rounded-md "
             placeholder="Stock"
             name="stock"
           />
@@ -71,7 +70,7 @@ export default function FormAdd({ categories }: { categories: Category[] }) {
           <input
             id="publication_date"
             type="date"
-            className="py-1 px-2 outline-purple-600 border border-slate-400 rounded-md "
+            className="py-1 px-2 outline-accent2 border border-foreground/50 rounded-md "
             placeholder="Tahun Terbit"
             name="publication_date"
           />
@@ -86,9 +85,9 @@ export default function FormAdd({ categories }: { categories: Category[] }) {
           <select
             name="category"
             id="category"
-            className="py-1 px-2 outline-purple-600 border border-slate-400 rounded-md "
+            className="py-1 px-2 outline-accent2 border border-foreground/50 rounded-md "
           >
-            <option value="" className="text-slate-400">
+            <option value="" className="text-foreborder-foreground/50">
               - Pilih Kategori -
             </option>
             {categories?.map((category: Category, index: number) => (
@@ -108,14 +107,14 @@ export default function FormAdd({ categories }: { categories: Category[] }) {
             id="cover"
             type="file"
             accept=".jpeg,.jpg,.png,.jfif,.avif,.webp"
-            className="py-1 px-2 outline-purple-600 border border-slate-400 rounded-md w-full"
+            className="py-1 px-2 outline-accent2 border border-foreground/50 rounded-md w-full"
             name="image"
           />
           <i className="text-xs text-red-500">{state?.Error?.image}</i>
         </div>
         <div className="flex flex-col col-span-2">
           <textarea
-            className=" py-1 px-2 outline-purple-600 border border-slate-400 rounded-md"
+            className=" py-1 px-2 outline-accent2 border border-foreground/50 rounded-md"
             rows={8}
             placeholder="Deskripsi Buku"
             name="description"
@@ -125,14 +124,7 @@ export default function FormAdd({ categories }: { categories: Category[] }) {
       </section>
       {/* end input  */}
       {/* btn  */}
-      <section className="w-full flex gap-5 items-stretch">
-        <BtnClick typeBtn="submit" className="bg-green-500">
-          <span>Kirim</span>
-        </BtnClick>
-        <BtnHref href="/dashboard/books" className="bg-sky-500 text-white">
-          Back
-        </BtnHref>
-      </section>
+      <SaveAndBackBtn backLink="books" />
       {/* end btn  */}
     </form>
   );
