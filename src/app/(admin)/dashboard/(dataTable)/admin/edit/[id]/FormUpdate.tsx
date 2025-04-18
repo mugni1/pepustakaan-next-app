@@ -62,7 +62,7 @@ export default function FormEdit({ member }: { member: User }) {
             <input
               type={isPassword ? "password" : "text"}
               className="py-1 px-3 rounded-md outline-accent2 border border-foreground/70 text-foreground w-full"
-              placeholder="Password"
+              placeholder="Password baru (opsional)"
               maxLength={8}
               name="password"
             />
