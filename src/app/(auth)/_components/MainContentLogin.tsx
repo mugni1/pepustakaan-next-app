@@ -109,7 +109,7 @@ export default function MainContentLogin() {
       {/* end column 1  */}
       {/* column 2  */}
       <div className="w-full md:w-4/12 min-h-screen flex items-center justify-center">
-        <div className="w-full md:w-10/12 xl:w-8/12 2xl:w-1/2 mx-auto rounded-xl shadow-lg p-5 flex flex-col gap-5 bg-background1 border border-foreground/10">
+        <div className="w-full md:w-10/12 xl:w-8/12 2xl:w-1/2 mx-auto rounded-xl shadow-lg p-5 flex flex-col gap-3 bg-background1 border border-foreground/10">
           <TitleForm>SIGN IN</TitleForm>
           <form
             onSubmit={handleSubmit}
@@ -159,7 +159,7 @@ export default function MainContentLogin() {
               )}
             </BtnClick>
           </form>
-          <Link className="w-full text-center text-sm text-purple-600" href="/">
+          <Link className="w-full text-center text-sm text-accent2" href="/">
             Back to home
           </Link>
         </div>
