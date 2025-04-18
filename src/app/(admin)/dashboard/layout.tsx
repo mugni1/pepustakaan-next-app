@@ -2,15 +2,15 @@
 import Sidebar from "@/components/Admin/Sidebar";
 import TimeNow from "@/components/Admin/Time";
 import { SidebarSimple } from "@phosphor-icons/react";
-import axios from "axios";
-import { ReactNode, useEffect, useState } from "react";
-import Cookies from "js-cookie";
-import { useRouter } from "next/navigation";
+// import axios from "axios";
+import { ReactNode, useState } from "react";
+// import Cookies from "js-cookie";
+// import { useRouter } from "next/navigation";
 
 export default function Layout({ children }: { children: ReactNode }) {
   const [sidebar, setSidebar] = useState(false);
-  const token = Cookies.get("auth_token");
-  const router = useRouter();
+  // const token = Cookies.get("auth_token");
+  // const router = useRouter();
 
   // // VALIDASI TERLEBIH DAHULU
   // useEffect(() => {
@@ -42,14 +42,18 @@ export default function Layout({ children }: { children: ReactNode }) {
   return (
     <main className="w-full flex font-gabarito">
       {/* SIDE BAR  */}
-      <Sidebar className={sidebar ? "visible w-2/12 " : "invisible  w-0 "} />
+      <Sidebar
+        className={
+          sidebar ? "visible w-2/12 opacity-100" : "invisible  w-0 opacity-0"
+        }
+      />
       {/* END SIDE BAR  */}
 
       {/* CONTAINER MAIN CONTENT AND NAVBAR  */}
       <section
         className={`${
           sidebar ? "w-10/12" : "w-full"
-        } ms-auto min-h-screen bg-background2 transition-all ease-in-out duration-100 overflow-x-hidden`}
+        } ms-auto min-h-screen bg-background2 transition-all ease-in-out duration-300 overflow-x-hidden`}
       >
         {/* NAVBAR  */}
         <nav
