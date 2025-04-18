@@ -23,9 +23,7 @@ export default async function Page({
       <SearchAddBtn addLink="admin/add">
         <AiOutlineUserAdd size={24} /> Tambah
       </SearchAddBtn>
-
       <MemberAndAdminList members={result.data} />
-
       <Pagination
         keyword={keyword}
         url="/dashboard/admin"

@@ -89,6 +89,7 @@ export async function getMember(page: string, keyword: string) {
     }
   }
   const res = await fetch(url, {
+    cache: "force-cache",
     headers: {
       Accept: "application/json",
       Authorization: `Bearer ${auth_token}`,
@@ -126,6 +127,7 @@ export async function getAdmin(page: string, keyword: string) {
     }
   }
   const res = await fetch(url, {
+    cache: "force-cache",
     headers: {
       Accept: "application/json",
       Authorization: `Bearer ${auth_token}`,
