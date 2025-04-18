@@ -107,7 +107,6 @@ export async function getMemberUsername() {
   });
   return res.json();
 }
-
 // ADMIN LIST
 export async function getAdmin(page: string, keyword: string) {
   const auth_token = (await cookies()).get("auth_token")?.value;
@@ -131,6 +130,17 @@ export async function getAdmin(page: string, keyword: string) {
     headers: {
       Accept: "application/json",
       Authorization: `Bearer ${auth_token}`,
+    },
+  });
+  return res.json();
+}
+// ADMIN AND MEMBER DETAIL
+export async function getUserDetail(id: string) {
+  const token = (await cookies()).get("auth_token")?.value;
+  const res = await fetch(`${baseUrl}/users/${id}`, {
+    headers: {
+      Accept: "application/json",
+      Authorization: `Bearer ${token}`,
     },
   });
   return res.json();

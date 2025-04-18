@@ -4,8 +4,9 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { toast } from "react-toastify";
 import SaveAndBackBtn from "@/app/(admin)/_components/SaveAndBackBtn";
 import { createMember } from "@/_actions/MemberAdd";
+import { User } from "@/_types/User";
 
-export default function FormEdit() {
+export default function FormEdit({ member }: { member: User }) {
   const [isPassword, setIsPassword] = useState(true);
   const [state, formAction] = useActionState(createMember, null);
 
@@ -30,6 +31,7 @@ export default function FormEdit() {
             className="py-1 px-3 rounded-md outline-accent2 border border-foreground/70 text-foreground w-full"
             placeholder="Nama Lengkap"
             name="full_name"
+            defaultValue={member.full_name}
           />
           <i className="text-xs text-red-500">{state?.Error?.full_name}</i>
         </div>
@@ -40,6 +42,7 @@ export default function FormEdit() {
             placeholder="username"
             maxLength={10}
             name="username"
+            defaultValue={member.username}
           />
           <i className="text-xs text-red-500">{state?.Error?.username}</i>
         </div>
@@ -49,6 +52,7 @@ export default function FormEdit() {
             className="py-1 px-3 rounded-md outline-accent2 border border-foreground/70 text-foreground w-full"
             placeholder="email"
             name="email"
+            defaultValue={member.email}
           />
           <i className="text-xs text-red-500">{state?.Error?.email}</i>
         </div>
