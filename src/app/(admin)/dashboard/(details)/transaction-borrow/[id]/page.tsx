@@ -5,6 +5,7 @@ import InformationTransaction from "@/components/Admin/InformationTransaction";
 import InformationUser from "@/components/Admin/InformationUser";
 import MainContainer from "@/components/Admin/MainContainer";
 import { getTransactionDetails } from "@/services";
+import DeleteAndReturnBtn from "./DeleteAndReturnBtn";
 
 export default async function Page({
   params,
@@ -15,8 +16,9 @@ export default async function Page({
   const { data } = await getTransactionDetails(id);
   return (
     <MainContainer>
-      <div className="mb-5 flex">
+      <div className="mb-5 flex gap-5 justify-between">
         <BtnHref href="/dashboard/transaction-borrow/">Kembali</BtnHref>
+        <DeleteAndReturnBtn id={data.id} />
       </div>
       <Container>
         <InformationTransaction

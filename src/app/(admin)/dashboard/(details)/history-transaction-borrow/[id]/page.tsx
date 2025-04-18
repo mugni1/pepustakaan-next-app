@@ -28,7 +28,6 @@ export default async function Page({
           status={data.transaction_type}
           amount={data.amount}
         />
-        <hr />
         <BookDetails
           image={data.borrowing.book.image}
           title={data.borrowing.book.title}
@@ -39,7 +38,6 @@ export default async function Page({
           stock={data.borrowing.book.stock}
           description={data.borrowing.book.description}
         />
-        <hr />
         <InformationUser
           full_name={data.borrowing.user?.full_name ?? "-"}
           username={data.borrowing.user?.username ?? "-"}

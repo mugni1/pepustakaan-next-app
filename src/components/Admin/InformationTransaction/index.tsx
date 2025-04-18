@@ -60,11 +60,11 @@ export default function InformationTransaction({
     <>
       {/* header  */}
       <section className="flex justify-between mb-4 items-center">
-        <h1 className="text-xl poppins-bold bg-sky-200 text-sky-500 rounded-lg px-3 py-1">
+        <h1 className="text-xl font-bold bg-sky-200 text-sky-500 rounded-lg px-3 py-1">
           ID : {id}
         </h1>
         <h1
-          className={`text-xl px-3  poppins-semibold rounded-lg py-1 
+          className={`text-xl px-3  font-semibold rounded-lg py-1 
               ${status == "dipinjam" && "text-amber-500 bg-amber-200"} 
               ${status == "peminjaman" && "text-amber-500 bg-amber-200"} 
               ${status == "dikembalikan" && "text-green-500 bg-green-200"}
@@ -78,7 +78,7 @@ export default function InformationTransaction({
       </section>
       <hr />
       {/* end heder  */}
-      <section className="my-4 w-full flex flex-col gap-2 poppins-semibold">
+      <section className="my-4 w-full flex flex-col gap-2 font-semibold">
         <table>
           <tbody>
             {/* borrow_date */}
@@ -111,7 +111,7 @@ export default function InformationTransaction({
             </tr>
             {/* total fine  */}
             <tr>
-              <td>Total denda</td>
+              <td>Total denda akhir</td>
               {status == "terlambat" || status == "denda" ? (
                 <td>
                   <span className="text-red-500">

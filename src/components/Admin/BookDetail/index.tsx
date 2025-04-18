@@ -14,7 +14,7 @@ export default function BookDetails({
 }: BookDetail) {
   return (
     <section className="my-4 flex gap-4 w-full">
-      <div className="h-72 w-56 bg-emerald-300 rounded-xl overflow-hidden shadow-lg border">
+      <div className="h-72 w-56 bg-emerald-300 rounded-xl overflow-hidden shadow-md border border-foreground/50">
         <Image
           width={150}
           height={200}
@@ -24,12 +24,12 @@ export default function BookDetails({
         />
       </div>
       <div className="w-full flex flex-col">
-        <h1 className="poppins-bold text-2xl line-clamp-1">{title}</h1>
+        <h1 className="font-extrabold text-2xl line-clamp-1">{title}</h1>
         <table className="w-full max-w-auto">
           <tbody className="w-full">
             {/* penulis  */}
             <tr className="w-full">
-              <td className="poppins-semibold flex items-center gap-1 pb-1">
+              <td className="font-semibold flex items-center gap-1 pb-1">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -46,7 +46,7 @@ export default function BookDetails({
             {/* end penulis  */}
             {/* Penerbit  */}
             <tr>
-              <td className="poppins-semibold flex items-center gap-1  pb-1">
+              <td className="font-semibold flex items-center gap-1  pb-1">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -63,7 +63,7 @@ export default function BookDetails({
             {/* end Penerbit  */}
             {/* Tahun Terbit  */}
             <tr>
-              <td className="poppins-semibold flex items-center gap-1  pb-1">
+              <td className="font-semibold flex items-center gap-1  pb-1">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -80,7 +80,7 @@ export default function BookDetails({
             {/* end Tahun Terbit  */}
             {/* Kategori  */}
             <tr>
-              <td className="poppins-semibold flex items-center gap-1 pb-1">
+              <td className="font-semibold flex items-center gap-1 pb-1">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -97,7 +97,7 @@ export default function BookDetails({
             {/* end Kategori  */}
             {/* Stok  */}
             <tr>
-              <td className="poppins-semibold flex items-center gap-1  pb-1">
+              <td className="font-semibold flex items-center gap-1  pb-1">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -109,14 +109,14 @@ export default function BookDetails({
                 </svg>
                 Stok :
               </td>
-              <td className="rounded-full poppins-semibold text-purple-600">
+              <td className="rounded-full font-semibold text-accent2">
                 : {stock}
               </td>
             </tr>
             {/* end Stok  */}
             {/* Description  */}
             <tr>
-              <td className="poppins-semibold flex items-center gap-1 pb-1">
+              <td className="font-semibold flex items-center gap-1 pb-1">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
