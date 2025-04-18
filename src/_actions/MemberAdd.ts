@@ -43,7 +43,8 @@ export const createMember = async (prevState: any, formData: FormData) => {
       },
       body: form,
     });
-    if (!res.ok) {
+    console.log(res);
+    if (res.status != 201) {
       return {
         status: "failed",
         message: "Gagal menyimpan, Coba lagi nanti!",
