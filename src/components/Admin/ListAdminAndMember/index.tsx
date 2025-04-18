@@ -1,11 +1,13 @@
 "use client";
-import { Trash } from "@phosphor-icons/react";
+import { Pencil, Trash } from "@phosphor-icons/react";
 import Container from "../Container";
 import { useEffect, useState } from "react";
 import swal from "sweetalert";
 import DataTableNoResult from "@/app/(admin)/_components/DataTableNoResult";
 import { deleteAdminAndUser } from "@/_actions/AdminAndUserDelete";
 import { toast } from "react-toastify";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 interface User {
   id: number;
@@ -47,6 +49,8 @@ export default function MemberAndAdminList({ members }: { members: User[] }) {
       toast.success(res.message);
     }
   }
+
+  const pathName = usePathname();
 
   return (
     <Container className="mb-5">
@@ -95,12 +99,19 @@ export default function MemberAndAdminList({ members }: { members: User[] }) {
               )}
               {/* delete update show  */}
               <td className="text-center border px-1">
-                <button
-                  onClick={() => handleDelete(user.id)}
-                  className=" p-2 rounded-full bg-red-500 text-white cursor-pointer"
-                >
-                  <Trash size={24} />
-                </button>
+                <div className="flex items-center justify-center gap-2">
+                  <button
+                    onClick={() => handleDelete(user.id)}
+                    className=" p-2 rounded-full bg-red-500 text-background1 cursor-pointer"
+                  >
+                    <Trash size={24} />
+                  </button>
+                  <Link href={`${pathName}/edit/${user.id}`}>
+                    <button className=" p-2 rounded-full bg-amber-500 text-background1 cursor-pointer">
+                      <Pencil size={24} />
+                    </button>
+                  </Link>
+                </div>
               </td>
               {/* end delete update show  */}
             </tr>
