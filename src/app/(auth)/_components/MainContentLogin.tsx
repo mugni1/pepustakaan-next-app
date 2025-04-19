@@ -103,7 +103,7 @@ export default function MainContentLogin() {
   };
 
   return (
-    <section className="font-gabarito flex w-full min-h-screen  flex-wrap overflow-hidden relative px-5 md:px-0  bg-gradient-to-br bg-background2 ">
+    <section className="font-gabarito flex w-full min-h-screen  flex-wrap overflow-hidden relative px-5 md:px-0  bg-gradient-to-br from-accent1 to-accent2 ">
       {/* column 1  */}
       <Column1 />
       {/* end column 1  */}
