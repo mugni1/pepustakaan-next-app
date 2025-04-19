@@ -3,9 +3,9 @@ import TitleForm from "@/components/Admin/Title/TitleForm";
 import FormAdd from "./FormAdd";
 import { Metadata } from "next";
 
-// export const metadata: Metadata = {
-//   title: "Dashboard - Create Category",
-// };
+export const metadata: Metadata = {
+  title: "Dashboard - Create Category",
+};
 
 export default function Page() {
   return (
