@@ -6,6 +6,7 @@ import React from "react";
 import { toast } from "react-toastify";
 import { createBorrow } from "@/_actions";
 import { useRouter } from "next/navigation";
+import SaveAndBackBtn from "@/app/(admin)/_components/SaveAndBackBtn";
 
 interface Member {
   id: number;
@@ -102,14 +103,7 @@ export default function FormAdd({
       </section>
       {/* end input  */}
       {/* btn  */}
-      <section className="w-full flex gap-5 items-stretch">
-        <BtnClick typeBtn="submit" className="bg-green-500">
-          Submit
-        </BtnClick>
-        <BtnClick click={() => router.back()} className="bg-sky-500 text-white">
-          Back
-        </BtnClick>
-      </section>
+      <SaveAndBackBtn backLink="transaction-borrow" />
       {/* end btn  */}
     </form>
   );

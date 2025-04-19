@@ -1,5 +1,6 @@
 "use client";
 import { createCategory } from "@/_actions";
+import SaveAndBackBtn from "@/app/(admin)/_components/SaveAndBackBtn";
 import BtnClick from "@/components/Admin/Button/BtnClick";
 import BtnHref from "@/components/Admin/Button/BtnHref";
 import { useActionState, useEffect } from "react";
@@ -32,17 +33,7 @@ export default function FormAdd() {
       </div>
       {/* end input title  */}
       {/* btn back and submit  */}
-      <div className=" flex gap-5 items-center ">
-        <BtnClick className=" bg-green-500 ">
-          <span>Kirim</span>
-        </BtnClick>
-        <BtnHref
-          href="/dashboard/category"
-          className="bg-sky-500 text-background1"
-        >
-          Kembali
-        </BtnHref>
-      </div>
+      <SaveAndBackBtn backLink="category" />
       {/* end btn back and submit  */}
     </form>
   );

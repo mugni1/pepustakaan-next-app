@@ -1,5 +1,6 @@
 "use client";
 import { updateCategory } from "@/_actions";
+import SaveAndBackBtn from "@/app/(admin)/_components/SaveAndBackBtn";
 import BtnClick from "@/components/Admin/Button/BtnClick";
 import BtnHref from "@/components/Admin/Button/BtnHref";
 import React, { useActionState, useEffect } from "react";
@@ -36,14 +37,7 @@ export default function FormEdit({ id, name }: { id: number; name: string }) {
       {/* end input name  */}
 
       {/* btn back and submit  */}
-      <div className=" flex gap-5 items-center ">
-        <BtnClick className=" bg-green-500 py-1 px-5">
-          <span>Kirim</span>
-        </BtnClick>
-        <BtnHref className="bg-sky-500 text-white" href="/dashboard/category">
-          Kembali
-        </BtnHref>
-      </div>
+      <SaveAndBackBtn backLink="category" />
       {/* end btn back and submit  */}
     </form>
   );
