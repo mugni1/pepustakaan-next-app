@@ -50,7 +50,6 @@ export default function InformationTransaction({
   actual_return_date,
   daily_fine,
   status,
-  amount,
 }: InformationTrans) {
   const [startCoutdown, setStartCoutdown] = useState(false);
   useEffect(() => {

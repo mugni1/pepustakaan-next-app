@@ -81,7 +81,7 @@ export default function TransactionList({ data }: { data: Props[] }) {
       buttons: ["Batal", "Ya"],
     }).then((isTrue) => {
       if (isTrue) {
-        resReturn(id);
+        resDelete(id);
       }
     });
   }

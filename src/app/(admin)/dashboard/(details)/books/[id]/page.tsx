@@ -1,10 +1,8 @@
 import BookDetails from "@/components/Admin/BookDetail";
-import BtnHref from "@/components/Admin/Button/BtnHref";
 import Container from "@/components/Admin/Container";
 import MainContainer from "@/components/Admin/MainContainer";
 import { getBooksDetail } from "@/services";
 import React from "react";
-import DeleteBtn from "./DeleteBtn";
 import BackAndDeleteBtn from "./DeleteBtn";
 
 export default async function Page({

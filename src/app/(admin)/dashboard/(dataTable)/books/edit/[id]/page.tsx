@@ -2,7 +2,7 @@ import MainContainer from "@/components/Admin/MainContainer";
 import Container from "@/components/Admin/Container";
 import TitleForm from "@/components/Admin/Title/TitleForm";
 import FormEdit from "./FormEdit";
-import { getBooksDetail, getCategorys, getCategorysDetail } from "@/services";
+import { getBooksDetail, getCategorys } from "@/services";
 
 export default async function Page({
   params,

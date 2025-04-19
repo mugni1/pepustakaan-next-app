@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import TableHead from "./TableHead";
 import { Eye, Pencil, Trash } from "@phosphor-icons/react";
 import swal from "sweetalert";
-import { useRouter } from "next/navigation";
 import Container from "../Container";
 import Image from "next/image";
 import Link from "next/link";
@@ -28,7 +27,6 @@ interface Books {
 export default function BooksList({ data }: { data: Books[] }) {
   //token
   const [books, setBooks] = useState<Books[]>(data || []);
-  const router = useRouter();
 
   async function handleDeleteBook(id: number) {
     const res = await deleteBook(id);

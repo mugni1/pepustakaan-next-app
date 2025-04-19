@@ -6,7 +6,6 @@ import { useRouter } from "next/navigation";
 import MainContainer from "../MainContainer";
 import Container from "../Container";
 import BtnHref from "../Button/BtnHref";
-import Cookies from "js-cookie";
 import { LuTag } from "react-icons/lu";
 import { toast } from "react-toastify";
 import { deleteCategory } from "@/_actions";

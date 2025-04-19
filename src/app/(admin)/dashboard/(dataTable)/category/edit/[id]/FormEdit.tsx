@@ -1,8 +1,6 @@
 "use client";
 import { updateCategory } from "@/_actions";
 import SaveAndBackBtn from "@/app/(admin)/_components/SaveAndBackBtn";
-import BtnClick from "@/components/Admin/Button/BtnClick";
-import BtnHref from "@/components/Admin/Button/BtnHref";
 import React, { useActionState, useEffect } from "react";
 import { toast } from "react-toastify";
 

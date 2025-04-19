@@ -1,5 +1,4 @@
 "use client";
-import { CashRegister, Coin } from "@phosphor-icons/react";
 import Image from "next/image";
 import { useState } from "react";
 import { FaCoins, FaRegCalendarCheck } from "react-icons/fa";
