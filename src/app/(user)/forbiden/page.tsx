@@ -11,9 +11,9 @@ export default function Page() {
       <div className="w-full flex flex-col justify-center items-center ">
         <h1 className="text-xl md:text-2xl font-bold ">Tidak dapat di akses</h1>
         <p className="mb-5 text-base text-foreground/80">
-          Silahkan Login terlebih dahulu
+          Silahkan Masuk terlebih dahulu
         </p>
-        <BtnHref href="/login">SignIn</BtnHref>
+        <BtnHref href="/login">Masuk</BtnHref>
       </div>
     </section>
   );
