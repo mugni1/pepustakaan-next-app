@@ -39,7 +39,7 @@ export default async function Home({ searchParams }: Props) {
       {/* END LIST BOOK  */}
 
       {/* PAGINATION  */}
-      {result.meta.to >= 20 && (
+      {result.meta.to >= 10 && (
         <div className="mb-20">
           <PaginationUser
             url="/"
