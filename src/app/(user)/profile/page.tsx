@@ -27,12 +27,11 @@ export default async function Page() {
             width={200}
           />
         </div>
-        <h1 className="poppins-bold text-center text-xl">{fullName}</h1>
+        <h1 className="font-bold text-center text-xl">{fullName}</h1>
         <div className="flex flex-col text-sm">
-          <span className="poppins-semibold">More Information</span>
+          <span className="font-bold">Detail Informasi</span>
           <p>Username : {username}</p>
           <p>Email : {email}</p>
-          <p>Roles : {roleName}</p>
         </div>
       </section>
       {/* end card  */}
