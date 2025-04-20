@@ -112,7 +112,7 @@ export default function NavigationBar() {
 
   return (
     <div className="w-full fixed bottom-5 px-5">
-      <div className=" w-full md:w-6/12 xl:w-4/12 mx-auto  py-3 px-5 rounded-lg shadow-lg flex items-center justify-between gap-5 backdrop-blur-md bg-white/50 border border-actext-accent2">
+      <div className=" w-full md:w-6/12 xl:w-4/12 mx-auto  py-3 px-5 rounded-lg shadow-lg flex items-center justify-between gap-5 backdrop-blur-md bg-white/80 border border-actext-accent2">
         <Link
           href={"/"}
           className={`${
