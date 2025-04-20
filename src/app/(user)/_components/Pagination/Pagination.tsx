@@ -25,7 +25,7 @@ export default function PaginationUser({
 }: Props) {
   const router = useRouter();
   return (
-    <Container className="my-5 border border-purple-500">
+    <Container className="my-5 border border-accent2">
       <section className="flex gap-5 justify-between  items-center">
         {/* btn prev  */}
         <button

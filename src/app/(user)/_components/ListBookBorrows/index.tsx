@@ -41,7 +41,7 @@ export default function ListBookBorrows({ data }: { data: Borrow[] }) {
   }
 
   return (
-    <section className="w-full grid grid-cols-1 xl:grid-cols-3 gap-5">
+    <section className="w-full grid grid-cols-1 xl:grid-cols-3 gap-5 mb-5">
       {borrows.map((borrow: Borrow, index: number) => (
         <div
           key={`${index}${borrow.status}`}

@@ -40,7 +40,7 @@ export default async function Home({ searchParams }: Props) {
 
       {/* PAGINATION  */}
       {result.meta.to >= 10 && (
-        <div className="mb-20">
+        <div className="mb-10">
           <PaginationUser
             url="/"
             current_page={result.meta.current_page}
