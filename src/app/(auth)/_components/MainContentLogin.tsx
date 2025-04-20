@@ -37,8 +37,8 @@ export default function MainContentLogin() {
       .then((res) => {
         swal({
           icon: "success",
-          title: "Success!",
-          text: "Login Success",
+          title: "Berhasil!",
+          text: "Berhasil Login",
           timer: 1000,
           buttons: [false],
         });

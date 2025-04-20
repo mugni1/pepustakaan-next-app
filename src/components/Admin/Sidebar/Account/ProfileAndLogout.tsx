@@ -38,7 +38,7 @@ export default function ProfileAndLogout() {
                 swal({
                   icon: "success",
                   title: "Success!",
-                  text: res.data.message,
+                  text: "Berhasil Logout dari semua perangkat",
                   timer: 2000,
                 });
                 Cookies.remove("auth_token");
@@ -52,7 +52,7 @@ export default function ProfileAndLogout() {
                 swal({
                   icon: "error",
                   title: "Error!",
-                  text: "Please try again later",
+                  text: "Gagal logout dari semua perangkat, Harap coba lagi nanti",
                   timer: 2000,
                 });
                 Cookies.remove("auth_token");
@@ -74,7 +74,7 @@ export default function ProfileAndLogout() {
                 swal({
                   icon: "success",
                   title: "Success!",
-                  text: res.data.message,
+                  text: "Berhasil Logout",
                   timer: 2000,
                 });
                 Cookies.remove("auth_token");
@@ -88,7 +88,7 @@ export default function ProfileAndLogout() {
                 swal({
                   icon: "error",
                   title: "Error!",
-                  text: "Please try again later",
+                  text: "Gagal logout, Harap coba lagi nanti!",
                   timer: 2000,
                 });
                 Cookies.remove("auth_token");
