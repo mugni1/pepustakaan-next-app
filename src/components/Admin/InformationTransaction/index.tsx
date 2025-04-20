@@ -133,7 +133,7 @@ export default function InformationTransaction({
             {/* coutdown  */}
             <tr>
               <td>Hitung mundur</td>
-              {status == "dipinjam" || status == "peminjaman" ? (
+              {status == "dipinjam" ? (
                 <td>
                   {startCoutdown ? (
                     <Countdown
