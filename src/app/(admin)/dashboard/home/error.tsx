@@ -20,7 +20,7 @@ export default function ErrorPage({
         <h1 className="font-bold text-red-500 text-2xl">Koneksi bermasalah</h1>
         <BtnClick
           click={handleRetry}
-          className="bg-gradient-to-r from-fuchsia-500 to-purple-600"
+          className="bg-gradient-to-r from-accent1 to-accent2"
         >
           Coba Lagi
         </BtnClick>
