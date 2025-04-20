@@ -12,7 +12,7 @@ export default async function Page() {
   const returns = await getReturnBookUser();
   return (
     <MainContainer>
-      <SubTitle2 className="bg-emerald-600">DAFTAR PENGEMBALIAN</SubTitle2>
+      <SubTitle2 className="bg-emerald-600">Daftar Pengembalian</SubTitle2>
       <ListBookReturns data={returns.data} />
     </MainContainer>
   );

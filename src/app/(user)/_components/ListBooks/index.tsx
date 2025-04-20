@@ -34,7 +34,7 @@ export default function ListBooks({ books }: { books: Book[] }) {
             <span
               className={` ${
                 book.stock > 0
-                  ? "bg-green-200 text-green-600"
+                  ? "bg-accent2/20 text-accent2"
                   : "bg-red-200 text-red-600"
               } py-1 px-3 rounded-md w-fit flex items-center font-semibold`}
             >

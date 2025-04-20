@@ -29,7 +29,7 @@ export default function RootLayout({
             <div className="flex flex-col">
               <Link href={"/"}>Beranda</Link>
               <Link href={"/profile"}>Profile</Link>
-              <Link href={"/borrowings"}>Pinjaman</Link>
+              <Link href={"/borrowings"}>Peminjaman</Link>
               <Link href={"/returns"}>Pengembalian</Link>
             </div>
           </section>
