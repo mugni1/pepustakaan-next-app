@@ -34,7 +34,7 @@ export default function ProfileAndLogout() {
                 Authorization: `Bearer ${token}`,
               },
             })
-              .then((res) => {
+              .then(() => {
                 swal({
                   icon: "success",
                   title: "Success!",
@@ -70,7 +70,7 @@ export default function ProfileAndLogout() {
                 Authorization: `Bearer ${token}`,
               },
             })
-              .then((res) => {
+              .then(() => {
                 swal({
                   icon: "success",
                   title: "Success!",

@@ -11,7 +11,6 @@ export default async function Page() {
   const cookieStore = await cookies();
   const fullName = cookieStore.get("fullName")?.value || "Anonim";
   const username = cookieStore.get("username")?.value || "Anonim";
-  const roleName = cookieStore.get("roleName")?.value || "No have role";
   const email = cookieStore.get("email")?.value || "anonim";
 
   return (
