@@ -82,7 +82,10 @@ export default function Navigation() {
           <BarMenu2 title="Dikembalkan" href="/dashboard/transaction-return">
             <CaretCircleRight size={20} />
           </BarMenu2>
-          <BarMenu2 title="Terlambat" href="/dashboard/transaction-late">
+          <BarMenu2
+            title="Dikembalikan (Terlambat)"
+            href="/dashboard/transaction-late"
+          >
             <CaretCircleRight size={20} />
           </BarMenu2>
         </ul>

@@ -160,7 +160,7 @@ export default function MainContentLogin() {
             </BtnClick>
           </form>
           <Link className="w-full text-center text-sm text-accent2" href="/">
-            Back to home
+            Kembali ke beranda
           </Link>
         </div>
       </div>

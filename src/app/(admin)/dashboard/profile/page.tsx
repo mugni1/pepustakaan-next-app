@@ -27,11 +27,11 @@ export default async function Page() {
         <h3 className=" w-full text-center font-semibold text-xl">
           {fullName}
         </h3>
-        <div className=" w-full flex items-center justify-center flex-col gap-1 text-slate-700">
+        <div className=" w-full flex items-center justify-center flex-col gap-1 text-foreground/70 text-sm">
           <h2 className="font-semibold">Detail Informasi</h2>
           <p>Username : {username}</p>
           <p>Email : {email}</p>
-          <p>Roles : {roleName == "superUser" ? "Admin" : "Tidak diketahui"}</p>
+          <p>Peran : {roleName == "superUser" ? "Admin" : "Tidak diketahui"}</p>
         </div>
         <div className="w-full flex justify-center">
           <BtnHref
