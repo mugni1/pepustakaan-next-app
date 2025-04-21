@@ -10,8 +10,9 @@ import Column1 from "./Column1";
 import TitleForm from "@/components/Admin/Title/TitleForm";
 import BtnClick from "@/components/Admin/Button/BtnClick";
 
-const urlLogin: string = "http://localhost:8000/api/login";
-const urlLoginLogout: string = "http://localhost:8000/api/login-logout";
+const urlAPI = process.env.NEXT_PUBLIC_BASE_API_URL;
+const urlLogin: string = urlAPI + "/login";
+const urlLoginLogout: string = urlAPI + "/login-logout";
 
 export default function MainContentLogin() {
   const [email, setEmail] = useState("");

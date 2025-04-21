@@ -16,9 +16,9 @@ const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: "http",
-        hostname: "localhost",
-        port: "8000",
+        protocol: "https",
+        hostname: "apipustaka.vercel.app",
+        // port: "8000",
         // pathname: "/my-bucket/**",
         // search: "",
       },

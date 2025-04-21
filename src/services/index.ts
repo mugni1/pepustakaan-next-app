@@ -241,9 +241,9 @@ export async function getHistoryTransactionDetails(id: string) {
 export async function getCountHistoryTrans(status: string, year?: string) {
   const auth_token = (await cookies()).get("auth_token")?.value;
 
-  let url = `http://localhost:8000/api/transactions-${status}-data`;
+  let url = `${baseUrl}/api/transactions-${status}-data`;
   if (year) {
-    url = `http://localhost:8000/api/transactions-${status}-data?year=${year}`;
+    url = `${baseUrl}/api/transactions-${status}-data?year=${year}`;
   }
   const res = await fetch(url, {
     headers: {
