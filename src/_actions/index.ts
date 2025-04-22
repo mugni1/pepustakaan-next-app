@@ -2,6 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
+import { blob } from "stream/consumers";
 import { z } from "zod";
 
 const baseApiURL = process.env.NEXT_PUBLIC_BASE_API_URL;
@@ -278,43 +279,66 @@ export const editBook = async (
   }
 
   try {
-    //formData
-    const form = new FormData();
-    form.append("title", dataBodyValidate.data.title);
-    form.append("writer", dataBodyValidate.data.writer);
-    form.append("publisher", dataBodyValidate.data.publisher);
-    form.append("publication_date", dataBodyValidate.data.publication_date);
-    form.append("stock", dataBodyValidate.data.stock);
-    form.append("category_id", dataBodyValidate.data.category);
-    form.append("description", dataBodyValidate.data.description);
+    let blob = null;
     if (dataBodyValidate.data.image != null) {
-      form.append("image", dataBodyValidate.data.image);
+      const form = new FormData();
+      form.append("file", dataBodyValidate.data.image);
+      const upload = await fetch("https://pustakaa.vercel.app/api/upload", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+        },
+        body: form,
+      });
+      blob = await upload.json();
     }
-    form.append("_method", "PUT");
-    const res = await fetch(`${baseApiURL}/books/${id}`, {
-      method: "post",
-      headers: {
-        Authorization: "Bearer " + token,
-      },
-      body: form,
-    });
-    if (!res.ok) {
+    try {
+      //formData
+      const formNew = new FormData();
+      formNew.append("title", dataBodyValidate.data.title);
+      formNew.append("writer", dataBodyValidate.data.writer);
+      formNew.append("publisher", dataBodyValidate.data.publisher);
+      formNew.append(
+        "publication_date",
+        dataBodyValidate.data.publication_date
+      );
+      formNew.append("stock", dataBodyValidate.data.stock);
+      formNew.append("category_id", dataBodyValidate.data.category);
+      formNew.append("description", dataBodyValidate.data.description);
+      if (blob != null) {
+        formNew.append("image", blob.url);
+      }
+      formNew.append("_method", "PUT");
+      const res = await fetch(`${baseApiURL}/books/${id}`, {
+        method: "post",
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+        body: formNew,
+      });
+      if (!res.ok) {
+        return {
+          status: "failed",
+          message: "Gagal Menyimpan Buku",
+        };
+      }
+      revalidatePath("/dashboard/books/edit/" + id);
+      revalidatePath("/dashboard/books");
+      revalidatePath("/");
+      return {
+        status: "success",
+        message: "Berhasil Menyimpan Buku",
+      };
+    } catch {
       return {
         status: "failed",
-        message: "Gagal Menyimpan Buku",
+        message: "Gagal Menyimpan Buku, Coba lagi nanti",
       };
     }
-    revalidatePath("/dashboard/books/edit/" + id);
-    revalidatePath("/dashboard/books");
-    revalidatePath("/");
-    return {
-      status: "success",
-      message: "Berhasil Menyimpan Buku",
-    };
   } catch {
     return {
       status: "failed",
-      message: "Koneksi Error, Coba lagi nanti",
+      message: "Koneksi Error, Gagal Mengunggah buku",
     };
   }
 };
