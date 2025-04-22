@@ -78,7 +78,7 @@ export default function ListBookReturns({ data }: { data: Borrow[] }) {
           {/* card body  */}
           <div className="w-8/12 flex flex-col p-2">
             {/* title  */}
-            <h2 className="font-semibold text-lg line-clamp-1">
+            <h2 className="font-semibold text-base md:text-lg line-clamp-1">
               {borrow.books.title}
             </h2>
             {/* waiter  */}
