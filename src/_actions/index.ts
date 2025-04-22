@@ -194,24 +194,40 @@ export const createBook = async (prevData: any, formData: FormData) => {
     form.append("description", dataBody.data.description);
     form.append("image", dataBody.data.image);
 
-    const res = await fetch(`${baseApiURL}/books`, {
+    const upload = await fetch("/api/upload", {
       method: "POST",
       headers: {
-        Authorization: "Bearer " + token,
+        Accept: "application/json",
       },
-      body: form,
+      body: formData,
     });
-    if (!res.ok) {
+    const blob = await upload.json();
+    form.append("image", blob.url);
+
+    if (blob) {
+      const res = await fetch(`${baseApiURL}/books`, {
+        method: "POST",
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+        body: form,
+      });
+      if (!res.ok) {
+        return {
+          status: "failed",
+          message: "Gagal Menyimpan Buku",
+        };
+      }
+      revalidatePath("/dashboard/books");
+      revalidatePath("/");
       return {
-        status: "failed",
-        message: "Gagal Menyimpan Buku",
+        status: "success",
+        message: "Berhasil Menyimpan Buku",
       };
     }
-    revalidatePath("/dashboard/books");
-    revalidatePath("/");
     return {
-      status: "success",
-      message: "Berhasil Menyimpan Buku",
+      status: "failed",
+      message: "Gagal Menyimpan Buku,Periksa koneksi internet anda",
     };
   } catch {
     return {
