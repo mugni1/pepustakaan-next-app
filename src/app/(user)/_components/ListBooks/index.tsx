@@ -10,7 +10,7 @@ interface Book {
 
 export default function ListBooks({ books }: { books: Book[] }) {
   return (
-    <section className="w-full grid grid-cols-2 md:grid-cols-4 xl:grid-cols-5 gap-5 mt-2">
+    <section className="w-full grid grid-cols-2 md:grid-cols-4 xl:grid-cols-5 gap-5">
       {books?.map((book: Book, index) => (
         <div
           key={book.id + index}
