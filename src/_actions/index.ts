@@ -194,8 +194,7 @@ export const createBook = async (prevData: any, formData: FormData) => {
       body: form,
     });
     const blob = await upload.json();
-
-    if (blob) {
+    try {
       const formNew = new FormData();
       formNew.append("title", dataBody.data.title);
       formNew.append("writer", dataBody.data.writer);
@@ -208,6 +207,7 @@ export const createBook = async (prevData: any, formData: FormData) => {
       const res = await fetch(`${baseApiURL}/books`, {
         method: "POST",
         headers: {
+          Accept: "application/json",
           Authorization: "Bearer " + token,
         },
         body: formNew,
@@ -224,15 +224,16 @@ export const createBook = async (prevData: any, formData: FormData) => {
         status: "success",
         message: "Berhasil Menyimpan Buku",
       };
+    } catch {
+      return {
+        status: "failed",
+        message: "Gagal Menyimpan Buku, Coba lagi nanti",
+      };
     }
-    return {
-      status: "failed",
-      message: "Gagal Menyimpan Buku,Periksa koneksi internet anda",
-    };
   } catch {
     return {
       status: "failed",
-      message: "Koneksi Error, Coba lagi nanti",
+      message: "Koneksi Error, Gagal Mengunggah buku",
     };
   }
 };
