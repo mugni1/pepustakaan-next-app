@@ -40,9 +40,9 @@ export default function ListBooks({ books }: { books: Book[] }) {
                 book.stock > 0
                   ? "bg-accent2/20 text-accent2"
                   : "bg-red-200 text-red-600"
-              } py-1 w-full rounded-md flex items-center font-semibold text-xs md:text-sm`}
+              } py-1 w-full rounded-md flex items-center font-semibold text-xs md:text-sm text-center justify-center`}
             >
-              Stock : {book.stock}
+              Stok : {book.stock}
             </span>
           </div>
 

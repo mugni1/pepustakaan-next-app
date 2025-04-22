@@ -16,7 +16,7 @@ export default function SearchBookForm() {
       <form onSubmit={handleSubmit} className="gap-3 flex">
         <input
           type="text"
-          className="py-1 px-3 border rounded-md shadow-md border-slate-500 outline-accent2"
+          className="py-1 px-3 border rounded-md shadow-md border-slate-500 outline-accent2 w-full"
           placeholder="Cari buku"
           ref={q}
         />
