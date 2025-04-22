@@ -323,7 +323,7 @@ export const editBook = async (
         revalidatePath("/");
         return {
           status: "success",
-          message: "Berhasil Menyimpan Buku",
+          message: "Berhasil Menyimpan Buku dan mengubah gambar",
         };
       } catch {
         return {
@@ -345,7 +345,6 @@ export const editBook = async (
       formForBE.append("stock", dataBodyValidate.data.stock);
       formForBE.append("category_id", dataBodyValidate.data.category);
       formForBE.append("description", dataBodyValidate.data.description);
-      // formForBE.append("image", blob.url);
       formForBE.append("_method", "PUT");
       const res = await fetch(`${baseApiURL}/books/${id}`, {
         method: "post",
@@ -365,7 +364,7 @@ export const editBook = async (
       revalidatePath("/");
       return {
         status: "success",
-        message: "Berhasil Menyimpan Buku",
+        message: "Berhasil Menyimpan Buku tanpa mengubah gambar",
       };
     } catch {
       return {
