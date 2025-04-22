@@ -112,12 +112,12 @@ export default function NavigationBar() {
 
   return (
     <div className="w-full fixed bottom-5 px-5">
-      <div className=" w-full md:w-6/12 xl:w-4/12 mx-auto  py-3 px-5 rounded-lg shadow-lg flex items-center justify-between gap-5 backdrop-blur-md bg-white/80 border border-actext-background1">
+      <div className=" w-full md:w-6/12 xl:w-4/12 mx-auto  py-3 px-5 rounded-lg shadow-lg flex items-center justify-between gap-5 backdrop-blur-md bg-background1/70 border border-accent2">
         <Link
           href={"/"}
           className={`${
             pathname == "/" &&
-            "text-background1 bg-accent2 rounded-lg scale-110 "
+            "text-background1 bg-gradient-to-br from-accent1 to-accent2 rounded-lg scale-110 "
           } transition-all duration-300 ease-in-out p-2 scale-100`}
         >
           <LuHouse size={24} />
@@ -126,7 +126,7 @@ export default function NavigationBar() {
           href={"/profile"}
           className={`${
             pathname == "/profile" &&
-            "text-background1 bg-accent2 rounded-lg scale-110"
+            "text-background1 bg-gradient-to-br from-accent1 to-accent2 rounded-lg scale-110"
           } transition-all duration-300 ease-in-out p-2 scale-100`}
         >
           <LuUserRound size={24} />
@@ -135,7 +135,7 @@ export default function NavigationBar() {
           href={"/borrowings"}
           className={`${
             pathname == "/borrowings" &&
-            "text-background1 bg-accent2 rounded-lg scale-110"
+            "text-background1 bg-gradient-to-br from-accent1 to-accent2 rounded-lg scale-110"
           } transition-all duration-300 ease-in-out p-2 scale-100`}
         >
           <LuArrowLeftToLine size={24} />
@@ -144,7 +144,7 @@ export default function NavigationBar() {
           href={"/returns"}
           className={`${
             pathname == "/returns" &&
-            "text-background1 bg-accent2 rounded-lg scale-110"
+            "text-background1 bg-gradient-to-br from-accent1 to-accent2 rounded-lg scale-110"
           } transition-all duration-300 ease-in-out p-2 scale-100`}
         >
           <LuArrowRightFromLine size={24} />
@@ -154,7 +154,7 @@ export default function NavigationBar() {
             onClick={validateLogout}
             className={`${
               pathname == "/login" &&
-              "text-background1 bg-accent2 rounded-lg scale-110"
+              "text-background1 bg-gradient-to-br from-accent1 to-accent2 rounded-lg scale-110"
             } transition-all duration-300 ease-in-out p-2 scale-100 cursor-pointer`}
           >
             <LuLogOut size={24} />
@@ -165,7 +165,7 @@ export default function NavigationBar() {
             href={"/login"}
             className={`${
               pathname == "/login" &&
-              "text-background1 bg-accent2 rounded-lg scale-110"
+              "text-background1 bg-gradient-to-br from-accent1 to-accent2 rounded-lg scale-110"
             } transition-all duration-300 ease-in-out p-2 scale-100`}
           >
             <LuLogIn size={24} />
