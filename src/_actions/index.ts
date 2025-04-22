@@ -185,15 +185,7 @@ export const createBook = async (prevData: any, formData: FormData) => {
 
   try {
     const form = new FormData();
-    form.append("title", dataBody.data.title);
-    form.append("writer", dataBody.data.writer);
-    form.append("publisher", dataBody.data.publisher);
-    form.append("publication_date", dataBody.data.publication_date);
-    form.append("stock", dataBody.data.stock);
-    form.append("category_id", dataBody.data.category);
-    form.append("description", dataBody.data.description);
-    form.append("image", dataBody.data.image);
-
+    form.append("file", dataBody.data.image);
     const upload = await fetch("/api/upload", {
       method: "POST",
       headers: {
@@ -202,9 +194,17 @@ export const createBook = async (prevData: any, formData: FormData) => {
       body: formData,
     });
     const blob = await upload.json();
-    form.append("image", blob.url);
 
     if (blob) {
+      const formNew = new FormData();
+      formNew.append("title", dataBody.data.title);
+      formNew.append("writer", dataBody.data.writer);
+      formNew.append("publisher", dataBody.data.publisher);
+      formNew.append("publication_date", dataBody.data.publication_date);
+      formNew.append("stock", dataBody.data.stock);
+      formNew.append("category_id", dataBody.data.category);
+      formNew.append("description", dataBody.data.description);
+      formNew.append("image", blob.url);
       const res = await fetch(`${baseApiURL}/books`, {
         method: "POST",
         headers: {
