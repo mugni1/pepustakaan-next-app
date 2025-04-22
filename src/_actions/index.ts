@@ -191,7 +191,7 @@ export const createBook = async (prevData: any, formData: FormData) => {
       headers: {
         Accept: "application/json",
       },
-      body: formData,
+      body: form,
     });
     const blob = await upload.json();
 
@@ -210,7 +210,7 @@ export const createBook = async (prevData: any, formData: FormData) => {
         headers: {
           Authorization: "Bearer " + token,
         },
-        body: form,
+        body: formNew,
       });
       if (!res.ok) {
         return {
