@@ -29,10 +29,10 @@ export default function ListBooks({ books }: { books: Book[] }) {
           {/* end head  */}
           {/* body  */}
           <div className="p-3 flex flex-col">
-            <span className="font-bold line-clamp-1 text-sm md:text-base">
+            <span className="font-bold line-clamp-1 text-base">
               {book.title}
             </span>
-            <span className="text-slate-400 mb-1 line-clamp-1 text-xs md:text-sm">
+            <span className="text-slate-400 mb-1 line-clamp-1 text-sm">
               {book.writer}
             </span>
             <span
@@ -40,7 +40,7 @@ export default function ListBooks({ books }: { books: Book[] }) {
                 book.stock > 0
                   ? "bg-accent2/20 text-accent2"
                   : "bg-red-200 text-red-600"
-              } py-1 px-3 rounded-md w-fit flex items-center font-semibold`}
+              } py-1 w-full rounded-md flex items-center font-semibold text-xs md:text-sm`}
             >
               Stock : {book.stock}
             </span>
