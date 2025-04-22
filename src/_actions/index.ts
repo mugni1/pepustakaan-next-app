@@ -279,7 +279,6 @@ export const editBook = async (
   }
 
   try {
-    let blob = null;
     if (dataBodyValidate.data.image != null) {
       const form = new FormData();
       form.append("file", dataBodyValidate.data.image);
@@ -290,31 +289,70 @@ export const editBook = async (
         },
         body: form,
       });
-      blob = await upload.json();
+      const blob = await upload.json();
+      try {
+        //formData
+        const formForBE = new FormData();
+        formForBE.append("title", dataBodyValidate.data.title);
+        formForBE.append("writer", dataBodyValidate.data.writer);
+        formForBE.append("publisher", dataBodyValidate.data.publisher);
+        formForBE.append(
+          "publication_date",
+          dataBodyValidate.data.publication_date
+        );
+        formForBE.append("stock", dataBodyValidate.data.stock);
+        formForBE.append("category_id", dataBodyValidate.data.category);
+        formForBE.append("description", dataBodyValidate.data.description);
+        formForBE.append("image", blob.url);
+        formForBE.append("_method", "PUT");
+        const res = await fetch(`${baseApiURL}/books/${id}`, {
+          method: "post",
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+          body: formForBE,
+        });
+        if (!res.ok) {
+          return {
+            status: "failed",
+            message: "Gagal Menyimpan Buku",
+          };
+        }
+        revalidatePath("/dashboard/books/edit/" + id);
+        revalidatePath("/dashboard/books");
+        revalidatePath("/");
+        return {
+          status: "success",
+          message: "Berhasil Menyimpan Buku",
+        };
+      } catch {
+        return {
+          status: "failed",
+          message: "Gagal Menyimpan Buku, Coba lagi nanti",
+        };
+      }
     }
     try {
       //formData
-      const formNew = new FormData();
-      formNew.append("title", dataBodyValidate.data.title);
-      formNew.append("writer", dataBodyValidate.data.writer);
-      formNew.append("publisher", dataBodyValidate.data.publisher);
-      formNew.append(
+      const formForBE = new FormData();
+      formForBE.append("title", dataBodyValidate.data.title);
+      formForBE.append("writer", dataBodyValidate.data.writer);
+      formForBE.append("publisher", dataBodyValidate.data.publisher);
+      formForBE.append(
         "publication_date",
         dataBodyValidate.data.publication_date
       );
-      formNew.append("stock", dataBodyValidate.data.stock);
-      formNew.append("category_id", dataBodyValidate.data.category);
-      formNew.append("description", dataBodyValidate.data.description);
-      if (blob != null) {
-        formNew.append("image", blob.url);
-      }
-      formNew.append("_method", "PUT");
+      formForBE.append("stock", dataBodyValidate.data.stock);
+      formForBE.append("category_id", dataBodyValidate.data.category);
+      formForBE.append("description", dataBodyValidate.data.description);
+      // formForBE.append("image", blob.url);
+      formForBE.append("_method", "PUT");
       const res = await fetch(`${baseApiURL}/books/${id}`, {
         method: "post",
         headers: {
           Authorization: "Bearer " + token,
         },
-        body: formNew,
+        body: formForBE,
       });
       if (!res.ok) {
         return {
