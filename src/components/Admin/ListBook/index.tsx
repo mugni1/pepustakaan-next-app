@@ -67,9 +67,9 @@ export default function BooksList({ data }: { data: Books[] }) {
               {/* cover book  */}
               <td className="p-4 border">
                 <Image
-                  src={`${process.env.NEXT_PUBLIC_BASE_IMAGE_URL}/${book.image}`}
-                  alt=""
-                  className="h-32 w-24 mx-auto object-cover object-center border shadow-md rounded-lg"
+                  src={book.image}
+                  alt={book.image}
+                  className="h-32 w-24 mx-auto object-cover object-center border border-foreground/50 shadow-md rounded-lg"
                   width={100}
                   height={150}
                 />

@@ -29,8 +29,12 @@ export default function ListBooks({ books }: { books: Book[] }) {
           {/* end head  */}
           {/* body  */}
           <div className="p-3 flex flex-col">
-            <span className="font-bold line-clamp-1">{book.title}</span>
-            <span className="text-slate-400 mb-1">{book.writer}</span>
+            <span className="font-bold line-clamp-1 text-sm md:text-base">
+              {book.title}
+            </span>
+            <span className="text-slate-400 mb-1 line-clamp-1 text-xs md:text-sm">
+              {book.writer}
+            </span>
             <span
               className={` ${
                 book.stock > 0
