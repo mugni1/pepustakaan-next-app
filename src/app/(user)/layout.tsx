@@ -24,7 +24,7 @@ export default function RootLayout({
             </span>
             <div className=" flex flex-col text-background1/80">
               <span className="flex items-center gap-1">
-                <FaPhoneFlip size={19} /> 0831-2024-9215
+                <FaPhoneFlip size={18} /> 0831-2024-9215
               </span>
               <span className="flex items-center gap-1">
                 <IoMdMail size={20} /> abankr342@gmail.com
@@ -38,10 +38,10 @@ export default function RootLayout({
                 <FaHome size={20} /> Beranda
               </Link>
               <Link href={"/profile"} className="flex items-center gap-1">
-                <FaUser size={20} /> Profile
+                <FaUser size={18} /> Profile
               </Link>
               <Link href={"/borrowings"} className="flex items-center gap-1">
-                <LuArrowLeftToLine size={19} /> Peminjaman
+                <LuArrowLeftToLine size={20} /> Peminjaman
               </Link>
               <Link href={"/returns"} className="flex items-center gap-1">
                 <LuArrowRightFromLine size={20} /> Pengembalian
@@ -58,7 +58,7 @@ export default function RootLayout({
                 <FaInstagramSquare size={20} /> Instagram
               </Link>
               <Link href={"/profile"} className="flex items-center gap-1">
-                <FaTiktok size={19} /> Tiktok
+                <FaTiktok size={18} /> Tiktok
               </Link>
             </div>
           </section>

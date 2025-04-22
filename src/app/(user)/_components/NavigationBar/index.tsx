@@ -1,6 +1,12 @@
 "use client";
-import { HouseLine, SignIn, SignOut, User } from "@phosphor-icons/react";
-import { LuArrowLeftToLine, LuArrowRightFromLine } from "react-icons/lu";
+import {
+  LuArrowLeftToLine,
+  LuArrowRightFromLine,
+  LuHouse,
+  LuLogIn,
+  LuLogOut,
+  LuUserRound,
+} from "react-icons/lu";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -106,30 +112,30 @@ export default function NavigationBar() {
 
   return (
     <div className="w-full fixed bottom-5 px-5">
-      <div className=" w-full md:w-6/12 xl:w-4/12 mx-auto  py-3 px-5 rounded-lg shadow-lg flex items-center justify-between gap-5 backdrop-blur-md bg-white/80 border border-actext-accent2">
+      <div className=" w-full md:w-6/12 xl:w-4/12 mx-auto  py-3 px-5 rounded-lg shadow-lg flex items-center justify-between gap-5 backdrop-blur-md bg-white/80 border border-actext-background1">
         <Link
           href={"/"}
           className={`${
             pathname == "/" &&
-            "text-accent2 bg-accent2/20 rounded-lg scale-110 "
+            "text-background1 bg-accent2 rounded-lg scale-110 "
           } transition-all duration-300 ease-in-out p-2 scale-100`}
         >
-          <HouseLine size={24} />
+          <LuHouse size={24} />
         </Link>
         <Link
           href={"/profile"}
           className={`${
             pathname == "/profile" &&
-            "text-accent2 bg-accent2/20 rounded-lg scale-110"
+            "text-background1 bg-accent2 rounded-lg scale-110"
           } transition-all duration-300 ease-in-out p-2 scale-100`}
         >
-          <User size={24} />
+          <LuUserRound size={24} />
         </Link>
         <Link
           href={"/borrowings"}
           className={`${
             pathname == "/borrowings" &&
-            "text-accent2 bg-accent2/20 rounded-lg scale-110"
+            "text-background1 bg-accent2 rounded-lg scale-110"
           } transition-all duration-300 ease-in-out p-2 scale-100`}
         >
           <LuArrowLeftToLine size={24} />
@@ -138,7 +144,7 @@ export default function NavigationBar() {
           href={"/returns"}
           className={`${
             pathname == "/returns" &&
-            "text-accent2 bg-accent2/20 rounded-lg scale-110"
+            "text-background1 bg-accent2 rounded-lg scale-110"
           } transition-all duration-300 ease-in-out p-2 scale-100`}
         >
           <LuArrowRightFromLine size={24} />
@@ -148,10 +154,10 @@ export default function NavigationBar() {
             onClick={validateLogout}
             className={`${
               pathname == "/login" &&
-              "text-accent2 bg-accent2/20 rounded-lg scale-110"
+              "text-background1 bg-accent2 rounded-lg scale-110"
             } transition-all duration-300 ease-in-out p-2 scale-100 cursor-pointer`}
           >
-            <SignOut size={24} />
+            <LuLogOut size={24} />
           </button>
         )}
         {!token && (
@@ -159,10 +165,10 @@ export default function NavigationBar() {
             href={"/login"}
             className={`${
               pathname == "/login" &&
-              "text-accent2 bg-accent2/20 rounded-lg scale-110"
+              "text-background1 bg-accent2 rounded-lg scale-110"
             } transition-all duration-300 ease-in-out p-2 scale-100`}
           >
-            <SignIn size={24} />
+            <LuLogIn size={24} />
           </Link>
         )}
       </div>
