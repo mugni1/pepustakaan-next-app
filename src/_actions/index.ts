@@ -186,7 +186,7 @@ export const createBook = async (prevData: any, formData: FormData) => {
   try {
     const form = new FormData();
     form.append("file", dataBody.data.image);
-    const upload = await fetch("/api/upload", {
+    const upload = await fetch("https://pustakaa.vercel.app/api/upload", {
       method: "POST",
       headers: {
         Accept: "application/json",
