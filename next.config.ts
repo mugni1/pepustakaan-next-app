@@ -22,6 +22,13 @@ const nextConfig: NextConfig = {
         // pathname: "/my-bucket/**",
         // search: "",
       },
+      {
+        protocol: "https",
+        hostname: "https://qgovcxiwpbo1tdej.public.blob.vercel-storage.com",
+        // port: "8000",
+        // pathname: "/my-bucket/**",
+        // search: "",
+      },
     ],
   },
 };

@@ -19,9 +19,9 @@ export default function ListBooks({ books }: { books: Book[] }) {
           {/* head  */}
           <div className="w-full h-52 md:h-60 xl:h-72 overflow-hidden cursor-pointer">
             <Image
-              src={`${process.env.NEXT_PUBLIC_BASE_IMAGE_URL}/${book.image}`}
+              src={book.image}
               className="object-cover h-full w-full group-hover:scale-110 group-hover:rotate-4 transition-all"
-              alt=""
+              alt={book.image}
               width={150}
               height={200}
             />
