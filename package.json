@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@phosphor-icons/react": "^2.1.7",
+    "@vercel/blob": "^1.0.0",
     "axios": "^1.8.2",
     "js-cookie": "^3.0.5",
     "next": "15.2.1",

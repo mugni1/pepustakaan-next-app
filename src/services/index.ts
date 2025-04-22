@@ -250,6 +250,11 @@ export async function getCountHistoryTrans(status: string, year?: string) {
       Authorization: `Bearer ${auth_token}`,
     },
   });
+  if (!res.ok) {
+    return {
+      status: false,
+    };
+  }
   return res.json();
 }
 

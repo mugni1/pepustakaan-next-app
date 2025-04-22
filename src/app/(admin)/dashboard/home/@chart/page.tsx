@@ -27,9 +27,9 @@ export default async function Page({
       {/* simple bar chart  */}
       <FilterYearForm />
       <SimpleBarChart
-        pengembalian={pengembalianCount}
-        peminjaman={peminjamanCount}
-        denda={dendaCount}
+        pengembalian={pengembalianCount ? pengembalianCount : 0}
+        peminjaman={peminjamanCount ? peminjamanCount : 0}
+        denda={dendaCount ? dendaCount : 0}
       />
       {/* end simple bar chart  */}
     </Container>
