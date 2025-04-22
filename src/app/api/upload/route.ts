@@ -5,6 +5,7 @@ export async function POST(request: NextRequest) {
   const formData = await request.formData();
   const file = formData.get("file") as File;
 
+  return NextResponse.json(file); // blob.url = link publik
   const blob = await put(file.name, file, {
     access: "public", // biar bisa dilihat semua orang
   });
