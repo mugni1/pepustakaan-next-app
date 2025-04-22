@@ -17,14 +17,14 @@ export default function ListBooks({ books }: { books: Book[] }) {
           className="columns-1 rounded-xl shadow-lg border border-foreground/30 overflow-hidden group"
         >
           {/* head  */}
-          <div className="w-full h-52 md:h-60 xl:h-72 overflow-hidden cursor-pointer">
-            <Image
+          <div className="w-full h-45 md:h-60 xl:h-72 overflow-hidden cursor-pointer">
+            <img
               // src={book.image}
-              src={`https://qgovcxiwpbo1tdej.public.blob.vercel-storage.com/1745323672427Solo-Leveling-1.webp`}
+              src="https://qgovcxiwpbo1tdej.public.blob.vercel-storage.com/1745323672427Solo-Leveling-1.webp"
               className="object-cover h-full w-full group-hover:scale-110 group-hover:rotate-4 transition-all"
               alt={book.image}
-              width={150}
-              height={200}
+              // width={150}
+              // height={200}
             />
           </div>
           {/* end head  */}
