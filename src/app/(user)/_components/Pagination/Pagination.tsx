@@ -44,7 +44,7 @@ export default function PaginationUser({
           }
         >
           <ArrowCircleLeft size={28} />
-          <span>Sebelumnya</span>
+          <span className="hidden md:block">Sebelumnya</span>
         </button>
         {/* end btn prev  */}
         <div className="flex flex-col justify-center items-center">
@@ -69,7 +69,7 @@ export default function PaginationUser({
             )
           }
         >
-          <span>Selanjutnya</span>
+          <span className="hidden md:block">Selanjutnya</span>
           <ArrowCircleRight size={28} />
         </button>
         {/* end btn next  */}
