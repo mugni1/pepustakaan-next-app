@@ -1,12 +1,6 @@
 "use client";
-import {
-  ArrowFatLinesLeft,
-  ArrowFatLinesRight,
-  HouseLine,
-  SignIn,
-  SignOut,
-  User,
-} from "@phosphor-icons/react";
+import { HouseLine, SignIn, SignOut, User } from "@phosphor-icons/react";
+import { LuArrowLeftToLine, LuArrowRightFromLine } from "react-icons/lu";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -138,7 +132,7 @@ export default function NavigationBar() {
             "text-accent2 bg-accent2/20 rounded-lg scale-110"
           } transition-all duration-300 ease-in-out p-2 scale-100`}
         >
-          <ArrowFatLinesRight size={24} />
+          <LuArrowLeftToLine size={24} />
         </Link>
         <Link
           href={"/returns"}
@@ -147,7 +141,7 @@ export default function NavigationBar() {
             "text-accent2 bg-accent2/20 rounded-lg scale-110"
           } transition-all duration-300 ease-in-out p-2 scale-100`}
         >
-          <ArrowFatLinesLeft size={24} />
+          <LuArrowRightFromLine size={24} />
         </Link>
         {token && (
           <button

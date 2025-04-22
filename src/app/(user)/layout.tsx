@@ -17,14 +17,14 @@ export default function RootLayout({
       <footer className="w-full rounded-t-2xl bg-gradient-to-br from-accent1 to-accent2 text-background1 font-gabarito ">
         <div className="container mx-auto px-5 grid md:grid-cols-3 grid-cols-1 py-5 gap-2">
           <section className="flex flex-col gap-4 mb-2 md:mb-0">
-            <h2 className="font-bold text-2xl">PUSTAKA</h2>
+            <h2 className="font-extrabold text-2xl">PUSTAKA</h2>
             <span className="text-background1/80">
               Jalan Gununghalu, Rongga, Kecamatan Gununghalu, Bandung Barat,
               46505
             </span>
             <div className=" flex flex-col text-background1/80">
               <span className="flex items-center gap-1">
-                <FaPhoneFlip size={20} /> 0831-2024-9215
+                <FaPhoneFlip size={19} /> 0831-2024-9215
               </span>
               <span className="flex items-center gap-1">
                 <IoMdMail size={20} /> abankr342@gmail.com
@@ -41,7 +41,7 @@ export default function RootLayout({
                 <FaUser size={20} /> Profile
               </Link>
               <Link href={"/borrowings"} className="flex items-center gap-1">
-                <LuArrowLeftToLine size={20} /> Peminjaman
+                <LuArrowLeftToLine size={19} /> Peminjaman
               </Link>
               <Link href={"/returns"} className="flex items-center gap-1">
                 <LuArrowRightFromLine size={20} /> Pengembalian
@@ -58,7 +58,7 @@ export default function RootLayout({
                 <FaInstagramSquare size={20} /> Instagram
               </Link>
               <Link href={"/profile"} className="flex items-center gap-1">
-                <FaTiktok size={20} /> Tiktok
+                <FaTiktok size={19} /> Tiktok
               </Link>
             </div>
           </section>
