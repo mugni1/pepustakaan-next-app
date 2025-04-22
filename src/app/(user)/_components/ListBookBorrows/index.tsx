@@ -77,18 +77,18 @@ export default function ListBookBorrows({ data }: { data: Borrow[] }) {
             {/* status  */}
             {/* date  */}
             <div className="flex flex-col">
-              <span className="flex items-center gap-1 font-semibold text-sm">
+              <span className="flex items-center gap-1 font-semibold text-xs md:text-sm">
                 <CalendarDots size={20} />
                 <span>Pinjam & Pengembalian</span>
               </span>
-              <div className="flex gap-1 items-center text-sm">
+              <div className="flex gap-1 items-center text-xs md:text-sm">
                 <span className="text-amber-500">{borrow.borrow_date}</span>
                 <span>&gt;</span>
                 <span className="text-emerald-500">{borrow.return_date}</span>
               </div>
             </div>
             {/* Countdown */}
-            <div className="py-2 flex flex-col text-sm">
+            <div className="py-2 flex flex-col text-xs md:text-sm">
               <div className="flex items-center gap-1 font-semibold">
                 <ClockCountdown size={20} />
                 <span>Batas Waktu</span>
